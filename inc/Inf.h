@@ -30,7 +30,7 @@
 #ifndef INF
 #define INF
 
-#include <QtGui>
+#include <QtWidgets>
 #include <QtSql>
 
 QT_BEGIN_NAMESPACE

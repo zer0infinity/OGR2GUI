@@ -54,7 +54,7 @@
 
 using std::string;
 
-#include <qtextedit.h>
+#include <QTextEdit>
 
 QT_BEGIN_NAMESPACE
 
