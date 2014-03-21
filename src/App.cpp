@@ -981,11 +981,16 @@ void App::evtBtnQuit( void )
 	this->close();
 }
 
+//#include <QtCore/QCoreApplication>
+//#include <iostream>
 int main( int argc, char **argv )
 {
-	QApplication app( argc, argv );
+//    QCoreApplication a(argc, argv);
+//    std::cerr << "Hello World!" << std::endl;
+//    return a.exec();
+    QApplication app( argc, argv );
 
-	new App();
+    new App();
 
-	return app.exec();
+    return app.exec();
 }
