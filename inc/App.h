@@ -47,8 +47,9 @@
 #ifndef APP
 #define APP
 
-#include "../inc/Ogr.h"
+//#include "../inc/Ogr.h"
 #include "../inc/Inf.h"
+#include <QtWidgets>
 
 #include <string>
 
@@ -65,241 +66,251 @@ QT_BEGIN_NAMESPACE
  */
 class App : public QMainWindow
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	private:
+    private:
 
-		// ogr
-		Ogr *ogr;
+//      ogr
+//        Ogr *ogr;
 
-		// inf
-		Inf *inf;
+//      inf
+        Inf *inf;
 
-		// ogr2ogr parameters
-		QString parameters;
+        // ogr2ogr parameters
+        QString parameters;
 
-		// file formats
-		const static int formatsCount = 13;
-		QString **formats;
+        // file formats
+        const static int formatsCount = 13;
+        QString **formats;
 		
-		// output formats
-		const static int formatsOutput = 9;
+        // output formats
+        const static int formatsOutput = 9;
 
-		// database formats
-		const static int databasesCount = 5;
-		QString **databases;
+        // database formats
+        const static int databasesCount = 5;
+        QString **databases;
 
-		// output databases
-		const static int databasesOutput = 3;
+        // output databases
+        const static int databasesOutput = 3;
 
-		// target projections
-		const static int projectionsCount = 3578;
-		QString **projections;
+        // webfeatureservice (wfs)
+        const static int webfeatureservicesCount = 1;
+        QString **webfeatureservices;
 
-		// qt
-		QMenuBar *theMenu;
-		QMenu *fileMenu;
-		QMenu *helpMenu;
+        // output webfeatureservice
+        const static int webfeatureservicesOutput = 1;
 
-		QMenu *mnuLanguage;
-			QAction *mnuEnglish;
-			QAction *mnuFrench;
-			QAction *mnuGerman;
-			QAction *mnuItalian;
-			QAction *mnuSpanish;
-			QAction *mnuChinese;
-			QAction *mnuRussian;
-			QAction *mnuArabic;
+        // target projections
+        const static int projectionsCount = 3578;
+        QString **projections;
 
-		QAction *mnuQuit;
-		QAction *mnuOgrHelp;
-		QAction *mnuGuiHelp;
-		QAction *mnuAbout;
+        // qt
+        QMenuBar *theMenu;
+        QMenu *fileMenu;
+        QMenu *helpMenu;
 
-		QStatusBar *statusbar;
+        QMenu *mnuLanguage;
+            QAction *mnuEnglish;
+            QAction *mnuFrench;
+            QAction *mnuGerman;
+            QAction *mnuItalian;
+            QAction *mnuSpanish;
+            QAction *mnuChinese;
+            QAction *mnuRussian;
+            QAction *mnuArabic;
+
+        QAction *mnuQuit;
+        QAction *mnuOgrHelp;
+        QAction *mnuGuiHelp;
+        QAction *mnuAbout;
+
+        QStatusBar *statusbar;
 		
-		QProgressBar *theProgress;
+        QProgressBar *theProgress;
 
-		QStringList fileList;
+        QStringList fileList;
 
-		QWidget *thePanel;
-				QVBoxLayout *theLayout;
-					QGroupBox *grpSource;
-						QGridLayout *lytSource;
+        QWidget *thePanel;
+                QVBoxLayout *theLayout;
+                    QGroupBox *grpSource;
+                        QGridLayout *lytSource;
 
-							QLabel *lblSourceFormat;
-							QComboBox *cmbSourceFormat;
+                            QLabel *lblSourceFormat;
+                            QComboBox *cmbSourceFormat;
 
-							QHBoxLayout *lytSourceInput;
-								QRadioButton *radSourceFile;
-								QRadioButton *radSourceFolder;
-								QRadioButton *radSourceDatabase;
+                            QHBoxLayout *lytSourceInput;
+                                QRadioButton *radSourceFile;
+                                QRadioButton *radSourceFolder;
+                                QRadioButton *radSourceDatabase;
+                                QRadioButton *radSourceWebfeatureservice;
 
-							QLabel *lblSourceName;
-							QHBoxLayout *lytSourceName;
-								QLineEdit *txtSourceName;
-								QPushButton *btnSourceName;
+                            QLabel *lblSourceName;
+                            QHBoxLayout *lytSourceName;
+                                QLineEdit *txtSourceName;
+                                QPushButton *btnSourceName;
 							
-							QLabel *lblSourceProj;
-							QLineEdit *txtSourceProj;
+                            QLabel *lblSourceProj;
+                            QLineEdit *txtSourceProj;
 
-							QLabel *lblSourceQuery;
-							QLineEdit *txtSourceQuery;
-
-
-					QGroupBox *grpTarget;
-						QGridLayout *lytTarget;
-
-							QHBoxLayout *lytTargetOutput;
-								QButtonGroup *grpTargetOutput;
-									QRadioButton *radTargetFile;
-									QRadioButton *radTargetFolder;
-									QRadioButton *radTargetDatabase;
-
-							QLabel *lblTargetFormat;
-							QComboBox *cmbTargetFormat;
-
-							QLabel *lblTargetName;
-							QHBoxLayout *lytTargetName;
-								QLineEdit *txtTargetName;
-								QPushButton *btnTargetName;
-
-							QLabel *lblTargetProj;
-							QHBoxLayout *lytTargetProj;
-								QLineEdit *txtTargetProj;
-								QComboBox *cmbTargetProj;
-
-							QHBoxLayout *lytTargetOptions;
-								QButtonGroup *grpTargetOptions;
-									QRadioButton *radTargetAppend;
-									QRadioButton *radTargetOverwrite;
-									QRadioButton *radTargetUpdate;
-
-					QTextEdit *txtOutput;
-
-					QHBoxLayout *lytExecute;
-						QPushButton *btnExecute;
-						QPushButton *btnQuit;
+                            QLabel *lblSourceQuery;
+                            QLineEdit *txtSourceQuery;
 
 
-		/*!
-		 *	\fn void InitData( void );
-		 *	\brief Inits data
-		 */
-		void InitData( void );
+                    QGroupBox *grpTarget;
+                        QGridLayout *lytTarget;
 
-		/*!
-		 *	\fn void void InitProjections( void );
-		 *	\brief Inits projections
-		 */
-		void InitProjections( void );
+                            QHBoxLayout *lytTargetOutput;
+                                QButtonGroup *grpTargetOutput;
+                                    QRadioButton *radTargetFile;
+                                    QRadioButton *radTargetFolder;
+                                    QRadioButton *radTargetDatabase;
+
+                            QLabel *lblTargetFormat;
+                            QComboBox *cmbTargetFormat;
+
+                            QLabel *lblTargetName;
+                            QHBoxLayout *lytTargetName;
+                                QLineEdit *txtTargetName;
+                                QPushButton *btnTargetName;
+
+                            QLabel *lblTargetProj;
+                            QHBoxLayout *lytTargetProj;
+                                QLineEdit *txtTargetProj;
+                                QComboBox *cmbTargetProj;
+
+                            QHBoxLayout *lytTargetOptions;
+                                QButtonGroup *grpTargetOptions;
+                                    QRadioButton *radTargetAppend;
+                                    QRadioButton *radTargetOverwrite;
+                                    QRadioButton *radTargetUpdate;
+
+                    QTextEdit *txtOutput;
+
+                    QHBoxLayout *lytExecute;
+                        QPushButton *btnExecute;
+                        QPushButton *btnQuit;
+
+
+        /*!
+         *	\fn void InitData( void );
+         *	\brief Inits data
+         */
+        void InitData( void );
+
+        /*!
+         *	\fn void void InitProjections( void );
+         *	\brief Inits projections
+         */
+        void InitProjections( void );
 		
-		/*!
-		 *	\fn void InitInterface( void );
-		 *	\brief Inits Interface
-		 */
-		void InitInterface( void );
+        /*!
+         *	\fn void InitInterface( void );
+         *	\brief Inits Interface
+         */
+        void InitInterface( void );
 
-		/*!
-		 *	\fn void InitMenu( void );
-		 *	\brief Inits Menu
-		 */
-		void InitMenu( void );
+        /*!
+         *	\fn void InitMenu( void );
+         *	\brief Inits Menu
+         */
+        void InitMenu( void );
 
-		/*!
-		 *	\fn void InitLayout( void );
-		 *	\brief Inits Layout
-		 */
-		void InitLayout( void ); 
+        /*!
+         *	\fn void InitLayout( void );
+         *	\brief Inits Layout
+         */
+        void InitLayout( void );
 
-		/*!
-		 *	\fn void InitSlots( void );
-		 *	\brief Inits Slots
-		 */
-		void InitSlots( void );
+        /*!
+         *	\fn void InitSlots( void );
+         *	\brief Inits Slots
+         */
+        void InitSlots( void );
 
-		/*!
-		 *	\fn void TranslateInterface( void );
-		 *	\brief Translates Interface
-		 */
-		void TranslateInterface( void );
+        /*!
+         *	\fn void TranslateInterface( void );
+         *	\brief Translates Interface
+         */
+        void TranslateInterface( void );
 
-		/*!
-		 *	\fn void UpdateParameters( void );
-		 *	\brief Updates parameters
-		 */
-		void UpdateParameters( void );
-
-
-	private slots :
-
-		void evtMnuOgrHelp( void );
-
-		void evtMnuGuiHelp( void );
-
-		void evtMnuAbout( void );
+        /*!
+         *	\fn void UpdateParameters( void );
+         *	\brief Updates parameters
+         */
+        void UpdateParameters( void );
 
 
-		void evtRadSourceFile( void );
+    private slots :
 
-		void evtRadSourceFolder( void );
+        void evtMnuOgrHelp( void );
 
-		void evtRadSourceDatabase( void );
+        void evtMnuGuiHelp( void );
 
-
-		void evtCmbSourceFormat( int );
-
-
-		void evtTxtSourceName( void );
-
-		void evtBtnSourceName( void );
-
-		void evtTxtSourceQuery( void );
+        void evtMnuAbout( void );
 
 
-		void evtRadTargetFile( void );
+        void evtRadSourceFile( void );
 
-		void evtRadTargetFolder( void );
+        void evtRadSourceFolder( void );
 
-		void evtRadTargetDatabase( void );
+        void evtRadSourceDatabase( void );
 
-
-		void evtCmbTargetFormat( void );
-
-		void evtTxtTargetName( void );
-
-		void evtBtnTargetName( void );
-
-		void evtTxtTargetProj( void );
-
-		void evtCmbTargetProj( void );
+        void evtRadSourceWebfeatureservice( void );
 
 
-		void evtRadTargetAppend( void );
-
-		void evtRadTargetOverwrite( void );
-
-		void evtRadTargetUpdate( void );
+        void evtCmbSourceFormat( int );
 
 
-		void evtBtnExecute( void );
+        void evtTxtSourceName( void );
 
-		void evtBtnQuit( void );
+        void evtBtnSourceName( void );
+
+        void evtTxtSourceQuery( void );
+
+
+        void evtRadTargetFile( void );
+
+        void evtRadTargetFolder( void );
+
+        void evtRadTargetDatabase( void );
+
+
+        void evtCmbTargetFormat( void );
+
+        void evtTxtTargetName( void );
+
+        void evtBtnTargetName( void );
+
+        void evtTxtTargetProj( void );
+
+        void evtCmbTargetProj( void );
+
+
+        void evtRadTargetAppend( void );
+
+        void evtRadTargetOverwrite( void );
+
+        void evtRadTargetUpdate( void );
+
+
+        void evtBtnExecute( void );
+
+        void evtBtnQuit( void );
 
 		
-	public:
+    public:
 
-		/*!
-		 *	\fn Frm( const QWidget & );
-		 *	\brief Constructor
-		 */
-		App( QWidget * = 0 );
+        /*!
+         *	\fn Frm( const QWidget & );
+         *	\brief Constructor
+         */
+        App( QWidget * = 0 );
 
-		/*!
-		 *	\fn ~Frm
-		 *	\brief Destructor
-		 */
-		~App( void );
+        /*!
+         *	\fn ~Frm
+         *	\brief Destructor
+         */
+        ~App( void );
 };
 
 QT_END_NAMESPACE

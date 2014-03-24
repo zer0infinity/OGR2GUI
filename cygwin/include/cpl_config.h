@@ -8,7 +8,7 @@
 #define HAVE_PTHREAD_MUTEX_RECURSIVE 1
 
 /* --prefix directory for GDAL install */
-#define GDAL_PREFIX "./"
+#define GDAL_PREFIX "."
 
 /* Define to 1 if you have the <assert.h> header file. */
 #define HAVE_ASSERT_H 1

@@ -47,6 +47,8 @@ databases[ 2 ][ 0 ] = "OCI";				databases[ 2 ][ 1 ] = "QOCI";
 databases[ 3 ][ 0 ] = "MySQL";				databases[ 3 ][ 1 ] = "QMYSQL";
 databases[ 4 ][ 0 ] = "ODBC";				databases[ 4 ][ 1 ] = "QODBC";
 
+webfeatureservices[ 0 ][ 0 ] = "http://maps.zh.ch/wfs/FnsNSWFS";  webfeatureservices[ 0 ][ 1 ] = "";
+
 projections[    0 ][ 0 ] =  "";			projections[    0 ][ 1 ] =  "";
 projections[    1 ][ 0 ] =  "2000";		projections[    1 ][ 1 ] =  "Anguilla 1957 / British West Indies Grid";
 projections[    2 ][ 0 ] =  "2001";		projections[    2 ][ 1 ] =  "Antigua 1943 / British West Indies Grid";

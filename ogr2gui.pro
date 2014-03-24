@@ -1,17 +1,25 @@
 # ogr2gui 0.7
 
-#CONFIG   += console
-#CONFIG   -= app_bundle
-
 TEMPLATE = app
 TARGET = ogr2gui
-DEPENDPATH += . inc src $$PWD/cygwin/include
-INCLUDEPATH += . inc src $$PWD/cygwin/include
+DEPENDPATH += . inc src \
+#            $$PWD/cygwin/include
+            $$PWD/mingw/include
+INCLUDEPATH += . inc src \
+#            $$PWD/cygwin/include
+            $$PWD/mingw/include
+#LIBS += -L$$PWD/cygwin/lib -lgdal -lproj -lpq
+LIBS += -L$$PWD/mingw/lib -lgdal -lproj -lpq
 
-HEADERS += config.h inc/App.h inc/Dta.h inc/Ogr.h inc/Inf.h src/App.cpp src/Ogr.cpp
-SOURCES += src/App.cpp src/Ogr.cpp src/Inf.cpp
+HEADERS += config.h \
+           inc/App.h \
+           inc/Dta.h \
+#           inc/Ogr.h \
+           inc/Inf.h
 
-LIBS += -L$$PWD/cygwin/lib -lgdal -lproj -lpq
+SOURCES += src/App.cpp \
+#           src/Ogr.cpp \
+           src/Inf.cpp
 
 CONFIG += static
 QT += sql widgets
