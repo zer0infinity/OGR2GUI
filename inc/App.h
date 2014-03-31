@@ -47,9 +47,8 @@
 #ifndef APP
 #define APP
 
-//#include "../inc/Ogr.h"
+#include "../inc/Ogr.h"
 #include "../inc/Inf.h"
-#include <QtWidgets>
 
 #include <string>
 
@@ -69,11 +68,8 @@ class App : public QMainWindow
     Q_OBJECT
 
     private:
+        Ogr *ogr;
 
-//      ogr
-//        Ogr *ogr;
-
-//      inf
         Inf *inf;
 
         // ogr2ogr parameters
@@ -94,11 +90,11 @@ class App : public QMainWindow
         const static int databasesOutput = 3;
 
         // webfeatureservice (wfs)
-        const static int webfeatureservicesCount = 1;
-        QString **webfeatureservices;
+        const static int webservicesCount = 1;
+        QString **webservices;
 
         // output webfeatureservice
-        const static int webfeatureservicesOutput = 1;
+        const static int webservicesOutput = 1;
 
         // target projections
         const static int projectionsCount = 3578;
@@ -142,7 +138,7 @@ class App : public QMainWindow
                                 QRadioButton *radSourceFile;
                                 QRadioButton *radSourceFolder;
                                 QRadioButton *radSourceDatabase;
-                                QRadioButton *radSourceWebfeatureservice;
+                                QRadioButton *radSourceWebservice;
 
                             QLabel *lblSourceName;
                             QHBoxLayout *lytSourceName;
@@ -255,7 +251,7 @@ class App : public QMainWindow
 
         void evtRadSourceDatabase( void );
 
-        void evtRadSourceWebfeatureservice( void );
+        void evtRadSourceWebservice( void );
 
 
         void evtCmbSourceFormat( int );

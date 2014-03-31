@@ -31,7 +31,7 @@
 
 Ogr::Ogr( void )
 {
-	OGRRegisterAll();
+    OGRRegisterAll();
 }
 
 Ogr::~Ogr( void )

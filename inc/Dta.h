@@ -22,9 +22,9 @@
 /*!
  *	\file Dta.h
  *	\brief Formats & Projections
- *	\author Olivier Pilotte [ Inventis ]
- *	\version 0.6
- *	\date 27/10/09
+ *	\author Olivier Pilotte [ Inventis ], David Tran [ HSR ]
+ *	\version 0.7
+ *	\date 30/05/14
  */
 
 formats[  0 ][ 0 ] = "ESRI Shapefile";		formats[  0 ][ 1 ] = "shp";
@@ -47,7 +47,7 @@ databases[ 2 ][ 0 ] = "OCI";				databases[ 2 ][ 1 ] = "QOCI";
 databases[ 3 ][ 0 ] = "MySQL";				databases[ 3 ][ 1 ] = "QMYSQL";
 databases[ 4 ][ 0 ] = "ODBC";				databases[ 4 ][ 1 ] = "QODBC";
 
-webfeatureservices[ 0 ][ 0 ] = "http://maps.zh.ch/wfs/FnsNSWFS";  webfeatureservices[ 0 ][ 1 ] = "";
+webservices[ 0 ][ 0 ] = "http://maps.zh.ch/wfs/FnsNSWFS";  webservices[ 0 ][ 1 ] = "FnsNSWFS";
 
 projections[    0 ][ 0 ] =  "";			projections[    0 ][ 1 ] =  "";
 projections[    1 ][ 0 ] =  "2000";		projections[    1 ][ 1 ] =  "Anguilla 1957 / British West Indies Grid";

@@ -22,9 +22,9 @@
 /*!
  *	\file App.cpp
  *	\brief Qt Application
- *	\author Olivier Pilotte [ Inventis ], Mohamed Hedi Lassoued [ Inventis ]
- *	\version 0.6
- *	\date 27/10/09
+ *	\author Olivier Pilotte [ Inventis ], Mohamed Hedi Lassoued [ Inventis ], David Tran [ HSR ]
+ *	\version 0.7
+ *	\date 30/05/14
  */
 
 #include "../inc/App.h"
@@ -47,12 +47,12 @@ App::~App( void )
     delete [] *formats;
     delete [] *databases;
     delete [] *projections;
-    delete [] *webfeatureservices;
+    delete [] *webservices;
 }
 
 void App::InitData( void )
 {
-//    ogr = new Ogr();
+    ogr = new Ogr();
 
     formats = new QString * [ formatsCount ];
 		
@@ -75,11 +75,11 @@ void App::InitData( void )
         projections[ i ] = new QString[ 2 ];
     }
 
-    webfeatureservices = new QString*[ webfeatureservicesCount ];
+    webservices = new QString*[ webservicesCount ];
 
-    for( int i = 0; i < webfeatureservicesCount; i ++ )
+    for( int i = 0; i < webservicesCount; i ++ )
     {
-        webfeatureservices[ i ] = new QString[ 2 ];
+        webservices[ i ] = new QString[ 2 ];
     }
 
     #include "../inc/Dta.h"
@@ -181,12 +181,12 @@ void App::InitLayout( void )
                     radSourceFile = new QRadioButton();
                     radSourceFolder = new QRadioButton();
                     radSourceDatabase = new QRadioButton();
-                    radSourceWebfeatureservice = new QRadioButton();
+                    radSourceWebservice = new QRadioButton();
 
                     lytSourceInput->addWidget( radSourceFile );
                     lytSourceInput->addWidget( radSourceFolder );
                     lytSourceInput->addWidget( radSourceDatabase );
-                    lytSourceInput->addWidget( radSourceWebfeatureservice);
+                    lytSourceInput->addWidget( radSourceWebservice);
                 }
 
                 lytSource->addLayout( lytSourceInput, 0, 1 );
@@ -397,7 +397,7 @@ void App::InitSlots( void )
 
     QObject::connect( radSourceDatabase, SIGNAL( toggled( bool ) ), this, SLOT( evtRadSourceDatabase( void ) ) );
 
-    QObject::connect( radSourceWebfeatureservice, SIGNAL( toggled( bool ) ), this, SLOT( evtRadSourceWebfeatureservice( void ) ) );
+    QObject::connect( radSourceWebservice, SIGNAL( toggled( bool ) ), this, SLOT( evtRadSourceWebservice( void ) ) );
 
 
     QObject::connect( cmbSourceFormat, SIGNAL( currentIndexChanged( int ) ), this, SLOT( evtCmbSourceFormat( int ) ) );
@@ -465,7 +465,7 @@ void App::TranslateInterface( void )
         radSourceFile->setText( tr( "File" ) );
         radSourceFolder->setText( tr( "Folder" ) );
         radSourceDatabase->setText( tr( "Database" ) );
-        radSourceWebfeatureservice->setText( tr( "Web Feature Service" ) );
+        radSourceWebservice->setText( tr( "Web Service" ) );
 
         lblSourceFormat->setText( tr( "Format" ) );
 
@@ -636,15 +636,15 @@ void App::evtRadSourceDatabase( void )
     txtSourceQuery->setEnabled( true );
 }
 
-void App::evtRadSourceWebfeatureservice( void )
+void App::evtRadSourceWebservice( void )
 {
     btnSourceName->setText( tr( "&Connect" ) );
 
     cmbSourceFormat->clear();
 
-    for( int i = 0; i < webfeatureservicesCount; i ++ )
+    for( int i = 0; i < webservicesCount; i ++ )
     {
-        cmbSourceFormat->addItem( webfeatureservices[ i ][ 0 ] );
+        cmbSourceFormat->addItem( webservices[ i ][ 0 ] );
     }
 
     radTargetFile->setEnabled( true );
@@ -686,33 +686,33 @@ void App::evtTxtSourceName( void )
     string query;
     string error;
 
-//    if( ogr->OpenSource( name, epsg, query, error ) )
-//    {
-//        for( int i = 0; i < projectionsCount; i ++ )
-//        {
-//            if( strcmp( epsg.c_str(), projections[ i ][ 0 ].toStdString().c_str() ) == 0 )
-//            {
-//                if( i > 1 )
-//                {
-//                    txtSourceProj->setText( projections[ i ][ 0 ] + tr( " : " ) + projections[ i ][ 1 ] );
-//                }
+    if( ogr->OpenSource( name, epsg, query, error ) )
+    {
+        for( int i = 0; i < projectionsCount; i ++ )
+        {
+            if( strcmp( epsg.c_str(), projections[ i ][ 0 ].toStdString().c_str() ) == 0 )
+            {
+                if( i > 1 )
+                {
+                    txtSourceProj->setText( projections[ i ][ 0 ] + tr( " : " ) + projections[ i ][ 1 ] );
+                }
 
-//                break;
-//            }
-//        }
+                break;
+            }
+        }
 
-//        ogr->CloseSource();
+        ogr->CloseSource();
 
-//        if( radSourceFile->isChecked() )
-//        {
-//            txtSourceQuery->setText( query.c_str() );
-//        }
-//    }
-//    else
-//    {
-//        txtSourceProj->clear();
-//        txtSourceQuery->clear();
-//    }
+        if( radSourceFile->isChecked() )
+        {
+            txtSourceQuery->setText( query.c_str() );
+        }
+    }
+    else
+    {
+        txtSourceProj->clear();
+        txtSourceQuery->clear();
+    }
 
     UpdateParameters();
 }
@@ -968,7 +968,7 @@ void App::evtBtnExecute( void )
             sourcename = fileList.at( i );
             targetname = txtTargetName->text();
         }
-        else if( radSourceWebfeatureservice->isChecked() )
+        else if( radSourceWebservice->isChecked() )
         {
             sourcename = txtSourceName->text();
             targetname = txtTargetName->text();
@@ -976,46 +976,46 @@ void App::evtBtnExecute( void )
 
         txtOutput->append( QString( sourcename + tr( " > " ) + targetname + tr( " ... " ) ) );
 
-//        if( ogr->OpenSource( sourcename.toStdString(), epsg, query, error ) )
-//        {
-//            if( ogr->OpenDriver( cmbTargetFormat->currentText().toStdString(), error ) )
-//            {
-//                if( ogr->OpenTarget( targetname.toStdString(), atoi( projections[ cmbTargetProj->currentIndex() ][ 0 ].toStdString().c_str() ) ) )
-//                {
-//                    ogr->Prepare( featuresCount, "" );
+        if( ogr->OpenSource( sourcename.toStdString(), epsg, query, error ) )
+        {
+            if( ogr->OpenDriver( cmbTargetFormat->currentText().toStdString(), error ) )
+            {
+                if( ogr->OpenTarget( targetname.toStdString(), atoi( projections[ cmbTargetProj->currentIndex() ][ 0 ].toStdString().c_str() ) ) )
+                {
+                    ogr->Prepare( featuresCount, "" );
 
-//                    theProgress->setMinimum( 0 );
-//                    theProgress->setMaximum( featuresCount );
-//                    theProgress->setValue( 0 );
+                    theProgress->setMinimum( 0 );
+                    theProgress->setMaximum( featuresCount );
+                    theProgress->setValue( 0 );
 
-//                    while( ogr->Process() )
-//                    {
-//                        progress ++;
+                    while( ogr->Process() )
+                    {
+                        progress ++;
 
-//                        theProgress->setValue( progress );
-//                    }
+                        theProgress->setValue( progress );
+                    }
 					
-//                    ogr->CloseTarget();
-//                    ogr->CloseSource();
+                    ogr->CloseTarget();
+                    ogr->CloseSource();
 
-//                    theProgress->setValue( 0 );
+                    theProgress->setValue( 0 );
 
-//                    txtOutput->append( tr( "successful.\n" ) );
-//                }
-//                else
-//                {
-//                    txtOutput->append( tr( "\n * unable to open target !\n" ) );
-//                }
-//            }
-//            else
-//            {
-//                txtOutput->append( tr( "\n * unable to open driver !\n" ) );
-//            }
-//        }
-//        else
-//        {
-//            txtOutput->append( tr( "\n * unable to open source !\n" ) );
-//        }
+                    txtOutput->append( tr( "successful.\n" ) );
+                }
+                else
+                {
+                    txtOutput->append( tr( "\n * unable to open target !\n" ) );
+                }
+            }
+            else
+            {
+                txtOutput->append( tr( "\n * unable to open driver !\n" ) );
+            }
+        }
+        else
+        {
+            txtOutput->append( tr( "\n * unable to open source !\n" ) );
+        }
     }
 }
 
