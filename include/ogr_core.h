@@ -1,5 +1,5 @@
 /******************************************************************************
- * $Id: ogr_core.h 22448 2011-05-28 18:49:54Z rouault $
+ * $Id: ogr_core.h 23947 2012-02-11 17:37:02Z rouault $
  *
  * Project:  OpenGIS Simple Features Reference Implementation
  * Purpose:  Define some core portability services for cross-platform OGR code.
@@ -50,6 +50,12 @@ class CPL_DLL OGREnvelope
         OGREnvelope() : MinX(0.0), MaxX(0.0), MinY(0.0), MaxY(0.0)
         {
         }
+
+        OGREnvelope(const OGREnvelope& oOther) :
+            MinX(oOther.MinX),MaxX(oOther.MaxX), MinY(oOther.MinY), MaxY(oOther.MaxY)
+        {
+        }
+
     double      MinX;
     double      MaxX;
     double      MinY;
@@ -146,6 +152,12 @@ class CPL_DLL OGREnvelope3D : public OGREnvelope
 {
   public:
         OGREnvelope3D() : OGREnvelope(), MinZ(0.0), MaxZ(0.0)
+        {
+        }
+
+        OGREnvelope3D(const OGREnvelope3D& oOther) :
+                            OGREnvelope(oOther),
+                            MinZ(oOther.MinZ), MaxZ(oOther.MaxZ)
         {
         }
 

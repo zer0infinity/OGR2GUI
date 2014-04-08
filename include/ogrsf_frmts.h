@@ -1,5 +1,5 @@
 /******************************************************************************
- * $Id: ogrsf_frmts.h 23554 2011-12-12 18:10:25Z rouault $
+ * $Id: ogrsf_frmts.h 25581 2013-01-29 20:42:37Z warmerdam $
  *
  * Project:  OpenGIS Simple Features Reference Implementation
  * Purpose:  Classes related to format registration, and file opening.
@@ -30,6 +30,7 @@
 #ifndef _OGRSF_FRMTS_H_INCLUDED
 #define _OGRSF_FRMTS_H_INCLUDED
 
+#include "cpl_progress.h"
 #include "ogr_feature.h"
 #include "ogr_featurestyle.h"
 
@@ -51,14 +52,19 @@ class OGRSFDriver;
  *
  */
 
+/* Note: any virtual method added to this class must also be added in the */
+/* OGRLayerDecorator class. */
+
 class CPL_DLL OGRLayer
 {
   protected:
     int          m_bFilterIsEnvelope;
     OGRGeometry *m_poFilterGeom;
+    OGRPreparedGeometry *m_pPreparedFilterGeom; /* m_poFilterGeom compiled as a prepared geometry */
     OGREnvelope  m_sFilterEnvelope;
     
     int          FilterGeometry( OGRGeometry * );
+    //int          FilterGeometry( OGRGeometry *, OGREnvelope* psGeometryEnvelope);
     int          InstallFilter( OGRGeometry * );
 
   public:
@@ -115,6 +121,42 @@ class CPL_DLL OGRLayer
 
     virtual OGRErr      SetIgnoredFields( const char **papszFields );
 
+    OGRErr              Intersection( OGRLayer *pLayerMethod, 
+                                      OGRLayer *pLayerResult, 
+                                      char** papszOptions = NULL, 
+                                      GDALProgressFunc pfnProgress = NULL, 
+                                      void * pProgressArg = NULL );
+    OGRErr              Union( OGRLayer *pLayerMethod, 
+                               OGRLayer *pLayerResult, 
+                               char** papszOptions = NULL, 
+                               GDALProgressFunc pfnProgress = NULL, 
+                               void * pProgressArg = NULL );
+    OGRErr              SymDifference( OGRLayer *pLayerMethod, 
+                                       OGRLayer *pLayerResult, 
+                                       char** papszOptions, 
+                                       GDALProgressFunc pfnProgress, 
+                                       void * pProgressArg );
+    OGRErr              Identity( OGRLayer *pLayerMethod, 
+                                  OGRLayer *pLayerResult, 
+                                  char** papszOptions = NULL, 
+                                  GDALProgressFunc pfnProgress = NULL, 
+                                  void * pProgressArg = NULL );
+    OGRErr              Update( OGRLayer *pLayerMethod, 
+                                OGRLayer *pLayerResult, 
+                                char** papszOptions = NULL, 
+                                GDALProgressFunc pfnProgress = NULL, 
+                                void * pProgressArg = NULL );
+    OGRErr              Clip( OGRLayer *pLayerMethod, 
+                              OGRLayer *pLayerResult, 
+                              char** papszOptions = NULL, 
+                              GDALProgressFunc pfnProgress = NULL, 
+                              void * pProgressArg = NULL );
+    OGRErr              Erase( OGRLayer *pLayerMethod, 
+                               OGRLayer *pLayerResult, 
+                               char** papszOptions = NULL, 
+                               GDALProgressFunc pfnProgress = NULL, 
+                               void * pProgressArg = NULL );
+    
     int                 Reference();
     int                 Dereference();
     int                 GetRefCount() const;
@@ -160,6 +202,10 @@ class CPL_DLL OGRDataSource
     friend class OGRSFDriverRegistrar;
 
     void        *m_hMutex;
+
+    OGRLayer*       BuildLayerFromSelectInfo(void* psSelectInfo,
+                                             OGRGeometry *poSpatialFilter,
+                                             const char *pszDialect);
 
   public:
 
@@ -359,6 +405,7 @@ void CPL_DLL RegisterOGRGeoRSS();
 void CPL_DLL RegisterOGRGTM();
 void CPL_DLL RegisterOGRVFK();
 void CPL_DLL RegisterOGRPGDump();
+void CPL_DLL RegisterOGROSM();
 void CPL_DLL RegisterOGRGPSBabel();
 void CPL_DLL RegisterOGRSUA();
 void CPL_DLL RegisterOGROpenAir();
@@ -378,6 +425,10 @@ void CPL_DLL RegisterOGRARCGEN();
 void CPL_DLL RegisterOGRSEGUKOOA();
 void CPL_DLL RegisterOGRSEGY();
 void CPL_DLL RegisterOGRXLS();
+void CPL_DLL RegisterOGRODS();
+void CPL_DLL RegisterOGRXLSX();
+void CPL_DLL RegisterOGRElastic();
+void CPL_DLL RegisterOGRPDF();
 CPL_C_END
 
 

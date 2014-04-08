@@ -1,5 +1,5 @@
 /******************************************************************************
- * $Id: ogr_api.h 23638 2011-12-22 21:02:56Z rouault $
+ * $Id: ogr_api.h 25545 2013-01-25 17:55:47Z warmerdam $
  *
  * Project:  OpenGIS Simple Features Reference Implementation
  * Purpose:  C API for OGR Geometry, Feature, Layers, DataSource and drivers.
@@ -39,6 +39,7 @@
  * See also: ogr_geometry.h, ogr_feature.h, ogrsf_frmts.h, ogr_featurestyle.h
  */
 
+#include "cpl_progress.h"
 #include "ogr_core.h"
 
 CPL_C_START
@@ -85,6 +86,7 @@ OGR_G_ApproximateArcAngles(
     double dfMaxAngleStepSizeDegrees );
 
 OGRGeometryH CPL_DLL OGR_G_ForceToPolygon( OGRGeometryH );
+OGRGeometryH CPL_DLL OGR_G_ForceToLineString( OGRGeometryH );
 OGRGeometryH CPL_DLL OGR_G_ForceToMultiPolygon( OGRGeometryH );
 OGRGeometryH CPL_DLL OGR_G_ForceToMultiPoint( OGRGeometryH );
 OGRGeometryH CPL_DLL OGR_G_ForceToMultiLineString( OGRGeometryH );
@@ -148,7 +150,7 @@ OGRGeometryH CPL_DLL OGR_G_Buffer( OGRGeometryH, double, int );
 OGRGeometryH CPL_DLL OGR_G_Intersection( OGRGeometryH, OGRGeometryH );
 OGRGeometryH CPL_DLL OGR_G_Union( OGRGeometryH, OGRGeometryH );
 OGRGeometryH CPL_DLL OGR_G_UnionCascaded( OGRGeometryH );
-/*OGRGeometryH CPL_DLL OGR_G_PointOnSurface( OGRGeometryH );*/
+OGRGeometryH CPL_DLL OGR_G_PointOnSurface( OGRGeometryH );
 /*OGRGeometryH CPL_DLL OGR_G_Polygonize( OGRGeometryH *, int);*/
 /*OGRGeometryH CPL_DLL OGR_G_Polygonizer_getCutEdges( OGRGeometryH *, int);*/
 /*OGRGeometryH CPL_DLL OGR_G_LineMerge( OGRGeometryH );*/
@@ -170,11 +172,11 @@ int    CPL_DLL OGR_G_IsRing( OGRGeometryH );
 OGRGeometryH CPL_DLL OGR_G_Polygonize( OGRGeometryH );
 
 /* backward compatibility (non-standard methods) */
-int    CPL_DLL OGR_G_Intersect( OGRGeometryH, OGRGeometryH );
-int    CPL_DLL OGR_G_Equal( OGRGeometryH, OGRGeometryH );
-OGRGeometryH CPL_DLL OGR_G_SymmetricDifference( OGRGeometryH, OGRGeometryH );
-double CPL_DLL OGR_G_GetArea( OGRGeometryH );
-OGRGeometryH CPL_DLL OGR_G_GetBoundary( OGRGeometryH );
+int    CPL_DLL OGR_G_Intersect( OGRGeometryH, OGRGeometryH ) CPL_WARN_DEPRECATED("Non standard method. Use OGR_G_Intersects() instead");
+int    CPL_DLL OGR_G_Equal( OGRGeometryH, OGRGeometryH ) CPL_WARN_DEPRECATED("Non standard method. Use OGR_G_Equals() instead");
+OGRGeometryH CPL_DLL OGR_G_SymmetricDifference( OGRGeometryH, OGRGeometryH ) CPL_WARN_DEPRECATED("Non standard method. Use OGR_G_SymDifference() instead");
+double CPL_DLL OGR_G_GetArea( OGRGeometryH ) CPL_WARN_DEPRECATED("Non standard method. Use OGR_G_Area() instead");
+OGRGeometryH CPL_DLL OGR_G_GetBoundary( OGRGeometryH ) CPL_WARN_DEPRECATED("Non standard method. Use OGR_G_Boundary() instead");
 
 /* Methods for getting/setting vertices in points, line strings and rings */
 int    CPL_DLL OGR_G_GetPointCount( OGRGeometryH );
@@ -382,6 +384,13 @@ OGRStyleTableH CPL_DLL OGR_L_GetStyleTable( OGRLayerH );
 void   CPL_DLL OGR_L_SetStyleTableDirectly( OGRLayerH, OGRStyleTableH );
 void   CPL_DLL OGR_L_SetStyleTable( OGRLayerH, OGRStyleTableH );
 OGRErr CPL_DLL OGR_L_SetIgnoredFields( OGRLayerH, const char** );
+OGRErr CPL_DLL OGR_L_Intersection( OGRLayerH, OGRLayerH, OGRLayerH, char**, GDALProgressFunc, void * );
+OGRErr CPL_DLL OGR_L_Union( OGRLayerH, OGRLayerH, OGRLayerH, char**, GDALProgressFunc, void * );
+OGRErr CPL_DLL OGR_L_SymDifference( OGRLayerH, OGRLayerH, OGRLayerH, char**, GDALProgressFunc, void * );
+OGRErr CPL_DLL OGR_L_Identity( OGRLayerH, OGRLayerH, OGRLayerH, char**, GDALProgressFunc, void * );
+OGRErr CPL_DLL OGR_L_Update( OGRLayerH, OGRLayerH, OGRLayerH, char**, GDALProgressFunc, void * );
+OGRErr CPL_DLL OGR_L_Clip( OGRLayerH, OGRLayerH, OGRLayerH, char**, GDALProgressFunc, void * );
+OGRErr CPL_DLL OGR_L_Erase( OGRLayerH, OGRLayerH, OGRLayerH, char**, GDALProgressFunc, void * );
 
 /* OGRDataSource */
 

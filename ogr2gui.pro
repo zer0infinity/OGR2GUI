@@ -16,7 +16,7 @@ SOURCES += src/App.cpp \
            src/Ogr.cpp \
            src/Inf.cpp
 
-CONFIG += static
+CONFIG += -static -static-libgcc
 QT += sql widgets
 
 #QMAKE_CXXFLAGS += "-std=c++11"

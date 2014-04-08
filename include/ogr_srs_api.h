@@ -1,5 +1,5 @@
 /******************************************************************************
- * $Id: ogr_srs_api.h 22514 2011-06-08 12:57:26Z warmerdam $
+ * $Id: ogr_srs_api.h 25727 2013-03-10 14:56:33Z rouault $
  *
  * Project:  OpenGIS Simple Features Reference Implementation
  * Purpose:  C API and constant declarations for OGR Spatial References.
@@ -117,6 +117,8 @@ typedef enum {
 #define SRS_PT_GOODE_HOMOLOSINE "Goode_Homolosine"
 #define SRS_PT_IGH              "Interrupted_Goode_Homolosine"
 #define SRS_PT_GNOMONIC         "Gnomonic"
+#define SRS_PT_HOTINE_OBLIQUE_MERCATOR_AZIMUTH_CENTER                   \
+                                "Hotine_Oblique_Mercator_Azimuth_Center"
 #define SRS_PT_HOTINE_OBLIQUE_MERCATOR                                  \
                                 "Hotine_Oblique_Mercator"
 #define SRS_PT_HOTINE_OBLIQUE_MERCATOR_TWO_POINT_NATURAL_ORIGIN         \
@@ -407,6 +409,7 @@ OGRErr CPL_DLL OSRSetStatePlaneWithUnits( OGRSpatialReferenceH hSRS,
 OGRErr CPL_DLL OSRAutoIdentifyEPSG( OGRSpatialReferenceH hSRS );
 
 int    CPL_DLL OSREPSGTreatsAsLatLong( OGRSpatialReferenceH hSRS );
+int    CPL_DLL OSREPSGTreatsAsNorthingEasting( OGRSpatialReferenceH hSRS );
 const char CPL_DLL *OSRGetAxis( OGRSpatialReferenceH hSRS,
                                 const char *pszTargetKey, int iAxis, 
                                 OGRAxisOrientation *peOrientation );
@@ -493,6 +496,13 @@ OGRErr CPL_DLL OSRSetGaussSchreiberTMercator( OGRSpatialReferenceH hSRS,
 OGRErr CPL_DLL OSRSetGnomonic(OGRSpatialReferenceH hSRS,
                               double dfCenterLat, double dfCenterLong,
                             double dfFalseEasting, double dfFalseNorthing );
+
+/** Oblique Mercator (aka HOM (variant B) */
+OGRErr CPL_DLL OSRSetOM( OGRSpatialReferenceH hSRS,
+                         double dfCenterLat, double dfCenterLong,
+                         double dfAzimuth, double dfRectToSkew,
+                         double dfScale,
+                         double dfFalseEasting, double dfFalseNorthing );
 
 /** Hotine Oblique Mercator using azimuth angle */
 OGRErr CPL_DLL OSRSetHOM( OGRSpatialReferenceH hSRS,
@@ -613,7 +623,12 @@ OGRErr CPL_DLL OSRSetSOC( OGRSpatialReferenceH hSRS,
                           double dfLatitudeOfOrigin, double dfCentralMeridian,
                           double dfFalseEasting, double dfFalseNorthing );
     
-/** Transverse Mercator */
+/** Transverse Mercator
+ *
+ * Special processing available for Transverse Mercator with GDAL &gt;= 1.10 and PROJ &gt;= 4.8 :
+ * see OGRSpatialReference::exportToProj4().
+ */
+
 OGRErr CPL_DLL OSRSetTM( OGRSpatialReferenceH hSRS,
                          double dfCenterLat, double dfCenterLong,
                          double dfScale,
@@ -669,6 +684,8 @@ OCTTransformEx( OGRCoordinateTransformationH hCT,
 
 /* this is really private to OGR. */
 char *OCTProj4Normalize( const char *pszProj4Src );
+
+void OCTCleanupProjMutex();
 
 /* -------------------------------------------------------------------- */
 /*      Projection transform dictionary query.                          */

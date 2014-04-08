@@ -1,5 +1,5 @@
 /******************************************************************************
- * $Id: cpl_port.h 23431 2011-11-27 15:02:24Z rouault $
+ * $Id: cpl_port.h 25450 2013-01-04 23:15:38Z rouault $
  *
  * Project:  CPL - Common Portability Library
  * Author:   Frank Warmerdam, warmerdam@pobox.com
@@ -75,12 +75,27 @@
 #  ifndef _CRT_NONSTDC_NO_DEPRECATE
 #    define _CRT_NONSTDC_NO_DEPRECATE
 #  endif
-#  ifdef MSVC_USE_VLD
-#    include <vld.h>
-#  endif
 #endif
 
 #include "cpl_config.h"
+
+/* ==================================================================== */
+/*      A few sanity checks, mainly to detect problems that sometimes   */
+/*      arise with bad configured cross-compilation.                    */
+/* ==================================================================== */
+
+#if !defined(SIZEOF_INT) || SIZEOF_INT != 4
+#error "Unexpected value for SIZEOF_INT"
+#endif
+
+#if !defined(SIZEOF_UNSIGNED_LONG) || (SIZEOF_UNSIGNED_LONG != 4 && SIZEOF_UNSIGNED_LONG != 8)
+#error "Unexpected value for SIZEOF_UNSIGNED_LONG"
+#endif
+
+#if !defined(SIZEOF_VOIDP) || (SIZEOF_VOIDP != 4 && SIZEOF_VOIDP != 8)
+#error "Unexpected value for SIZEOF_VOIDP"
+#endif
+
 
 /* ==================================================================== */
 /*      This will disable most WIN32 stuff in a Cygnus build which      */
@@ -309,6 +324,10 @@ typedef unsigned long    GUIntBig;
 #  define ABS(x)        ((x<0) ? (-1*(x)) : x)
 #endif
 
+#ifndef M_PI
+# define M_PI		3.14159265358979323846	/* pi */
+#endif
+
 /* -------------------------------------------------------------------- */
 /*      Macro to test equality of two floating point values.            */
 /*      We use fabs() function instead of ABS() macro to avoid side     */
@@ -494,6 +513,18 @@ char * strdup (char *instr);
 #define CPL_LSBINT32PTR(x)    ((*(GByte*)(x)) | ((*(GByte*)((x)+1)) << 8) | \
                               ((*(GByte*)((x)+2)) << 16) | ((*(GByte*)((x)+3)) << 24))
 
+/** Return a signed Int16 from the 2 bytes ordered in LSB order at address x */
+#define CPL_LSBSINT16PTR(x) ((GInt16) CPL_LSBINT16PTR(x))
+
+/** Return a unsigned Int16 from the 2 bytes ordered in LSB order at address x */
+#define CPL_LSBUINT16PTR(x) ((GUInt16)CPL_LSBINT16PTR(x))
+
+/** Return a signed Int32 from the 4 bytes ordered in LSB order at address x */
+#define CPL_LSBSINT32PTR(x) ((GInt32) CPL_LSBINT32PTR(x))
+
+/** Return a unsigned Int32 from the 4 bytes ordered in LSB order at address x */
+#define CPL_LSBUINT32PTR(x) ((GUInt32)CPL_LSBINT32PTR(x))
+
 
 /* Utility macro to explicitly mark intentionally unreferenced parameters. */
 #ifndef UNREFERENCED_PARAM 
@@ -535,5 +566,25 @@ static char *cvsid_aw() { return( cvsid_aw() ? ((char *) NULL) : cpl_cvsid ); }
 #define CPL_WARN_UNUSED_RESULT
 #endif
 
+#if defined(__GNUC__) && __GNUC__ >= 3 && !defined(DOXYGEN_SKIP)
+#define CPL_NO_RETURN                                __attribute__((noreturn))
+#else
+#define CPL_NO_RETURN
+#endif
+
+#if !defined(DOXYGEN_SKIP)
+#if defined(__has_extension)
+  #if __has_extension(attribute_deprecated_with_message)
+    /* Clang extension */
+    #define CPL_WARN_DEPRECATED(x)                       __attribute__ ((deprecated(x)))
+  #else
+    #define CPL_WARN_DEPRECATED(x)
+  #endif
+#elif defined(__GNUC__)
+    #define CPL_WARN_DEPRECATED(x)                       __attribute__ ((deprecated))
+#else
+  #define CPL_WARN_DEPRECATED(x)
+#endif
+#endif
 
 #endif /* ndef CPL_BASE_H_INCLUDED */

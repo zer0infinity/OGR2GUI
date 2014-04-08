@@ -104,15 +104,10 @@ class Inf : public QDialog
 		void TranslateInterface( void );
 
 	public slots:
-
 		void evtBtnConnect( void );
-
 		void evtRadAllTables( void );
-
 		void evtRadNonTables( void );
-
 		void evtBtnAccept( void );
-
 		void evtBtnCancel( void );
 
 	public:
