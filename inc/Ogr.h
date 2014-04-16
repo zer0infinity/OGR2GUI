@@ -22,9 +22,9 @@
 /*!
  *	\file Ogr.h
  *	\brief OGR C API
- *	\author Olivier Pilotte [ Inventis ]
- *	\version 0.6
- *	\date 27/10/09
+ *	\author Olivier Pilotte [ Inventis ], David Tran [ HSR ]
+ *	\version 0.7
+ *	\date 30/05/14
  */
 
 #ifndef OGR
@@ -36,6 +36,7 @@
 #include "ogr_srs_api.h"
 
 #include <string>
+#include <QStringList>
 
 using std::string;
 
@@ -67,6 +68,7 @@ class Ogr
 		OGRGeometryH sourceGeom;
 
 		string sourceName;
+        string layerName;
 		string sourceLayerName;
 		string targetName;
 
@@ -95,16 +97,20 @@ class Ogr
 		 */
 		~Ogr( void );
 
+        void OpenWFS(QStringList &fileList);
+
+        bool OpenSource(string filename, string layername, string &epsg, string &query, string &error);
+
 		/*!
 		 *	\fn bool OpenSource( string filename, string &epsg = 0, string &query = 0, string &error = 0 );
 		 *	\brief Opens source data
-		 *	\param filename : source filename
+         *	\param filename : source filename
 		 *	\param &epsg : epsg code
 		 *	\param &query : sql query
 		 *	\param &error : error text
 		 *	\returns true on success
 		 */
-		bool OpenSource( string filename, string &epsg, string &query, string &error );
+        bool OpenSource(string filename, string &epsg, string &query, string &error);
 
 		/*!
 		 *	\fn bool CloseSource( void );

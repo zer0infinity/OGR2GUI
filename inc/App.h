@@ -39,9 +39,9 @@
 /*!
  *	\file App.h
  *	\brief Qt Application
- *	\author Olivier Pilotte [ Inventis ], Mohamed Hedi Lassoued [ Inventis ]
- *	\version 0.6
- *	\date 27/10/09
+ *	\author Olivier Pilotte [ Inventis ], Mohamed Hedi Lassoued [ Inventis ], David Tran [ HSR ]
+ *	\version 0.7
+ *	\date 30/05/14
  */
 
 #ifndef APP
@@ -76,18 +76,18 @@ class App : public QMainWindow
         QString parameters;
 
         // file formats
-        const static int formatsCount = 13;
+        const static int formatsCount = 12;
         QString **formats;
-		
+
         // output formats
-        const static int formatsOutput = 9;
+        const static int formatsOutput = 10;
 
         // database formats
         const static int databasesCount = 5;
         QString **databases;
 
         // output databases
-        const static int databasesOutput = 3;
+        const static int databasesOutput = 2;
 
         // webfeatureservice (wfs)
         const static int webservicesCount = 1;
@@ -254,7 +254,7 @@ class App : public QMainWindow
         void evtRadSourceWebservice( void );
 
 
-        void evtCmbSourceFormat( int );
+        void evtCmbSourceFormat( void );
 
 
         void evtTxtSourceName( void );

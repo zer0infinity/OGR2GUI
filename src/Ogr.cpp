@@ -20,11 +20,11 @@
  *****************************************************************************/
 
 /*!
- *	\file Ogr.cpp
+ *	\file Ogr.c
  *	\brief OGR C API
- *	\author Olivier Pilotte [ Inventis ]
- *	\version 0.6
- *	\date 27/10/09
+ *	\author Olivier Pilotte [ Inventis ], David Tran [ HSR ]
+ *	\version 0.7
+ *	\date 30/05/14
  */
 
 #include "../inc/Ogr.h"
@@ -39,55 +39,58 @@ Ogr::~Ogr( void )
 
 }
 
-bool Ogr::OpenSource( string filename, string &epsg, string &query, string &error )
+void Ogr::OpenWFS(QStringList &fileList) {
+    OGRDataSourceH sourceData = OGROpen(sourceName.c_str(), 0, NULL);
+    if(sourceData != NULL) {
+        int i;
+        for(i = 0; i < OGR_DS_GetLayerCount(sourceData); ++i) {
+            OGRLayerH sourceLayer = OGR_DS_GetLayer(sourceData, i);
+            if(sourceLayer != NULL) {
+                OGRFeatureDefnH sourceLayerDefn = OGR_L_GetLayerDefn(sourceLayer);
+                fileList.append(OGR_FD_GetName(sourceLayerDefn));
+            }
+        }
+    }
+}
+
+bool Ogr::OpenSource(string filename, string layername, string &epsg, string &query, string &error) {
+    layerName = layername;
+    return OpenSource(filename, epsg, query, error);
+}
+
+bool Ogr::OpenSource(string filename, string &epsg, string &query, string &error)
 {
 	sourceSRS = NULL;
-
 	sourceName = filename;
-
 	sourceData = OGROpen( sourceName.c_str(), 0, NULL );
-
-	if( sourceData != NULL )
-	{
-		sourceLayer = OGR_DS_GetLayer( sourceData, 0 );
-
-		if( sourceLayer != NULL )
-		{
+    if( sourceData != NULL ) {
+        if(layerName != "")
+            sourceLayer = OGR_DS_GetLayerByName(sourceData, layerName.c_str());
+        else
+            sourceLayer = OGR_DS_GetLayer(sourceData, 0);
+        if( sourceLayer != NULL ) {
 			sourceLayerDefn = OGR_L_GetLayerDefn( sourceLayer );
-
 			sourceLayerName = OGR_FD_GetName( sourceLayerDefn );
-
 			sourceLayerGeom = OGR_FD_GetGeomType( sourceLayerDefn );
-
 			sourceGeom = OGR_L_GetSpatialFilter( sourceLayer );
-
 			sourceSRS = OGR_L_GetSpatialRef( sourceLayer );
-
 			if( sourceSRS != NULL && ! Error( OSRAutoIdentifyEPSG( sourceSRS ), error ) )
 			{
 				epsg = OSRGetAttrValue( sourceSRS, "AUTHORITY", 1 );
 			}
 			else
 			{
-				error = "unable to open source spatial reference";
+                perror("unable to open source spatial reference");
 			}
-
 			query = "SELECT * FROM " + sourceLayerName;
-		}
-		else
-		{
-			error = "unable to open source layer";
-
+        } else {
+            perror("unable to open source layer");
 			return false;
 		}
-	}
-	else
-	{
-		error = "unable to open source data";
-
+    } else {
+        perror("unable to open source data");
 		return false;
 	}
-
 	return true;
 }
 
@@ -111,7 +114,7 @@ bool Ogr::OpenDriver( string drivername, string error )
 
 	if( formatDriver == NULL )
 	{
-		error = "unable to find driver";
+        perror("unable to find driver");
 
 		return false;
 	}
@@ -122,21 +125,16 @@ bool Ogr::OpenDriver( string drivername, string error )
 bool Ogr::OpenTarget( string filename, int projection, bool update )
 {
 	struct stat fileInfo;
-
 	targetSRS = NULL;
-	
 	targetName = filename;
-
 	if( projection > 0 )
 	{
 		targetSRS = OSRNewSpatialReference( NULL );
-
 		if( Error( OSRImportFromEPSG( targetSRS, projection ), error ) )
 		{
 			error.insert( 0, "unable to create spatial reference : " );
 		}
 	}
-
 	if( update )
 	{
 		if( stat( targetName.c_str(), &fileInfo ) == 0 )
@@ -145,24 +143,23 @@ bool Ogr::OpenTarget( string filename, int projection, bool update )
 		}
 		else
 		{
-			error = "file doesn't exist";
-
+            perror("file doesn't exist");
 			return false;
 		}
 	}
 	else
-	{	
-		if( stat( targetName.c_str(), &fileInfo ) == 0 )
-		{
-			if( remove( targetName.c_str() ) != 0 )
-			{
-				error = "unable to delete source data";
-			}
-		}
-
+    {
+        if(layerName == "") {
+            if( stat( targetName.c_str(), &fileInfo ) == 0 )
+            {
+                if( remove( targetName.c_str() ) != 0 )
+                {
+                    perror("unable to delete source data");
+                }
+            }
+        }
 		targetData = OGR_Dr_CreateDataSource( formatDriver, targetName.c_str(), 0 );		
 	}
-
 	if( targetData != NULL )
 	{
 		if( update )
@@ -183,11 +180,9 @@ bool Ogr::OpenTarget( string filename, int projection, bool update )
 	}
 	else
 	{
-		error = "unable to create target data";
-
+        perror("unable to create target data");
 		return false;
 	}
-
 	return true;
 }
 
@@ -208,74 +203,59 @@ bool Ogr::CloseTarget( void )
 bool Ogr::Execute( string query )
 {
 	int featuresCount = 0;
-
 	if( Prepare( featuresCount, query ) )
 	{
 		while( Process() ) ;
-
 		CloseTarget();
-		
 		CloseSource();
 	}
 	else
 	{
 		return false;
 	}
-
 	return true;
 }
 
 bool Ogr::Prepare( int &featuresCount, string query )
 {
 	OGRFeatureDefnH featDefn = OGR_L_GetLayerDefn( sourceLayer );
-
 	for( int i = 0; i < OGR_FD_GetFieldCount( sourceLayerDefn ); i ++ )
 	{
 		OGRFieldDefnH field = OGR_FD_GetFieldDefn( featDefn, i );
-
 		if( Error( OGR_L_CreateField( targetLayer, field, 0 ), error ) )
 		{
 			return false;
 		}
 	}
-
 	if( query.size() > 0 )
 	{
 		OGRLayerH squeryLayer = OGR_DS_ExecuteSQL( sourceData, query.c_str(), NULL, "" );
-
 		if( squeryLayer != NULL )
 		{
 			sourceLayer = squeryLayer;
 		}
 	}
-
 	OGR_L_ResetReading( sourceLayer );
-
 	featuresCount = OGR_L_GetFeatureCount( sourceLayer, 1 );
-
 	return true;
 }
 
 bool Ogr::Process( void )
 {
 	OGRFeatureH feature;
-
 	if( ( ( feature = OGR_L_GetNextFeature( sourceLayer ) ) != NULL ) )
 	{
 		if( targetSRS )
 		{
 			Error( OGR_G_TransformTo( OGR_F_GetGeometryRef( feature ), targetSRS ), error );
 		}
-
 		Error( OGR_L_CreateFeature( targetLayer, feature ), error );
-
 		OGR_F_Destroy( feature );
 	}
 	else
 	{
 		return false;
 	}
-
 	return true;
 }
 

@@ -92,23 +92,23 @@ static const uint qt_meta_data_App[] = {
        6,    0,  138,    2, 0x08,
        7,    0,  139,    2, 0x08,
        8,    0,  140,    2, 0x08,
-       9,    1,  141,    2, 0x08,
-      10,    0,  144,    2, 0x08,
-      11,    0,  145,    2, 0x08,
-      12,    0,  146,    2, 0x08,
-      13,    0,  147,    2, 0x08,
-      14,    0,  148,    2, 0x08,
-      15,    0,  149,    2, 0x08,
-      16,    0,  150,    2, 0x08,
-      17,    0,  151,    2, 0x08,
-      18,    0,  152,    2, 0x08,
-      19,    0,  153,    2, 0x08,
-      20,    0,  154,    2, 0x08,
-      21,    0,  155,    2, 0x08,
-      22,    0,  156,    2, 0x08,
-      23,    0,  157,    2, 0x08,
-      24,    0,  158,    2, 0x08,
-      25,    0,  159,    2, 0x08,
+       9,    0,  141,    2, 0x08,
+      10,    0,  142,    2, 0x08,
+      11,    0,  143,    2, 0x08,
+      12,    0,  144,    2, 0x08,
+      13,    0,  145,    2, 0x08,
+      14,    0,  146,    2, 0x08,
+      15,    0,  147,    2, 0x08,
+      16,    0,  148,    2, 0x08,
+      17,    0,  149,    2, 0x08,
+      18,    0,  150,    2, 0x08,
+      19,    0,  151,    2, 0x08,
+      20,    0,  152,    2, 0x08,
+      21,    0,  153,    2, 0x08,
+      22,    0,  154,    2, 0x08,
+      23,    0,  155,    2, 0x08,
+      24,    0,  156,    2, 0x08,
+      25,    0,  157,    2, 0x08,
 
  // slots: parameters
     QMetaType::Void,
@@ -118,7 +118,7 @@ static const uint qt_meta_data_App[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,    2,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -151,7 +151,7 @@ void App::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **
         case 4: _t->evtRadSourceFolder(); break;
         case 5: _t->evtRadSourceDatabase(); break;
         case 6: _t->evtRadSourceWebservice(); break;
-        case 7: _t->evtCmbSourceFormat((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 7: _t->evtCmbSourceFormat(); break;
         case 8: _t->evtTxtSourceName(); break;
         case 9: _t->evtBtnSourceName(); break;
         case 10: _t->evtTxtSourceQuery(); break;
@@ -171,6 +171,7 @@ void App::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **
         default: ;
         }
     }
+    Q_UNUSED(_a);
 }
 
 const QMetaObject App::staticMetaObject = {

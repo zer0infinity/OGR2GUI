@@ -36,10 +36,9 @@ formats[  5 ][ 0 ] = "KML";					formats[  5 ][ 1 ] = "kml";
 formats[  6 ][ 0 ] = "GMT";					formats[  6 ][ 1 ] = "gmt";
 formats[  7 ][ 0 ] = "GPX";					formats[  7 ][ 1 ] = "gpx";
 formats[  8 ][ 0 ] = "Geoconcept";			formats[  8 ][ 1 ] = "gxt";
-formats[  9 ][ 0 ] = "FMEObjects Gateway";	formats[  9 ][ 1 ] = "fdd";
-formats[ 10 ][ 0 ] = "GeoJSON";				formats[ 10 ][ 1 ] = "txt";
-formats[ 11 ][ 0 ] = "UK. NTF";				formats[ 11 ][ 1 ] = "ntf";
-formats[ 12 ][ 0 ] = "XPlane";				formats[ 12 ][ 1 ] = "dat";
+formats[  9 ][ 0 ] = "GeoJSON";				formats[  9 ][ 1 ] = "geojson";
+formats[ 10 ][ 0 ] = "UK. NTF";				formats[ 10 ][ 1 ] = "ntf";
+formats[ 11 ][ 0 ] = "XPlane";				formats[ 11 ][ 1 ] = "dat";
 
 databases[ 0 ][ 0 ] = "PostgreSQL";			databases[ 0 ][ 1 ] = "QPSQL";
 databases[ 1 ][ 0 ] = "SQLite";				databases[ 1 ][ 1 ] = "QSQLITE";
@@ -47,7 +46,7 @@ databases[ 2 ][ 0 ] = "OCI";				databases[ 2 ][ 1 ] = "QOCI";
 databases[ 3 ][ 0 ] = "MySQL";				databases[ 3 ][ 1 ] = "QMYSQL";
 databases[ 4 ][ 0 ] = "ODBC";				databases[ 4 ][ 1 ] = "QODBC";
 
-webservices[ 0 ][ 0 ] = "Web Feature Service";  webservices[ 0 ][ 1 ] = "WFS";
+webservices[ 0 ][ 0 ] = "WFS";  webservices[ 0 ][ 1 ] = "";
 
 projections[    0 ][ 0 ] =  "";			projections[    0 ][ 1 ] =  "";
 projections[    1 ][ 0 ] =  "2000";		projections[    1 ][ 1 ] =  "Anguilla 1957 / British West Indies Grid";

@@ -20,11 +20,11 @@
  *****************************************************************************/
 
 /*!
- *	\file Inf.cpp
+ *	\file Inf.c
  *	\brief Database Informations
- *	\author Olivier Pilotte [ Inventis ]
- *	\version 0.6
- *	\date 27/10/09
+ *	\author Olivier Pilotte [ Inventis ], David Tran [ HSR ]
+ *	\version 0.7
+ *	\date 30/05/14
  */
 
 #include "../inc/Inf.h"

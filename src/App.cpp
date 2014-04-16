@@ -28,6 +28,7 @@
  */
 
 #include "../inc/App.h"
+#include <QDebug>
 
 App::App( QWidget *widget ) : QMainWindow( widget )
 {
@@ -191,7 +192,6 @@ void App::InitLayout( void )
                 lytSourceName = new QHBoxLayout();
                 {
                     txtSourceName = new QLineEdit();
-                    txtSourceName->setReadOnly( true );
 
                     btnSourceName = new QPushButton();
 
@@ -334,6 +334,7 @@ void App::InitLayout( void )
         theLayout->addWidget( grpTarget );
 
         txtOutput = new QTextEdit();
+        txtOutput->setReadOnly(true);
 
         lytExecute = new QHBoxLayout();
         {
@@ -371,7 +372,7 @@ void App::InitSlots( void )
     QObject::connect( radSourceDatabase, SIGNAL( toggled( bool ) ), this, SLOT( evtRadSourceDatabase( void ) ) );
     QObject::connect( radSourceWebservice, SIGNAL( toggled( bool ) ), this, SLOT( evtRadSourceWebservice( void ) ) );
 
-    QObject::connect( cmbSourceFormat, SIGNAL( currentIndexChanged( int ) ), this, SLOT( evtCmbSourceFormat( int ) ) );
+    QObject::connect( cmbSourceFormat, SIGNAL( currentIndexChanged( int ) ), this, SLOT( evtCmbSourceFormat( void ) ) );
     QObject::connect( txtSourceName, SIGNAL( textChanged( QString ) ), this, SLOT( evtTxtSourceName( void ) ) );
     QObject::connect( btnSourceName, SIGNAL( clicked( void ) ), this, SLOT( evtBtnSourceName( void ) ) );
     QObject::connect( txtSourceQuery, SIGNAL( textChanged( QString ) ), this, SLOT( evtTxtSourceQuery( void ) ) );
@@ -470,7 +471,11 @@ void App::UpdateParameters( void )
         parameters += tr( "-update" );
     }
 
-    parameters += tr( " \"" ) + txtTargetName->text() + tr( "\" \"" ) + txtSourceName->text() + tr( "\" " );
+    parameters += tr( " \"" ) + txtTargetName->text() + tr( "\" \"" );
+    if(radSourceWebservice->isChecked()) {
+        parameters += "WFS:";
+    }
+    parameters += txtSourceName->text() + tr( "\" " );
 
     if( ! cmbTargetProj->currentText().isEmpty() )
     {
@@ -596,11 +601,11 @@ void App::evtRadSourceWebservice( void )
         cmbSourceFormat->addItem( webservices[ i ][ 0 ] );
     }
 
-    radTargetFile->setEnabled( true );
+    radTargetFile->setEnabled( false );
     radTargetFolder->setEnabled( true );
     radTargetDatabase->setEnabled( true );
 
-    radTargetFile->setChecked( true );
+    radTargetFolder->setChecked( true );
 
     txtSourceName->clear();
     txtSourceProj->clear();
@@ -610,7 +615,7 @@ void App::evtRadSourceWebservice( void )
     txtSourceQuery->setEnabled( true );
 }
 
-void App::evtCmbSourceFormat( int i )
+void App::evtCmbSourceFormat(void)
 {
     txtSourceName->clear();
     txtSourceProj->clear();
@@ -618,43 +623,41 @@ void App::evtCmbSourceFormat( int i )
     UpdateParameters();
 }
 
-void App::evtTxtSourceName( void )
-{
-    if( txtSourceName->text().startsWith( tr( "file://" ) ) )
-    {
+void App::evtTxtSourceName( void ) {
+    if( txtSourceName->text().startsWith(tr("file://"))) {
         txtSourceName->setText( QUrl( txtSourceName->text() ).authority().trimmed() );
     }
-
     string name = txtSourceName->text().toStdString();
     string epsg;
     string query;
     string error;
 
-    if( ogr->OpenSource( name, epsg, query, error ) )
-    {
-        for( int i = 0; i < projectionsCount; i ++ )
-        {
-            if( strcmp( epsg.c_str(), projections[ i ][ 0 ].toStdString().c_str() ) == 0 )
-            {
-                if( i > 1 )
-                {
+    if(radSourceWebservice->isChecked()) {
+        name = "WFS:" + name;
+    }
+
+    if(ogr->OpenSource(name, epsg, query, error)) {
+        if( radSourceWebservice->isChecked() ) {
+            btnSourceName->setText(tr("&Successful"));
+        }
+        for(int i = 0; i < projectionsCount; i++) {
+            if( strcmp(epsg.c_str(), projections[ i ][ 0 ].toStdString().c_str()) == 0) {
+                if(i > 1) {
                     txtSourceProj->setText( projections[ i ][ 0 ] + tr( " : " ) + projections[ i ][ 1 ] );
                 }
                 break;
             }
         }
-
         ogr->CloseSource();
-
-        if( radSourceFile->isChecked() )
-        {
+        if( radSourceFile->isChecked()) {
             txtSourceQuery->setText( query.c_str() );
         }
-    }
-    else
-    {
+    } else {
         txtSourceProj->clear();
         txtSourceQuery->clear();
+        if( radSourceWebservice->isChecked() ) {
+            btnSourceName->setText(tr("&Connect"));
+        }
     }
     UpdateParameters();
 }
@@ -728,6 +731,9 @@ void App::evtBtnSourceName( void )
             radTargetFile->setEnabled( true );
             radTargetFile->setChecked( true );
         }
+    }
+    else if(radSourceWebservice->isChecked()) {
+        fileList.clear();
     }
 }
 
@@ -871,8 +877,9 @@ void App::evtBtnExecute( void )
     int featuresCount = 0;
     int progress = 0;
 
-    txtOutput->clear();
-
+//    txtOutput->clear();
+    if( radSourceWebservice->isChecked() )
+        ogr->OpenWFS(fileList);
     for( int i = 0; i < fileList.size(); i ++ )
     {
         if( radSourceFile->isChecked() )
@@ -893,12 +900,20 @@ void App::evtBtnExecute( void )
         else if( radSourceWebservice->isChecked() )
         {
             sourcename = txtSourceName->text();
+            sourcename = "WFS:" + sourcename;
             targetname = txtTargetName->text();
         }
 
         txtOutput->append( QString( sourcename + tr( " > " ) + targetname + tr( " ... " ) ) );
 
-        if( ogr->OpenSource( sourcename.toStdString(), epsg, query, error ) )
+        bool resVal;
+        if(radSourceWebservice->isChecked()) {
+            resVal = ogr->OpenSource(sourcename.toStdString(), fileList.at(i).toStdString(), epsg, query, error);
+        } else {
+            resVal = ogr->OpenSource(sourcename.toStdString(), epsg, query, error);
+        }
+
+        if(resVal)
         {
             if( ogr->OpenDriver( cmbTargetFormat->currentText().toStdString(), error ) )
             {
@@ -921,7 +936,6 @@ void App::evtBtnExecute( void )
                     ogr->CloseSource();
 
                     theProgress->setValue( 0 );
-
                     txtOutput->append( tr( "successful.\n" ) );
                 }
                 else
