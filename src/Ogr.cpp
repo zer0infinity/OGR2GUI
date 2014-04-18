@@ -27,7 +27,7 @@
  *	\date 30/05/14
  */
 
-#include "../inc/Ogr.h"
+#include "Ogr.h"
 
 Ogr::Ogr( void )
 {
@@ -108,17 +108,14 @@ bool Ogr::CloseSource( void )
 	return true;
 }
 
-bool Ogr::OpenDriver( string drivername, string error )
+bool Ogr::OpenDriver(string drivername)
 {
 	formatDriver = OGRGetDriverByName( drivername.c_str() );
-
 	if( formatDriver == NULL )
 	{
         perror("unable to find driver");
-
 		return false;
 	}
-
 	return true;
 }
 

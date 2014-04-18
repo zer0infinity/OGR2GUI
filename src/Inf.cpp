@@ -27,7 +27,7 @@
  *	\date 30/05/14
  */
 
-#include "../inc/Inf.h"
+#include "Inf.h"
 
 Inf::Inf( QWidget *parent ) : QDialog( parent )
 {

@@ -27,8 +27,7 @@
  *	\date 30/05/14
  */
 
-#include "../inc/App.h"
-#include <QDebug>
+#include "App.h"
 
 App::App( QWidget *widget ) : QMainWindow( widget )
 {
@@ -75,7 +74,7 @@ void App::InitData( void )
         webservices[ i ] = new QString[ 2 ];
     }
 
-    #include "../inc/Dta.h"
+    #include "Dta.h"
 }
 
 void App::InitProjections( void )
@@ -915,7 +914,7 @@ void App::evtBtnExecute( void )
 
         if(resVal)
         {
-            if( ogr->OpenDriver( cmbTargetFormat->currentText().toStdString(), error ) )
+            if( ogr->OpenDriver(cmbTargetFormat->currentText().toStdString()) )
             {
                 if( ogr->OpenTarget( targetname.toStdString(), atoi( projections[ cmbTargetProj->currentIndex() ][ 0 ].toStdString().c_str() ) ) )
                 {
