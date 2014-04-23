@@ -76,25 +76,22 @@ class App : public QMainWindow
         QString parameters;
 
         // file formats
-        const static int formatsCount = 12;
+        const static int formatsCount = 50;
         QString **formats;
 
         // output formats
-        const static int formatsOutput = 10;
+        const static int formatsOutput = 27;
 
         // database formats
-        const static int databasesCount = 5;
+        const static int databasesCount = 4;
         QString **databases;
 
         // output databases
         const static int databasesOutput = 2;
 
-        // webfeatureservice (wfs)
+        // web service formats
         const static int webservicesCount = 1;
         QString **webservices;
-
-        // output webfeatureservice
-        const static int webservicesOutput = 1;
 
         // target projections
         const static int projectionsCount = 3578;

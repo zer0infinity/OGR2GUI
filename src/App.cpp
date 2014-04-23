@@ -669,7 +669,7 @@ void App::evtBtnSourceName( void )
 
     if( radSourceFile->isChecked() )
     {
-        type = tr( "\"" ) + formats[ idx ][ 0 ] + tr( "(*." ) + formats[ idx ][ 1 ] + tr(")\"");
+        type = tr( "\"" ) + formats[ idx ][ 0 ] + tr( " (*." ) + formats[ idx ][ 1 ] + tr(")\"");
         txtSourceName->setText( QFileDialog::getOpenFileName( this, tr( "Source File" ), tr( "" ), type ) );
 
         fileList.clear();
