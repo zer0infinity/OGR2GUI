@@ -297,6 +297,8 @@ void App::InitLayout( void )
                     txtTargetProj->setMaxLength( 5 );
                     txtTargetProj->setMinimumWidth( 50 );
                     txtTargetProj->setMaximumWidth( 50 );
+                    QValidator *validator = new QIntValidator(0, 99999, this);
+                    txtTargetProj->setValidator(validator);
 					
                     cmbTargetProj = new QComboBox();
                     cmbTargetProj->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
@@ -699,6 +701,13 @@ void App::evtBtnSourceName( void )
     }
     else if( radSourceDatabase->isChecked() )
     {
+        if(databases[idx][0] == "SQLite") {
+            type = tr("\"") + databases[idx][0] + tr( " (*.sqlite)\"");
+            txtSourceName->setText(QFileDialog::getOpenFileName(this, tr("SQLite File"), tr(""), type ));
+            fileList.clear();
+            fileList.append(txtSourceName->text());
+            return;
+        }
         inf->setConnectionType( databases[ idx ][ 1 ] );
         inf->setDialogStyle( 1 );
         if( inf->exec() == QDialog::Accepted )
@@ -798,6 +807,11 @@ void App::evtBtnTargetName( void )
 
     if( radTargetDatabase->isChecked() )
     {
+        if(databases[idx][0] == "SQLite") {
+            type = tr("\"") + databases[idx][0] + tr(" (*") + tr(".sqlite") + tr(")\"");
+            txtTargetName->setText(QFileDialog::getSaveFileName(this, tr("Save File"), tr(""), type ));
+            return;
+        }
         inf->setDialogStyle( 0 );
         inf->setConnectionType( databases[ cmbTargetFormat->currentIndex() ][ 1 ] );
         if( inf->exec() == QDialog::Accepted )
@@ -934,7 +948,7 @@ void App::evtBtnExecute( void )
                     ogr->CloseTarget();
                     ogr->CloseSource();
 
-                    theProgress->setValue( 0 );
+                    theProgress->reset();
                     txtOutput->append( tr( "successful.\n" ) );
                 }
                 else

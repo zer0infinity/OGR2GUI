@@ -51,6 +51,7 @@
 #include "Inf.h"
 
 #include <string>
+#include <QIntValidator>
 
 using std::string;
 
