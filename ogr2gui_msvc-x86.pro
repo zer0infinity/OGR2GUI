@@ -13,18 +13,18 @@ HEADERS += \
     include/Inf.h
 
 SOURCES += \
+#    src/ogr2ogr.cpp \
     src/Ogr.cpp \
     src/Inf.cpp \
     src/App.cpp
 
 CONFIG += c++11
-#CONFIG += static
 QT += sql widgets
 
 static {
     CONFIG += static
     DEFINES += STATIC
-    win32: TARGET = $$join(TARGET,,,msvc2010s) #this adds an s in the end, so you can seperate static build from non static build
+    win32: TARGET = $$join(TARGET,,,msvc2010s)
 }
 
 CONFIG(debug, debug|release) {
