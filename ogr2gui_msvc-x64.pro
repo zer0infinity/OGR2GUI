@@ -18,7 +18,6 @@ SOURCES += \
     src/App.cpp
 
 CONFIG += c++11
-#CONFIG += static
 QT += sql widgets
 
 static {

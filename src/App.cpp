@@ -419,7 +419,7 @@ void App::TranslateInterface( void )
         radSourceFile->setText( tr( "File" ) );
         radSourceFolder->setText( tr( "Folder" ) );
         radSourceDatabase->setText( tr( "Database" ) );
-        radSourceWebservice->setText( tr( "Web Service" ) );
+        radSourceWebservice->setText( tr( "Web service" ) );
 
         lblSourceFormat->setText( tr( "Format" ) );
 
@@ -533,6 +533,8 @@ void App::evtRadSourceFile( void )
 
     radTargetFile->setChecked( true );
 
+    lblSourceName->setText(tr("Name"));
+    txtSourceName->setReadOnly(true);
     txtSourceName->clear();
     txtSourceProj->clear();
     txtSourceQuery->clear();
@@ -558,6 +560,8 @@ void App::evtRadSourceFolder( void )
 
     radTargetFolder->setChecked( true );
 
+    lblSourceName->setText(tr("Name"));
+    txtSourceName->setReadOnly(true);
     txtSourceName->clear();
     txtSourceProj->clear();
     txtSourceQuery->clear();
@@ -583,6 +587,8 @@ void App::evtRadSourceDatabase( void )
 
     radTargetFile->setChecked( true );
 
+    lblSourceName->setText(tr("Name"));
+    txtSourceName->setReadOnly(true);
     txtSourceName->clear();
     txtSourceProj->clear();
     txtSourceQuery->clear();
@@ -608,7 +614,11 @@ void App::evtRadSourceWebservice( void )
 
     radTargetFolder->setChecked( true );
 
-    txtSourceName->clear();
+    lblSourceName->setText(tr("URI"));
+    txtSourceName->setReadOnly(false);
+    txtSourceName->setText(tr("Please enter an URI."));
+    txtSourceName->selectAll();
+    txtSourceName->setFocus();
     txtSourceProj->clear();
     txtSourceQuery->clear();
 
@@ -890,7 +900,7 @@ void App::evtBtnExecute( void )
     int featuresCount = 0;
     int progress = 0;
 
-//    txtOutput->clear();
+    txtOutput->clear();
     if( radSourceWebservice->isChecked() )
         ogr->OpenWFS(fileList);
     for( int i = 0; i < fileList.size(); i ++ )
@@ -976,6 +986,9 @@ void App::evtBtnQuit( void )
 int main( int argc, char **argv )
 {
     QApplication app( argc, argv );
+    QDir dir;
+    QString current = dir.toNativeSeparators(dir.currentPath() + QString(dir.separator()) + "data");
+    CPLSetConfigOption("GDAL_DATA", current.toStdString().c_str());
     new App();
     return app.exec();
 }

@@ -49,13 +49,14 @@
 
 #include "Ogr.h"
 #include "Inf.h"
+#include "cpl_conv.h"
 
 #include <string>
 #include <QIntValidator>
+#include <QDir>
+#include <QTextEdit>
 
 using std::string;
-
-#include <QTextEdit>
 
 QT_BEGIN_NAMESPACE
 

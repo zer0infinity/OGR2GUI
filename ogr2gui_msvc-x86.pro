@@ -13,7 +13,6 @@ HEADERS += \
     include/Inf.h
 
 SOURCES += \
-#    src/ogr2ogr.cpp \
     src/Ogr.cpp \
     src/Inf.cpp \
     src/App.cpp
