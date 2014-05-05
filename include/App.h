@@ -78,14 +78,14 @@ class App : public QMainWindow
         QString parameters;
 
         // file formats
-        const static int formatsCount = 53;
+        const static int formatsCount = 50;
         QString **formats;
 
         // output formats
-        const static int formatsOutput = 28;
+        const static int formatsOutput = 27;
 
         // database formats
-        const static int databasesCount = 5;
+        const static int databasesCount = 4;
         QString **databases;
 
         // output databases
