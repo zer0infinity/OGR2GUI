@@ -113,7 +113,7 @@ void App::InitInterface( void )
 
     radSourceFile->setChecked( true );
     radTargetFile->setChecked( true );
-    radTargetOverwrite->setChecked( true );
+//    radTargetOverwrite->setChecked( true );
     btnExecute->setEnabled( false );
 
     this->setCentralWidget( thePanel );
@@ -321,9 +321,13 @@ void App::InitLayout( void )
                 {
                     grpTargetOptions = new QButtonGroup();
                     {
+                        // TODO:
                         radTargetOverwrite = new QRadioButton();
+                        radTargetOverwrite->setVisible(false);
                         radTargetAppend = new QRadioButton();
+                        radTargetAppend->setVisible(false);
                         radTargetUpdate = new QRadioButton();
+                        radTargetUpdate->setVisible(false);
 
                         lytTargetOptions->addWidget( radTargetOverwrite );
                         lytTargetOptions->addWidget( radTargetAppend );
@@ -361,6 +365,7 @@ void App::InitLayout( void )
         theLayout->addLayout( lytExecute );
 
         theProgress = new QProgressBar();
+        theProgress->setValue(0);
 
         theLayout->addWidget( theProgress );
     }
@@ -689,7 +694,7 @@ void App::evtBtnSourceName( void )
     if( radSourceFile->isChecked() )
     {
         type = tr( "\"" ) + formats[ idx ][ 0 ] + tr( " (*." ) + formats[ idx ][ 1 ] + tr(")\"");
-        txtSourceName->setText( QFileDialog::getOpenFileName( this, tr( "Source File" ), tr( "" ), type ) );
+        txtSourceName->setText( QDir::toNativeSeparators(QFileDialog::getOpenFileName( this, tr( "Source File" ), tr( "" ), type ) ));
 
         fileList.clear();
         fileList.append( txtSourceName->text() );
@@ -699,7 +704,7 @@ void App::evtBtnSourceName( void )
         QStringList types;
         type = tr( "*." ) + formats[ cmbSourceFormat->currentIndex() ][ 1 ];
 
-        txtSourceName->setText( QFileDialog::getExistingDirectory( this, tr( "Source Folder" ), tr( "" ), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks ) );
+        txtSourceName->setText( QDir::toNativeSeparators(QFileDialog::getExistingDirectory( this, tr( "Source Folder" ), tr( "" ), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks ) ));
         QDir dir( txtSourceName->text() );
 
         types.append( type );
@@ -720,7 +725,7 @@ void App::evtBtnSourceName( void )
     {
         if(databases[idx][0] == "SQLite") {
             type = tr("\"") + databases[idx][0] + tr( " (*.sqlite)\"");
-            txtSourceName->setText(QFileDialog::getOpenFileName(this, tr("SQLite File"), tr(""), type ));
+            txtSourceName->setText(QDir::toNativeSeparators(QFileDialog::getOpenFileName(this, tr("SQLite File"), tr(""), type )));
             fileList.clear();
             fileList.append(txtSourceName->text());
             return;
@@ -826,7 +831,7 @@ void App::evtBtnTargetName( void )
     {
         if(databases[idx][0] == "SQLite") {
             type = tr("\"") + databases[idx][0] + tr(" (*") + tr(".sqlite") + tr(")\"");
-            txtTargetName->setText(QFileDialog::getSaveFileName(this, tr("Save File"), tr(""), type ));
+            txtTargetName->setText(QDir::toNativeSeparators(QFileDialog::getSaveFileName(this, tr("Save File"), tr(""), type )));
             return;
         }
         inf->setDialogStyle( 0 );
@@ -842,18 +847,18 @@ void App::evtBtnTargetName( void )
         {
             type = tr( "\"" ) + formats[ idx ][ 0 ] + tr( " (*." ) + formats[ idx ][ 1 ] + tr( ") | *." ) + formats[ idx ][ 1 ];
 
-            txtTargetName->setText( QFileDialog::getSaveFileName( this, tr( "Save File" ), tr( "" ), type ) );
+            txtTargetName->setText( QDir::toNativeSeparators(QFileDialog::getSaveFileName( this, tr( "Save File" ), tr( "" ), type ) ));
         }
         else if( radTargetFolder->isChecked() )
         {
-            txtTargetName->setText( QFileDialog::getExistingDirectory( this, tr( "Target Folder" ), tr( "" ), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks ) );
+            txtTargetName->setText( QDir::toNativeSeparators(QFileDialog::getExistingDirectory( this, tr( "Target Folder" ), tr( "" ), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks ) ));
         }
     }
     else
     {
         type = tr( "\"" ) + formats[ idx ][ 0 ] + tr( " (*." ) + formats[ idx ][ 1 ] + tr(")\"");
 
-        txtTargetName->setText( QFileDialog::getSaveFileName( this, tr( "Target File" ), tr( "" ), type ) );
+        txtTargetName->setText( QDir::toNativeSeparators(QFileDialog::getSaveFileName( this, tr( "Target File" ), tr( "" ), type ) ));
     }
 
     btnExecute->setEnabled( true );
