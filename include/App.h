@@ -186,6 +186,8 @@ class App : public QMainWindow
                         QPushButton *btnQuit;
 
 
+        void InitConfig(void);
+
         /*!
          *	\fn void InitData( void );
          *	\brief Inits data

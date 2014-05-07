@@ -162,7 +162,7 @@ void Inf::InitInterface( void )
 			lytInfo->addLayout( lytTables, 6, 0 );
 			lytInfo->addWidget( lstTables, 6, 1 );
 		}
-			
+
 		theLayout->addLayout( lytInfo );
 
 			

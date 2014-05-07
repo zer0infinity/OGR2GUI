@@ -31,6 +31,7 @@
 
 App::App( QWidget *widget ) : QMainWindow( widget )
 {
+    InitConfig();
     InitData();
     InitInterface();
     TranslateInterface();
@@ -44,6 +45,12 @@ App::~App( void )
     delete [] *databases;
     delete [] *projections;
     delete [] *webservices;
+}
+
+void App::InitConfig(void) {
+    QDir dir;
+    QString current = dir.toNativeSeparators(dir.currentPath() + QString(dir.separator()) + "data");
+    CPLSetConfigOption("GDAL_DATA", current.toStdString().c_str());
 }
 
 void App::InitData( void )
@@ -981,14 +988,4 @@ void App::evtBtnExecute( void )
 void App::evtBtnQuit( void )
 {
     this->close();
-}
-
-int main( int argc, char **argv )
-{
-    QApplication app( argc, argv );
-    QDir dir;
-    QString current = dir.toNativeSeparators(dir.currentPath() + QString(dir.separator()) + "data");
-    CPLSetConfigOption("GDAL_DATA", current.toStdString().c_str());
-    new App();
-    return app.exec();
 }
