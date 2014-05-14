@@ -1,5 +1,5 @@
 /******************************************************************************
- * $Id: cpl_conv.h 25627 2013-02-10 10:17:19Z rouault $
+ * $Id: cpl_conv.h 27121 2014-04-03 22:08:55Z rouault $
  *
  * Project:  CPL - Common Portability Library
  * Purpose:  Convenience functions declarations.
@@ -8,6 +8,7 @@
  *
  ******************************************************************************
  * Copyright (c) 1998, Frank Warmerdam
+ * Copyright (c) 2007-2013, Even Rouault <even dot rouault at mines-paris dot org>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -190,7 +191,7 @@ FILE CPL_DLL    *CPLOpenShared( const char *, const char *, int );
 void CPL_DLL     CPLCloseShared( FILE * );
 CPLSharedFileInfo CPL_DLL *CPLGetSharedList( int * );
 void CPL_DLL     CPLDumpSharedList( FILE * );
-void CPL_DLL     CPLCleanupSharedFileMutex();
+void CPL_DLL     CPLCleanupSharedFileMutex( void );
 
 /* -------------------------------------------------------------------- */
 /*      DMS to Dec to DMS conversion.                                   */
@@ -239,6 +240,12 @@ void CPL_DLL *CPLZLibInflate( const void* ptr, size_t nBytes,
 int CPL_DLL CPLValidateXML(const char* pszXMLFilename,
                            const char* pszXSDFilename,
                            char** papszOptions);
+						   
+/* -------------------------------------------------------------------- */
+/*      Locale handling. Prevents parallel executions of setlocale().   */
+/* -------------------------------------------------------------------- */
+char* CPLsetlocale (int category, const char* locale);
+void CPLCleanupSetlocaleMutex(void);
 
 CPL_C_END
 

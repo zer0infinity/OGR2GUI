@@ -1,5 +1,5 @@
 /******************************************************************************
- * $Id: ogr_srs_api.h 25727 2013-03-10 14:56:33Z rouault $
+ * $Id: ogr_srs_api.h 27109 2014-03-28 20:26:34Z kyle $
  *
  * Project:  OpenGIS Simple Features Reference Implementation
  * Purpose:  C API and constant declarations for OGR Spatial References.
@@ -7,6 +7,7 @@
  *
  ******************************************************************************
  * Copyright (c) 2000, Frank Warmerdam
+ * Copyright (c) 2008-2013, Even Rouault <even dot rouault at mines-paris dot org>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -228,6 +229,45 @@ typedef enum {
 #define SRS_UL_ROD_CONV                     "5.02921005842012"
 #define SRS_UL_LINK_Clarke      "Link_Clarke"          
 #define SRS_UL_LINK_Clarke_CONV              "0.2011661949"
+
+#define SRS_UL_KILOMETER        "Kilometer"
+#define SRS_UL_KILOMETER_CONV                "1000."
+#define SRS_UL_DECIMETER        "Decimeter"
+#define SRS_UL_DECIMETER_CONV                "0.1"
+#define SRS_UL_CENTIMETER       "Centimeter"
+#define SRS_UL_CENTIMETER_CONV               "0.01"
+#define SRS_UL_MILLIMETER       "Millimeter"
+#define SRS_UL_MILLIMETER_CONV               "0.001"
+#define SRS_UL_INTL_NAUT_MILE   "Nautical_Mile_International"
+#define SRS_UL_INTL_NAUT_MILE_CONV           "1852.0"
+#define SRS_UL_INTL_INCH        "Inch_International"
+#define SRS_UL_INTL_INCH_CONV                "0.0254"
+#define SRS_UL_INTL_FOOT        "Foot_International"
+#define SRS_UL_INTL_FOOT_CONV                    "0.3048"
+#define SRS_UL_INTL_YARD        "Yard_International"
+#define SRS_UL_INTL_YARD_CONV                "0.9144"
+#define SRS_UL_INTL_STAT_MILE   "Statute_Mile_International"
+#define SRS_UL_INTL_STAT_MILE_CONV           "1609.344"
+#define SRS_UL_INTL_FATHOM      "Fathom_International"
+#define SRS_UL_INTL_FATHOM_CONV              "1.8288"
+#define SRS_UL_INTL_CHAIN       "Chain_International"
+#define SRS_UL_INTL_CHAIN_CONV               "20.1168"
+#define SRS_UL_INTL_LINK        "Link_International"
+#define SRS_UL_INTL_LINK_CONV                "0.201168"
+#define SRS_UL_US_INCH          "Inch_US_Surveyor"
+#define SRS_UL_US_INCH_CONV                  "0.025400050800101603"
+#define SRS_UL_US_YARD          "Yard_US_Surveyor"
+#define SRS_UL_US_YARD_CONV                  "0.914401828803658"
+#define SRS_UL_US_CHAIN         "Chain_US_Surveyor"
+#define SRS_UL_US_CHAIN_CONV                 "20.11684023368047"
+#define SRS_UL_US_STAT_MILE     "Statute_Mile_US_Surveyor"
+#define SRS_UL_US_STAT_MILE_CONV             "1609.347218694437"
+#define SRS_UL_INDIAN_YARD      "Yard_Indian"
+#define SRS_UL_INDIAN_YARD_CONV              "0.91439523"
+#define SRS_UL_INDIAN_FOOT      "Foot_Indian"
+#define SRS_UL_INDIAN_FOOT_CONV              "0.30479841"
+#define SRS_UL_INDIAN_CHAIN     "Chain_Indian"
+#define SRS_UL_INDIAN_CHAIN_CONV             "20.11669506"
 
 #define SRS_UA_DEGREE           "degree"
 #define SRS_UA_DEGREE_CONV                  "0.0174532925199433"
@@ -685,13 +725,13 @@ OCTTransformEx( OGRCoordinateTransformationH hCT,
 /* this is really private to OGR. */
 char *OCTProj4Normalize( const char *pszProj4Src );
 
-void OCTCleanupProjMutex();
+void OCTCleanupProjMutex( void );
 
 /* -------------------------------------------------------------------- */
 /*      Projection transform dictionary query.                          */
 /* -------------------------------------------------------------------- */
 
-char CPL_DLL ** OPTGetProjectionMethods();
+char CPL_DLL ** OPTGetProjectionMethods( void );
 char CPL_DLL ** OPTGetParameterList( const char * pszProjectionMethod,
                              char ** ppszUserName );
 int CPL_DLL OPTGetParameterInfo( const char * pszProjectionMethod,

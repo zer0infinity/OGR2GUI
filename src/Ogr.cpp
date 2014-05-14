@@ -42,8 +42,7 @@ Ogr::~Ogr( void )
 void Ogr::OpenWFS(QStringList &fileList) {
     OGRDataSourceH sourceData = OGROpen(sourceName.c_str(), 0, NULL);
     if(sourceData != NULL) {
-        int i;
-        for(i = 0; i < OGR_DS_GetLayerCount(sourceData); ++i) {
+        for(int i = 0; i < OGR_DS_GetLayerCount(sourceData); ++i) {
             OGRLayerH sourceLayer = OGR_DS_GetLayer(sourceData, i);
             if(sourceLayer != NULL) {
                 OGRFeatureDefnH sourceLayerDefn = OGR_L_GetLayerDefn(sourceLayer);
@@ -119,7 +118,7 @@ bool Ogr::OpenDriver(string drivername)
 	return true;
 }
 
-bool Ogr::OpenTarget( string filename, int projection, bool update )
+bool Ogr::OpenTarget( string filename, int projection, char **papszDSCO )
 {
 	struct stat fileInfo;
 	targetSRS = NULL;
@@ -132,48 +131,26 @@ bool Ogr::OpenTarget( string filename, int projection, bool update )
 			error.insert( 0, "unable to create spatial reference : " );
 		}
 	}
-	if( update )
-	{
-		if( stat( targetName.c_str(), &fileInfo ) == 0 )
-		{
-			targetData = OGR_Dr_Open( formatDriver, targetName.c_str(), 1 );
-		}
-		else
-		{
-            perror("file doesn't exist");
-			return false;
-		}
-	}
-	else
-    {
-        if(layerName == "") {
-            if( stat( targetName.c_str(), &fileInfo ) == 0 )
+    if(layerName == "") {
+        if( stat( targetName.c_str(), &fileInfo ) == 0 )
+        {
+            if( remove( targetName.c_str() ) != 0 )
             {
-                if( remove( targetName.c_str() ) != 0 )
-                {
-                    perror("unable to delete source data");
-                }
+                perror("unable to delete source data");
             }
         }
-		targetData = OGR_Dr_CreateDataSource( formatDriver, targetName.c_str(), 0 );		
-	}
+    }
+    targetData = OGR_Dr_CreateDataSource( formatDriver, targetName.c_str(), papszDSCO );
 	if( targetData != NULL )
 	{
-		if( update )
-		{
-			targetLayer = OGR_DS_GetLayer( targetData, 0 );
-		}
-		else
-		{
-			if( targetSRS != NULL )
-			{
-				targetLayer = OGR_DS_CreateLayer( targetData, sourceLayerName.c_str(), targetSRS, sourceLayerGeom, NULL );
-			}
-			else
-			{
-				targetLayer = OGR_DS_CreateLayer( targetData, sourceLayerName.c_str(), sourceSRS, sourceLayerGeom, NULL );
-			}
-		}
+        if( targetSRS != NULL )
+        {
+            targetLayer = OGR_DS_CreateLayer( targetData, sourceLayerName.c_str(), targetSRS, sourceLayerGeom, papszDSCO );
+        }
+        else
+        {
+            targetLayer = OGR_DS_CreateLayer( targetData, sourceLayerName.c_str(), sourceSRS, sourceLayerGeom, papszDSCO );
+        }
 	}
 	else
 	{

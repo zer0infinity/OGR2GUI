@@ -321,7 +321,7 @@ void App::InitLayout( void )
                 {
                     grpTargetOptions = new QButtonGroup();
                     {
-                        // TODO:
+                        // TODO: Implement options
                         radTargetOverwrite = new QRadioButton();
                         radTargetOverwrite->setVisible(false);
                         radTargetAppend = new QRadioButton();
@@ -345,6 +345,27 @@ void App::InitLayout( void )
 
         theLayout->addWidget( grpTarget );
 
+        QStringList hLabels, optionLabels;
+        hLabels << "Option" << "Name" << "Value";
+        optionLabels << "DSCO" << "LCO";
+        optionTable = new QTableWidget(this);
+        optionTable->setRowCount(2);
+        optionTable->setColumnCount(3);
+        optionTable->setHorizontalHeaderLabels(hLabels);
+        optionTable->verticalHeader()->setVisible(false);
+        optionTable->verticalHeader()->setDefaultSectionSize(20);
+        QHeaderView* header = optionTable->horizontalHeader();
+        header->setSectionResizeMode(QHeaderView::Stretch);
+
+        QStringListModel *model = new QStringListModel();
+        model->setStringList(optionLabels);
+        for(int i = 0; i < optionTable->rowCount(); ++i) {
+            QComboBox *comboBoxOption = new QComboBox();
+            comboBoxOption->setModel(model);
+            optionTable->setCellWidget(i, 0, comboBoxOption);
+            comboHash.insert(i, comboBoxOption);
+        }
+
         txtOutput = new QTextEdit();
         txtOutput->setReadOnly(true);
 
@@ -361,6 +382,7 @@ void App::InitLayout( void )
             lytExecute->addWidget( btnQuit );
         }
 
+        theLayout->addWidget(optionTable);
         theLayout->addWidget( txtOutput );
         theLayout->addLayout( lytExecute );
 
@@ -948,11 +970,36 @@ void App::evtBtnExecute( void )
             resVal = ogr->OpenSource(sourcename.toStdString(), epsg, query, error);
         }
 
+        QStringList optionItems;
+        for(int i = 0; i < optionTable->rowCount(); ++i) {
+            for(int j = 1; j < optionTable->columnCount(); ++j) {
+                QTableWidgetItem* name = optionTable->item(i, j);
+                QTableWidgetItem* value = optionTable->item(i, j+1);
+                if(name != NULL && value != NULL) {
+                    optionItems << name->text() + tr("=") + value->text();
+                    ++j;
+                }
+            }
+        }
+        char **papszOptions = new char*[optionItems.size() + 1];
+        for (int i = 0; i < optionItems.size(); i++) {
+            if(comboHash[i]->currentText() == "DSCO") {
+                papszOptions[i] = new char[strlen(optionItems.at(i).toStdString().c_str())+1];
+                memcpy(papszOptions[i], optionItems.at(i).toStdString().c_str(), strlen(optionItems.at(i).toStdString().c_str())+1);
+                papszDSCO = CSLAddString(papszDSCO, papszOptions[i]);
+            } else if(comboHash[i]->currentText() == "LCO") {
+                papszOptions[i] = new char[strlen(optionItems.at(i).toStdString().c_str())+1];
+                memcpy(papszOptions[i], optionItems.at(i).toStdString().c_str(), strlen(optionItems.at(i).toStdString().c_str())+1);
+                papszLCO = CSLAddString(papszLCO, papszOptions[i]);
+            }
+        }
+        papszOptions[optionItems.size()] = ((char)NULL);
+
         if(resVal)
         {
             if( ogr->OpenDriver(cmbTargetFormat->currentText().toStdString()) )
             {
-                if( ogr->OpenTarget( targetname.toStdString(), atoi( projections[ cmbTargetProj->currentIndex() ][ 0 ].toStdString().c_str() ) ) )
+                if( ogr->OpenTarget( targetname.toStdString(), atoi( projections[ cmbTargetProj->currentIndex() ][ 0 ].toStdString().c_str()), papszDSCO))
                 {
                     ogr->Prepare( featuresCount, "" );
 
@@ -987,6 +1034,8 @@ void App::evtBtnExecute( void )
         {
             txtOutput->append( tr( "\n * unable to open source !\n" ) );
         }
+        CSLDestroy(papszDSCO);
+        CSLDestroy(papszLCO);
     }
 }
 

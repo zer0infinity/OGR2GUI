@@ -50,6 +50,8 @@ class Ogr
 {
 	private :
 
+        char **papszOptions;
+
 		OGRSFDriverH formatDriver;
 
 		OGRDataSourceH sourceData;
@@ -135,7 +137,7 @@ class Ogr
 		 *	\param update : update mode
 		 *	\returns true on success
 		*/
-		bool OpenTarget( string filename, int projection = 0, bool update = 0 );
+        bool OpenTarget( string filename, int projection = 0, char **papszOptions = NULL );
 
 		/*!
 		 *	\fn bool CloseTarget( void );

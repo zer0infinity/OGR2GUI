@@ -50,11 +50,14 @@
 #include "Ogr.h"
 #include "Inf.h"
 #include "cpl_conv.h"
+#include "cpl_string.h"
 
 #include <string>
 #include <QIntValidator>
 #include <QDir>
 #include <QTextEdit>
+#include <QTableWidget>
+#include <QHash>
 
 using std::string;
 
@@ -74,15 +77,18 @@ class App : public QMainWindow
 
         Inf *inf;
 
+        char **papszDSCO, **papszLCO;
+        QHash<int, QComboBox*> comboHash;
+
         // ogr2ogr parameters
         QString parameters;
 
         // file formats
-        const static int formatsCount = 50;
+        const static int formatsCount = 56;
         QString **formats;
 
         // output formats
-        const static int formatsOutput = 27;
+        const static int formatsOutput = 30;
 
         // database formats
         const static int databasesCount = 4;
@@ -179,6 +185,7 @@ class App : public QMainWindow
                                     QRadioButton *radTargetOverwrite;
                                     QRadioButton *radTargetUpdate;
 
+                    QTableWidget *optionTable;
                     QTextEdit *txtOutput;
 
                     QHBoxLayout *lytExecute;

@@ -1,5 +1,5 @@
 /******************************************************************************
- * $Id: cpl_port.h 25450 2013-01-04 23:15:38Z rouault $
+ * $Id: cpl_port.h 27044 2014-03-16 23:41:27Z rouault $
  *
  * Project:  CPL - Common Portability Library
  * Author:   Frank Warmerdam, warmerdam@pobox.com
@@ -8,6 +8,7 @@
  *
  ******************************************************************************
  * Copyright (c) 1998, 2005, Frank Warmerdam <warmerdam@pobox.com>
+ * Copyright (c) 2008-2013, Even Rouault <even dot rouault at mines-paris dot org>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -168,7 +169,7 @@
 #  include <direct.h>
 #endif
 
-#ifdef _AIX
+#if !(defined(WIN32) || defined(WIN32CE))
 #  include <strings.h>
 #endif
 
@@ -552,6 +553,13 @@ static char *cvsid_aw() { return( cvsid_aw() ? ((char *) NULL) : cpl_cvsid ); }
 #endif
 #else
 #  define CPL_CVSID(string)
+#endif
+
+/* Null terminated variadic */
+#if defined(__GNUC__) && __GNUC__ >= 4 && !defined(DOXYGEN_SKIP)
+#   define CPL_NULL_TERMINATED     __attribute__((__sentinel__))
+#else
+#   define CPL_NULL_TERMINATED
 #endif
 
 #if defined(__GNUC__) && __GNUC__ >= 3 && !defined(DOXYGEN_SKIP)
