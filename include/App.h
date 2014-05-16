@@ -41,7 +41,7 @@
  *	\brief Qt Application
  *	\author Olivier Pilotte [ Inventis ], Mohamed Hedi Lassoued [ Inventis ], David Tran [ HSR ]
  *	\version 0.7
- *	\date 30/05/14
+ *	\date 13/06/14
  */
 
 #ifndef APP

@@ -24,7 +24,7 @@
  *	\brief Unit Test Ogr
  *	\author David Tran [ HSR ]
  *	\version 0.1
- *	\date 30/05/14
+ *	\date 13/06/14
  */
 
 #ifndef TESTOGR_H

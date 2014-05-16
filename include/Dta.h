@@ -24,7 +24,7 @@
  *	\brief Formats & Projections
  *	\author Olivier Pilotte [ Inventis ], David Tran [ HSR ]
  *	\version 0.7
- *	\date 30/05/14
+ *	\date 13/06/14
  */
 //read/write
 formats[0 ][0] = "ESRI Shapefile";      formats[0 ][1] = "shp";

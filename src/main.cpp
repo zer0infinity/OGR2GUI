@@ -23,8 +23,8 @@
  *	\file main.cpp
  *	\brief main
  *	\author David Tran [ HSR ]
- *	\version 0.1
- *	\date 30/05/14
+ *	\version 0.7
+ *	\date 13/06/14
  */
 
 #include "App.h"

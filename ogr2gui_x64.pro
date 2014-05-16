@@ -2,9 +2,9 @@
 
 TEMPLATE = app
 TARGET = ogr2gui
-DEPENDPATH += $$PWD/src $$PWD/include $$PWD/include/msvc-x64
-INCLUDEPATH += $$PWD/src $$PWD/include $$PWD/include/msvc-x64
-LIBS += -L$$PWD/lib/msvc-x64 -lgdal_i
+DEPENDPATH += $$PWD/src $$PWD/src/ogr $$PWD/include $$PWD/include/ogr
+INCLUDEPATH += $$PWD/src $$PWD/src/ogr $$PWD/include $$PWD/include/ogr
+LIBS += -L$$PWD/lib -lgdal_i_x64
 
 HEADERS += \
     include/App.h \
@@ -16,7 +16,9 @@ SOURCES += \
     src/Ogr.cpp \
     src/Inf.cpp \
     src/App.cpp \
-    src/main.cpp
+    src/main.cpp \
+    src/ogr/ogr2ogr.cpp \
+    src/ogr/commonutils.cpp
 
 CONFIG += c++11
 QT += sql widgets

@@ -2,8 +2,8 @@
 
 TEMPLATE = app
 TARGET = ogr2gui
-DEPENDPATH += $$PWD/src $$PWD/src/tests $$PWD/include $$PWD/include/tests
-INCLUDEPATH += $$PWD/src $$PWD/src/tests $$PWD/include $$PWD/include/tests
+DEPENDPATH += $$PWD/src $$PWD/src/ogr $$PWD/src/tests $$PWD/include $$PWD/include/ogr $$PWD/include/tests
+INCLUDEPATH += $$PWD/src $$PWD/src/ogr $$PWD/src/tests $$PWD/include $$PWD/include/ogr $$PWD/include/tests
 LIBS += -L$$PWD/lib -lgdal_i
 
 HEADERS += \

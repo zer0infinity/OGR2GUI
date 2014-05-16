@@ -24,7 +24,7 @@
  *	\brief Unit Test Main
  *	\author David Tran [ HSR ]
  *	\version 0.1
- *	\date 30/05/14
+ *	\date 13/06/14
  */
 
 #include "TestInf.h"
