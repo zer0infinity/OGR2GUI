@@ -20,28 +20,16 @@
  *****************************************************************************/
 
 /*!
- *	\file main.cpp
- *	\brief main
+ *	\file utils.h
+ *	\brief Utilities
  *	\author David Tran [ HSR ]
  *	\version 0.7
  *	\date 13/06/14
  */
 
-#pragma comment(linker, "/SUBSYSTEM:CONSOLE")
-#include "App.h"
-#include "utils.h"
-#include <iostream>
+#ifndef OGR2OGRCONTEXT_H
+#define OGR2OGRCONTEXT_H
 
-int main(int argc, char **argv) {
-    QApplication app(argc, argv);
-    string dataPath = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + "data").toStdString();
-    CPLSetConfigOption("GDAL_DATA", dataPath.c_str());
-    if(1 < argc) {
-        for(int i=0;i<argc;++i) {
-            std::cout << argv[i] << std::endl;
-        }
-        return ogr2ogr(argc, argv);
-    }
-    App ogr2gui;
-    return app.exec();
-}
+int ogr2ogr( int nArgc, char ** papszArgv );
+
+#endif // OGR2OGRCONTEXT_H

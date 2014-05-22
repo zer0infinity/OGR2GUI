@@ -38,6 +38,7 @@
 #include "commonutils.h"
 #include <map>
 #include <vector>
+#include "utils.h"
 
 CPL_CVSID("$Id: ogr2ogr.cpp 27044 2014-03-16 23:41:27Z rouault $");
 
@@ -851,7 +852,6 @@ void ApplySpatialFilter(OGRLayer* poLayer, OGRGeometry* poSpatialFilter,
         Usage(CPLSPrintf("%s option requires %d argument(s)", papszArgv[iArg], nExtraArg)); } while(0)
 
 int ogr2ogr( int nArgc, char ** papszArgv )
-
 {
     int          nRetCode = 0;
     int          bQuiet = FALSE;

@@ -49,6 +49,7 @@
 
 #include "Ogr.h"
 #include "Inf.h"
+#include "utils.h"
 #include "cpl_conv.h"
 #include "cpl_string.h"
 
@@ -58,6 +59,7 @@
 #include <QTextEdit>
 #include <QTableWidget>
 #include <QHash>
+#include <QDebug>
 
 using std::string;
 
@@ -77,18 +79,18 @@ class App : public QMainWindow
 
         Inf *inf;
 
-        char **papszDSCO, **papszLCO;
+//        char **papszDSCO, **papszLCO;
         QHash<int, QComboBox*> comboHash;
 
         // ogr2ogr parameters
         QString parameters;
 
         // file formats
-        const static int formatsCount = 56;
+        const static int formatsCount = 51;
         QString **formats;
 
         // output formats
-        const static int formatsOutput = 30;
+        const static int formatsOutput = 27;
 
         // database formats
         const static int databasesCount = 4;
@@ -102,7 +104,7 @@ class App : public QMainWindow
         QString **webservices;
 
         // target projections
-        const static int projectionsCount = 3578;
+        const static int projectionsCount = 0;
         QString **projections;
 
         // qt
@@ -187,13 +189,12 @@ class App : public QMainWindow
 
                     QTableWidget *optionTable;
                     QTextEdit *txtOutput;
+                    QTextEdit *txtInput;
 
                     QHBoxLayout *lytExecute;
                         QPushButton *btnExecute;
                         QPushButton *btnQuit;
 
-
-        void InitConfig(void);
 
         /*!
          *	\fn void InitData( void );

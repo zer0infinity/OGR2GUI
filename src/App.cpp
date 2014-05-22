@@ -31,7 +31,6 @@
 
 App::App( QWidget *widget ) : QMainWindow( widget )
 {
-    InitConfig();
     InitData();
     InitInterface();
     TranslateInterface();
@@ -45,12 +44,6 @@ App::~App( void )
     delete [] *databases;
     delete [] *projections;
     delete [] *webservices;
-}
-
-void App::InitConfig(void) {
-    QDir dir;
-    QString current = dir.toNativeSeparators(dir.currentPath() + QString(dir.separator()) + "data");
-    CPLSetConfigOption("GDAL_DATA", current.toStdString().c_str());
 }
 
 void App::InitData( void )
@@ -113,7 +106,7 @@ void App::InitInterface( void )
 
     radSourceFile->setChecked( true );
     radTargetFile->setChecked( true );
-//    radTargetOverwrite->setChecked( true );
+    radTargetOverwrite->setChecked( true );
     btnExecute->setEnabled( false );
 
     this->setCentralWidget( thePanel );
@@ -321,13 +314,9 @@ void App::InitLayout( void )
                 {
                     grpTargetOptions = new QButtonGroup();
                     {
-                        // TODO: Implement options
                         radTargetOverwrite = new QRadioButton();
-                        radTargetOverwrite->setVisible(false);
                         radTargetAppend = new QRadioButton();
-                        radTargetAppend->setVisible(false);
                         radTargetUpdate = new QRadioButton();
-                        radTargetUpdate->setVisible(false);
 
                         lytTargetOptions->addWidget( radTargetOverwrite );
                         lytTargetOptions->addWidget( radTargetAppend );
@@ -354,6 +343,7 @@ void App::InitLayout( void )
         optionTable->setHorizontalHeaderLabels(hLabels);
         optionTable->verticalHeader()->setVisible(false);
         optionTable->verticalHeader()->setDefaultSectionSize(20);
+        optionTable->setMaximumHeight(65);
         QHeaderView* header = optionTable->horizontalHeader();
         header->setSectionResizeMode(QHeaderView::Stretch);
 
@@ -368,6 +358,8 @@ void App::InitLayout( void )
 
         txtOutput = new QTextEdit();
         txtOutput->setReadOnly(true);
+        txtInput = new QTextEdit();
+        txtInput->setMaximumHeight(100);
 
         lytExecute = new QHBoxLayout();
         {
@@ -384,6 +376,7 @@ void App::InitLayout( void )
 
         theLayout->addWidget(optionTable);
         theLayout->addWidget( txtOutput );
+        theLayout->addWidget(txtInput);
         theLayout->addLayout( lytExecute );
 
         theProgress = new QProgressBar();
@@ -491,21 +484,6 @@ void App::UpdateParameters( void )
 {
     parameters = tr( "ogr2ogr" ) + tr( " -f \"" ) + cmbTargetFormat->currentText() + tr( "\" " );
 
-    if( radTargetOverwrite->isChecked() )
-    {
-        parameters += tr( "-overwrite" );
-    }
-	
-    if( radTargetAppend->isChecked() )
-    {
-        parameters += tr( "-append" );
-    }
-
-    if( radTargetUpdate->isChecked() )
-    {
-        parameters += tr( "-update" );
-    }
-
     parameters += tr( " \"" ) + txtTargetName->text() + tr( "\" \"" );
     if(radSourceWebservice->isChecked()) {
         parameters += "WFS:";
@@ -522,6 +500,14 @@ void App::UpdateParameters( void )
         parameters += tr( "-sql \"" ) + txtSourceQuery->text() + tr( "\" " );
     }
 
+    if(radTargetOverwrite->isChecked()) {
+        parameters += tr( "-overwrite" );
+    } else if(radTargetAppend->isChecked()) {
+        parameters += tr("-append");
+    } else if(radTargetUpdate->isChecked()) {
+        parameters += tr( "-update" );
+    }
+
     for( int i = 0; i < ( int ) parameters.size(); i ++ )
     {
         if( parameters.at( i ) == '\\' )
@@ -530,7 +516,7 @@ void App::UpdateParameters( void )
         }
     }
 
-    parameters += tr( "\n" );
+//    parameters += tr( "\n" );
 
     txtOutput->setText( parameters );
 }
@@ -542,7 +528,8 @@ void App::evtMnuOgrHelp( void )
 
 void App::evtMnuGuiHelp( void )
 {
-    QDesktopServices::openUrl( QUrl( tr( "http://www.ogr2gui.ca/0.6/doc/index.html" ) ) );
+    QString docPath = tr("file:///") + QCoreApplication::applicationDirPath() + tr("/doc/html/index.html");
+    QDesktopServices::openUrl(QUrl(docPath));
 }
 
 void App::evtMnuAbout( void )
@@ -575,6 +562,7 @@ void App::evtRadSourceFile( void )
 
     txtSourceProj->setEnabled( true );
     txtSourceQuery->setEnabled( true );
+    UpdateParameters();
 }
 
 void App::evtRadSourceFolder( void )
@@ -602,6 +590,7 @@ void App::evtRadSourceFolder( void )
 
     txtSourceProj->setEnabled( true );
     txtSourceQuery->setEnabled( true );
+    UpdateParameters();
 }
 
 void App::evtRadSourceDatabase( void )
@@ -629,6 +618,7 @@ void App::evtRadSourceDatabase( void )
 
     txtSourceProj->setEnabled( true );
     txtSourceQuery->setEnabled( true );
+    UpdateParameters();
 }
 
 void App::evtRadSourceWebservice( void )
@@ -658,6 +648,7 @@ void App::evtRadSourceWebservice( void )
 
     txtSourceProj->setEnabled( true );
     txtSourceQuery->setEnabled( true );
+    UpdateParameters();
 }
 
 void App::evtCmbSourceFormat(void)
@@ -787,6 +778,7 @@ void App::evtBtnSourceName( void )
     else if(radSourceWebservice->isChecked()) {
         fileList.clear();
     }
+    UpdateParameters();
 }
 
 void App::evtTxtSourceQuery( void )
@@ -808,6 +800,7 @@ void App::evtRadTargetFile( void )
     txtTargetProj->clear();
 
     cmbTargetProj->setCurrentIndex( 0 );
+    UpdateParameters();
 }
 
 void App::evtRadTargetFolder( void )
@@ -819,6 +812,7 @@ void App::evtRadTargetFolder( void )
     {
         cmbTargetFormat->addItem( formats[ i ][ 0 ] );
     }
+    UpdateParameters();
 }
 
 void App::evtRadTargetDatabase( void )
@@ -830,11 +824,13 @@ void App::evtRadTargetDatabase( void )
     {
         cmbTargetFormat->addItem( databases[ i ][ 0 ] );
     }
+    UpdateParameters();
 }
 
 void App::evtCmbTargetFormat( void )
 {
     txtTargetName->clear();
+    UpdateParameters();
 }
 
 void App::evtTxtTargetName( void )
@@ -884,6 +880,7 @@ void App::evtBtnTargetName( void )
     }
 
     btnExecute->setEnabled( true );
+    UpdateParameters();
 }
 
 void App::evtTxtTargetProj( void )
@@ -908,135 +905,179 @@ void App::evtCmbTargetProj( void )
 
 void App::evtRadTargetAppend( void )
 {
-    UpdateParameters();
+	UpdateParameters();
 }
 
 void App::evtRadTargetOverwrite( void )
 {
-    UpdateParameters();
+	UpdateParameters();
 }
 
 void App::evtRadTargetUpdate( void )
 {
-    UpdateParameters();
+	UpdateParameters();
 }
 
 void App::evtBtnExecute( void )
 {
-    QString name;
-    QString sourcename;
-    QString targetname;
-
-    string epsg;
-    string query;
-    string error;
-
-    int featuresCount = 0;
-    int progress = 0;
-
-    txtOutput->clear();
-    if( radSourceWebservice->isChecked() )
-        ogr->OpenWFS(fileList);
-    for( int i = 0; i < fileList.size(); i ++ )
-    {
-        if( radSourceFile->isChecked() )
-        {
-            sourcename = txtSourceName->text();
-            targetname = txtTargetName->text();
-        }
-        else if( radSourceFolder->isChecked() )
-        {
-            sourcename = txtSourceName->text() + tr( "/" ) + fileList.at( i );
-            targetname = txtTargetName->text();
-        }
-        else if( radSourceDatabase->isChecked() )
-        {
-            sourcename = fileList.at( i );
-            targetname = txtTargetName->text();
-        }
-        else if( radSourceWebservice->isChecked() )
-        {
-            sourcename = txtSourceName->text();
-            sourcename = "WFS:" + sourcename;
-            targetname = txtTargetName->text();
-        }
-
-        txtOutput->append( QString( sourcename + tr( " > " ) + targetname + tr( " ... " ) ) );
-
-        bool resVal;
-        if(radSourceWebservice->isChecked()) {
-            resVal = ogr->OpenSource(sourcename.toStdString(), fileList.at(i).toStdString(), epsg, query, error);
-        } else {
-            resVal = ogr->OpenSource(sourcename.toStdString(), epsg, query, error);
-        }
-
-        QStringList optionItems;
-        for(int i = 0; i < optionTable->rowCount(); ++i) {
-            for(int j = 1; j < optionTable->columnCount(); ++j) {
-                QTableWidgetItem* name = optionTable->item(i, j);
-                QTableWidgetItem* value = optionTable->item(i, j+1);
-                if(name != NULL && value != NULL) {
-                    optionItems << name->text() + tr("=") + value->text();
-                    ++j;
-                }
-            }
-        }
-        char **papszOptions = new char*[optionItems.size() + 1];
-        for (int i = 0; i < optionItems.size(); i++) {
-            if(comboHash[i]->currentText() == "DSCO") {
-                papszOptions[i] = new char[strlen(optionItems.at(i).toStdString().c_str())+1];
-                memcpy(papszOptions[i], optionItems.at(i).toStdString().c_str(), strlen(optionItems.at(i).toStdString().c_str())+1);
-                papszDSCO = CSLAddString(papszDSCO, papszOptions[i]);
-            } else if(comboHash[i]->currentText() == "LCO") {
-                papszOptions[i] = new char[strlen(optionItems.at(i).toStdString().c_str())+1];
-                memcpy(papszOptions[i], optionItems.at(i).toStdString().c_str(), strlen(optionItems.at(i).toStdString().c_str())+1);
-                papszLCO = CSLAddString(papszLCO, papszOptions[i]);
-            }
-        }
-        papszOptions[optionItems.size()] = ((char)NULL);
-
-        if(resVal)
-        {
-            if( ogr->OpenDriver(cmbTargetFormat->currentText().toStdString()) )
-            {
-                if( ogr->OpenTarget( targetname.toStdString(), atoi( projections[ cmbTargetProj->currentIndex() ][ 0 ].toStdString().c_str()), papszDSCO))
-                {
-                    ogr->Prepare( featuresCount, "" );
-
-                    theProgress->setMinimum( 0 );
-                    theProgress->setMaximum( featuresCount );
-                    theProgress->setValue( 0 );
-
-                    while( ogr->Process() )
-                    {
-                        progress ++;
-
-                        theProgress->setValue( progress );
-                    }
-					
-                    ogr->CloseTarget();
-                    ogr->CloseSource();
-
-                    theProgress->reset();
-                    txtOutput->append( tr( "successful.\n" ) );
-                }
-                else
-                {
-                    txtOutput->append( tr( "\n * unable to open target !\n" ) );
-                }
-            }
-            else
-            {
-                txtOutput->append( tr( "\n * unable to open driver !\n" ) );
-            }
-        }
-        else
-        {
-            txtOutput->append( tr( "\n * unable to open source !\n" ) );
-        }
-        CSLDestroy(papszDSCO);
-        CSLDestroy(papszLCO);
+    QString parameters;
+    parameters += tr(" -f ") + tr("\"") + cmbTargetFormat->currentText() + tr("\" ");
+    parameters += tr("\"") + txtTargetName->text()+ tr("\" ") + tr("\"");
+    if(radSourceWebservice->isChecked()) {
+        parameters += "WFS:";
     }
+    parameters += txtSourceName->text() + tr("\"");
+    if(!cmbTargetProj->currentText().isEmpty()) {
+        parameters += tr(" ") + tr("-T_SRS");
+        parameters += tr(" EPSG:") + projections[cmbTargetProj->currentIndex()][0];
+    }
+    if(!txtSourceQuery->text().isEmpty()) {
+        parameters += tr(" -sql ") + tr("\"") + txtSourceQuery->text() + tr("\"");
+    }
+    if(radTargetOverwrite->isChecked()) {
+        parameters += tr(" -overwrite");
+    } else if(radTargetAppend->isChecked()) {
+        parameters += tr(" -append");
+    } else if(radTargetUpdate->isChecked()) {
+        parameters += tr(" -update");
+    }
+    if(!txtInput->toPlainText().isEmpty()) {
+        parameters += tr(" ") + txtInput->toPlainText();
+    }
+
+    string path = QCoreApplication::applicationFilePath().toStdString();
+    path += parameters.toStdString();
+    std::wstring widestring;
+    for (int i = 0; i < (int)path.length(); i++)
+        widestring += (wchar_t)path[i];
+    LPWSTR lpwstr = const_cast<LPWSTR>(widestring.c_str());
+
+    STARTUPINFO si;
+    PROCESS_INFORMATION pi;
+    ZeroMemory(&si, sizeof(si));
+    si.cb = sizeof(si);
+    ZeroMemory(&pi, sizeof(pi));
+    if(CreateProcess(NULL, lpwstr, 0, 0, FALSE, 0, 0, 0, &si, &pi)) {
+        WaitForSingleObject(pi.hProcess, INFINITE);
+        CloseHandle(pi.hProcess);
+        CloseHandle(pi.hThread);
+    }
+    txtOutput->append(tr("successful.\n"));
+
+//    QString name;
+//    QString sourcename;
+//    QString targetname;
+
+//    string epsg;
+//    string query;
+//    string error;
+
+//    int featuresCount = 0;
+//    int progress = 0;
+
+//    txtOutput->clear();
+//    if( radSourceWebservice->isChecked() )
+//        ogr->OpenWFS(fileList);
+//    for( int i = 0; i < fileList.size(); i ++ )
+//    {
+//        if( radSourceFile->isChecked() )
+//        {
+//            sourcename = txtSourceName->text();
+//            targetname = txtTargetName->text();
+//        }
+//        else if( radSourceFolder->isChecked() )
+//        {
+//            sourcename = txtSourceName->text() + tr( "/" ) + fileList.at( i );
+//            targetname = txtTargetName->text();
+//        }
+//        else if( radSourceDatabase->isChecked() )
+//        {
+//            sourcename = fileList.at( i );
+//            targetname = txtTargetName->text();
+//        }
+//        else if( radSourceWebservice->isChecked() )
+//        {
+//            sourcename = txtSourceName->text();
+//            sourcename = "WFS:" + sourcename;
+//            targetname = txtTargetName->text();
+//        }
+
+//        txtOutput->append( QString( sourcename + tr( " > " ) + targetname + tr( " ... " ) ) );
+
+//        bool resVal;
+//        if(radSourceWebservice->isChecked()) {
+//            resVal = ogr->OpenSource(sourcename.toStdString(), fileList.at(i).toStdString(), epsg, query, error);
+//        } else {
+//            resVal = ogr->OpenSource(sourcename.toStdString(), epsg, query, error);
+//        }
+
+//        QStringList optionItems;
+//        for(int i = 0; i < optionTable->rowCount(); ++i) {
+//            for(int j = 1; j < optionTable->columnCount(); ++j) {
+//                QTableWidgetItem* name = optionTable->item(i, j);
+//                QTableWidgetItem* value = optionTable->item(i, j+1);
+//                if(name != NULL && value != NULL) {
+//                    optionItems << name->text() + tr("=") + value->text();
+//                    ++j;
+//                }
+//            }
+//        }
+//        char **papszOptions = new char*[optionItems.size() + 1];
+//        for (int i = 0; i < optionItems.size(); i++) {
+//            if(comboHash[i]->currentText() == "DSCO") {
+//                papszOptions[i] = new char[strlen(optionItems.at(i).toStdString().c_str())+1];
+//                memcpy(papszOptions[i], optionItems.at(i).toStdString().c_str(), strlen(optionItems.at(i).toStdString().c_str())+1);
+//                papszDSCO = CSLAddString(papszDSCO, papszOptions[i]);
+//            } else if(comboHash[i]->currentText() == "LCO") {
+//                papszOptions[i] = new char[strlen(optionItems.at(i).toStdString().c_str())+1];
+//                memcpy(papszOptions[i], optionItems.at(i).toStdString().c_str(), strlen(optionItems.at(i).toStdString().c_str())+1);
+//                papszLCO = CSLAddString(papszLCO, papszOptions[i]);
+//            }
+//        }
+//        papszOptions[optionItems.size()] = ((char)NULL);
+
+//        if(resVal)
+//        {
+//            if( ogr->OpenDriver(cmbTargetFormat->currentText().toStdString()) )
+//            {
+//                if( ogr->OpenTarget( targetname.toStdString(), atoi( projections[ cmbTargetProj->currentIndex() ][ 0 ].toStdString().c_str()), papszDSCO))
+//                {
+//                    ogr->Prepare( featuresCount, "" );
+
+//                    theProgress->setMinimum( 0 );
+//                    theProgress->setMaximum( featuresCount );
+//                    theProgress->setValue( 0 );
+
+//                    while( ogr->Process() )
+//                    {
+//                        progress ++;
+
+//                        theProgress->setValue( progress );
+//                    }
+					
+//                    ogr->CloseTarget();
+//                    ogr->CloseSource();
+
+//                    theProgress->reset();
+//                    txtOutput->append( tr( "successful.\n" ) );
+//                }
+//                else
+//                {
+//                    txtOutput->append( tr( "\n * unable to open target !\n" ) );
+//                }
+//            }
+//            else
+//            {
+//                txtOutput->append( tr( "\n * unable to open driver !\n" ) );
+//            }
+//        }
+//        else
+//        {
+//            txtOutput->append( tr( "\n * unable to open source !\n" ) );
+//        }
+//        CSLDestroy(papszDSCO);
+//        CSLDestroy(papszLCO);
+//    }
 }
 
 void App::evtBtnQuit( void )
