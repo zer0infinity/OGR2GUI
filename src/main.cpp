@@ -38,8 +38,9 @@ int main(int argc, char **argv) {
     CPLSetConfigOption("GDAL_DATA", dataPath.c_str());
     if(1 < argc) {
         for(int i=0;i<argc;++i) {
-            std::cout << argv[i] << std::endl;
+            std::cout << argv[i] << " ";
         }
+        std::cout << std::endl;
         return ogr2ogr(argc, argv);
     }
     App ogr2gui;

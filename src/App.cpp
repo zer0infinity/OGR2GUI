@@ -482,43 +482,31 @@ void App::TranslateInterface( void )
 
 void App::UpdateParameters( void )
 {
-    parameters = tr( "ogr2ogr" ) + tr( " -f \"" ) + cmbTargetFormat->currentText() + tr( "\" " );
-
-    parameters += tr( " \"" ) + txtTargetName->text() + tr( "\" \"" );
+    parameters = tr("ogr2ogr") + tr(" -f ") + tr("\"") + cmbTargetFormat->currentText() + tr("\" ");
+    parameters += tr("\"") + txtTargetName->text()+ tr("\" ") + tr("\"");
     if(radSourceWebservice->isChecked()) {
-        parameters += "WFS:";
+        parameters += tr("WFS:");
     }
-    parameters += txtSourceName->text() + tr( "\" " );
-
-    if( ! cmbTargetProj->currentText().isEmpty() )
-    {
-        parameters += tr( "-T_SRS EPSG:" ) + projections[ cmbTargetProj->currentIndex() ][ 0 ] + tr( " " );
+    parameters += txtSourceName->text() + tr("\"");
+    if(!cmbTargetProj->currentText().isEmpty()) {
+        parameters += tr(" ") + tr("-T_SRS");
+        parameters += tr(" EPSG:") + projections[cmbTargetProj->currentIndex()][0];
     }
-
-    if( ! txtSourceQuery->text().isEmpty() )
-    {
-        parameters += tr( "-sql \"" ) + txtSourceQuery->text() + tr( "\" " );
+    if(!txtSourceQuery->text().isEmpty()) {
+        parameters += tr(" -sql ") + tr("\"") + txtSourceQuery->text() + tr("\"");
     }
-
     if(radTargetOverwrite->isChecked()) {
-        parameters += tr( "-overwrite" );
+        parameters += tr(" -overwrite");
     } else if(radTargetAppend->isChecked()) {
-        parameters += tr("-append");
+        parameters += tr(" -append");
     } else if(radTargetUpdate->isChecked()) {
-        parameters += tr( "-update" );
+        parameters += tr(" -update");
     }
-
-    for( int i = 0; i < ( int ) parameters.size(); i ++ )
-    {
-        if( parameters.at( i ) == '\\' )
-        {
-            parameters[ i ] = '/';
-        }
+    if(!txtInput->toPlainText().isEmpty()) {
+        parameters += tr(" ") + txtInput->toPlainText();
     }
-
-//    parameters += tr( "\n" );
-
     txtOutput->setText( parameters );
+    theProgress->setValue(0);
 }
 
 void App::evtMnuOgrHelp( void )
@@ -669,7 +657,7 @@ void App::evtTxtSourceName( void ) {
     string error;
 
     if(radSourceWebservice->isChecked()) {
-        name = "WFS:" + name;
+        name += "WFS:";
     }
 
     if(ogr->OpenSource(name, epsg, query, error)) {
@@ -924,7 +912,7 @@ void App::evtBtnExecute( void )
     parameters += tr(" -f ") + tr("\"") + cmbTargetFormat->currentText() + tr("\" ");
     parameters += tr("\"") + txtTargetName->text()+ tr("\" ") + tr("\"");
     if(radSourceWebservice->isChecked()) {
-        parameters += "WFS:";
+        parameters += tr("WFS:");
     }
     parameters += txtSourceName->text() + tr("\"");
     if(!cmbTargetProj->currentText().isEmpty()) {
@@ -944,12 +932,10 @@ void App::evtBtnExecute( void )
     if(!txtInput->toPlainText().isEmpty()) {
         parameters += tr(" ") + txtInput->toPlainText();
     }
-
-    string path = QCoreApplication::applicationFilePath().toStdString();
+    parameters = parameters.replace("\\", "\\\\");
+    string path = QDir::toNativeSeparators(QCoreApplication::applicationFilePath()).toStdString();
     path += parameters.toStdString();
-    std::wstring widestring;
-    for (int i = 0; i < (int)path.length(); i++)
-        widestring += (wchar_t)path[i];
+    std::wstring widestring = std::wstring(path.begin(), path.end());
     LPWSTR lpwstr = const_cast<LPWSTR>(widestring.c_str());
 
     STARTUPINFO si;
@@ -957,12 +943,18 @@ void App::evtBtnExecute( void )
     ZeroMemory(&si, sizeof(si));
     si.cb = sizeof(si);
     ZeroMemory(&pi, sizeof(pi));
+    theProgress->setValue(0);
     if(CreateProcess(NULL, lpwstr, 0, 0, FALSE, 0, 0, 0, &si, &pi)) {
+        theProgress->setMinimum(0);
+        theProgress->setMaximum(0);
         WaitForSingleObject(pi.hProcess, INFINITE);
         CloseHandle(pi.hProcess);
         CloseHandle(pi.hThread);
+        theProgress->setMaximum(100);
+        theProgress->setValue(100);
+    } else {
+        txtOutput->append(tr("failed.\n"));
     }
-    txtOutput->append(tr("successful.\n"));
 
 //    QString name;
 //    QString sourcename;
