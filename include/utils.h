@@ -27,9 +27,9 @@
  *	\date 13/06/14
  */
 
-#ifndef OGR2OGRCONTEXT_H
-#define OGR2OGRCONTEXT_H
+#ifndef UTIL
+#define UTIL
 
 int ogr2ogr( int nArgc, char ** papszArgv );
 
-#endif // OGR2OGRCONTEXT_H
+#endif

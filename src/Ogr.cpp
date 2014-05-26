@@ -39,7 +39,8 @@ Ogr::~Ogr( void )
 
 }
 
-void Ogr::OpenWFS(QStringList &fileList) {
+bool Ogr::OpenWFS(QString filename, QStringList &fileList) {
+    sourceName = filename.toStdString();
     OGRDataSourceH sourceData = OGROpen(sourceName.c_str(), 0, NULL);
     if(sourceData != NULL) {
         for(int i = 0; i < OGR_DS_GetLayerCount(sourceData); ++i) {
@@ -49,7 +50,9 @@ void Ogr::OpenWFS(QStringList &fileList) {
                 fileList.append(OGR_FD_GetName(sourceLayerDefn));
             }
         }
+        return true;
     }
+    return false;
 }
 
 bool Ogr::OpenSource(string filename, string layername, string &epsg, string &query, string &error) {

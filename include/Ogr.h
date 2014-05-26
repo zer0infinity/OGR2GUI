@@ -40,17 +40,11 @@
 
 using std::string;
 
-/*!
- *	\class Ogr
- *	\brief OGR C API
- *	\author Olivier Pilotte
- */
-
 class Ogr
 {
 	private :
 
-        char **papszOptions;
+//        char **papszOptions;
 
 		OGRSFDriverH formatDriver;
 
@@ -99,8 +93,25 @@ class Ogr
 		 */
 		~Ogr( void );
 
-        void OpenWFS(QStringList &fileList);
+        /*!
+         * \fn OpenWFS(QStringList &fileList)
+         * \brief Open WFS data
+         * \param filename : source filename
+         * \param &fileList : layer list
+         * \return true on success
+         */
+        bool OpenWFS(QString filename, QStringList &fileList);
 
+        /*!
+         * \fn OpenSource(string filename, string layername, string &epsg, string &query, string &error);
+         * \brief Opens souorce data
+         * \param filename : source filename
+         * \param layername : layername
+         * \param &epsg : epsg code
+         * \param &query : sql query
+         * \param &error : error text
+         * \return true on success
+         */
         bool OpenSource(string filename, string layername, string &epsg, string &query, string &error);
 
 		/*!

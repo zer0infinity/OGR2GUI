@@ -42,7 +42,8 @@ int main(int argc, char **argv) {
         }
         std::cout << std::endl;
         return ogr2ogr(argc, argv);
+    } else {
+        new App();
     }
-    App ogr2gui;
     return app.exec();
 }

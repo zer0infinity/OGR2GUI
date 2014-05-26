@@ -49,6 +49,7 @@
 
 #include "Ogr.h"
 #include "Inf.h"
+#include "WFSConnect.h"
 #include "utils.h"
 #include "cpl_conv.h"
 #include "cpl_string.h"
@@ -57,19 +58,9 @@
 #include <QIntValidator>
 #include <QDir>
 #include <QTextEdit>
-#include <QTableWidget>
-#include <QHash>
-#include <QDebug>
-
-using std::string;
 
 QT_BEGIN_NAMESPACE
 
-/*!
- *	\class App
- *	\brief Qt Application
- *	\author Olivier Pilotte
- */
 class App : public QMainWindow
 {
     Q_OBJECT
@@ -79,8 +70,7 @@ class App : public QMainWindow
 
         Inf *inf;
 
-//        char **papszDSCO, **papszLCO;
-        QHash<int, QComboBox*> comboHash;
+        WFSConnect *wfs;
 
         // ogr2ogr parameters
         QString parameters;
@@ -122,9 +112,10 @@ class App : public QMainWindow
             QAction *mnuRussian;
             QAction *mnuArabic;
 
-        QAction *mnuQuit;
+        QAction *mnuExit;
         QAction *mnuOgrHelp;
         QAction *mnuGuiHelp;
+        QAction *mnuHsrAbout;
         QAction *mnuAbout;
 
         QStatusBar *statusbar;
@@ -158,7 +149,6 @@ class App : public QMainWindow
                             QLabel *lblSourceQuery;
                             QLineEdit *txtSourceQuery;
 
-
                     QGroupBox *grpTarget;
                         QGridLayout *lytTarget;
 
@@ -187,13 +177,15 @@ class App : public QMainWindow
                                     QRadioButton *radTargetOverwrite;
                                     QRadioButton *radTargetUpdate;
 
-                    QTableWidget *optionTable;
+                    QGroupBox *grpOptions;
+                        QGridLayout *lytOptions;
+
                     QTextEdit *txtOutput;
                     QTextEdit *txtInput;
 
                     QHBoxLayout *lytExecute;
                         QPushButton *btnExecute;
-                        QPushButton *btnQuit;
+                        QPushButton *btnExit;
 
 
         /*!
@@ -246,62 +238,33 @@ class App : public QMainWindow
 
 
     private slots :
-
         void evtMnuOgrHelp( void );
-
         void evtMnuGuiHelp( void );
-
-        void evtMnuAbout( void );
-
+        void evtMnuHsrAbout( void );
+        void evtMnuOgrAbout( void );
 
         void evtRadSourceFile( void );
-
         void evtRadSourceFolder( void );
-
         void evtRadSourceDatabase( void );
-
         void evtRadSourceWebservice( void );
 
-
         void evtCmbSourceFormat( void );
-
-
         void evtTxtSourceName( void );
-
         void evtBtnSourceName( void );
 
-        void evtTxtSourceQuery( void );
-
-
         void evtRadTargetFile( void );
-
         void evtRadTargetFolder( void );
-
         void evtRadTargetDatabase( void );
 
-
         void evtCmbTargetFormat( void );
-
         void evtTxtTargetName( void );
-
         void evtBtnTargetName( void );
-
         void evtTxtTargetProj( void );
 
-        void evtCmbTargetProj( void );
-
-
-        void evtRadTargetAppend( void );
-
-        void evtRadTargetOverwrite( void );
-
-        void evtRadTargetUpdate( void );
-
+        void evtUpdateParameters( void );
 
         void evtBtnExecute( void );
-
         void evtBtnQuit( void );
-
 		
     public:
 

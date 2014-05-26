@@ -21,7 +21,7 @@
 
 /*!
  *	\file Inf.h
- *	\brief Database informations
+ *	\brief Database Informations
  *	\author Olivier Pilotte [ Inventis ], David Tran [ HSR ]
  *	\version 0.7
  *	\date 13/06/14
@@ -35,11 +35,6 @@
 
 QT_BEGIN_NAMESPACE
 
-/*!
- *	\class Inf
- *	\brief Database Informations
- *	\author Olivier Pilotte
- */
 class Inf : public QDialog
 {
 	Q_OBJECT

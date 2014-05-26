@@ -27,13 +27,14 @@
  *	\date 13/06/14
  */
 
+#pragma comment(linker, "/SUBSYSTEM:CONSOLE")
 #include "TestInf.h"
 #include "TestOgr.h"
-#include <QDebug>
 
-int main( int argc, char **argv )
-{
-    QApplication app( argc, argv );
+int main(int argc, char **argv) {
+    QApplication app(argc, argv);
+	string dataPath = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + "data").toStdString();
+    CPLSetConfigOption("GDAL_DATA", dataPath.c_str());
     QTest::qExec(&TestInf());
     QTest::qExec(&TestOgr());
     return app.exec();

@@ -11,7 +11,9 @@ HEADERS += \
     include/Dta.h \
     include/Ogr.h \
     include/Inf.h \
-    include/utils.h
+    include/utils.h \
+    include/ogr2ogrThread.h \
+    include/WFSConnect.h
 
 SOURCES += \
     src/Ogr.cpp \
@@ -19,7 +21,9 @@ SOURCES += \
     src/App.cpp \
     src/main.cpp \
     src/utils/ogr2ogr.cpp \
-    src/utils/commonutils.cpp
+    src/utils/commonutils.cpp \
+    src/ogr2ogrThread.cpp \
+    src/WFSConnect.cpp
 
 CONFIG += c++11
 QT += sql widgets
