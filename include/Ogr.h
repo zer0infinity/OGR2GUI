@@ -1,22 +1,21 @@
 /*****************************************************************************
- *	ogr2gui is an application used to convert and manipulate geospatial
- *	data. It is based on the "OGR Simple Feature Library" from the 
- *	"Geospatial Data Abstraction Library" <http://gdal.org>.
+ * ogr2gui is an application used to convert and manipulate geospatial
+ * data.
  *
- *	Copyright (c) 2009 Inventis <mailto:developpement@inventis.ca>
+ * Copyright (c) 2014 University of Applied Sciences Rapperswil
  *
- *	This program is free software: you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation, either version 3 of the License, or
- *	(at your option) any later version.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *	You should have received a copy of the GNU General Public License
- *	along with this program.  If not, see <http://www.gnu.org/licenses/>
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
 /*!
@@ -30,8 +29,6 @@
 #ifndef OGR
 #define OGR
 
-#include "sys/types.h"
-#include "sys/stat.h"
 #include "ogr_api.h"
 #include "ogr_srs_api.h"
 
@@ -42,67 +39,65 @@ using std::string;
 
 class Ogr
 {
-	private :
+private :
 
-//        char **papszOptions;
+    OGRSFDriverH formatDriver;
 
-		OGRSFDriverH formatDriver;
+    OGRDataSourceH sourceData;
+    OGRDataSourceH targetData;
 
-		OGRDataSourceH sourceData;
-		OGRDataSourceH targetData;
+    OGRLayerH squeryLayer;
+    OGRLayerH sourceLayer;
+    OGRLayerH targetLayer;
 
-		OGRLayerH squeryLayer;
-		OGRLayerH sourceLayer;
-		OGRLayerH targetLayer;
+    OGRSpatialReferenceH sourceSRS;
+    OGRSpatialReferenceH targetSRS;
 
-		OGRSpatialReferenceH sourceSRS;
-		OGRSpatialReferenceH targetSRS;
+    OGRFeatureDefnH sourceLayerDefn;
+    OGRwkbGeometryType sourceLayerGeom;
 
-		OGRFeatureDefnH sourceLayerDefn;
-		OGRwkbGeometryType sourceLayerGeom;
+    OGRGeometryH sourceGeom;
 
-		OGRGeometryH sourceGeom;
+    string sourceName;
+    string layerName;
+    string sourceLayerName;
+    string targetName;
 
-		string sourceName;
-        string layerName;
-		string sourceLayerName;
-		string targetName;
+    string error;
 
-		string error;
+    /*!
+         *	\fn bool Error( OGRErr e, string &s );
+         *	\brief OGR errors
+         *	\param e : OGR error
+         *	\param &s : error text
+         *	\returns true if error
+         */
+    bool Error( OGRErr e, string &s );
 
-		/*!
-		 *	\fn bool Error( OGRErr e, string &s );
-		 *	\brief OGR errors
-		 *	\param e : OGR error
-		 *	\param &s : error text
-		 *	\returns true if error
-		 */
-		bool Error( OGRErr e, string &s );
-		
-	public:
-		
-		/*!
-		 *	\fn Ogr( void );
-		 *	\brief Constructor
-		 */
-		Ogr( void );
+public:
 
-		/*!
-		 *	\fn ~Ogr( void );
-		 *	\brief Destructor
-		 */
-		~Ogr( void );
+    /*!
+         *	\fn Ogr( void );
+         *	\brief Constructor
+         */
+    Ogr( void );
 
-        /*!
+    /*!
+         *	\fn ~Ogr( void );
+         *	\brief Destructor
+         */
+    ~Ogr( void );
+
+    /*!
          * \fn OpenWFS(QStringList &fileList)
          * \brief Open WFS data
-         * \param filename : source filename
+         * \param uri : source uri
          * \param &fileList : layer list
          * \return true on success
          */
-        bool OpenWFS(QString filename, QStringList &fileList);
+    bool OpenWFS(QString uri, QStringList &fileList);
 
-        /*!
+    /*!
          * \fn OpenSource(string filename, string layername, string &epsg, string &query, string &error);
          * \brief Opens souorce data
          * \param filename : source filename
@@ -112,74 +107,49 @@ class Ogr
          * \param &error : error text
          * \return true on success
          */
-        bool OpenSource(string filename, string layername, string &epsg, string &query, string &error);
+    bool OpenSource(string filename, string layername, string &epsg, string &query, string &error);
 
-		/*!
-		 *	\fn bool OpenSource( string filename, string &epsg = 0, string &query = 0, string &error = 0 );
-		 *	\brief Opens source data
+    /*!
+         *	\fn bool OpenSource( string filename, string &epsg = 0, string &query = 0, string &error = 0 );
+         *	\brief Opens source data
          *	\param filename : source filename
-		 *	\param &epsg : epsg code
-		 *	\param &query : sql query
-		 *	\param &error : error text
-		 *	\returns true on success
-		 */
-        bool OpenSource(string filename, string &epsg, string &query, string &error);
+         *	\param &epsg : epsg code
+         *	\param &query : sql query
+         *	\param &error : error text
+         *	\returns true on success
+         */
+    bool OpenSource(string filename, string &epsg, string &query, string &error);
 
-		/*!
-		 *	\fn bool CloseSource( void );
-		 *	\brief Closes source data
-		 *	\returns true on success
-		 */
-		bool CloseSource( void );
+    /*!
+         *	\fn bool CloseSource( void );
+         *	\brief Closes source data
+         *	\returns true on success
+         */
+    bool CloseSource( void );
 
-		/*!
-		 *	\fn bool OpenDriver( string drivername, string error = 0 );
-		 *	\brief Opens target driver
-		 *	\param drivername : selected driver
-		 *	\returns true on success
-		 */
-        bool OpenDriver( string drivername);
+    /*!
+         *	\fn bool OpenDriver( string drivername, string error = 0 );
+         *	\brief Opens target driver
+         *	\param drivername : selected driver
+         *	\returns true on success
+         */
+    bool OpenDriver( string drivername);
 
-		/*!
-		 *	\fn bool OpenTarget( string filename, int projection = 0, bool update = 0 );
-		 *	\brief Opens target
-		 *	\param filename : target filename
-		 *	\param projection : epsg code
-		 *	\param update : update mode
-		 *	\returns true on success
-		*/
-        bool OpenTarget( string filename, int projection = 0, char **papszOptions = NULL );
+    /*!
+         *	\fn bool OpenTarget( string filename, int projection = 0, bool update = 0 );
+         *	\brief Opens target
+         *	\param filename : target filename
+         *	\param projection : epsg code
+         *	\returns true on success
+        */
+    bool OpenTarget(string filename, int projection = 0);
 
-		/*!
-		 *	\fn bool CloseTarget( void );
-		 *	\brief Closes Target
-		 *	\returns true on success
-		 */
-		bool CloseTarget( void );
-
-		/*!
-		 *	\fn bool Execute( string query = 0 );
-		 *	\brief Execute conversion
-		 *	\param query : source sql query
-		 *	\returns true on success
-		 */
-		bool Execute( string = 0 );
-
-		/*!
-		 *	\fn bool Prepare( int &nbFeat, string query );
-		 *	\brief Prepare data for conversion
-		 *	\param nbFeat : number of features
-		 *	\param query : source sql query
-		 *	\returns true on success
-		 */
-		bool Prepare( int &nbFeat, string = 0 );
-
-		/*!
-		 *	\fn bool Process( void );
-		 *	\brief Process a feature
-		 *	\returns true on success
-		 */
-		bool Process( void );
+    /*!
+     *	\fn bool CloseTarget( void );
+     *	\brief Closes Target
+     *	\returns true on success
+     */
+    bool CloseTarget( void );
 };
 
 #endif

@@ -1,7 +1,6 @@
 /*****************************************************************************
  * ogr2gui is an application used to convert and manipulate geospatial
- * data. It is based on the "OGR Simple Feature Library" from the
- * "Geospatial Data Abstraction Library" <http://gdal.org>.
+ * data.
  *
  * Copyright (c) 2014 University of Applied Sciences Rapperswil
  *
@@ -20,14 +19,14 @@
  *****************************************************************************/
 
 /*!
- *	\file WFSConnect.cpp
+ *	\file wfsConnect.cpp
  *	\brief WFS Connection
  *	\author David Tran [ HSR ]
  *	\version 0.7
  *	\date 13/06/14
  */
 
-#include "WFSConnect.h"
+#include "wfsConnect.h"
 
 WFSConnect::WFSConnect( QWidget *parent ) : QDialog( parent )
 {
@@ -44,7 +43,7 @@ WFSConnect::~WFSConnect( void )
 
 }
 
-void WFSConnect::setDialogStyle( void )
+void WFSConnect::show( void )
 {
     lblTables->show();
     lstTables->show();
@@ -123,8 +122,8 @@ void WFSConnect::InitInterface( void )
 void WFSConnect::InitSlots( void )
 {
     QObject::connect( btnConnect, SIGNAL( clicked() ), this, SLOT( evtBtnConnect( void ) ) );
-    QObject::connect( radAllTables, SIGNAL( clicked() ), this, SLOT( evtRadAllTables( void ) ) );
-    QObject::connect( radNonTables, SIGNAL( clicked() ), this, SLOT( evtRadNonTables( void ) ) );
+    QObject::connect( radAllTables, SIGNAL( clicked() ), this, SLOT( evtRadAllLayers( void ) ) );
+    QObject::connect( radNonTables, SIGNAL( clicked() ), this, SLOT( evtRadNonLayers( void ) ) );
     QObject::connect( btnCancel, SIGNAL( clicked() ), this, SLOT( evtBtnCancel( void ) ) );
     QObject::connect( btnAccept, SIGNAL( clicked() ), this, SLOT( evtBtnAccept( void ) ) );
 }
@@ -152,7 +151,7 @@ void WFSConnect::evtBtnConnect( void )
     QMessageBox msg;
     Ogr ogr;
     QStringList fileList;
-    QString filename = tr("WFS:") + txtHost->text();
+    QString filename = connectionType + txtHost->text();
     if(ogr.OpenWFS(filename, fileList)) {
         QStringList::Iterator it = fileList.begin();
         while(it != fileList.end()) {
@@ -168,7 +167,7 @@ void WFSConnect::evtBtnConnect( void )
     }
 }
 
-void WFSConnect::evtRadAllTables( void )
+void WFSConnect::evtRadAllLayers( void )
 {
     for( int i = 0; i < lstTables->count(); i ++ )
     {
@@ -176,7 +175,7 @@ void WFSConnect::evtRadAllTables( void )
     }
 }
 
-void WFSConnect::evtRadNonTables( void )
+void WFSConnect::evtRadNonLayers( void )
 {
     for( int i = 0; i < lstTables->count(); i ++ )
     {
@@ -186,29 +185,28 @@ void WFSConnect::evtRadNonTables( void )
 
 void WFSConnect::evtBtnAccept( void )
 {
-    host = txtHost->text();
+    connectionString = txtHost->text();
     selectedLayers.clear();
-    for(int i = 0; i < lstTables->count(); ++i)
-    {
-        if( lstTables->item( i )->checkState() == Qt::Checked )
-        {
-            selectedLayers += lstTables->item( i )->text();
-            if(lstTables->count())
-                selectedLayers += tr(" ");
+    selectedLayersList.clear();
+    for(int i = 0; i < lstTables->count(); ++i) {
+        if(lstTables->item(i)->checkState() == Qt::Checked) {
+            selectedLayers += lstTables->item(i)->text() + tr(" ");
         }
     }
+    selectedLayers = selectedLayers.simplified();
+    selectedLayersList = selectedLayers.split(" ");
 
-    connectionString = connectionType + host;
     lstTables->clear();
     btnAccept->setEnabled( false );
+    radNonTables->setChecked( true );
     this->accept();
 }
 
 void WFSConnect::evtBtnCancel( void )
 {
-    txtHost->clear();
     lstTables->clear();
     btnAccept->setEnabled( false );
+    radNonTables->setChecked( true );
     this->reject();
 }
 
@@ -225,4 +223,9 @@ QString WFSConnect::getConnectionString( void )
 QString WFSConnect::getSelectedLayers( void )
 {
     return selectedLayers;
+}
+
+QStringList WFSConnect::getSelectedLayersAsList( void )
+{
+    return selectedLayersList;
 }

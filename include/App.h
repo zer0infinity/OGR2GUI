@@ -1,35 +1,34 @@
 /*****************************************************************************
- *	ogr2gui is an application used to convert and manipulate geospatial
- *	data. It is based on the "OGR Simple Feature Library" from the 
- *	"Geospatial Data Abstraction Library" <http://gdal.org>.
+ * ogr2gui is an application used to convert and manipulate geospatial
+ * data.
  *
- *	Copyright (c) 2009 Inventis <mailto:developpement@inventis.ca>
+ * Copyright (c) 2014 University of Applied Sciences Rapperswil
  *
- *	This program is free software: you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation, either version 3 of the License, or
- *	(at your option) any later version.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *	You should have received a copy of the GNU General Public License
- *	along with this program.  If not, see <http://www.gnu.org/licenses/>
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
 /*!
  *	\mainpage ogr2gui
  *	\section desc_sec Description
  *
- *	ogr2gui is an application used to convert and manipulate geospatial data. 
- *  It is based on ogr2ogr, a command line utility from the "Geospatial Data 
- *  Abstraction Library" (gdal.org). <p>Through its graphical user interface, 
- *  ogr2gui gives all the power of ogr2ogr without worrying about its complex 
+ *	ogr2gui is an application used to convert and manipulate geospatial data.
+ *  It is based on ogr2ogr, a command line utility from the "Geospatial Data
+ *  Abstraction Library" (gdal.org). <p>Through its graphical user interface,
+ *  ogr2gui gives all the power of ogr2ogr without worrying about its complex
  *  syntax. It brings speed, efficiency and simplicity to its users. <p>ogr2gui
- *  is a free, open source project released under GPL License. Everyone in 
- *  the geospatial community is invited to join. If you want to get involved 
+ *  is a free, open source project released under GPL License. Everyone in
+ *  the geospatial community is invited to join. If you want to get involved
  *  in the project development, please contact us at dev@ogr2gui.ca
  *
  *	\section supp_sec Support
@@ -49,15 +48,10 @@
 
 #include "Ogr.h"
 #include "Inf.h"
-#include "WFSConnect.h"
+#include "wfsConnect.h"
 #include "utils.h"
 #include "cpl_conv.h"
 #include "cpl_string.h"
-
-#include <string>
-#include <QIntValidator>
-#include <QDir>
-#include <QTextEdit>
 
 QT_BEGIN_NAMESPACE
 
@@ -65,220 +59,225 @@ class App : public QMainWindow
 {
     Q_OBJECT
 
-    private:
-        Ogr *ogr;
+private:
+    Ogr *ogr;
 
-        Inf *inf;
+    Inf *inf;
 
-        WFSConnect *wfs;
+    WFSConnect *wfs;
 
-        // ogr2ogr parameters
-        QString parameters;
+    // ogr2ogr parameters
+    QString parameters;
 
-        // file formats
-        const static int formatsCount = 51;
-        QString **formats;
+    // file formats
+    const static int formatsCount = 51;
+    QString **formats;
 
-        // output formats
-        const static int formatsOutput = 27;
+    // output formats
+    const static int formatsOutput = 27;
 
-        // database formats
-        const static int databasesCount = 4;
-        QString **databases;
+    // database formats
+    const static int databasesCount = 4;
+    QString **databases;
 
-        // output databases
-        const static int databasesOutput = 2;
+    // output databases
+    const static int databasesOutput = 2;
 
-        // web service formats
-        const static int webservicesCount = 1;
-        QString **webservices;
+    // web service formats
+    const static int webservicesCount = 1;
+    QString **webservices;
 
-        // target projections
-        const static int projectionsCount = 0;
-        QString **projections;
+    // target projections
+    QList<QPair<QString, QString> > projectionsList;
 
-        // qt
-        QMenuBar *theMenu;
-        QMenu *fileMenu;
-        QMenu *helpMenu;
+    // qt
+    QMenuBar *theMenu;
+    QMenu *fileMenu;
+    QMenu *helpMenu;
 
-        QMenu *mnuLanguage;
-            QAction *mnuEnglish;
-            QAction *mnuFrench;
-            QAction *mnuGerman;
-            QAction *mnuItalian;
-            QAction *mnuSpanish;
-            QAction *mnuChinese;
-            QAction *mnuRussian;
-            QAction *mnuArabic;
+    QMenu *mnuLanguage;
+    QAction *mnuEnglish;
+    QAction *mnuFrench;
+    QAction *mnuGerman;
+    QAction *mnuItalian;
+    QAction *mnuSpanish;
+    QAction *mnuChinese;
+    QAction *mnuRussian;
+    QAction *mnuArabic;
 
-        QAction *mnuExit;
-        QAction *mnuOgrHelp;
-        QAction *mnuGuiHelp;
-        QAction *mnuHsrAbout;
-        QAction *mnuAbout;
+    QAction *mnuExit;
+    QAction *mnuOgrHelp;
+    QAction *mnuGuiHelp;
+    QAction *mnuHsrAbout;
+    QAction *mnuAbout;
 
-        QStatusBar *statusbar;
-		
-        QProgressBar *theProgress;
+    QStatusBar *statusbar;
 
-        QStringList fileList;
+    QProgressBar *theProgress;
 
-        QWidget *thePanel;
-                QVBoxLayout *theLayout;
-                    QGroupBox *grpSource;
-                        QGridLayout *lytSource;
+    QWidget *thePanel;
+    QVBoxLayout *theLayout;
+    QGroupBox *grpSource;
+    QGridLayout *lytSource;
 
-                            QLabel *lblSourceFormat;
-                            QComboBox *cmbSourceFormat;
+    QLabel *lblSourceFormat;
+    QComboBox *cmbSourceFormat;
 
-                            QHBoxLayout *lytSourceInput;
-                                QRadioButton *radSourceFile;
-                                QRadioButton *radSourceFolder;
-                                QRadioButton *radSourceDatabase;
-                                QRadioButton *radSourceWebservice;
+    QHBoxLayout *lytSourceInput;
+    QRadioButton *radSourceFile;
+    QRadioButton *radSourceFolder;
+    QRadioButton *radSourceDatabase;
+    QRadioButton *radSourceWebservice;
 
-                            QLabel *lblSourceName;
-                            QHBoxLayout *lytSourceName;
-                                QLineEdit *txtSourceName;
-                                QPushButton *btnSourceName;
-							
-                            QLabel *lblSourceProj;
-                            QLineEdit *txtSourceProj;
+    QLabel *lblSourceName;
+    QHBoxLayout *lytSourceName;
+    QLineEdit *txtSourceName;
+    QPushButton *btnSourceName;
 
-                            QLabel *lblSourceQuery;
-                            QLineEdit *txtSourceQuery;
+    QLabel *lblSourceProj;
+    QLineEdit *txtSourceProj;
 
-                    QGroupBox *grpTarget;
-                        QGridLayout *lytTarget;
+    QLabel *lblSourceQuery;
+    QLineEdit *txtSourceQuery;
 
-                            QHBoxLayout *lytTargetOutput;
-                                QButtonGroup *grpTargetOutput;
-                                    QRadioButton *radTargetFile;
-                                    QRadioButton *radTargetFolder;
-                                    QRadioButton *radTargetDatabase;
+    QGroupBox *grpTarget;
+    QGridLayout *lytTarget;
 
-                            QLabel *lblTargetFormat;
-                            QComboBox *cmbTargetFormat;
+    QHBoxLayout *lytTargetOutput;
+    QButtonGroup *grpTargetOutput;
+    QRadioButton *radTargetFile;
+    QRadioButton *radTargetFolder;
+    QRadioButton *radTargetDatabase;
 
-                            QLabel *lblTargetName;
-                            QHBoxLayout *lytTargetName;
-                                QLineEdit *txtTargetName;
-                                QPushButton *btnTargetName;
+    QLabel *lblTargetFormat;
+    QComboBox *cmbTargetFormat;
 
-                            QLabel *lblTargetProj;
-                            QHBoxLayout *lytTargetProj;
-                                QLineEdit *txtTargetProj;
-                                QComboBox *cmbTargetProj;
+    QLabel *lblTargetName;
+    QHBoxLayout *lytTargetName;
+    QLineEdit *txtTargetName;
+    QPushButton *btnTargetName;
 
-                            QHBoxLayout *lytTargetOptions;
-                                QButtonGroup *grpTargetOptions;
-                                    QRadioButton *radTargetAppend;
-                                    QRadioButton *radTargetOverwrite;
-                                    QRadioButton *radTargetUpdate;
+    QLabel *lblTargetProj;
+    QHBoxLayout *lytTargetProj;
+    QLineEdit *txtTargetProj;
+    QComboBox *cmbTargetProj;
 
-                    QGroupBox *grpOptions;
-                        QGridLayout *lytOptions;
+    QHBoxLayout *lytTargetOptions;
+    QButtonGroup *grpTargetOptions;
+    QCheckBox *radTargetAppend;
+    QCheckBox *radTargetOverwrite;
+    QCheckBox *radTargetUpdate;
 
-                    QTextEdit *txtOutput;
-                    QTextEdit *txtInput;
+    QGroupBox *grpOptions;
+    QGridLayout *lytOptions;
 
-                    QHBoxLayout *lytExecute;
-                        QPushButton *btnExecute;
-                        QPushButton *btnExit;
+    QTextEdit *txtOutput;
+    QTextEdit *txtInput;
+
+    QHBoxLayout *lytExecute;
+    QPushButton *btnExecute;
+    QPushButton *btnExit;
 
 
-        /*!
+    /*!
          *	\fn void InitData( void );
          *	\brief Inits data
          */
-        void InitData( void );
+    void InitData( void );
 
-        /*!
+    /*!
          *	\fn void void InitProjections( void );
          *	\brief Inits projections
          */
-        void InitProjections( void );
-		
-        /*!
+    void InitProjections( void );
+
+    /*!
          *	\fn void InitInterface( void );
          *	\brief Inits Interface
          */
-        void InitInterface( void );
+    void InitInterface( void );
 
-        /*!
+    /*!
          *	\fn void InitMenu( void );
          *	\brief Inits Menu
          */
-        void InitMenu( void );
+    void InitMenu( void );
 
-        /*!
+    /*!
          *	\fn void InitLayout( void );
          *	\brief Inits Layout
          */
-        void InitLayout( void );
+    void InitLayout( void );
 
-        /*!
+    /*!
          *	\fn void InitSlots( void );
          *	\brief Inits Slots
          */
-        void InitSlots( void );
+    void InitSlots( void );
 
-        /*!
+    /*!
          *	\fn void TranslateInterface( void );
          *	\brief Translates Interface
          */
-        void TranslateInterface( void );
+    void TranslateInterface( void );
 
-        /*!
+    /*!
          *	\fn void UpdateParameters( void );
          *	\brief Updates parameters
          */
-        void UpdateParameters( void );
+    void UpdateParameters( void );
+
+    /*!
+     * \fn bool startOgr2ogr(void);
+     * \param path : absolute path with parameters
+     * \brief start ogr2ogr
+     */
+    bool startOgr2ogr(string &path);
 
 
-    private slots :
-        void evtMnuOgrHelp( void );
-        void evtMnuGuiHelp( void );
-        void evtMnuHsrAbout( void );
-        void evtMnuOgrAbout( void );
+private slots :
+    void evtMnuOgrHelp( void );
+    void evtMnuGuiHelp( void );
+    void evtMnuHsrAbout( void );
+    void evtMnuOgrAbout( void );
 
-        void evtRadSourceFile( void );
-        void evtRadSourceFolder( void );
-        void evtRadSourceDatabase( void );
-        void evtRadSourceWebservice( void );
+    void evtRadSourceFile( void );
+    void evtRadSourceFolder( void );
+    void evtRadSourceDatabase( void );
+    void evtRadSourceWebservice( void );
 
-        void evtCmbSourceFormat( void );
-        void evtTxtSourceName( void );
-        void evtBtnSourceName( void );
+    void evtCmbSourceFormat( void );
+    void evtTxtSourceName( void );
+    void evtBtnSourceName( void );
 
-        void evtRadTargetFile( void );
-        void evtRadTargetFolder( void );
-        void evtRadTargetDatabase( void );
+    void evtRadTargetFile( void );
+    void evtRadTargetFolder( void );
+    void evtRadTargetDatabase( void );
 
-        void evtCmbTargetFormat( void );
-        void evtTxtTargetName( void );
-        void evtBtnTargetName( void );
-        void evtTxtTargetProj( void );
+    void evtCmbTargetFormat( void );
+    void evtTxtTargetName( void );
+    void evtBtnTargetName( void );
+    void evtTxtTargetProj( void );
 
-        void evtUpdateParameters( void );
+    void evtUpdateParameters( void );
+    QString currentParameters();
 
-        void evtBtnExecute( void );
-        void evtBtnQuit( void );
-		
-    public:
+    void evtBtnExecute( void );
+    void evtBtnQuit( void );
 
-        /*!
+public:
+
+    /*!
          *	\fn Frm( const QWidget & );
          *	\brief Constructor
          */
-        App( QWidget * = 0 );
+    App( QWidget * = 0 );
 
-        /*!
+    /*!
          *	\fn ~Frm
          *	\brief Destructor
          */
-        ~App( void );
+    ~App( void );
 };
 
 QT_END_NAMESPACE

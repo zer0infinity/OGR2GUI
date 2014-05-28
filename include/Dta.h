@@ -1,22 +1,21 @@
 /*****************************************************************************
- *	ogr2gui is an application used to convert and manipulate geospatial
- *	data. It is based on the "OGR Simple Feature Library" from the 
- *	"Geospatial Data Abstraction Library" <http://gdal.org>.
+ * ogr2gui is an application used to convert and manipulate geospatial
+ * data.
  *
- *	Copyright (c) 2009 Inventis <mailto:developpement@inventis.ca>
+ * Copyright (c) 2014 University of Applied Sciences Rapperswil
  *
- *	This program is free software: you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation, either version 3 of the License, or
- *	(at your option) any later version.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of																						
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *	You should have received a copy of the GNU General Public License
- *	along with this program.  If not, see <http://www.gnu.org/licenses/>
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
 /*!
@@ -84,5 +83,5 @@ databases[0][0] = "PostgreSQL";			databases[0][1] = "QPSQL";
 databases[1][0] = "SQLite";				databases[1][1] = "QSQLITE";
 databases[2][0] = "MySQL";				databases[2][1] = "QMYSQL";
 databases[3][0] = "ODBC";				databases[3][1] = "QODBC";
-	
+
 webservices[0][0] = "WFS";              webservices[0][1] = "WFS:";

@@ -13,7 +13,7 @@ HEADERS += \
     include/Inf.h \
     include/utils.h \
     include/ogr2ogrThread.h \
-    include/WFSConnect.h
+    include/wfsConnect.h
 
 SOURCES += \
     src/Ogr.cpp \
@@ -23,7 +23,7 @@ SOURCES += \
     src/utils/ogr2ogr.cpp \
     src/utils/commonutils.cpp \
     src/ogr2ogrThread.cpp \
-    src/WFSConnect.cpp
+    src/wfsConnect.cpp
 
 CONFIG += c++11
 QT += sql widgets

@@ -33,45 +33,73 @@ TestOgr::TestOgr() {
     ogr = new Ogr();
 }
 
+void TestOgr::testOpenWFS() {
+    QString uri = "";
+    QStringList fileList;
+    bool resVal = ogr->OpenWFS(uri, fileList);
+    QCOMPARE(resVal, false);
+}
+
 void TestOgr::testOpenSource() {
-    string sourcename = "\"ESRI Shapefile\"";
+    string filename = "poly.shp";
     string epsg;
     string query;
     string error;
-//    QVERIFY(ogr->OpenSource(sourcename, epsg, query, error));
+    bool resVal = ogr->OpenSource(filename, epsg, query, error);
+    QCOMPARE(resVal, false);
 }
 
 void TestOgr::testCloseSource() {
-//    ogr->CloseSource();
+    bool resVal = ogr->CloseSource();
+    QCOMPARE(resVal, false);
+}
 
+void TestOgr::testOpenSource2() {
+    string path = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + "test" + QDir::separator()).toStdString();
+    string filename = "poly.shp";
+    string sourcename = path + filename;
+    string epsg;
+    string query;
+    string error;
+    bool resVal = ogr->OpenSource(sourcename, epsg, query, error);
+    QCOMPARE(resVal, true);
+}
+
+void TestOgr::testCloseSource2() {
+    bool resVal = ogr->CloseSource();
+    QCOMPARE(resVal, true);
 }
 
 void TestOgr::testOpenDriver() {
-//    ogr->OpenDriver();
-
+    string drivername = "ESRI Shapefile";
+    bool resVal = ogr->OpenDriver("");
+    QCOMPARE(resVal, false);
+    resVal = ogr->OpenDriver(drivername);
+    QCOMPARE(resVal, true);
 }
 
 void TestOgr::testOpenTarget() {
-//    ogr->OpenTarget();
-
+    string path = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + "test" + QDir::separator()).toStdString();
+    int projection = 0;
+    bool resVal = ogr->OpenTarget(path, projection);
+    QCOMPARE(resVal, false);
 }
 
 void TestOgr::testCloseTarget() {
-//    ogr->CloseTarget();
-
+    bool resVal = ogr->CloseTarget();
+    QCOMPARE(resVal, false);
 }
 
-void TestOgr::testExecute() {
-//    ogr->Execute();
-
+void TestOgr::testOpenTarget2() {
+    string path = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + "test" + QDir::separator()).toStdString();
+    string filename = "test.shp";
+    string sourcename = path + filename;
+    int projection = 0;
+    bool resVal = ogr->OpenTarget(sourcename, projection);
+    QCOMPARE(resVal, true);
 }
 
-void TestOgr::testPrepare() {
-//    ogr->Prepare();
-
-}
-
-void TestOgr::testProcess() {
-//    ogr->Process();
-
+void TestOgr::testCloseTarget2() {
+    bool resVal = ogr->CloseTarget();
+    QCOMPARE(resVal, true);
 }

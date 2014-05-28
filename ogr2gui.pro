@@ -13,7 +13,7 @@ HEADERS += \
     include/Inf.h \
     include/utils.h \
     include/ogr2ogrThread.h \
-    include/WFSConnect.h
+    include/wfsConnect.h
 
 SOURCES += \
     src/Ogr.cpp \
@@ -23,7 +23,7 @@ SOURCES += \
     src/utils/ogr2ogr.cpp \
     src/utils/commonutils.cpp \
     src/ogr2ogrThread.cpp \
-    src/WFSConnect.cpp
+    src/wfsConnect.cpp
 
 CONFIG += c++11
 QT += sql widgets
@@ -31,9 +31,9 @@ QT += sql widgets
 static {
     CONFIG += static
     DEFINES += STATIC
-    win32: TARGET = $$join(TARGET,,,msvc2010s)
+    win32: TARGET = $$join(TARGET,,,s)
 }
 
 CONFIG(debug, debug|release) {
-     win32: TARGET = $$join(TARGET,,,msvc2010d)
+     win32: TARGET = $$join(TARGET,,,d)
 }

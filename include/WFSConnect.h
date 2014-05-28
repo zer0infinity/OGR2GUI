@@ -20,7 +20,7 @@
  *****************************************************************************/
 
 /*!
- *	\file WFSConnect.h
+ *	\file wfsConnect.h
  *	\brief WFS Connection
  *	\author David Tran [ HSR ]
  *	\version 0.7
@@ -39,97 +39,102 @@ class WFSConnect : public QDialog
 {
     Q_OBJECT
 
-    private:
+private:
 
-        QString host;
+    QString connectionType;
 
-        QString connectionType;
+    QString connectionString;
 
-        QString connectionString;
+    QString selectedLayers;
+    QStringList selectedLayersList;
 
-        QString selectedLayers;
+    QVBoxLayout *theLayout;
+    QGridLayout *lytInfo;
+    QLabel *lblHost;
+    QHBoxLayout *lytHost;
+    QLineEdit *txtHost;
 
-        QVBoxLayout *theLayout;
-            QGridLayout *lytInfo;
-                QLabel *lblHost;
-                QHBoxLayout *lytHost;
-                    QLineEdit *txtHost;
+    QPushButton *btnConnect;
 
-                QPushButton *btnConnect;
+    QVBoxLayout *lytTables;
+    QLabel *lblTables;
+    QRadioButton *radAllTables;
+    QRadioButton *radNonTables;
 
-                QVBoxLayout *lytTables;
-                    QLabel *lblTables;
-                    QRadioButton *radAllTables;
-                    QRadioButton *radNonTables;
+    QListWidget *lstTables;
 
-                QListWidget *lstTables;
+    QHBoxLayout *lytDialog;
+    QPushButton *btnAccept;
+    QPushButton *btnCancel;
 
-                QHBoxLayout *lytDialog;
-                    QPushButton *btnAccept;
-                    QPushButton *btnCancel;
-
-        /*!
+    /*!
          *	\fn void InitInterface( void );
          *	\brief Inits Interface
          */
-        void InitInterface( void );
+    void InitInterface( void );
 
-        /*!
+    /*!
          *	\fn void InitSlots( void );
          *	\brief Inits Slots
          */
-        void InitSlots( void );
+    void InitSlots( void );
 
-        /*!
+    /*!
          *	\fn void TranslateInterface( void );
          *	\brief Translates Interface
          */
-        void TranslateInterface( void );
+    void TranslateInterface( void );
 
-    public slots:
-        void evtBtnConnect( void );
-        void evtRadAllTables( void );
-        void evtRadNonTables( void );
-        void evtBtnAccept( void );
-        void evtBtnCancel( void );
+public slots:
+    void evtBtnConnect( void );
+    void evtRadAllLayers( void );
+    void evtRadNonLayers( void );
+    void evtBtnAccept( void );
+    void evtBtnCancel( void );
 
-    public:
+public:
 
-        /*!
+    /*!
          *	\fn Frm( const QWidget & );
          *	\brief Constructor
          */
-        WFSConnect( QWidget * = 0 );
+    WFSConnect( QWidget * = 0 );
 
-        /*!
+    /*!
          *	\fn ~Frm
          *	\brief Destructor
          */
-        ~WFSConnect( void );
+    ~WFSConnect( void );
 
-        /*!
-         *	\fn void setDialogStyle( void )
-         *	\brief Sets dialog style
+    /*!
+         *	\fn void show( void )
+         *	\brief show dialog
          */
-        void setDialogStyle( void );
+    void show( void );
 
-        /*!
+    /*!
          *	\fn void setConnectionType( QString )
          *	\brief Sets connection type
          */
-        void setConnectionType( QString );
+    void setConnectionType( QString );
 
-        /*!
+    /*!
          *	\fn QString getConnectionString( void )
          *	\brief returns connection string
          */
-        QString getConnectionString( void );
+    QString getConnectionString( void );
 
-        /*!
-         *	\fn QSringList getSelectedTables( void )
-         *	\brief returns selected tables
+    /*!
+         *	\fn QSring getSelectedTables( void )
+         *	\brief returns selected layers
          */
-        QString getSelectedLayers( void );
+    QString getSelectedLayers( void );
+
+    /*!
+         *	\fn QSringList getSelectedTables( void )
+         *	\brief returns selected layers
+         */
+    QStringList getSelectedLayersAsList( void );
 };
 
 QT_END_NAMESPACE

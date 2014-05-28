@@ -39,14 +39,16 @@ public:
     TestOgr();
     Ogr *ogr;
 private slots:
+    void testOpenWFS();
     void testOpenSource();
     void testCloseSource();
+    void testOpenSource2();
+    void testCloseSource2();
     void testOpenDriver();
     void testOpenTarget();
     void testCloseTarget();
-    void testExecute();
-    void testPrepare();
-    void testProcess();
+    void testOpenTarget2();
+    void testCloseTarget2();
 };
 
 #endif // TESTOGR_H

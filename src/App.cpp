@@ -1,22 +1,21 @@
 /*****************************************************************************
- *	ogr2gui is an application used to convert and manipulate geospatial
- *	data. It is based on the "OGR Simple Feature Library" from the 
- *	"Geospatial Data Abstraction Library" <http://gdal.org>.
+ * ogr2gui is an application used to convert and manipulate geospatial
+ * data.
  *
- *	Copyright (c) 2009 Inventis <mailto:developpement@inventis.ca>
+ * Copyright (c) 2014 University of Applied Sciences Rapperswil
  *
- *	This program is free software: you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation, either version 3 of the License, or
- *	(at your option) any later version.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *	You should have received a copy of the GNU General Public License
- *	along with this program.  If not, see <http://www.gnu.org/licenses/>
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
 /*!
@@ -42,7 +41,6 @@ App::~App( void )
 {
     delete [] *formats;
     delete [] *databases;
-    delete [] *projections;
     delete [] *webservices;
 }
 
@@ -62,35 +60,37 @@ void App::InitData( void )
         databases[ i ] = new QString[ 2 ];
     }
 
-    projections = new QString*[ projectionsCount ];
-    for( int i = 0; i < projectionsCount; i ++ )
-    {
-        projections[ i ] = new QString[ 2 ];
-    }
-
     webservices = new QString*[ webservicesCount ];
     for( int i = 0; i < webservicesCount; i ++ )
     {
         webservices[ i ] = new QString[ 2 ];
     }
 
-    #include "Dta.h"
+#include "Dta.h"
 }
 
 void App::InitProjections( void )
 {
-    QString prj;
-	
-    cmbTargetProj->addItem( tr( "" ) );
-
-    for( int i = 1; i < projectionsCount; i ++ )
-    {
-        prj.clear();
-        prj = projections[ i ][ 0 ];
-        prj.append( tr( " : " ) );
-        prj.append( projections[ i ][ 1 ] );
-
-        cmbTargetProj->addItem( prj );
+    cmbTargetProj->addItem(tr(""));
+    QString folder = tr("data");
+    QString gcs = tr("gcs.csv");
+    QString filename = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + folder + QDir::separator() + gcs);
+    QFile file(filename);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        txtOutput->setText(tr("No gcs.csv file found in folder data"));
+        return;
+    }
+    QTextStream in(&file);
+    QString line;
+    QPair<QString, QString> pair;
+    projectionsList << pair;
+    in.readLine();
+    while(!(line = in.readLine()).isNull()) {
+        QStringList t = line.split(",");
+        pair.first = t.at(0);
+        pair.second = t.at(1);
+        projectionsList << pair;
+        cmbTargetProj->addItem(t.at(0) + tr(" : ") + t.at(1));
     }
 }
 
@@ -105,12 +105,12 @@ void App::InitInterface( void )
     InitLayout();
     InitSlots();
 
-    radSourceFile->setChecked( true );
-    radTargetFile->setChecked( true );
-    radTargetOverwrite->setChecked( true );
-    btnExecute->setEnabled( false );
+    radSourceFile->setChecked(true);
+    radTargetFile->setChecked(true);
+    radTargetOverwrite->setChecked(true);
+    btnExecute->setEnabled(false);
 
-    this->setCentralWidget( thePanel );
+    this->setCentralWidget(thePanel);
     this->show();
 }
 
@@ -124,7 +124,7 @@ void App::InitMenu( void )
             mnuExit->setShortcuts(QKeySequence::Quit);
             fileMenu->addAction( mnuExit );
         }
-		
+
         helpMenu = new QMenu( theMenu );
         {
             mnuOgrHelp = new QAction( this );
@@ -206,7 +206,7 @@ void App::InitLayout( void )
 
                 lytSource->addWidget( lblSourceName, 2, 0 );
                 lytSource->addLayout( lytSourceName, 2, 1 );
-				
+
                 lblSourceProj = new QLabel();
                 lblSourceProj->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
                 lblSourceProj->setMinimumWidth( 70 );
@@ -228,7 +228,7 @@ void App::InitLayout( void )
                 lytSource->addWidget( lblSourceQuery );
                 lytSource->addWidget( txtSourceQuery );
             }
-			
+
             grpSource->setLayout( lytSource );
         }
 
@@ -267,7 +267,7 @@ void App::InitLayout( void )
                 lblTargetFormat->setMaximumWidth( 70 );
 
                 cmbTargetFormat = new QComboBox();
-		
+
                 lytTarget->addWidget( lblTargetFormat, 1, 0 );
                 lytTarget->addWidget( cmbTargetFormat, 1, 1 );
 
@@ -305,7 +305,7 @@ void App::InitLayout( void )
                     txtTargetProj->setMaximumWidth( 50 );
                     QValidator *validator = new QIntValidator(0, 99999, this);
                     txtTargetProj->setValidator(validator);
-					
+
                     cmbTargetProj = new QComboBox();
                     cmbTargetProj->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
 
@@ -318,20 +318,13 @@ void App::InitLayout( void )
 
                 lytTargetOptions = new QHBoxLayout();
                 {
-                    grpTargetOptions = new QButtonGroup();
-                    {
-                        radTargetOverwrite = new QRadioButton();
-                        radTargetAppend = new QRadioButton();
-                        radTargetUpdate = new QRadioButton();
+                    radTargetOverwrite = new QCheckBox();
+                    radTargetAppend = new QCheckBox();
+                    radTargetUpdate = new QCheckBox();
 
-                        lytTargetOptions->addWidget( radTargetOverwrite );
-                        lytTargetOptions->addWidget( radTargetAppend );
-                        lytTargetOptions->addWidget( radTargetUpdate );
-
-                        grpTargetOptions->addButton( radTargetOverwrite );
-                        grpTargetOptions->addButton( radTargetAppend );
-                        grpTargetOptions->addButton( radTargetUpdate );
-                    }
+                    lytTargetOptions->addWidget( radTargetOverwrite );
+                    lytTargetOptions->addWidget( radTargetAppend );
+                    lytTargetOptions->addWidget( radTargetUpdate );
                 }
                 lytTarget->addLayout( lytTargetOptions, 4, 1 );
             }
@@ -363,7 +356,7 @@ void App::InitLayout( void )
             btnExecute = new QPushButton();
             btnExecute->setMinimumWidth( 200 );
             btnExecute->setEnabled( false );
-			
+
             btnExit = new QPushButton();
             btnExit->setMinimumWidth( 200 );
 
@@ -426,17 +419,17 @@ void App::TranslateInterface( void )
 {
     this->setWindowTitle( tr( "OGR2GUI" ) );
 
-    fileMenu->setTitle( tr( "&File" ) );
+    fileMenu->setTitle( tr( "File" ) );
     {
-        mnuExit->setText( tr( "&Exit" ) );
+        mnuExit->setText( tr( "Exit" ) );
     }
 
-    helpMenu->setTitle( tr( "&Help" ) );
+    helpMenu->setTitle( tr( "Help" ) );
     {
-        mnuOgrHelp->setText( tr( "&Command-Line Options" ) );
-        mnuGuiHelp->setText( tr( "&Documentation" ) );
-        mnuHsrAbout->setText((tr("&About HSR")));
-        mnuAbout->setText( tr( "&About OGR2GUI" ) );
+        mnuOgrHelp->setText( tr( "Command-Line Options" ) );
+        mnuGuiHelp->setText( tr( "Documentation" ) );
+        mnuHsrAbout->setText((tr("About HSR")));
+        mnuAbout->setText( tr( "About OGR2GUI" ) );
     }
 
     grpSource->setTitle( tr( "Source" ) );
@@ -449,7 +442,7 @@ void App::TranslateInterface( void )
         lblSourceFormat->setText( tr( "Format" ) );
 
         lblSourceName->setText( tr( "Name" ) );
-        btnSourceName->setText( tr( "&Open" ) );
+        btnSourceName->setText( tr( "Open" ) );
 
         lblSourceProj->setText( tr( "Projection" ) );
 
@@ -465,7 +458,7 @@ void App::TranslateInterface( void )
         lblTargetFormat->setText( tr( "Format" ) );
 
         lblTargetName->setText( tr( "Name" ) );
-        btnTargetName->setText( tr( "&Save" ) );
+        btnTargetName->setText( tr( "Save" ) );
 
         lblTargetProj->setText( tr( "Projection" ) );
 
@@ -476,13 +469,26 @@ void App::TranslateInterface( void )
 
     grpOptions->setTitle(tr("Options (optional)"));
 
-    btnExecute->setText( tr( "&Execute" ) );
-    btnExit->setText( tr( "&Exit" ) );
+    btnExecute->setText( tr( "Execute" ) );
+    btnExit->setText( tr( "Exit" ) );
 }
 
 void App::UpdateParameters( void )
 {
-    parameters = tr("ogr2ogr") + tr(" -f ") + tr("\"") + cmbTargetFormat->currentText() + tr("\" ");
+    parameters = tr("ogr2ogr");
+    parameters += currentParameters();
+    if(radSourceWebservice->isChecked())
+        parameters += tr(" ") + wfs->getSelectedLayers();
+    if(!txtInput->toPlainText().isEmpty()) {
+        QString input = txtInput->toPlainText().simplified();
+        parameters += tr(" ") + input;
+    }
+    txtOutput->setText(parameters);
+    theProgress->setValue(0);
+}
+
+QString App::currentParameters() {
+    QString parameters = tr(" -f ") + tr("\"") + cmbTargetFormat->currentText() + tr("\" ");
     parameters += tr("\"") + txtTargetName->text()+ tr("\" ");
     if(radSourceWebservice->isChecked()) {
         parameters += webservices[0][1];
@@ -491,23 +497,21 @@ void App::UpdateParameters( void )
     parameters += txtSourceName->text() + tr("\"");
     if(!cmbTargetProj->currentText().isEmpty()) {
         parameters += tr(" ") + tr("-T_SRS");
-        parameters += tr(" EPSG:") + projections[cmbTargetProj->currentIndex()][0];
+        parameters += tr(" EPSG:") + projectionsList.at(cmbTargetProj->currentIndex()).first;
     }
     if(!txtSourceQuery->text().isEmpty()) {
         parameters += tr(" -sql ") + tr("\"") + txtSourceQuery->text() + tr("\"");
     }
     if(radTargetOverwrite->isChecked()) {
         parameters += tr(" -overwrite");
-    } else if(radTargetAppend->isChecked()) {
+    }
+    if(radTargetAppend->isChecked()) {
         parameters += tr(" -append");
-    } else if(radTargetUpdate->isChecked()) {
+    }
+    if(radTargetUpdate->isChecked()) {
         parameters += tr(" -update");
     }
-    if(!txtInput->toPlainText().isEmpty()) {
-        parameters += tr(" ") + txtInput->toPlainText();
-    }
-    txtOutput->setText( parameters );
-    theProgress->setValue(0);
+    return parameters;
 }
 
 void App::evtMnuOgrHelp( void )
@@ -533,7 +537,7 @@ void App::evtMnuOgrAbout( void )
 
 void App::evtRadSourceFile( void )
 {
-    btnSourceName->setText( tr( "&Open" ) );
+    btnSourceName->setText( tr( "Open" ) );
 
     cmbSourceFormat->clear();
 
@@ -560,7 +564,7 @@ void App::evtRadSourceFile( void )
 
 void App::evtRadSourceFolder( void )
 {
-    btnSourceName->setText( tr( "&Browse" ) );
+    btnSourceName->setText( tr( "Browse" ) );
 
     cmbSourceFormat->clear();
 
@@ -587,7 +591,7 @@ void App::evtRadSourceFolder( void )
 
 void App::evtRadSourceDatabase( void )
 {
-    btnSourceName->setText( tr( "&Connect" ) );
+    btnSourceName->setText( tr( "Connect" ) );
 
     cmbSourceFormat->clear();
 
@@ -611,7 +615,7 @@ void App::evtRadSourceDatabase( void )
 
 void App::evtRadSourceWebservice( void )
 {
-    btnSourceName->setText( tr( "&Connect" ) );
+    btnSourceName->setText( tr( "Connect" ) );
 
     cmbSourceFormat->clear();
 
@@ -651,13 +655,13 @@ void App::evtTxtSourceName( void ) {
     string error;
 
     if(radSourceWebservice->isChecked()) {
-        return;
+        name = webservices[0][1].toStdString() + name;
     }
     if(ogr->OpenSource(name, epsg, query, error)) {
-        for(int i = 0; i < projectionsCount; i++) {
-            if( strcmp(epsg.c_str(), projections[ i ][ 0 ].toStdString().c_str()) == 0) {
+        for(int i = 0; i < projectionsList.size(); i++) {
+            if( strcmp(epsg.c_str(), projectionsList.at(i).first.toStdString().c_str()) == 0) {
                 if(i > 1) {
-                    txtSourceProj->setText( projections[ i ][ 0 ] + tr( " : " ) + projections[ i ][ 1 ] );
+                    txtSourceProj->setText(projectionsList.at(i).first + tr( " : " ) + projectionsList.at(i).second);
                 }
                 break;
             }
@@ -665,12 +669,14 @@ void App::evtTxtSourceName( void ) {
         ogr->CloseSource();
         if( radSourceFile->isChecked()) {
             txtSourceQuery->setText( query.c_str() );
+        } else if(radSourceWebservice->isChecked()) {
+            btnSourceName->setText(tr("Connected"));
         }
     } else {
         txtSourceProj->clear();
         txtSourceQuery->clear();
         if( radSourceWebservice->isChecked() ) {
-            btnSourceName->setText(tr("&Connect"));
+            btnSourceName->setText(tr("Connect"));
         }
     }
     UpdateParameters();
@@ -686,9 +692,6 @@ void App::evtBtnSourceName( void )
     {
         type = tr( "\"" ) + formats[ idx ][ 0 ] + tr( " (*." ) + formats[ idx ][ 1 ] + tr(")\"");
         txtSourceName->setText( QDir::toNativeSeparators(QFileDialog::getOpenFileName( this, tr( "Source File" ), tr( "" ), type ) ));
-
-        fileList.clear();
-        fileList.append( txtSourceName->text() );
     }
     else if( radSourceFolder->isChecked() )
     {
@@ -701,11 +704,6 @@ void App::evtBtnSourceName( void )
         types.append( type );
         QStringList list = dir.entryList( types );
 
-        fileList.clear();
-        for( int i = 0; i < list.size(); i ++ )
-        {
-            fileList.append( list.at( i ) );
-        }
         if( list.size() > 1 )
         {
             txtSourceProj->setEnabled( false );
@@ -714,21 +712,14 @@ void App::evtBtnSourceName( void )
     }
     else if( radSourceDatabase->isChecked() )
     {
-        if(databases[idx][0] == "SQLite") {
-            type = tr("\"") + databases[idx][0] + tr( " (*.sqlite)\"");
-            txtSourceName->setText(QDir::toNativeSeparators(QFileDialog::getOpenFileName(this, tr("SQLite File"), tr(""), type )));
-            fileList.clear();
-            fileList.append(txtSourceName->text());
-            return;
-        }
-        inf->setConnectionType( databases[ idx ][ 1 ] );
-        inf->setDialogStyle( 1 );
+        inf->setConnectionType(databases[idx][1]);
+        inf->showTables(true);
         if( inf->exec() == QDialog::Accepted )
         {
             txtSourceName->setText( inf->getConnectionString() );
         }
 
-        fileList.clear();
+        QStringList fileList;
 
         QStringList tables = inf->getSelectedTables();
 
@@ -745,24 +736,18 @@ void App::evtBtnSourceName( void )
             txtSourceQuery->setEnabled( false );
         }
     } else if(radSourceWebservice->isChecked()) {
-        inf->setConnectionType(webservices[idx][1]);
-        wfs->setDialogStyle();
+        wfs->setConnectionType(webservices[idx][1]);
+        wfs->show();
         if(wfs->exec() == QDialog::Accepted) {
             txtSourceName->setText(wfs->getConnectionString());
         }
-        fileList.clear();
-        QString layers = wfs->getSelectedLayers();
-        if(!txtInput->toPlainText().isEmpty()) {
-            txtInput->append(" ");
-        }
-        txtInput->append(layers);
     }
     UpdateParameters();
 }
 
 void App::evtRadTargetFile( void )
 {
-    btnTargetName->setText( tr( "&Save" ) );
+    btnTargetName->setText( tr( "Save" ) );
 
     cmbTargetFormat->clear();
     for( int i = 0; i < formatsOutput; i ++ )
@@ -778,7 +763,7 @@ void App::evtRadTargetFile( void )
 
 void App::evtRadTargetFolder( void )
 {
-    btnTargetName->setText( tr( "&Browse" ) );
+    btnTargetName->setText( tr( "Browse" ) );
 
     cmbTargetFormat->clear();
     for( int i = 0; i < formatsOutput; i ++ )
@@ -789,7 +774,7 @@ void App::evtRadTargetFolder( void )
 
 void App::evtRadTargetDatabase( void )
 {
-    btnTargetName->setText( tr( "&Connect" ) );
+    btnTargetName->setText( tr( "Connect" ) );
 
     cmbTargetFormat->clear();
     for( int i = 0; i < databasesOutput; i ++ )
@@ -820,9 +805,10 @@ void App::evtBtnTargetName( void )
         if(databases[idx][0] == "SQLite") {
             type = tr("\"") + databases[idx][0] + tr(" (*") + tr(".sqlite") + tr(")\"");
             txtTargetName->setText(QDir::toNativeSeparators(QFileDialog::getSaveFileName(this, tr("Save File"), tr(""), type )));
+            UpdateParameters();
             return;
         }
-        inf->setDialogStyle( 0 );
+        inf->showTables(false);
         inf->setConnectionType( databases[ cmbTargetFormat->currentIndex() ][ 1 ] );
         if( inf->exec() == QDialog::Accepted )
         {
@@ -856,9 +842,9 @@ void App::evtBtnTargetName( void )
 void App::evtTxtTargetProj( void )
 {
     QString projection = txtTargetProj->text();
-    for( int i = 0; i < projectionsCount; i ++ )
+    for( int i = 0; i < projectionsList.size(); i ++ )
     {
-        if( ( projections[ i ][ 0 ] ).startsWith( projection ) )
+        if(projectionsList.at(i).first.startsWith(projection))
         {
             cmbTargetProj->setCurrentIndex( i );
             break;
@@ -869,15 +855,81 @@ void App::evtTxtTargetProj( void )
 
 void App::evtUpdateParameters( void )
 {
-	UpdateParameters();
+    UpdateParameters();
 }
 
+#include <QDebug>
 void App::evtBtnExecute( void )
 {
-    parameters = parameters.replace("ogr2ogr", "");
-    parameters = parameters.replace("\\", "\\\\");
-    string path = QDir::toNativeSeparators(QCoreApplication::applicationFilePath()).toStdString();
-    path += parameters.toStdString();
+    QString sourcename;
+    QString targetname;
+
+    string epsg;
+    string query;
+    string error;
+
+    sourcename = txtSourceName->text();
+    targetname = txtTargetName->text();
+
+    bool resVal;
+    if(radSourceWebservice->isChecked()) {
+        QStringList fileList = wfs->getSelectedLayersAsList();
+        sourcename = webservices[cmbSourceFormat->currentIndex()][1] + sourcename;
+        for(int i=0;i<fileList.size();++i) {
+            if(!ogr->OpenSource(sourcename.toStdString(), fileList.at(i).toStdString(), epsg, query, error)) {
+                resVal = false;
+                return;
+            }
+        }
+    } else {
+        resVal = ogr->OpenSource(sourcename.toStdString(), epsg, query, error);
+    }
+    ogr->CloseSource();
+    if(resVal) {
+        if(ogr->OpenDriver(cmbTargetFormat->currentText().toStdString())) {
+            if(ogr->OpenTarget( targetname.toStdString(), atoi(projectionsList.at(cmbTargetProj->currentIndex()).first.toStdString().c_str()))) {
+                ogr->CloseTarget();
+                theProgress->setValue(0);
+                theProgress->setMinimum(0);
+                theProgress->setMaximum(0);
+                QString parameters = currentParameters();
+                parameters = parameters.replace("\\", "\\\\");
+                string path = QDir::toNativeSeparators(QCoreApplication::applicationFilePath()).toStdString();
+                path += parameters.toStdString();
+
+                if(!wfs->getSelectedLayers().isEmpty()) {
+                    QStringList wfsLayerList = wfs->getSelectedLayersAsList();
+                    qDebug() << wfsLayerList;
+                    for(int i=0;i<wfsLayerList.size();++i) {
+                        QString layer = tr(" ") + wfsLayerList.at(i);
+                        string pathTemp = path;
+                        pathTemp += layer.toStdString();
+
+                        if(!startOgr2ogr(pathTemp))
+                            txtOutput->append(tr("failed.\n"));
+
+                        txtOutput->append(sourcename + tr(" ") + layer + tr(" > ") + targetname + tr(" ... "));
+                        double progressValue = i*100/wfsLayerList.size();
+                        theProgress->setValue(progressValue);
+                    }
+                } else {
+                    if(!startOgr2ogr(path))
+                        txtOutput->append(tr("failed.\n"));
+                }
+                theProgress->setMaximum(100);
+                theProgress->setValue(100);
+            } else {
+                txtOutput->append( tr( "\n * unable to open target !\n" ) );
+            }
+        } else {
+            txtOutput->append( tr( "\n * unable to open driver !\n" ) );
+        }
+    } else {
+        txtOutput->append( tr( "\n * unable to open source !\n" ) );
+    }
+}
+
+bool App::startOgr2ogr(string &path) {
     std::wstring widestring = std::wstring(path.begin(), path.end());
     LPWSTR lpwstr = const_cast<LPWSTR>(widestring.c_str());
     STARTUPINFO si;
@@ -885,134 +937,11 @@ void App::evtBtnExecute( void )
     ZeroMemory(&si, sizeof(si));
     si.cb = sizeof(si);
     ZeroMemory(&pi, sizeof(pi));
-    theProgress->setValue(0);
-    if(CreateProcess(NULL, lpwstr, 0, 0, FALSE, 0, 0, 0, &si, &pi)) {
-        theProgress->setMinimum(0);
-        theProgress->setMaximum(0);
-        WaitForSingleObject(pi.hProcess, INFINITE);
-        CloseHandle(pi.hProcess);
-        CloseHandle(pi.hThread);
-        theProgress->setMaximum(100);
-        theProgress->setValue(100);
-        txtOutput->append(tr("successful.\n"));
-    } else {
-        txtOutput->append(tr("failed.\n"));
-    }
-
-//    QString name;
-//    QString sourcename;
-//    QString targetname;
-
-//    string epsg;
-//    string query;
-//    string error;
-
-//    int featuresCount = 0;
-//    int progress = 0;
-
-//    txtOutput->clear();
-//    if( radSourceWebservice->isChecked() )
-//        ogr->OpenWFS(fileList);
-//    for( int i = 0; i < fileList.size(); i ++ )
-//    {
-//        if( radSourceFile->isChecked() )
-//        {
-//            sourcename = txtSourceName->text();
-//            targetname = txtTargetName->text();
-//        }
-//        else if( radSourceFolder->isChecked() )
-//        {
-//            sourcename = txtSourceName->text() + tr( "/" ) + fileList.at( i );
-//            targetname = txtTargetName->text();
-//        }
-//        else if( radSourceDatabase->isChecked() )
-//        {
-//            sourcename = fileList.at( i );
-//            targetname = txtTargetName->text();
-//        }
-//        else if( radSourceWebservice->isChecked() )
-//        {
-//            sourcename = txtSourceName->text();
-//            sourcename = webservices[0][1].toStdString() + sourcename;
-//            targetname = txtTargetName->text();
-//        }
-
-//        txtOutput->append( QString( sourcename + tr( " > " ) + targetname + tr( " ... " ) ) );
-
-//        bool resVal;
-//        if(radSourceWebservice->isChecked()) {
-//            resVal = ogr->OpenSource(sourcename.toStdString(), fileList.at(i).toStdString(), epsg, query, error);
-//        } else {
-//            resVal = ogr->OpenSource(sourcename.toStdString(), epsg, query, error);
-//        }
-
-//        QStringList optionItems;
-//        for(int i = 0; i < optionTable->rowCount(); ++i) {
-//            for(int j = 1; j < optionTable->columnCount(); ++j) {
-//                QTableWidgetItem* name = optionTable->item(i, j);
-//                QTableWidgetItem* value = optionTable->item(i, j+1);
-//                if(name != NULL && value != NULL) {
-//                    optionItems << name->text() + tr("=") + value->text();
-//                    ++j;
-//                }
-//            }
-//        }
-//        char **papszOptions = new char*[optionItems.size() + 1];
-//        for (int i = 0; i < optionItems.size(); i++) {
-//            if(comboHash[i]->currentText() == "DSCO") {
-//                papszOptions[i] = new char[strlen(optionItems.at(i).toStdString().c_str())+1];
-//                memcpy(papszOptions[i], optionItems.at(i).toStdString().c_str(), strlen(optionItems.at(i).toStdString().c_str())+1);
-//                papszDSCO = CSLAddString(papszDSCO, papszOptions[i]);
-//            } else if(comboHash[i]->currentText() == "LCO") {
-//                papszOptions[i] = new char[strlen(optionItems.at(i).toStdString().c_str())+1];
-//                memcpy(papszOptions[i], optionItems.at(i).toStdString().c_str(), strlen(optionItems.at(i).toStdString().c_str())+1);
-//                papszLCO = CSLAddString(papszLCO, papszOptions[i]);
-//            }
-//        }
-//        papszOptions[optionItems.size()] = ((char)NULL);
-
-//        if(resVal)
-//        {
-//            if( ogr->OpenDriver(cmbTargetFormat->currentText().toStdString()) )
-//            {
-//                if( ogr->OpenTarget( targetname.toStdString(), atoi( projections[ cmbTargetProj->currentIndex() ][ 0 ].toStdString().c_str()), papszDSCO))
-//                {
-//                    ogr->Prepare( featuresCount, "" );
-
-//                    theProgress->setMinimum( 0 );
-//                    theProgress->setMaximum( featuresCount );
-//                    theProgress->setValue( 0 );
-
-//                    while( ogr->Process() )
-//                    {
-//                        progress ++;
-
-//                        theProgress->setValue( progress );
-//                    }
-					
-//                    ogr->CloseTarget();
-//                    ogr->CloseSource();
-
-//                    theProgress->reset();
-//                    txtOutput->append( tr( "successful.\n" ) );
-//                }
-//                else
-//                {
-//                    txtOutput->append( tr( "\n * unable to open target !\n" ) );
-//                }
-//            }
-//            else
-//            {
-//                txtOutput->append( tr( "\n * unable to open driver !\n" ) );
-//            }
-//        }
-//        else
-//        {
-//            txtOutput->append( tr( "\n * unable to open source !\n" ) );
-//        }
-//        CSLDestroy(papszDSCO);
-//        CSLDestroy(papszLCO);
-//    }
+    bool resVal = CreateProcess(NULL, lpwstr, 0, 0, FALSE, 0, 0, 0, &si, &pi);
+    WaitForSingleObject(pi.hProcess, INFINITE);
+    CloseHandle(pi.hProcess);
+    CloseHandle(pi.hThread);
+    return resVal;
 }
 
 void App::evtBtnQuit( void )

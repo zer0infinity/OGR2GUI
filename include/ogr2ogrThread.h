@@ -2,9 +2,6 @@
 #define OGR2OGRTHREAD_H
 
 #include <QThread>
-#include <QString>
-#include <QProgressBar>
-#include <QTextEdit>
 
 class ogr2ogrThread : public QThread
 {

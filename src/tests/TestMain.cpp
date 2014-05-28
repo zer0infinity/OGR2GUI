@@ -27,9 +27,9 @@
  *	\date 13/06/14
  */
 
-#pragma comment(linker, "/SUBSYSTEM:CONSOLE")
 #include "TestInf.h"
 #include "TestOgr.h"
+#include "cpl_conv.h"
 
 int main(int argc, char **argv) {
     QApplication app(argc, argv);
