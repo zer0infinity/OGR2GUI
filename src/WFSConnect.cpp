@@ -1,6 +1,7 @@
 /*****************************************************************************
  * ogr2gui is an application used to convert and manipulate geospatial
- * data.
+ * data. It is based on the "OGR Simple Feature Library" from the
+ * "Geospatial Data Abstraction Library" <http://gdal.org>.
  *
  * Copyright (c) 2014 University of Applied Sciences Rapperswil
  *
@@ -41,14 +42,6 @@ WFSConnect::WFSConnect( QWidget *parent ) : QDialog( parent )
 WFSConnect::~WFSConnect( void )
 {
 
-}
-
-void WFSConnect::show( void )
-{
-    lblTables->show();
-    lstTables->show();
-    radAllTables->show();
-    radNonTables->show();
 }
 
 void WFSConnect::InitInterface( void )
@@ -215,17 +208,17 @@ void WFSConnect::setConnectionType( QString type )
     connectionType = type;
 }
 
-QString WFSConnect::getConnectionString( void )
+QString WFSConnect::getConnectionString( void ) const
 {
     return connectionString;
 }
 
-QString WFSConnect::getSelectedLayers( void )
+QString WFSConnect::getSelectedLayers( void ) const
 {
     return selectedLayers;
 }
 
-QStringList WFSConnect::getSelectedLayersAsList( void )
+QStringList WFSConnect::getSelectedLayersAsList( void ) const
 {
     return selectedLayersList;
 }

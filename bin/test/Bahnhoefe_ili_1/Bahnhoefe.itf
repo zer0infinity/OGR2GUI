@@ -1,0 +1,1792 @@
+SCNT
+OGR/GDAL 1.5.0b1, FWTools 2.0.2, INTERLIS Driver
+////
+MTID INTERLIS1
+MODL Bahnhoefe
+TOPI Bahnhoefe
+TABL Bahnhoefe
+OBJE 0 724005.902 76645.774 3 10 Chiasso Rail 41 Switzerland Tessin N @
+OBJE 1 723619.992 76893.673 30 10 Chiasso 41 Switzerland Tessin N Chiasso
+OBJE 2 721755.712 78390.568 30 10 Balerna 41 Switzerland Tessin N Balerna
+OBJE 3 719617.514 80827.740 30 10 Mendrisio 41 Switzerland Tessin N Mendrisio
+OBJE 4 720393.436 82833.334 30 10 San Nicolao 41 Switzerland Tessin N Capolago
+OBJE 5 719641.633 84341.806 30 10 Capolago-Riva San Vitale 41 Switzerland Tessin Y Capolago
+OBJE 6 719508.621 84394.787 30 10 Capolago-Riva San Vitale 41 Switzerland Tessin Y Capolago
+OBJE 7 721401.822 85610.877 30 10 Bellavista 41 Switzerland Tessin Y Capolago
+OBJE 8 722569.435 87368.854 30 10 Generoso Vetta 41 Switzerland Tessin N Capolago
+OBJE 9 719136.960 87912.190 30 10 Maroggia-Melano 41 Switzerland Tessin N Maroggia
+OBJE 10 717352.521 90323.630 30 10 Melide 41 Switzerland Tessin N Melide
+OBJE 11 710204.074 91935.454 30 10 Ponte Tresa 41 Switzerland Tessin N Ponte Tresa
+OBJE 12 712210.651 93273.043 30 10 Caslano 41 Switzerland Tessin N Caslano
+OBJE 13 626624.839 92551.230 30 10 Gornergrat 41 Switzerland Genferseeregion N Zermatt
+OBJE 14 625322.302 92690.187 30 10 Rotenboden 41 Switzerland Genferseeregion N Zermatt
+OBJE 15 716913.725 94184.499 30 10 Lugano-Paradiso 41 Switzerland Tessin N Lugano
+OBJE 16 712869.298 94119.136 30 10 Magliaso 41 Switzerland Tessin N Magliaso
+OBJE 17 713020.321 94333.197 30 10 Magliaso Paese 41 Switzerland Tessin N Magliaso
+OBJE 18 624590.261 93576.527 30 10 Riffelberg 41 Switzerland Genferseeregion N Zermatt
+OBJE 19 713412.390 94918.670 30 10 Agno 41 Switzerland Tessin N Agno
+OBJE 20 715938.931 95311.044 30 10 Sorengo 41 Switzerland Tessin N Lugano
+OBJE 21 714528.725 95306.529 30 10 Cappella-Agnuzzo 41 Switzerland Tessin N Lugano
+OBJE 22 624756.967 94499.896 30 10 Riffelalp 41 Switzerland Genferseeregion N Zermatt
+OBJE 23 716921.867 95774.632 30 10 Lugano FLP 41 Switzerland Tessin N Lugano
+OBJE 24 713448.347 95897.778 30 10 Serocca 41 Switzerland Tessin N Bióggio
+OBJE 25 624422.189 94909.863 30 10 Findelenbach 41 Switzerland Genferseeregion N Zermatt
+OBJE 26 716886.608 95996.328 30 10 Lugano 41 Switzerland Tessin N Lugano
+OBJE 27 713604.346 96256.488 30 10 Bióggio 41 Switzerland Tessin N Bióggio
+OBJE 28 624244.626 96698.950 30 10 Zermatt 41 Switzerland Genferseeregion N Zermatt
+OBJE 29 577223.259 97327.183 30 10 Orsières 41 Switzerland Genferseeregion N Orsières
+OBJE 30 715753.451 99754.966 30 10 Lamone-Cadempino 41 Switzerland Tessin N Lamone
+OBJE 31 562047.761 100149.042 3 10 le Châtelard Rail 41 Switzerland Genferseeregion N @
+OBJE 32 577620.660 100093.765 30 10 la Douay 41 Switzerland Genferseeregion N Garde
+OBJE 33 562204.153 100403.752 30 10 le Châtelard-Frontières 41 Switzerland Genferseeregion N Châtelard
+OBJE 34 715500.967 101629.202 30 10 Taverne-Torricella 41 Switzerland Tessin N Torricella
+OBJE 35 562891.023 101344.438 30 10 le Châtelard 41 Switzerland Genferseeregion N Châtelard
+OBJE 36 577267.355 102885.370 30 10 Sembrancher 41 Switzerland Genferseeregion N Sembrancher
+OBJE 37 582861.271 103033.700 30 10 le Châble 41 Switzerland Genferseeregion N Châble
+OBJE 38 572502.885 103160.811 30 10 Bovernier 41 Switzerland Genferseeregion N Bovernier
+OBJE 39 564505.831 103547.008 30 10 Finhaut 41 Switzerland Genferseeregion N Finhaut
+OBJE 40 578739.658 103558.138 30 10 Etiez 41 Switzerland Genferseeregion N Etiez
+OBJE 41 570627.010 103992.254 30 10 Martigny-Croix 41 Switzerland Genferseeregion N Martigny
+OBJE 42 571512.201 104710.612 30 10 Martigny-Bourg 41 Switzerland Genferseeregion N Martigny
+OBJE 43 715265.925 105849.792 30 10 Mezzovico 41 Switzerland Tessin N Mezzovico-Vira
+OBJE 44 626607.014 105457.691 30 10 Randa 41 Switzerland Genferseeregion N Randa
+OBJE 45 701925.903 106589.299 3 10 Ranzo-Sant'Abbóndio Rail 41 Switzerland Tessin N @
+OBJE 46 565926.717 105851.135 30 10 le Trétien 41 Switzerland Genferseeregion N Trétien
+OBJE 47 572292.327 106174.396 30 10 Martigny 41 Switzerland Genferseeregion Y Martigny
+OBJE 48 572323.357 106196.487 30 10 Martigny 41 Switzerland Genferseeregion Y Martigny
+OBJE 49 566393.143 106293.199 30 10 la Nedettaz 41 Switzerland Genferseeregion N Marécottes
+OBJE 50 571520.045 106378.080 30 10 la Bâtiaz 41 Switzerland Genferseeregion N Bâtiaz
+OBJE 51 567030.806 106956.697 30 10 les Marécottes 41 Switzerland Genferseeregion N Marécottes
+OBJE 52 703482.812 108261.158 30 10 Ranzo-Sant'Abbóndio 41 Switzerland Tessin N Ranzo
+OBJE 53 570312.778 107740.116 30 10 les Fumeaux 41 Switzerland Genferseeregion N Vernayaz
+OBJE 54 567770.896 108008.801 30 10 Salvan 41 Switzerland Genferseeregion N Salvan
+OBJE 55 704198.880 108884.924 30 10 Gerra (Gambarogno) 41 Switzerland Tessin N Gambarogno
+OBJE 56 715008.071 109247.169 30 10 Rivera Bironico 41 Switzerland Tessin N Rivera
+OBJE 57 575773.137 108416.145 30 10 Charrat-Fully 41 Switzerland Genferseeregion N Charrat-les-Chênes
+OBJE 58 705326.893 109816.114 30 10 San Nazzaro 41 Switzerland Tessin N San Nazzaro
+OBJE 59 569275.969 109079.294 30 10 Vernayaz MC 41 Switzerland Genferseeregion N Vernayaz
+OBJE 60 627309.331 109207.129 30 10 Herbriggen 41 Switzerland Genferseeregion N Herbriggen
+OBJE 61 569148.608 109869.227 30 10 Vernayaz 41 Switzerland Genferseeregion N Vernayaz
+OBJE 62 709262.649 111464.599 30 10 Magadino-Vira 41 Switzerland Tessin N Magadino
+OBJE 63 579367.951 110859.589 30 10 Saxon 41 Switzerland Genferseeregion N Saxon
+OBJE 64 712008.914 112148.498 30 10 Quartino 41 Switzerland Tessin N Quartino
+OBJE 65 689836.321 111934.776 3 10 Camedo Rail 41 Switzerland Tessin N @
+OBJE 66 716393.247 112397.929 30 10 Cadenazzo 41 Switzerland Tessin N Cadenazzo
+OBJE 67 690742.859 112281.819 30 10 Borgnone-Cadanza 41 Switzerland Tessin N Borgnone
+OBJE 68 718747.593 113310.878 30 10 Sant'Antonino 41 Switzerland Tessin N Sant'Antonino
+OBJE 69 692253.904 113005.063 30 10 Palagnedra 41 Switzerland Tessin N Palagnedra
+OBJE 70 693652.876 113460.127 30 10 Verdasio 41 Switzerland Tessin N Verdasio
+OBJE 71 705467.986 113698.819 30 10 Locarno San-Antonio 41 Switzerland Tessin N Locarno
+OBJE 72 695600.454 113890.798 30 10 Corcapolo 41 Switzerland Tessin N Corcapolo
+OBJE 73 568069.202 113265.415 30 10 Evionnaz 41 Switzerland Genferseeregion N Evionnaz
+OBJE 74 703171.859 114259.647 30 10 Solduno 41 Switzerland Tessin N Locarno
+OBJE 75 582844.333 113416.653 30 10 Riddes 41 Switzerland Genferseeregion N Riddes
+OBJE 76 705263.135 114373.464 30 10 Locarno 41 Switzerland Tessin Y Locarno
+OBJE 77 705371.046 114386.459 30 10 Locarno 41 Switzerland Tessin Y Locarno
+OBJE 78 712852.292 114576.850 30 10 Riazzino-Cugnasco 41 Switzerland Tessin N Riazzino
+OBJE 79 721033.635 114901.631 30 10 Giubiasco 41 Switzerland Tessin N Bellinzona
+OBJE 80 556211.691 114062.220 30 10 Champéry 41 Switzerland Genferseeregion N Champéry
+OBJE 81 708982.520 115006.291 30 10 Tenero 41 Switzerland Tessin N Tenero
+OBJE 82 488225.133 115091.813 3 10 la Plaine Rail 41 Switzerland Genferseeregion N @
+OBJE 83 628128.816 114146.666 30 10 Sankt Niklaus 41 Switzerland Genferseeregion N Sankt Niklaus
+OBJE 84 697700.956 114880.462 30 10 Intragna 41 Switzerland Tessin N Intragna
+OBJE 85 488960.857 115200.570 30 10 la Plaine 41 Switzerland Genferseeregion N Plaine
+OBJE 86 710338.365 115197.621 30 10 Górdola 41 Switzerland Tessin N Górdola
+OBJE 87 702276.541 115133.906 30 10 San Martino 41 Switzerland Tessin Y Locarno
+OBJE 88 556540.655 114704.622 30 10 Champéry-Village 41 Switzerland Genferseeregion N Champéry
+OBJE 89 699149.686 115548.853 30 10 Cavigliano 41 Switzerland Tessin N Cavigliano
+OBJE 90 699804.441 115648.555 30 10 Vérscio 41 Switzerland Tessin N Vérscio
+OBJE 91 701648.241 115757.056 30 10 Ponte Brolla 41 Switzerland Tessin N Locarno
+OBJE 92 700790.026 115820.534 30 10 Tegna 41 Switzerland Tessin N Tegna
+OBJE 93 584733.521 115301.398 30 10 Chamoson 41 Switzerland Genferseeregion N Chamoson
+OBJE 94 490393.885 116286.275 30 10 Russin 41 Switzerland Genferseeregion N Russin
+OBJE 95 557187.980 115611.582 30 10 la Cour 41 Switzerland Genferseeregion N Champéry
+OBJE 96 505347.327 116578.621 3 10 Chêne-Bourg Rail 41 Switzerland Genferseeregion N @
+OBJE 97 722857.463 117139.879 30 10 Bellinzona 41 Switzerland Tessin N Bellinzona
+OBJE 98 504085.828 116876.438 30 10 Chêne-Bourg 41 Switzerland Genferseeregion N Genève
+OBJE 99 557432.940 116410.260 30 10 En Charnay 41 Switzerland Genferseeregion N Champéry
+OBJE 100 501738.353 117325.479 30 10 Genève-Eaux-Vives 41 Switzerland Genferseeregion N Genève
+OBJE 101 557884.911 117018.518 30 10 Val-d'Illiez 41 Switzerland Genferseeregion N Val-d'Illiez
+OBJE 102 586915.259 117386.183 30 10 Ardon 41 Switzerland Genferseeregion Y Ardon
+OBJE 103 630550.425 117837.998 30 10 Kalpetran 41 Switzerland Genferseeregion N Kalpetran
+OBJE 104 500092.020 118608.782 30 10 Genève 41 Switzerland Genferseeregion N Genève
+OBJE 105 566380.627 117943.570 30 10 Saint-Maurice 41 Switzerland Genferseeregion N Saint-Maurice
+OBJE 106 558432.690 118104.169 30 10 Fayot 41 Switzerland Genferseeregion N Fayot
+OBJE 107 492074.836 119180.155 30 10 Satigny 41 Switzerland Genferseeregion N Satigny
+OBJE 108 589903.719 118347.578 30 10 Châteauneuf 41 Switzerland Genferseeregion N Châteauneuf
+OBJE 109 492653.488 119603.466 30 10 Bourdigny 41 Switzerland Genferseeregion N Genève
+OBJE 110 493342.092 119702.463 30 10 Zimeysa 41 Switzerland Genferseeregion N Genève
+OBJE 111 494076.572 119778.497 30 10 Vieux-Bureau 41 Switzerland Genferseeregion N Genève
+OBJE 112 495081.820 119894.388 30 10 Vernier-Meyrin 41 Switzerland Genferseeregion N Genève
+OBJE 113 496719.242 119977.378 30 10 Genève-Aéroport 41 Switzerland Genferseeregion N Genève
+OBJE 114 594087.354 119542.600 30 10 Sion 41 Switzerland Genferseeregion N Sion
+OBJE 115 559624.980 119830.299 30 10 Troistorrents 41 Switzerland Genferseeregion N Troistorrents
+OBJE 116 632985.376 119951.817 30 10 Stalden-Saas 41 Switzerland Genferseeregion N Stalden
+OBJE 117 808783.240 123554.254 3 10 Campocologno Rail 41 Switzerland Ostschweiz N @
+OBJE 118 808614.046 123759.752 30 10 Campocologno 41 Switzerland Ostschweiz N Campocologno
+OBJE 119 560315.979 120492.725 30 10 Route de Morgins 41 Switzerland Genferseeregion N Monthey
+OBJE 120 560387.080 120747.943 30 10 les Neys 41 Switzerland Genferseeregion N Monthey
+OBJE 121 560565.437 120891.294 30 10 Croix-du-Nant 41 Switzerland Genferseeregion N Monthey
+OBJE 122 500448.428 121971.652 30 10 Chambésy 41 Switzerland Genferseeregion N Genève
+OBJE 123 564972.280 121286.570 30 10 Massongex 41 Switzerland Genferseeregion N Massongex
+OBJE 124 560770.030 121512.498 30 10 Chemex 41 Switzerland Genferseeregion N Monthey
+OBJE 125 807761.756 124976.178 30 10 Campascio 41 Switzerland Ostschweiz N Campascio
+OBJE 126 500450.054 122538.642 30 10 les Tuileries 41 Switzerland Genferseeregion N Bellevue
+OBJE 127 500446.920 122816.642 30 10 Genthod-Bellevue 41 Switzerland Genferseeregion N Bellevue
+OBJE 128 566204.425 122313.399 30 10 Bex 41 Switzerland Genferseeregion Y Bex
+OBJE 129 566281.852 122368.550 30 10 Bex 41 Switzerland Genferseeregion Y Bex
+OBJE 130 561577.945 122418.875 30 10 Pont de Chemex 41 Switzerland Genferseeregion N Monthey
+OBJE 131 568125.800 122525.286 30 10 Bex-Place-du-Marché 41 Switzerland Genferseeregion N Bex
+OBJE 132 562576.106 122957.325 30 10 Monthey-Ville 41 Switzerland Genferseeregion N Monthey
+OBJE 133 501100.941 123661.986 30 10 Creux-de-Genthod 41 Switzerland Genferseeregion N Genthod
+OBJE 134 562607.087 122979.367 30 10 Monthey 41 Switzerland Genferseeregion N Monthey
+OBJE 135 562052.538 123082.876 30 10 Monthey En Place 41 Switzerland Genferseeregion N Monthey
+OBJE 136 561690.349 123118.513 30 10 l' Hôpital (Monthey) 41 Switzerland Genferseeregion N Monthey
+OBJE 137 568529.862 123112.348 30 10 Bévieux 41 Switzerland Genferseeregion N Bévieux
+OBJE 138 807228.228 126581.812 30 10 Brusio 41 Switzerland Ostschweiz N Brusio
+OBJE 139 570493.197 124091.812 30 10 Fontannaz-Seulaz 41 Switzerland Genferseeregion N Posses
+OBJE 140 562261.700 124471.151 30 10 Collombey 41 Switzerland Genferseeregion N Collombey
+OBJE 141 562046.061 124505.853 30 10 Collombey-Muraz 41 Switzerland Genferseeregion N Collombey
+OBJE 142 570032.787 124527.627 30 10 les Posses 41 Switzerland Genferseeregion N Posses
+OBJE 143 562524.975 124658.495 30 10 Corbier 41 Switzerland Genferseeregion N Collombey
+OBJE 144 805180.260 128046.882 30 10 Miralago 41 Switzerland Ostschweiz N Miralago
+OBJE 145 570743.238 124779.824 30 10 Gryon 41 Switzerland Genferseeregion N Gryon
+OBJE 146 563452.975 125141.940 30 10 Pont du Rhône 41 Switzerland Genferseeregion N Collombey
+OBJE 147 571346.559 125210.477 30 10 Barboleusaz 41 Switzerland Genferseeregion N Gryon
+OBJE 148 564170.812 125304.387 30 10 Saint-Triphon-Gare 41 Switzerland Genferseeregion N Saint-Triphon
+OBJE 149 501904.659 126139.299 30 10 Versoix 41 Switzerland Genferseeregion N Versoix
+OBJE 150 565849.198 126317.390 30 10 Villy 41 Switzerland Genferseeregion N Villy
+OBJE 151 501696.542 127087.706 30 10 Pont-Céard 41 Switzerland Genferseeregion N Versoix
+OBJE 152 571714.512 126420.449 30 10 la Clairière 41 Switzerland Genferseeregion N Villars-sur-Ollon
+OBJE 153 565981.713 126583.441 30 10 les Arnoux 41 Switzerland Genferseeregion N Ollon
+OBJE 154 570798.419 126624.911 30 10 Arveyes 41 Switzerland Genferseeregion N Villars-sur-Ollon
+OBJE 155 607071.495 126602.736 30 10 Sierre 41 Switzerland Genferseeregion N Sierre
+OBJE 156 634033.664 126972.222 30 10 Visp BVZ 41 Switzerland Genferseeregion N Visp
+OBJE 157 634040.869 127061.196 30 10 Visp 41 Switzerland Genferseeregion N Visp
+OBJE 158 803369.945 130499.405 30 10 le Prese 41 Switzerland Ostschweiz N Prese
+OBJE 159 570501.575 127382.283 30 10 Villars BVB 41 Switzerland Genferseeregion N Villars-sur-Ollon
+OBJE 160 565554.989 127430.726 30 10 Ollon 41 Switzerland Genferseeregion N Ollon
+OBJE 161 502342.625 128433.608 30 10 Mies 41 Switzerland Genferseeregion N Mies
+OBJE 162 564455.908 127903.999 30 10 Saint-Triphon-Village 41 Switzerland Genferseeregion N Saint-Triphon
+OBJE 163 635267.148 128202.122 30 10 Lalden 41 Switzerland Genferseeregion N Lalden
+OBJE 164 571584.175 128199.715 30 10 Col-de-Soud 41 Switzerland Genferseeregion N Villars-sur-Ollon
+OBJE 165 627816.257 128374.469 30 10 Raron 41 Switzerland Genferseeregion N Raron
+OBJE 166 563719.550 128453.097 30 10 Hospital d'Aigle 41 Switzerland Genferseeregion N Aigle
+OBJE 167 503124.780 129154.787 30 10 Tannay 41 Switzerland Genferseeregion N Tannay
+OBJE 168 623940.877 128435.702 30 10 Gampel-Steg 41 Switzerland Genferseeregion N Gampel
+OBJE 169 564991.905 128656.797 30 10 Verchiez 41 Switzerland Genferseeregion N Aigle
+OBJE 170 610820.746 128653.698 30 10 Salgesch 41 Switzerland Genferseeregion N Salgesch
+OBJE 171 634100.500 128784.610 30 10 Eggerberg 41 Switzerland Genferseeregion N Eggerberg
+OBJE 172 620126.402 128744.187 30 10 Turtmann 41 Switzerland Genferseeregion N Turtmann
+OBJE 173 802224.913 132229.454 30 10 Li Curt 41 Switzerland Ostschweiz N Prada
+OBJE 174 631402.984 129025.679 30 10 Ausserberg 41 Switzerland Genferseeregion N Ausserberg
+OBJE 175 615888.864 128976.138 30 10 Leuk 41 Switzerland Genferseeregion N Leuk
+OBJE 176 559811.723 129333.844 30 10 Vionnaz 41 Switzerland Genferseeregion N Vionnaz
+OBJE 177 503655.955 130091.305 30 10 Coppet 41 Switzerland Genferseeregion N Coppet
+OBJE 178 563718.197 129509.188 30 10 Aigle-Depôt ASD 41 Switzerland Genferseeregion N Aigle
+OBJE 179 571759.808 129510.646 30 10 Bouquetins 41 Switzerland Genferseeregion N Villars-sur-Ollon
+OBJE 180 563425.908 129577.653 30 10 Aigle 41 Switzerland Genferseeregion Y Aigle
+OBJE 181 563456.785 129588.582 30 10 Aigle 41 Switzerland Genferseeregion Y Aigle
+OBJE 182 563865.876 129730.635 30 10 Aigle-Place-du-Marché 41 Switzerland Genferseeregion N Aigle
+OBJE 183 564851.885 129747.042 30 10 Fontanney 41 Switzerland Genferseeregion N Aigle
+OBJE 184 564189.895 129817.636 30 10 Aigle-Depôt 41 Switzerland Genferseeregion N Aigle
+OBJE 185 642250.815 129914.406 30 10 Brig FO/BVZ 41 Switzerland Genferseeregion N Brig
+OBJE 186 642250.737 129925.522 30 10 Brig SBB 41 Switzerland Genferseeregion N Brig
+OBJE 187 565130.062 129901.061 30 10 Pont-de-Drapel 41 Switzerland Genferseeregion N Aigle
+OBJE 188 571947.356 130087.833 30 10 Col-de-Bretaye 41 Switzerland Genferseeregion N Villars-sur-Ollon
+OBJE 189 625381.730 130220.225 30 10 Hohtenn 41 Switzerland Genferseeregion N Hohtenn
+OBJE 190 642409.435 130360.186 30 10 Naters 41 Switzerland Genferseeregion N Naters
+OBJE 191 801477.213 133617.025 30 10 Poschiavo 41 Switzerland Ostschweiz N Poschiavo
+OBJE 192 644325.037 130651.853 3 10 Brig Rail 41 Switzerland Genferseeregion N @
+OBJE 193 568037.890 130674.232 30 10 Plambuit 41 Switzerland Genferseeregion N Plambuit
+OBJE 194 566274.740 130750.533 30 10 Rennaz 41 Switzerland Genferseeregion N Aigle
+OBJE 195 562509.984 130928.392 30 10 Yvorne 41 Switzerland Genferseeregion N Yvorne
+OBJE 196 566324.173 131328.321 30 10 la Roulaz 41 Switzerland Genferseeregion N Aigle
+OBJE 197 504453.979 132324.423 30 10 Founex 41 Switzerland Genferseeregion N Founex
+OBJE 198 566380.863 131828.253 30 10 Leysin-Village 41 Switzerland Genferseeregion N Leysin
+OBJE 199 566542.614 131838.470 30 10 Versmont 41 Switzerland Genferseeregion N Leysin
+OBJE 200 569214.342 131824.238 30 10 Exergillod 41 Switzerland Genferseeregion N Aigle
+OBJE 201 644823.982 131911.728 30 10 Bitsch 41 Switzerland Genferseeregion N Bitsch
+OBJE 202 801463.033 135195.958 30 10 Privilasco 41 Switzerland Ostschweiz N Privilasco
+OBJE 203 558251.526 132068.034 30 10 Vouvry 41 Switzerland Genferseeregion N Vouvry
+OBJE 204 566690.256 132082.218 30 10 Leysin-Feydey 41 Switzerland Genferseeregion N Leysin
+OBJE 205 566839.353 132592.761 30 10 Leysin-Grand-Hôtel 41 Switzerland Genferseeregion N Leysin
+OBJE 206 801176.950 135920.504 30 10 Cadera 41 Switzerland Ostschweiz N Privilasco
+OBJE 207 504641.627 133477.709 30 10 Céligny 41 Switzerland Genferseeregion N Céligny
+OBJE 208 578143.550 133285.982 30 10 les Diablerets 41 Switzerland Genferseeregion N Diablerets
+OBJE 209 646390.147 133513.251 30 10 Mörel 41 Switzerland Genferseeregion N Mörel
+OBJE 210 718337.566 134617.174 30 10 Biasca 41 Switzerland Tessin N Biasca
+OBJE 211 574988.486 133531.699 30 10 les Aviolats 41 Switzerland Genferseeregion N Sépey
+OBJE 212 576535.868 133581.058 30 10 Vers-l'Église 41 Switzerland Genferseeregion N Vers-l'Église
+OBJE 213 573772.840 133659.149 30 10 les Echenards 41 Switzerland Genferseeregion N Sépey
+OBJE 214 570640.312 133718.061 30 10 les Planches 41 Switzerland Genferseeregion N Sépey
+OBJE 215 505694.977 134861.993 30 10 Crans 41 Switzerland Genferseeregion N Crans-près-Céligny
+OBJE 216 570205.315 134476.123 30 10 le Sépey 41 Switzerland Genferseeregion N Sépey
+OBJE 217 560508.381 134554.089 30 10 Roche VD 41 Switzerland Genferseeregion N Roche
+OBJE 218 800567.424 138035.739 30 10 Cavaglia 41 Switzerland Ostschweiz N Privilasco
+OBJE 219 556924.660 134945.482 30 10 les Evouettes 41 Switzerland Genferseeregion N Evouettes
+OBJE 220 648905.462 135645.291 30 10 Betten FO 41 Switzerland Genferseeregion N Betten
+OBJE 221 799568.846 139125.989 30 10 Alp Grüm 41 Switzerland Ostschweiz N Privilasco
+OBJE 222 650324.983 136134.981 30 10 Grengiols 41 Switzerland Genferseeregion N Grengiols
+OBJE 223 713032.669 137517.458 30 10 Bodio 41 Switzerland Tessin N Bodio
+OBJE 224 507383.341 137537.444 30 10 Nyon 41 Switzerland Genferseeregion Y Nyon
+OBJE 225 507353.938 137626.837 30 10 Nyon 41 Switzerland Genferseeregion Y Nyon
+OBJE 226 555156.339 137248.429 30 10 Bouveret 41 Switzerland Genferseeregion N Bouveret
+OBJE 227 652252.898 137418.685 30 10 Lax 41 Switzerland Genferseeregion N Lax
+OBJE 228 506982.026 138455.279 30 10 les Plantaz 41 Switzerland Genferseeregion N Nyon
+OBJE 229 551317.058 138145.331 30 10 Saint-Gingolph 41 Switzerland Genferseeregion N Saint-Gingolph
+OBJE 230 551248.015 138168.123 3 10 Saint-Gingolph Rail 41 Switzerland Genferseeregion N @
+OBJE 231 508212.352 138925.598 30 10 Prangins 41 Switzerland Genferseeregion N Nyon
+OBJE 232 653258.184 138572.512 30 10 Fiesch Feriendorf 41 Switzerland Genferseeregion N Fiesch
+OBJE 233 560666.504 138732.929 30 10 Villeneuve 41 Switzerland Genferseeregion Y Villeneuve
+OBJE 234 505624.304 139688.225 30 10 l' Asse 41 Switzerland Genferseeregion N Asse
+OBJE 235 653398.113 139274.112 30 10 Fiesch 41 Switzerland Genferseeregion N Fiesch
+OBJE 236 798578.331 142785.937 30 10 Ospizio Bernina 41 Switzerland Ostschweiz N Ospizio Bernina
+OBJE 237 654950.676 140221.875 30 10 Fürgangen-Bellwald 41 Switzerland Genferseeregion N Bellwald
+OBJE 238 505304.135 140849.500 30 10 Trélex 41 Switzerland Genferseeregion N Trélex
+OBJE 239 560680.730 140911.707 30 10 Veytaux-Chillon 41 Switzerland Genferseeregion N Veytaux
+OBJE 240 510112.749 141531.847 30 10 Gland 41 Switzerland Genferseeregion N Nyon
+OBJE 241 560348.171 141780.990 30 10 Territet 41 Switzerland Genferseeregion N Montreux
+OBJE 242 505247.717 142640.356 30 10 Givrins 41 Switzerland Genferseeregion N Givrins
+OBJE 243 560603.655 142057.230 30 10 Toveyre 41 Switzerland Genferseeregion N Montreux
+OBJE 244 560818.948 142066.942 30 10 Valmont 41 Switzerland Genferseeregion N Montreux
+OBJE 245 560182.664 142326.800 30 10 les Planches (Montreux) 41 Switzerland Genferseeregion N Montreux
+OBJE 246 561589.366 142339.895 30 10 Caux 41 Switzerland Genferseeregion N Caux
+OBJE 247 560528.831 142368.988 30 10 Glion 41 Switzerland Genferseeregion N Glion
+OBJE 248 564602.975 142432.588 30 10 Rochers-de-Naye 41 Switzerland Genferseeregion N Caux
+OBJE 249 562128.582 142525.462 30 10 les Echets 41 Switzerland Genferseeregion Y Caux
+OBJE 250 559923.038 142584.207 30 10 Montreux MTGN 41 Switzerland Genferseeregion N Montreux
+OBJE 251 657778.818 142794.087 30 10 Niederwald 41 Switzerland Genferseeregion N Niederwald
+OBJE 252 560715.400 142690.151 30 10 Glion-Hôtel-des-Alpes 41 Switzerland Genferseeregion N Glion
+OBJE 253 562406.383 142701.588 30 10 Haut-de-Caux 41 Switzerland Genferseeregion N Caux
+OBJE 254 559478.460 142765.050 30 10 Montreux 41 Switzerland Genferseeregion Y Montreux
+OBJE 255 564481.770 142733.451 30 10 la Perche 41 Switzerland Genferseeregion N Caux
+OBJE 256 562829.437 142754.544 30 10 Crêt-d'y-Bau 41 Switzerland Genferseeregion N Caux
+OBJE 257 796269.780 145869.054 30 10 Bernina Lagalb 41 Switzerland Ostschweiz N Ospizio Bernina
+OBJE 258 505936.385 143418.926 30 10 Genolier 41 Switzerland Genferseeregion N Genolier
+OBJE 259 559632.767 142852.947 30 10 Montreux 41 Switzerland Genferseeregion Y Montreux
+OBJE 260 561216.758 142964.818 30 10 le Tremblex 41 Switzerland Genferseeregion N Caux
+OBJE 261 563399.926 143040.082 30 10 Paccot 41 Switzerland Genferseeregion N Caux
+OBJE 262 559503.685 143087.265 30 10 Collège 41 Switzerland Genferseeregion N Montreux
+OBJE 263 505358.461 143817.103 30 10 Sus-Châtel 41 Switzerland Genferseeregion N Genolier
+OBJE 264 560280.692 143204.372 30 10 Sontier 41 Switzerland Genferseeregion N Montreux
+OBJE 265 559329.030 143399.710 30 10 Vuarennes 41 Switzerland Genferseeregion N Montreux
+OBJE 266 564485.836 143422.660 30 10 Jaman 41 Switzerland Genferseeregion N Caux
+OBJE 267 795496.072 146488.988 30 10 Bernina Diavolezza 41 Switzerland Ostschweiz N Ospizio Bernina
+OBJE 268 559053.513 143568.329 30 10 Belmont-sur-Montreux 41 Switzerland Genferseeregion N Montreux
+OBJE 269 558147.589 143696.843 30 10 Clarens 41 Switzerland Genferseeregion N Montreux
+OBJE 270 659151.738 143874.631 30 10 Blitzingen 41 Switzerland Genferseeregion N Blitzingen
+OBJE 271 794563.969 146781.353 30 10 Bernina Suot 41 Switzerland Ostschweiz N Ospizio Bernina
+OBJE 272 513122.006 144400.512 30 10 Gilly Bursinel 41 Switzerland Genferseeregion N Bursinel
+OBJE 273 559471.023 143943.471 30 10 Chernex 41 Switzerland Genferseeregion N Chernex
+OBJE 274 506115.787 144572.378 30 10 la Joy-Clinique 41 Switzerland Genferseeregion N Genolier
+OBJE 275 560800.871 144012.481 30 10 Sendy-Sollard 41 Switzerland Genferseeregion N Montreux
+OBJE 276 558703.685 144104.321 30 10 Châtelard 41 Switzerland Genferseeregion N Montreux
+OBJE 277 503630.515 144867.350 30 10 Chèvrerie-Monteret 41 Switzerland Genferseeregion N Monteret
+OBJE 278 556791.527 144273.378 30 10 Burier 41 Switzerland Genferseeregion N Vevey
+OBJE 279 500143.063 144957.528 30 10 les Pralies 41 Switzerland Genferseeregion N Saint-Cergue
+OBJE 280 501764.127 144930.863 30 10 Saint-Cergue 41 Switzerland Genferseeregion N Saint-Cergue
+OBJE 281 559811.422 144285.807 30 10 Chamby-Musée 41 Switzerland Genferseeregion N Montreux
+OBJE 282 559005.703 144446.875 30 10 Fontanivent 41 Switzerland Genferseeregion N Montreux
+OBJE 283 792268.921 147386.105 30 10 Morteratsch 41 Switzerland Ostschweiz N Pontresina
+OBJE 284 559582.630 144543.023 30 10 Chamby 41 Switzerland Genferseeregion N Montreux
+OBJE 285 558691.675 144593.539 30 10 Planchamp 41 Switzerland Genferseeregion N Montreux
+OBJE 286 659926.345 144804.993 30 10 Biel (Goms) 41 Switzerland Genferseeregion N Selkingen
+OBJE 287 506067.674 145429.199 30 10 le Muids 41 Switzerland Genferseeregion N Muids
+OBJE 288 561943.582 144872.248 30 10 les Avants 41 Switzerland Genferseeregion N Avants
+OBJE 289 497988.021 145671.853 30 10 la Givrine 41 Switzerland Genferseeregion N Saint-Cergue
+OBJE 290 563580.371 144917.703 30 10 Jor 41 Switzerland Genferseeregion N Avants
+OBJE 291 555506.923 145127.611 30 10 la Tour-de-Peilz 41 Switzerland Genferseeregion N Vevey
+OBJE 292 566186.159 145135.945 30 10 les Cases 41 Switzerland Espace Mittelland N Montbovon
+OBJE 293 600435.240 145196.480 30 10 Lenk im Simmental 41 Switzerland Espace Mittelland N Lenk
+OBJE 294 505846.249 146010.784 30 10 Arzier 41 Switzerland Genferseeregion N Arzier
+OBJE 295 660971.148 145582.547 30 10 Gluringen 41 Switzerland Genferseeregion N Gluringen
+OBJE 296 506609.468 146176.781 30 10 Bassins 41 Switzerland Genferseeregion N Bassins
+OBJE 297 515322.388 146214.682 30 10 Rolle 41 Switzerland Genferseeregion N Rolle
+OBJE 298 495300.261 146651.916 30 10 la Cure 41 Switzerland Genferseeregion N Cure
+OBJE 299 554261.345 146015.173 30 10 Vevey 41 Switzerland Genferseeregion Y Vevey
+OBJE 300 554284.642 146048.347 30 10 Vevey 41 Switzerland Genferseeregion Y Vevey
+OBJE 301 572758.720 145980.805 30 10 Rossinière 41 Switzerland Genferseeregion N Rossinière
+OBJE 302 558349.019 146152.243 30 10 Blonay 41 Switzerland Genferseeregion N Blonay
+OBJE 303 555307.668 146229.647 30 10 Clies 41 Switzerland Genferseeregion N Vevey
+OBJE 304 573811.757 146131.760 30 10 la Chaudanne-Les Moulins 41 Switzerland Genferseeregion N Moulins
+OBJE 305 555561.556 146283.350 30 10 Hauteville 41 Switzerland Genferseeregion N Vevey
+OBJE 306 554501.906 146335.736 30 10 Gilamont 41 Switzerland Genferseeregion N Vevey
+OBJE 307 569856.470 146261.448 30 10 la Tine 41 Switzerland Genferseeregion N Tine
+OBJE 308 661891.302 146503.525 30 10 Reckingen 41 Switzerland Genferseeregion N Reckingen
+OBJE 309 558419.456 146340.740 30 10 Prélaz CEV 41 Switzerland Genferseeregion N Blonay
+OBJE 310 557736.941 146501.129 30 10 Château-de-Blonay 41 Switzerland Genferseeregion N Blonay
+OBJE 311 556024.858 146613.450 30 10 Château-d'Hauteville 41 Switzerland Genferseeregion N Vevey
+OBJE 312 558444.495 146629.602 30 10 Tusinge 41 Switzerland Genferseeregion N Blonay
+OBJE 313 566900.965 146588.250 30 10 Allières 41 Switzerland Espace Mittelland Y Montbovon
+OBJE 314 559143.659 146658.164 30 10 Fayaux 41 Switzerland Genferseeregion N Blonay
+OBJE 315 557131.505 146694.397 30 10 Saint-Légier-Village 41 Switzerland Genferseeregion N Saint-Légier
+OBJE 316 599766.927 146563.798 30 10 Boden 41 Switzerland Espace Mittelland N Matten
+OBJE 317 556494.503 146765.670 30 10 Saint-Légier-Gare 41 Switzerland Genferseeregion N Saint-Légier
+OBJE 318 517540.894 147206.693 30 10 Perroy 41 Switzerland Genferseeregion N Perroy
+OBJE 319 550575.452 147122.650 30 10 Saint-Saphorin 41 Switzerland Genferseeregion N Saint-Saphorin
+OBJE 320 578162.629 147014.826 30 10 les Granges (Château-d'Oex) 41 Switzerland Genferseeregion N Château-d'Oex
+OBJE 321 559807.532 147153.944 30 10 Ondallaz-l'Alliaz 41 Switzerland Genferseeregion N Blonay
+OBJE 322 549854.460 147239.784 30 10 Rivaz 41 Switzerland Genferseeregion N Rivaz
+OBJE 323 558601.856 147173.237 30 10 les Chevalleyres 41 Switzerland Genferseeregion N Blonay
+OBJE 324 588108.584 147064.727 30 10 Gstaad 41 Switzerland Espace Mittelland N Gstaad
+OBJE 325 522307.903 147565.731 30 10 Etoy 41 Switzerland Genferseeregion N Etoy
+OBJE 326 576434.948 147110.282 30 10 Château-d'Oex 41 Switzerland Genferseeregion N Château-d'Oex
+OBJE 327 520150.135 147605.091 30 10 Allaman 41 Switzerland Genferseeregion N Allaman
+OBJE 328 577057.538 147241.272 30 10 la Palaz 41 Switzerland Genferseeregion N Château-d'Oex
+OBJE 329 558342.047 147364.015 30 10 la Chiésaz 41 Switzerland Genferseeregion N Chiésaz
+OBJE 330 579761.820 147520.589 30 10 les Combes 41 Switzerland Genferseeregion N Château-d'Oex
+OBJE 331 559674.137 147877.424 30 10 Lally 41 Switzerland Genferseeregion N Blonay
+OBJE 332 524482.295 148238.445 30 10 Saint-Prex 41 Switzerland Genferseeregion N Saint-Prex
+OBJE 333 549385.043 148044.129 30 10 Chexbres-Village 41 Switzerland Genferseeregion N Chexbres
+OBJE 334 580576.960 147862.512 30 10 Flendruz 41 Switzerland Genferseeregion N Flendruz
+OBJE 335 559299.519 148124.515 30 10 les Pléaides 41 Switzerland Genferseeregion N Blonay
+OBJE 336 703855.953 148937.554 30 10 Faido 41 Switzerland Tessin N Faido
+OBJE 337 663652.096 148522.945 30 10 Münster 41 Switzerland Genferseeregion N Münster
+OBJE 338 789505.373 151168.947 30 10 Surovas 41 Switzerland Ostschweiz N Pontresina
+OBJE 339 569551.959 148319.554 30 10 Montbovon 41 Switzerland Espace Mittelland N Montbovon
+OBJE 340 568024.594 148449.765 30 10 les Sciernes 41 Switzerland Espace Mittelland N Montbovon
+OBJE 341 545206.476 148781.100 30 10 Cully 41 Switzerland Genferseeregion N Cully
+OBJE 342 586430.015 148557.897 30 10 Saanen 41 Switzerland Espace Mittelland N Saanen
+OBJE 343 582483.505 148590.342 30 10 Rougemont 41 Switzerland Genferseeregion N Rougemont
+OBJE 344 788767.561 151668.491 30 10 Pontresina 41 Switzerland Ostschweiz N Pontresina
+OBJE 345 546782.214 148967.059 30 10 Epesses 41 Switzerland Genferseeregion N Epesses
+OBJE 346 587827.961 148810.579 30 10 Gruben 41 Switzerland Espace Mittelland N Gruben
+OBJE 347 665009.575 149393.461 30 10 Geschinen 41 Switzerland Genferseeregion N Geschinen
+OBJE 348 548351.987 149364.700 30 10 Puidoux Chexbres 41 Switzerland Genferseeregion N Puidoux
+OBJE 349 598692.205 149154.079 30 10 Matten 41 Switzerland Espace Mittelland N Matten
+OBJE 350 543932.457 149671.079 30 10 Villette VD 41 Switzerland Genferseeregion N Villette
+OBJE 351 526015.345 149875.880 30 10 Tolochenaz 41 Switzerland Genferseeregion N Tolochenaz
+OBJE 352 784192.238 152327.488 30 10 Sankt Moritz 41 Switzerland Ostschweiz N Sankt Moritz
+OBJE 353 545154.683 149837.681 30 10 Grandvaux 41 Switzerland Genferseeregion N Grandvaux
+OBJE 354 666852.742 150736.582 30 10 Ulrichen 41 Switzerland Genferseeregion N Ulrichen
+OBJE 355 542521.928 150696.038 30 10 Lutry 41 Switzerland Genferseeregion N Lutry
+OBJE 356 588744.690 150442.915 30 10 Schönried 41 Switzerland Espace Mittelland N Schönried
+OBJE 357 597049.896 150477.530 30 10 Sankt Stephan 41 Switzerland Espace Mittelland N Sankt Stephan
+OBJE 358 527365.016 151015.629 30 10 la Gottaz 41 Switzerland Genferseeregion N Morges
+OBJE 359 526743.610 151045.401 30 10 Prélionne 41 Switzerland Genferseeregion N Morges
+OBJE 360 570417.237 150949.872 30 10 Lessoc 41 Switzerland Espace Mittelland N Lessoc
+OBJE 361 549955.866 151118.723 30 10 Moreillon 41 Switzerland Genferseeregion N Puidoux
+OBJE 362 787506.725 153920.175 30 10 Punt Muragl 41 Switzerland Ostschweiz N Pontresina
+OBJE 363 543241.830 151333.985 30 10 Bossière 41 Switzerland Genferseeregion N Lutry
+OBJE 364 540394.771 151383.765 30 10 Pully 41 Switzerland Genferseeregion N Lausanne
+OBJE 365 668223.475 151708.037 30 10 Obergesteln 41 Switzerland Genferseeregion N Obergesteln
+OBJE 366 541755.646 151626.121 30 10 la Conversion 41 Switzerland Genferseeregion N Lutry
+OBJE 367 527957.906 151808.942 30 10 Morges 41 Switzerland Genferseeregion Y Morges
+OBJE 368 527943.224 151864.705 30 10 Morges 41 Switzerland Genferseeregion Y Morges
+OBJE 369 785781.606 154333.771 30 10 Celerina 41 Switzerland Ostschweiz N Celerina
+OBJE 370 540169.180 151852.921 30 10 Pully Nord 41 Switzerland Genferseeregion N Lausanne
+OBJE 371 525896.476 152067.455 30 10 Chigny 41 Switzerland Genferseeregion N Chigny
+OBJE 372 596152.633 151711.972 30 10 Stöckli 41 Switzerland Espace Mittelland N Sankt Stephan
+OBJE 373 590305.100 151818.635 30 10 Saanenmöser 41 Switzerland Espace Mittelland N Saanenmöser
+OBJE 374 528677.655 152311.757 30 10 Morges-St-Jean 41 Switzerland Genferseeregion N Morges
+OBJE 375 570637.083 151960.406 30 10 Albeuve 41 Switzerland Espace Mittelland N Albeuve
+OBJE 376 537288.066 152293.611 30 10 Lausanne 41 Switzerland Genferseeregion N Lausanne
+OBJE 377 522449.637 152600.083 30 10 Yens 41 Switzerland Genferseeregion N Yens
+OBJE 378 529543.327 152835.179 30 10 Lonay-Préverenges 41 Switzerland Genferseeregion N Lonay
+OBJE 379 556875.031 152699.281 30 10 Tatroz 41 Switzerland Espace Mittelland N Tatroz
+OBJE 380 537448.011 152914.501 30 10 Lausanne-Chauderon 41 Switzerland Genferseeregion N Lausanne
+OBJE 381 525878.663 153112.703 30 10 Vufflens-le-Château 41 Switzerland Genferseeregion N Vufflens-le-Château
+OBJE 382 558525.624 152821.066 30 10 Châtel-Saint-Denis 41 Switzerland Espace Mittelland N Châtel-Saint-Denis
+OBJE 383 555134.865 152923.237 30 10 Bossonnens 41 Switzerland Espace Mittelland N Bossonnens
+OBJE 384 523970.780 153336.638 30 10 Bussy-sur-Morges 41 Switzerland Genferseeregion N Bussy-Chardonney
+OBJE 385 557429.841 153028.829 30 10 Remaufens 41 Switzerland Espace Mittelland N Remaufens
+OBJE 386 558220.183 153034.400 30 10 Au Moulin 41 Switzerland Espace Mittelland N Châtel-Saint-Denis
+OBJE 387 524954.332 153446.572 30 10 le Marais 41 Switzerland Genferseeregion N Bussy-Chardonney
+OBJE 388 536999.404 153308.284 30 10 Montétan 41 Switzerland Genferseeregion N Lausanne
+OBJE 389 571072.330 153103.306 30 10 Neirivue 41 Switzerland Espace Mittelland N Neirivue
+OBJE 390 531123.748 153472.783 30 10 Denges-Echandens 41 Switzerland Genferseeregion N Denges
+OBJE 391 689921.740 153783.033 30 10 Airolo 41 Switzerland Tessin N Airolo
+OBJE 392 618219.114 153172.234 30 10 Mitholz Balmhorn 41 Switzerland Espace Mittelland N Mitholz
+OBJE 393 554202.535 153419.408 30 10 Granges (Veveyse) 41 Switzerland Espace Mittelland N Verdan
+OBJE 394 593376.378 153326.296 30 10 Oeschseite 41 Switzerland Espace Mittelland N Oeschseite
+OBJE 395 535024.330 153729.523 30 10 Malley 41 Switzerland Genferseeregion N Lausanne
+OBJE 396 786726.447 156298.217 36 4 Samedan 41 Switzerland Ostschweiz N Samedan
+OBJE 397 618202.796 153494.564 30 10 Blausee BE 41 Switzerland Espace Mittelland N Mitholz
+OBJE 398 522953.266 154172.279 30 10 Chardonney-Château 41 Switzerland Genferseeregion N Bussy-Chardonney
+OBJE 399 536455.474 154114.441 30 10 Union-Prilly 41 Switzerland Genferseeregion N Lausanne
+OBJE 400 669797.584 154294.163 36 10 Oberwald 41 Switzerland Genferseeregion N Oberwald
+OBJE 401 515632.510 154626.324 30 10 Bière 41 Switzerland Genferseeregion N Bière
+OBJE 402 533936.337 154564.051 30 10 Renens 41 Switzerland Genferseeregion N Lausanne
+OBJE 403 595931.926 154413.427 30 10 Blankenburg 41 Switzerland Espace Mittelland Y Blankenburg
+OBJE 404 553881.940 154633.593 30 10 Palézieux-Gare 41 Switzerland Genferseeregion Y Palézieux-Gare
+OBJE 405 522748.621 154964.241 30 10 Reverolle 41 Switzerland Genferseeregion N Reverolle
+OBJE 406 553866.855 154667.059 30 10 Palézieux-Gare 41 Switzerland Genferseeregion Y Palézieux-Gare
+OBJE 407 572024.369 154888.573 30 10 Grandvillard 41 Switzerland Espace Mittelland N Grandvillard
+OBJE 408 536121.617 155185.223 30 10 Prilly Chasseur 41 Switzerland Genferseeregion N Lausanne
+OBJE 409 532052.785 155563.363 30 10 Bussigny 41 Switzerland Genferseeregion N Bussigny-près-Lausanne
+OBJE 410 641781.556 155346.217 30 10 Jungfraujoch 41 Switzerland Espace Mittelland N Kleine Scheidegg
+OBJE 411 535919.039 155609.830 30 10 Cery-Fleur-de-Lys 41 Switzerland Genferseeregion N Lausanne
+OBJE 412 519547.256 155928.990 30 10 Froideville 41 Switzerland Genferseeregion N Ballens
+OBJE 413 787937.202 158326.749 30 4 Bever 41 Switzerland Ostschweiz N Bever
+OBJE 414 558697.802 155543.486 30 10 Prayoud 41 Switzerland Espace Mittelland N Prayoud
+OBJE 415 595204.049 155458.919 30 10 Zweisimmen 41 Switzerland Espace Mittelland Y Zweisimmen
+OBJE 416 595250.065 155458.882 30 10 Zweisimmen 41 Switzerland Espace Mittelland Y Zweisimmen
+OBJE 417 522179.520 156038.856 30 10 Apples 41 Switzerland Genferseeregion N Apples
+OBJE 418 518339.822 156256.565 30 10 Ballens 41 Switzerland Genferseeregion N Ballens
+OBJE 419 535798.403 156522.723 30 10 Jouxtens-Mézery 41 Switzerland Genferseeregion N Jouxtens-Mézery
+OBJE 420 553159.968 156484.573 30 10 Palézieux-Village 41 Switzerland Genferseeregion N Palézieux-Village
+OBJE 421 617204.901 156370.818 30 10 Kandergrund Post 41 Switzerland Espace Mittelland N Kandergrund
+OBJE 422 784612.764 159391.524 30 4 Spinas 41 Switzerland Ostschweiz N Bever
+OBJE 423 535989.422 157176.596 30 10 le Lussex 41 Switzerland Genferseeregion N Romanel-sur-Lausanne
+OBJE 424 572939.962 157218.868 30 10 Enney 41 Switzerland Espace Mittelland N Enney
+OBJE 425 522973.034 158107.590 30 10 le Manège 41 Switzerland Genferseeregion N Pampigny
+OBJE 426 536107.049 158142.535 30 10 Romanel-sur-Lausanne 41 Switzerland Genferseeregion N Romanel-sur-Lausanne
+OBJE 427 552137.626 158104.576 30 10 Châtillens 41 Switzerland Genferseeregion N Châtillens
+OBJE 428 553963.327 158245.940 30 10 Oron 41 Switzerland Genferseeregion N Oron-le-Châtel
+OBJE 429 560794.681 158364.207 30 10 Semsales 41 Switzerland Espace Mittelland N Semsales
+OBJE 430 572975.536 158308.137 30 10 Estavannens 41 Switzerland Espace Mittelland N Estavannens
+OBJE 431 641170.004 158410.230 30 10 Eigergletscher 41 Switzerland Espace Mittelland N Kleine Scheidegg
+OBJE 432 536143.031 158642.424 30 10 Vernand-Camarès 41 Switzerland Genferseeregion N Vernand
+OBJE 433 530432.925 158750.312 30 10 Vufflens-la-Ville 41 Switzerland Genferseeregion N Vufflens-la-Ville
+OBJE 434 638425.076 158492.120 30 4 Wengernalp 41 Switzerland Espace Mittelland N Kleine Scheidegg
+OBJE 435 522875.558 158875.943 30 10 Pampigny 41 Switzerland Genferseeregion N Pampigny
+OBJE 436 616539.788 158425.518 30 10 Frutigen Amtshaus 41 Switzerland Espace Mittelland N Frutigen
+OBJE 437 536160.724 158864.579 30 10 Bel-Air LEB 41 Switzerland Genferseeregion N Cheseaux-sur-Lausanne
+OBJE 438 790531.919 161678.307 30 10 la Punt-Chamues-ch 41 Switzerland Ostschweiz N Punt-Chamues-ch
+OBJE 439 595773.939 158782.326 30 10 Grubenwald 41 Switzerland Espace Mittelland N Grubenwald
+OBJE 440 635117.348 159138.904 30 3 Winteregg 41 Switzerland Espace Mittelland N Mürren
+OBJE 441 572014.060 159257.458 30 10 Gruyères 41 Switzerland Espace Mittelland N Gruyères
+OBJE 442 522741.648 159789.294 30 10 Mauraz 41 Switzerland Genferseeregion N Mauraz
+OBJE 443 506042.811 160049.544 30 10 le Brassus 41 Switzerland Genferseeregion N Brassus
+OBJE 444 536268.981 159674.981 30 10 Cheseaux 41 Switzerland Genferseeregion N Cheseaux-sur-Lausanne
+OBJE 445 616283.818 159536.477 30 10 Frutigen 41 Switzerland Espace Mittelland N Frutigen
+OBJE 446 791621.775 162613.858 30 10 Madulain 41 Switzerland Ostschweiz N Madulain
+OBJE 447 560658.358 159788.044 30 10 la Verrerie 41 Switzerland Espace Mittelland N Verrerie
+OBJE 448 779291.782 162377.823 30 4 Preda 41 Switzerland Ostschweiz N Preda
+OBJE 449 521550.189 160705.254 30 10 Tuilerie 41 Switzerland Genferseeregion N Montricher
+OBJE 450 571015.807 160462.795 30 10 le Pâquier-Montbarry 41 Switzerland Espace Mittelland N Pâquier
+OBJE 451 637944.434 160556.784 30 4 Allmend 41 Switzerland Espace Mittelland N Wengen
+OBJE 452 519931.338 161149.086 30 10 Montricher 41 Switzerland Genferseeregion N Montricher
+OBJE 453 634732.662 160715.243 30 3 Grütschalp 41 Switzerland Espace Mittelland N Lauterbrunnen
+OBJE 454 506585.717 161441.927 30 10 Chez-le-Maître 41 Switzerland Genferseeregion N Sentier
+OBJE 455 636594.078 160826.333 30 3 Wengwald 41 Switzerland Espace Mittelland N Wengen
+OBJE 456 681593.532 161346.550 36 10 Realp 41 Switzerland Zentralschweiz N Realp
+OBJE 457 636025.786 161034.120 30 3 Lauterbrunnen 41 Switzerland Espace Mittelland N Lauterbrunnen
+OBJE 458 793375.414 164115.942 30 10 Zuoz 41 Switzerland Ostschweiz N Zuoz
+OBJE 459 536830.902 161358.850 30 10 Etagnières 41 Switzerland Genferseeregion N Etagnières
+OBJE 460 643242.721 161203.978 30 4 Alpiglen 41 Switzerland Espace Mittelland Y Wärgistal
+OBJE 461 561886.440 161280.884 30 10 le Crêt 41 Switzerland Espace Mittelland N Crêt
+OBJE 462 573403.137 161385.536 30 10 les Marches 41 Switzerland Espace Mittelland N Broc
+OBJE 463 595116.895 161417.447 30 10 Weissenbach 41 Switzerland Espace Mittelland N Weissenbach
+OBJE 464 530009.300 161868.072 30 10 Cossonay 41 Switzerland Genferseeregion N Cossonay
+OBJE 465 574009.142 161549.630 30 10 Broc-Village 41 Switzerland Espace Mittelland N Broc
+OBJE 466 643814.051 161663.905 30 4 Alpiglen 41 Switzerland Espace Mittelland Y Grindelwald
+OBJE 467 571902.465 161614.710 30 10 Epagny 41 Switzerland Espace Mittelland N Epagny
+OBJE 468 507510.477 162272.569 30 10 Sentier-Orient 41 Switzerland Genferseeregion N Sentier
+OBJE 469 637048.623 161673.989 30 4 Wengen 41 Switzerland Espace Mittelland N Wengen
+OBJE 470 574837.155 161679.499 30 10 Broc-Fabrique 41 Switzerland Espace Mittelland N Broc
+OBJE 471 617166.678 161706.662 30 10 Wengi 41 Switzerland Espace Mittelland N Schwandi
+OBJE 472 571114.454 161851.902 30 10 la Tour-de-Trême 41 Switzerland Espace Mittelland N Tour-de-Trême
+OBJE 473 571345.086 162017.546 30 10 la Tour-Village 41 Switzerland Espace Mittelland N Tour-de-Trême
+OBJE 474 643955.798 162187.431 30 4 Brandegg 41 Switzerland Espace Mittelland Y Wärgistal
+OBJE 475 520648.572 162651.546 30 10 Villars-Bozon 41 Switzerland Genferseeregion N Isle
+OBJE 476 551995.985 162441.292 30 10 Ecublens-Rue 41 Switzerland Espace Mittelland N Ecublens
+OBJE 477 794886.410 165510.585 30 10 S-chanf 41 Switzerland Ostschweiz N S-chanf
+OBJE 478 508161.108 163229.834 30 10 Solliat Golisse 41 Switzerland Genferseeregion N Solliat
+OBJE 479 644380.862 162724.163 30 10 Brandegg 41 Switzerland Espace Mittelland Y Grindelwald
+OBJE 480 537383.698 162931.694 30 10 Assens 41 Switzerland Genferseeregion N Assens
+OBJE 481 566569.897 162987.175 30 10 les Colombettes 41 Switzerland Espace Mittelland N Vaulruz
+OBJE 482 521309.889 163421.066 30 10 l' Isle-Mont-la-Ville 41 Switzerland Genferseeregion N Isle
+OBJE 483 564915.845 163074.437 30 10 les Ponts 41 Switzerland Espace Mittelland N Ponts
+OBJE 484 570599.539 163088.355 30 10 Bulle 41 Switzerland Espace Mittelland Y Bulle
+OBJE 485 570653.211 163099.209 30 10 Bulle 41 Switzerland Espace Mittelland Y Bulle
+OBJE 486 567987.963 163168.424 30 10 Vuadens-Sud 41 Switzerland Espace Mittelland N Vuadens
+OBJE 487 565690.615 163270.057 30 10 Vaulruz-Sud 41 Switzerland Espace Mittelland N Vaulruz
+OBJE 488 618671.246 163234.116 30 10 Rüdlen 41 Switzerland Espace Mittelland N Rüdlen
+OBJE 489 570325.058 163345.391 30 10 Planchy 41 Switzerland Espace Mittelland N Bulle
+OBJE 490 686826.293 164088.121 30 10 Hospental 41 Switzerland Zentralschweiz N Hospental
+OBJE 491 554977.424 163641.040 30 10 Vauderens 41 Switzerland Espace Mittelland N Vauderens
+OBJE 492 644971.528 163640.136 30 10 Grindelwald Grunt 41 Switzerland Espace Mittelland N Grindelwald
+OBJE 493 565770.063 163769.856 30 10 Vaulruz-Nord 41 Switzerland Espace Mittelland N Vaulruz
+OBJE 494 509052.813 164439.218 30 10 le Rocheray 41 Switzerland Genferseeregion N Solliat
+OBJE 495 645451.434 163988.369 30 10 Grindelwald 41 Switzerland Espace Mittelland N Grindelwald
+OBJE 496 619243.464 163936.266 30 10 Reichenbach im Kandertal 41 Switzerland Espace Mittelland N Scharnachtal
+OBJE 497 596329.073 164040.083 30 10 Boltigen 41 Switzerland Espace Mittelland N Boltigen
+OBJE 498 643302.569 164595.044 30 10 Schwendi bei Grindelwald 41 Switzerland Espace Mittelland N Grindelwald
+OBJE 499 776829.563 167098.143 30 4 Bergün 41 Switzerland Ostschweiz N Bergün
+OBJE 500 509838.287 165227.850 30 10 Esserts-de-Rive 41 Switzerland Genferseeregion N Esserts-de-Rive
+OBJE 501 635413.847 164754.593 30 10 Zweilütschinen 41 Switzerland Espace Mittelland N Zweilütschinen
+OBJE 502 641138.906 165191.266 30 10 Burglauenen 41 Switzerland Espace Mittelland N Lütschental
+OBJE 503 639147.662 165244.663 30 10 Lütschental 41 Switzerland Espace Mittelland N Lütschental
+OBJE 504 619369.613 165192.849 30 10 Mülenen 41 Switzerland Espace Mittelland N Mülenen
+OBJE 505 797847.211 168465.905 30 10 Cinuos-chel-Brail 41 Switzerland Ostschweiz N Cinuos-chel
+OBJE 506 688561.154 165914.526 36 10 Andermatt 41 Switzerland Zentralschweiz N Andermatt
+OBJE 507 531745.800 165661.303 30 10 Eclépens 41 Switzerland Genferseeregion N Eclépens
+OBJE 508 538392.580 165689.422 30 10 Echallens 41 Switzerland Genferseeregion N Echallens
+OBJE 509 564326.604 165745.933 30 10 Sâles 41 Switzerland Espace Mittelland N Sâles
+OBJE 510 538993.617 166061.263 30 10 Sur Roche 41 Switzerland Genferseeregion N Echallens
+OBJE 511 690769.296 166747.982 30 10 Nätschen 41 Switzerland Zentralschweiz N Andermatt
+OBJE 512 511514.641 166726.032 30 10 le Lieu 41 Switzerland Genferseeregion N Lieu
+OBJE 513 563173.310 166208.693 30 10 Rueyres-Treyfayes 41 Switzerland Espace Mittelland N Rueyres-Treyfayes
+OBJE 514 598412.788 166351.405 30 10 Enge im Simmental 41 Switzerland Espace Mittelland N Oberwil
+OBJE 515 539918.776 166696.720 30 10 Grésaley 41 Switzerland Genferseeregion N Echallens
+OBJE 516 774946.236 169156.004 30 4 Stuls 41 Switzerland Ostschweiz N Stugl
+OBJE 517 618951.023 166814.543 30 10 Heustrich Emdthal 41 Switzerland Espace Mittelland N Aeschi
+OBJE 518 561118.916 166988.721 30 10 Vuisternens-devant-Romont 41 Switzerland Espace Mittelland N Vuisternens-devant-Romont
+OBJE 519 550548.723 167166.625 30 10 Bressonnaz 41 Switzerland Genferseeregion N Chavannes-sur-Moudon
+OBJE 520 540836.524 167376.859 30 10 Sugnens 41 Switzerland Genferseeregion N Sugnens
+OBJE 521 625930.293 167296.383 30 10 Leissigen 41 Switzerland Espace Mittelland N Leissigen
+OBJE 522 599783.156 167251.634 30 10 Oberwil im Simmental 41 Switzerland Espace Mittelland N Oberwil
+OBJE 523 532228.167 167690.298 30 10 Bavois 41 Switzerland Genferseeregion N Bavois
+OBJE 524 513348.147 168033.399 30 10 Sèchey 41 Switzerland Genferseeregion N Séchey
+OBJE 525 529650.029 167820.040 30 10 la Sarraz 41 Switzerland Genferseeregion N Sarraz
+OBJE 526 697284.779 168195.301 30 10 Tschamut-Selva 41 Switzerland Ostschweiz N Tschamut
+OBJE 527 606641.221 167444.247 30 10 Ringoldingen 41 Switzerland Espace Mittelland N Ringoldingen
+OBJE 528 557609.678 167612.813 30 10 Siviriez 41 Switzerland Espace Mittelland N Siviriez
+OBJE 529 604413.810 167542.257 30 10 Därstetten 41 Switzerland Espace Mittelland N Därstetten
+OBJE 530 602898.290 167619.159 30 10 Weissenberg 41 Switzerland Espace Mittelland N Weissenburg
+OBJE 531 609021.355 167636.321 30 10 Erlenbach im Simmental 41 Switzerland Espace Mittelland N Erlenbach
+OBJE 532 628859.684 167765.524 30 10 Därligen 41 Switzerland Espace Mittelland N Därligen
+OBJE 533 610865.788 167717.183 30 10 Oey-Diemtigen 41 Switzerland Espace Mittelland N Oey
+OBJE 534 694201.063 168601.951 30 10 Oberalppasshöhe-Calmot 41 Switzerland Zentralschweiz N Tschamut
+OBJE 535 514107.088 168645.075 30 10 Charbonnières 41 Switzerland Genferseeregion N Charbonnières
+OBJE 536 763527.002 170324.154 30 4 Tiefencastel 41 Switzerland Ostschweiz N Tiefencastel
+OBJE 537 633065.644 168431.974 30 10 Wilderswil 41 Switzerland Espace Mittelland N Wilderswil
+OBJE 538 688087.228 168987.178 30 10 Göschenen 41 Switzerland Zentralschweiz Y Göschenen
+OBJE 539 688094.880 168987.290 30 10 Göschenen 41 Switzerland Zentralschweiz Y Göschenen
+OBJE 540 767166.918 170758.090 30 4 Surava 41 Switzerland Ostschweiz N Surava
+OBJE 541 612815.902 168465.833 30 10 Burgholz 41 Switzerland Espace Mittelland N Burgholz
+OBJE 542 514796.220 169202.249 30 10 le Pont 41 Switzerland Genferseeregion N Pont
+OBJE 543 800538.743 172058.902 30 10 Carolina 41 Switzerland Ostschweiz N Fermeda-Carolina
+OBJE 544 551543.046 168959.455 30 10 Moudon 41 Switzerland Genferseeregion N Moudon
+OBJE 545 621056.601 168867.014 30 10 Faulensee 41 Switzerland Espace Mittelland N Faulensee
+OBJE 546 769478.643 171312.273 30 4 Alvaneu 41 Switzerland Ostschweiz N Alvaneu
+OBJE 547 699823.048 169771.277 30 10 Dieni 41 Switzerland Ostschweiz N Rueras
+OBJE 548 560498.671 169282.843 30 10 Mézières FR 41 Switzerland Espace Mittelland N Mézières
+OBJE 549 542372.886 169529.736 30 10 Fey 41 Switzerland Genferseeregion N Fey
+OBJE 550 771836.172 171857.548 30 4 Filisur 41 Switzerland Ostschweiz N Filisur
+OBJE 551 615109.219 169471.654 30 10 Wimmis 41 Switzerland Espace Mittelland N Wimmis
+OBJE 552 631535.844 169735.524 30 10 Interlaken West 41 Switzerland Espace Mittelland N Interlaken
+OBJE 553 700735.395 170587.031 30 10 Rueras 41 Switzerland Ostschweiz N Rueras
+OBJE 554 759602.941 172209.062 30 4 Salins 41 Switzerland Ostschweiz N Salins
+OBJE 555 705999.572 171055.744 30 10 Mompé Tujetsch 41 Switzerland Ostschweiz N Mompé Tujetsch
+OBJE 556 702280.396 171080.134 36 10 Sedrun 41 Switzerland Ostschweiz N Sedrun
+OBJE 557 703160.080 171095.195 30 10 Bugnei 41 Switzerland Ostschweiz N Bugnei
+OBJE 558 615581.249 170384.424 30 10 Eifeld 41 Switzerland Espace Mittelland N Spiez
+OBJE 559 618387.863 170736.972 30 10 Spiez 41 Switzerland Espace Mittelland N Spiez
+OBJE 560 633280.254 171134.536 30 10 Interlaken Ost 41 Switzerland Espace Mittelland Y Interlaken
+OBJE 561 633448.417 171157.704 30 10 Interlaken Ost 41 Switzerland Espace Mittelland Y Interlaken
+OBJE 562 633188.278 171167.377 30 10 Interlaken Ost 41 Switzerland Espace Mittelland Y Interlaken
+OBJE 563 706325.869 172073.288 30 10 Segnas 41 Switzerland Ostschweiz N Segnes
+OBJE 564 616328.716 171220.157 30 10 Lattigen bei Spiez 41 Switzerland Espace Mittelland N Spiez
+OBJE 565 559556.311 171379.098 30 10 Romont 41 Switzerland Espace Mittelland N Romont
+OBJE 566 616963.416 171288.615 30 10 Spiezmoos Süd 41 Switzerland Espace Mittelland N Spiezmoos
+OBJE 567 543807.994 171606.128 30 10 Bercher 41 Switzerland Genferseeregion N Bercher
+OBJE 568 617184.543 171533.810 30 10 Spiezmoos Nord 41 Switzerland Espace Mittelland N Spiezmoos
+OBJE 569 707411.196 172559.597 30 10 Acla da Fontauna 41 Switzerland Ostschweiz N Disentis
+OBJE 570 774272.926 174140.984 30 10 Wiesen 41 Switzerland Ostschweiz N Wiesen
+OBJE 571 802805.178 175227.279 30 10 Zernez 41 Switzerland Ostschweiz N Zernez
+OBJE 572 526550.837 172270.815 30 10 Croy-Romainmôtier 41 Switzerland Genferseeregion N Croy
+OBJE 573 529625.442 172245.042 30 10 Arnex-sur-Orbe 41 Switzerland Genferseeregion N Arnex-sur-Orbe
+OBJE 574 753104.805 174030.196 36 4 Thusis 41 Switzerland Ostschweiz N Thusis
+OBJE 575 660905.014 172529.720 30 10 Innertkirchen MIB 41 Switzerland Espace Mittelland N Innertkirchen
+OBJE 576 754530.817 174211.340 30 4 Sils im Domleschg 41 Switzerland Ostschweiz N Sils im Domleschg
+OBJE 577 635382.566 172658.446 30 10 Ringgenberg 41 Switzerland Espace Mittelland N Ringgenberg
+OBJE 578 616317.353 172587.477 30 10 Kumm 41 Switzerland Espace Mittelland N Einigen
+OBJE 579 708287.092 173620.479 30 10 Disentis 41 Switzerland Ostschweiz N Disentis
+OBJE 580 660470.586 173136.771 30 10 Innertkirchen Hof 41 Switzerland Espace Mittelland N Innertkirchen
+OBJE 581 533376.675 173224.961 30 10 Chavornay 41 Switzerland Genferseeregion N Chavornay
+OBJE 582 554514.393 173271.780 30 10 Lucens 41 Switzerland Genferseeregion N Lucens
+OBJE 583 615428.186 173385.528 30 10 Einigen 41 Switzerland Espace Mittelland N Einigen
+OBJE 584 518266.951 173967.883 30 10 Vallorbe 41 Switzerland Genferseeregion N Vallorbe
+OBJE 585 516625.436 174157.265 3 10 Vallorbe Rail 41 Switzerland Genferseeregion N @
+OBJE 586 526330.023 174219.083 30 10 Bretonnières 41 Switzerland Genferseeregion N Bretonnières
+OBJE 587 637545.946 174027.847 30 10 Niederried 41 Switzerland Espace Mittelland N Niederried
+OBJE 588 614669.798 173950.580 30 10 Gwattstutz 41 Switzerland Espace Mittelland N Thun
+OBJE 589 520675.230 174502.516 30 10 le Day 41 Switzerland Genferseeregion N Vallorbe
+OBJE 590 532365.320 174414.730 30 10 les Granges (Orbe) 41 Switzerland Genferseeregion N Orbe
+OBJE 591 752559.196 176229.214 30 10 Cazis 41 Switzerland Ostschweiz N Cazis
+OBJE 592 563461.101 174477.846 30 10 Villaz-Saint-Pierre 41 Switzerland Espace Mittelland N Villaz-Saint-Pierre
+OBJE 593 531558.867 174768.527 30 10 St-Eloi 41 Switzerland Genferseeregion N Orbe
+OBJE 594 714065.188 175862.379 30 10 Sumvitg-Cumpadials 41 Switzerland Ostschweiz N Somvix
+OBJE 595 530593.396 175246.566 30 10 Orbe 41 Switzerland Genferseeregion N Orbe
+OBJE 596 613902.751 175015.958 30 10 Gwatt 41 Switzerland Espace Mittelland N Thun
+OBJE 597 657099.785 175360.521 30 10 Meiringen MIB 41 Switzerland Espace Mittelland N Meiringen
+OBJE 598 534387.819 175470.618 30 10 Essert-Pittet 41 Switzerland Genferseeregion N Essert-Pittet
+OBJE 599 656839.152 175435.865 30 10 Meiringen SSB 41 Switzerland Espace Mittelland N Meiringen
+OBJE 600 778578.738 178071.247 30 10 Davos Monstein 41 Switzerland Ostschweiz N Davos Monstein
+OBJE 601 716179.574 176836.958 30 10 Rabius-Surrein 41 Switzerland Ostschweiz N Rabius
+OBJE 602 556630.995 176213.190 30 10 Henniez 41 Switzerland Genferseeregion N Henniez
+OBJE 603 752443.762 178061.117 30 10 Rodels Realta 41 Switzerland Ostschweiz N Rodels
+OBJE 604 639847.295 176343.889 30 10 Oberried am Brienzersee 41 Switzerland Espace Mittelland N Oberried
+OBJE 605 614280.822 176762.166 30 10 Dürrenast 41 Switzerland Espace Mittelland N Thun
+OBJE 606 718693.843 178042.581 30 10 Trun 41 Switzerland Ostschweiz N Trun
+OBJE 607 778948.181 179783.874 30 10 Davos Glaris 41 Switzerland Ostschweiz N Glaris
+OBJE 608 649882.192 177330.564 30 10 Unterbach 41 Switzerland Espace Mittelland N Brienzwiler
+OBJE 609 536597.150 177636.932 30 10 Ependes 41 Switzerland Genferseeregion N Ependes
+OBJE 610 566514.003 177639.413 30 10 Chénens 41 Switzerland Espace Mittelland N Chénens
+OBJE 611 801743.792 181064.375 30 10 Susch 41 Switzerland Ostschweiz N Susch
+OBJE 612 569334.816 177868.864 30 10 Cottens 41 Switzerland Espace Mittelland N Cottens
+OBJE 613 646007.835 178311.230 30 10 Brienz 41 Switzerland Espace Mittelland N Brienz
+OBJE 614 723992.348 179450.803 30 10 Tavanasa-Breil/Brigels 41 Switzerland Ostschweiz N Tavanasa
+OBJE 615 614475.660 178363.441 30 10 Thun 41 Switzerland Espace Mittelland N Thun
+OBJE 616 653553.549 178685.174 30 10 Brünig-Hasliberg 41 Switzerland Espace Mittelland N Brünig
+OBJE 617 558421.216 178657.337 30 10 Granges-Marnand 41 Switzerland Genferseeregion N Marnand
+OBJE 618 613824.379 179173.427 30 10 Schwäbis 41 Switzerland Espace Mittelland N Thun
+OBJE 619 571466.486 179436.908 30 10 Neyruz 41 Switzerland Espace Mittelland N Neyruz
+OBJE 620 780381.631 182195.791 30 10 Davos-Frauenkirch 41 Switzerland Ostschweiz N Frauenkirch
+OBJE 621 751342.478 181402.629 30 10 Rothenbrunnen 41 Switzerland Ostschweiz N Rothenbrunnen
+OBJE 622 728357.939 181143.918 30 10 Waltensburg 41 Switzerland Ostschweiz N Waltensburg
+OBJE 623 694334.826 180522.567 30 10 Amsteg 41 Switzerland Zentralschweiz N Amsteg
+OBJE 624 804122.805 183269.501 30 10 Lavin 41 Switzerland Ostschweiz N Lavin
+OBJE 625 807244.591 183610.338 30 10 Guarda 41 Switzerland Ostschweiz Y Guarda
+OBJE 626 613539.450 180184.401 30 10 Steffisburg 41 Switzerland Espace Mittelland N Steffisburg
+OBJE 627 611927.801 180214.334 30 10 Lerchenfeld 41 Switzerland Espace Mittelland N Thun
+OBJE 628 810953.034 183995.703 30 10 Ardez 41 Switzerland Ostschweiz N Ardez
+OBJE 629 528273.978 180743.691 30 10 Six-Fontaines 41 Switzerland Genferseeregion N Baulmes
+OBJE 630 732766.434 181829.351 30 10 Schnaus-Strada 41 Switzerland Ostschweiz N Schnaus
+OBJE 631 610499.224 180389.535 30 10 Uetendorf Allmend 41 Switzerland Espace Mittelland N Uetendorf
+OBJE 632 730406.502 181799.735 30 10 Rueun 41 Switzerland Ostschweiz N Rueun
+OBJE 633 610247.070 180455.800 30 10 Uetendorf 41 Switzerland Espace Mittelland N Uetendorf
+OBJE 634 735092.562 182003.688 30 10 Ilanz 41 Switzerland Ostschweiz N Ilanz
+OBJE 635 781010.622 183382.558 30 10 Davos-Islen 41 Switzerland Ostschweiz N Davos Platz
+OBJE 636 737046.739 182403.919 30 10 Castrisch 41 Switzerland Ostschweiz N Castrisch
+OBJE 637 560125.910 181091.468 30 10 Trey 41 Switzerland Genferseeregion N Trey
+OBJE 638 539013.411 181525.117 30 10 Yverdon-les-Bains 41 Switzerland Genferseeregion Y Yverdon-les-Bains
+OBJE 639 539051.705 181535.845 30 10 Yverdon-les-Bains 41 Switzerland Genferseeregion Y Yverdon-les-Bains
+OBJE 640 571345.629 181316.233 30 10 Rosé 41 Switzerland Espace Mittelland N Rosé
+OBJE 641 613055.922 181261.655 30 10 Lädeli 41 Switzerland Espace Mittelland N Lädeli
+OBJE 642 771157.803 184071.453 30 10 Arosa 41 Switzerland Ostschweiz N Arosa
+OBJE 643 655441.079 181948.556 30 10 Lungern 41 Switzerland Zentralschweiz N Lungern
+OBJE 644 607893.032 181741.790 30 10 Seftigen 41 Switzerland Espace Mittelland N Seftigen
+OBJE 645 815218.897 185660.395 30 10 Ftan 41 Switzerland Ostschweiz N Ftan
+OBJE 646 573899.047 181960.436 30 10 Matran 41 Switzerland Espace Mittelland N Matran
+OBJE 647 530232.474 182321.458 30 10 Baulmes 41 Switzerland Genferseeregion N Baulmes
+OBJE 648 606342.640 182040.108 30 10 Burgistein-Wattenwil 41 Switzerland Espace Mittelland N Burgistein
+OBJE 649 538411.333 182387.318 30 10 William-Barbey YSteC 41 Switzerland Genferseeregion N Yverdon-les-Bains
+OBJE 650 575411.576 182120.776 30 10 Villars-sur-Glâne 41 Switzerland Espace Mittelland N Villars-sur-Glâne
+OBJE 651 781933.496 184945.347 30 10 Davos Platz 41 Switzerland Ostschweiz N Davos Platz
+OBJE 652 612794.244 182217.134 30 10 Heimberg 41 Switzerland Espace Mittelland N Heimberg
+OBJE 653 740301.715 184002.710 30 10 Valendas-Sagogn 41 Switzerland Ostschweiz N Valendas
+OBJE 654 817398.362 186451.106 30 10 Scuol-Tarasp 41 Switzerland Ostschweiz N Scuol
+OBJE 655 537676.412 182939.679 30 10 la Brinaz 41 Switzerland Genferseeregion N Yverdon-les-Bains
+OBJE 656 611044.977 182647.215 30 10 Uttigen 41 Switzerland Espace Mittelland N Uttigen
+OBJE 657 534531.813 183039.971 30 10 Essert-sous-Champvent 41 Switzerland Genferseeregion N Essert-sous-Champvent
+OBJE 658 536960.895 183147.289 30 10 Valeyres-sous-Montagny 41 Switzerland Genferseeregion N Valeyres-sous-Montagny
+OBJE 659 772927.612 185479.123 30 10 Litzirüti 41 Switzerland Ostschweiz N Litzirüti
+OBJE 660 530812.258 183593.237 30 10 Troix-Villes 41 Switzerland Genferseeregion N Baulmes
+OBJE 661 749705.715 185131.238 30 10 Rhäzüns 41 Switzerland Ostschweiz N Rhäzüns
+OBJE 662 547431.665 183546.380 30 10 Yvonand 41 Switzerland Genferseeregion N Yvonand
+OBJE 663 532495.891 183951.994 30 10 Vuiteboeuf 41 Switzerland Genferseeregion N Vuiteboeuf
+OBJE 664 578166.157 183710.903 30 10 Fribourg 41 Switzerland Espace Mittelland N Fribourg
+OBJE 665 539185.512 184180.406 30 10 Grandson 41 Switzerland Genferseeregion N Grandson
+OBJE 666 742756.851 185773.220 30 10 Versam-Safien 41 Switzerland Ostschweiz N Versam
+OBJE 667 783540.761 187085.347 30 10 Davos Dorf 41 Switzerland Ostschweiz N Davos Platz
+OBJE 668 749446.517 186336.865 30 10 Bonaduz 41 Switzerland Ostschweiz N Bonaduz
+OBJE 669 693144.176 185362.537 30 10 Erstfeld 41 Switzerland Zentralschweiz N Erstfeld
+OBJE 670 605797.974 184685.348 30 10 Thürnen 41 Switzerland Espace Mittelland N Thürnen
+OBJE 671 656335.592 185080.849 30 10 Kaiserstuhl 41 Switzerland Zentralschweiz N Kaiserstuhl
+OBJE 672 558199.294 185162.334 30 10 Cugy FR 41 Switzerland Espace Mittelland N Cugy
+OBJE 673 574736.849 185069.558 30 10 Belfaux CFF 41 Switzerland Espace Mittelland N Belfaux
+OBJE 674 575927.379 185064.642 30 10 Givisiez 41 Switzerland Espace Mittelland N Givisiez
+OBJE 675 746508.981 186886.949 30 10 Trin 41 Switzerland Ostschweiz N Trin
+OBJE 676 550370.911 185400.067 30 10 Cheyres 41 Switzerland Espace Mittelland N Cheyres
+OBJE 677 613176.926 185275.079 30 10 Brenzikofen 41 Switzerland Espace Mittelland N Brenzikofen
+OBJE 678 564840.275 185386.393 30 10 Cousset 41 Switzerland Espace Mittelland N Cousset
+OBJE 679 592824.199 185331.692 30 10 Schwarzenburg 41 Switzerland Espace Mittelland N Schwarzenburg
+OBJE 680 673591.683 185779.514 30 10 Engelberg 41 Switzerland Zentralschweiz N Engelberg
+OBJE 681 610482.928 185347.586 30 10 Kiesen 41 Switzerland Espace Mittelland N Kiesen
+OBJE 682 528410.900 185800.536 30 10 Sainte-Croix 41 Switzerland Genferseeregion N Sainte-Croix
+OBJE 683 773163.058 187899.277 30 10 Langwies GR 41 Switzerland Ostschweiz N Langwies
+OBJE 684 562163.278 185647.313 30 10 Payerne 41 Switzerland Genferseeregion N Payerne
+OBJE 685 574922.527 185669.087 30 10 Belfaux-Village 41 Switzerland Espace Mittelland N Belfaux
+OBJE 686 750804.419 187894.413 30 10 Reichenau-Tamins 41 Switzerland Ostschweiz N Reichenau
+OBJE 687 563358.873 186484.757 30 10 Corcelles-Sud 41 Switzerland Genferseeregion N Corcelles-près-Payerne
+OBJE 688 567402.792 186483.564 30 10 Léchelles 41 Switzerland Espace Mittelland N Léchelles
+OBJE 689 751953.144 188346.054 30 10 Ems Werk 41 Switzerland Ostschweiz N Domat
+OBJE 690 769134.223 188907.263 30 10 Sankt Peter Molinis 41 Switzerland Ostschweiz N Sankt Peter
+OBJE 691 770482.560 189001.148 30 10 Peist 41 Switzerland Ostschweiz N Peist
+OBJE 692 571554.837 186762.512 30 10 Grolley 41 Switzerland Espace Mittelland N Grolley
+OBJE 693 766007.479 189086.574 30 10 Lüen-Castiel 41 Switzerland Ostschweiz N Castiel
+OBJE 694 784369.828 189668.909 30 10 Davos Wolfgang 41 Switzerland Ostschweiz N Wolfgang
+OBJE 695 542961.939 187155.984 30 10 Onnens-Bonvillars 41 Switzerland Genferseeregion N Onnens
+OBJE 696 671862.783 187392.794 30 10 Grünenwald 41 Switzerland Zentralschweiz N Obermatt
+OBJE 697 753708.132 188958.035 30 10 Domat 41 Switzerland Ostschweiz N Domat
+OBJE 698 563454.442 187140.075 30 10 Corcelles-Nord 41 Switzerland Genferseeregion N Corcelles-près-Payerne
+OBJE 699 657167.180 187512.302 30 10 Giswil 41 Switzerland Zentralschweiz N Giswil
+OBJE 700 760845.806 189457.101 30 10 Sassal 41 Switzerland Ostschweiz N Chur
+OBJE 701 604879.944 187374.800 30 10 Kaufdorf 41 Switzerland Espace Mittelland N Kaufdorf
+OBJE 702 613698.333 187532.963 30 10 Oberdiessbach 41 Switzerland Espace Mittelland N Oberdiessbach
+OBJE 703 593071.260 187788.214 30 10 Lanzenhäusern 41 Switzerland Espace Mittelland N Lanzenhäusern
+OBJE 704 609982.792 187814.667 30 10 Wichtrach 41 Switzerland Espace Mittelland N Niederwichtrach
+OBJE 705 577052.871 187995.071 30 10 Pensier 41 Switzerland Espace Mittelland N Pensier
+OBJE 706 671400.887 188376.731 30 10 Obermatt LSE 41 Switzerland Zentralschweiz N Obermatt
+OBJE 707 755716.655 190077.562 30 10 Felsberg 41 Switzerland Ostschweiz N Felsberg
+OBJE 708 554575.201 188312.684 30 10 Estavayer-le-Lac 41 Switzerland Espace Mittelland N Estavayer-le-Lac
+OBJE 709 760115.350 190516.218 30 10 Chur Stadt 41 Switzerland Ostschweiz N Chur
+OBJE 710 785764.163 191469.358 30 10 Davos Laret 41 Switzerland Ostschweiz N Laret
+OBJE 711 581037.377 188848.203 30 10 Düdingen 41 Switzerland Espace Mittelland N Düdingen
+OBJE 712 545436.733 189133.993 30 10 Concise 41 Switzerland Genferseeregion N Concise
+OBJE 713 565496.589 189351.337 30 10 Dompierre 41 Switzerland Espace Mittelland N Dompierre
+OBJE 714 759501.867 191489.572 30 10 Chur 41 Switzerland Ostschweiz Y Chur
+OBJE 715 759478.700 191500.075 30 10 Chur 41 Switzerland Ostschweiz Y Chur
+OBJE 716 604428.162 189675.635 30 10 Toffen 41 Switzerland Espace Mittelland N Toffen
+OBJE 717 594217.740 190110.409 30 10 Schwarzwasserbrücke 41 Switzerland Espace Mittelland N Riedburg
+OBJE 718 585929.348 190190.921 30 10 Schmitten 41 Switzerland Espace Mittelland N Schmitten
+OBJE 719 583772.211 190474.322 30 10 Fillistorf 41 Switzerland Espace Mittelland N Fillistorf
+OBJE 720 575950.177 190723.058 30 10 Courtepin 41 Switzerland Espace Mittelland N Courtepin
+OBJE 721 671176.730 191186.820 30 10 Grafenort 41 Switzerland Zentralschweiz N Grafenort
+OBJE 722 567434.310 190863.489 30 10 Domdidier 41 Switzerland Espace Mittelland N Domdidier
+OBJE 723 691085.751 191712.651 30 10 Altdorf 41 Switzerland Zentralschweiz N Altdorf
+OBJE 724 661034.264 191341.530 30 10 Sachseln 41 Switzerland Zentralschweiz N Sachseln
+OBJE 725 785261.130 193911.750 30 10 Cavadürli 41 Switzerland Ostschweiz N Klosters Platz
+OBJE 726 786175.566 193940.166 30 10 Klosters 41 Switzerland Ostschweiz N Klosters Platz
+OBJE 727 587990.021 191131.349 30 10 Wünnewil 41 Switzerland Espace Mittelland N Wünnewil
+OBJE 728 614109.391 191146.899 30 10 Stalden im Emmental 41 Switzerland Espace Mittelland N Stalden
+OBJE 729 609244.893 191448.697 30 10 Münsingen 41 Switzerland Espace Mittelland N Münsingen
+OBJE 730 594653.816 191710.829 30 10 Mittelhäusern 41 Switzerland Espace Mittelland N Riedburg
+OBJE 731 548170.162 192111.323 30 10 Vaumarcus 41 Switzerland Espace Mittelland N Vaumarcus
+OBJE 732 759637.643 194117.709 30 10 Haldenstein 41 Switzerland Ostschweiz N Haldenstein
+OBJE 733 613984.918 192213.831 30 10 Konolfingen 41 Switzerland Espace Mittelland N Konolfingen
+OBJE 734 610920.394 192363.100 30 10 Tägertschi 41 Switzerland Espace Mittelland N Tägertschi
+OBJE 735 785749.646 195372.804 30 10 Klosters Dorf 41 Switzerland Ostschweiz N Klosters Dorf
+OBJE 736 569753.798 192696.714 30 10 Avenches 41 Switzerland Genferseeregion N Avenches
+OBJE 737 596163.872 192754.648 30 10 Niederscherli 41 Switzerland Espace Mittelland N Niederscherli
+OBJE 738 591065.210 192971.347 30 10 Flamatt 41 Switzerland Espace Mittelland N Flamatt
+OBJE 739 532633.008 193400.352 30 10 Buttes 41 Switzerland Espace Mittelland N Buttes
+OBJE 740 604639.104 193021.973 30 10 Belp 41 Switzerland Espace Mittelland N Belp
+OBJE 741 590250.181 193261.666 30 10 Flamatt Dorf 41 Switzerland Espace Mittelland N Flamatt
+OBJE 742 593420.839 193490.770 30 10 Thörishaus Dorf 41 Switzerland Espace Mittelland N Thörishaus
+OBJE 743 690505.626 194272.136 30 10 Flüelen 41 Switzerland Zentralschweiz N Flüelen
+OBJE 744 587232.994 193634.227 30 10 Freiburghaus 41 Switzerland Espace Mittelland N Freiburghaus
+OBJE 745 783268.997 196441.780 30 10 Serneus 41 Switzerland Ostschweiz N Serneus
+OBJE 746 661731.529 193961.294 30 10 Sarnen 41 Switzerland Zentralschweiz N Sarnen
+OBJE 747 589435.468 193685.499 30 10 Neuenegg 41 Switzerland Espace Mittelland N Neuenegg
+OBJE 748 604249.908 193733.168 30 10 Belp Steinbach 41 Switzerland Espace Mittelland N Belp
+OBJE 749 672563.781 194383.152 30 10 Dörfli 41 Switzerland Zentralschweiz N Dörfli
+OBJE 750 608257.779 194126.432 30 10 Rubigen 41 Switzerland Espace Mittelland N Rubigen
+OBJE 751 525346.901 194665.469 3 10 Meudon Rail 41 Switzerland Espace Mittelland N @
+OBJE 752 549859.404 194464.885 30 10 Gorgier-Saint-Aubin 41 Switzerland Espace Mittelland N Saint-Aubin-Sauges
+OBJE 753 578037.233 194305.793 30 10 Cressier FR 41 Switzerland Espace Mittelland N Cressier
+OBJE 754 617165.027 194345.436 30 10 Zäziwil 41 Switzerland Espace Mittelland N Zäziwil
+OBJE 755 635337.798 194469.653 30 10 Wiggen 41 Switzerland Zentralschweiz N Wiggen
+OBJE 756 619854.618 194409.339 30 10 Bowil 41 Switzerland Espace Mittelland N Bowil
+OBJE 757 597147.874 194388.277 30 10 Gasel 41 Switzerland Espace Mittelland N Gasel
+OBJE 758 584804.324 194551.515 30 10 Laupen 41 Switzerland Espace Mittelland N Laupen
+OBJE 759 593719.169 194546.555 30 10 Thörishaus 41 Switzerland Espace Mittelland N Thörishaus
+OBJE 760 614999.647 194884.351 30 10 Grosshöchstetten 41 Switzerland Espace Mittelland N Grosshöchstetten
+OBJE 761 534810.262 195255.058 30 10 Fleurier 41 Switzerland Espace Mittelland N Fleurier
+OBJE 762 572280.898 195241.360 30 10 Faoug 41 Switzerland Genferseeregion N Faoug
+OBJE 763 780731.454 197910.431 30 10 Saas 41 Switzerland Ostschweiz N Saas
+OBJE 764 672929.165 195666.140 30 10 Wolfenschiessen 41 Switzerland Zentralschweiz N Wolfenschiessen
+OBJE 765 602572.727 195288.589 30 10 Kehrsatz 41 Switzerland Espace Mittelland N Kehrsatz
+OBJE 766 760995.885 197479.304 30 10 Trimmis 41 Switzerland Ostschweiz N Trimmis
+OBJE 767 597155.987 195411.030 30 10 Moos 41 Switzerland Espace Mittelland Y Gasel
+OBJE 768 575390.998 195639.048 30 10 Münchenwiler-Courgevaux 41 Switzerland Espace Mittelland N Courgevaux
+OBJE 769 536967.634 196076.825 30 10 Môtiers 41 Switzerland Espace Mittelland N Môtiers
+OBJE 770 594238.633 195924.528 30 10 Oberwangen 41 Switzerland Espace Mittelland N Oberwangen
+OBJE 771 777798.931 198612.063 30 10 Küblis 41 Switzerland Ostschweiz N Küblis
+OBJE 772 609771.124 195996.353 30 10 Worb SBB 41 Switzerland Espace Mittelland N Worb
+OBJE 773 602122.955 196077.718 30 10 Kehrsatz Nord 41 Switzerland Espace Mittelland N Kehrsatz
+OBJE 774 638031.722 196220.456 30 10 Escholzmatt 41 Switzerland Zentralschweiz N Escholzmatt
+OBJE 775 621888.881 196550.900 30 10 Signau 41 Switzerland Espace Mittelland N Signau
+OBJE 776 761639.095 198775.592 30 10 Untervaz 41 Switzerland Ostschweiz N Untervaz
+OBJE 777 631134.790 196792.000 30 10 Trubschachen 41 Switzerland Espace Mittelland N Trubschachen
+OBJE 778 774893.682 199449.374 30 10 Fideris 41 Switzerland Ostschweiz N Fideris
+OBJE 779 538922.630 197279.429 30 10 Couvet RVT 41 Switzerland Espace Mittelland N Couvet
+OBJE 780 673105.198 197469.371 30 10 Niederrickenbach SW 41 Switzerland Zentralschweiz N Dallenwil
+OBJE 781 614499.075 197084.279 30 10 Biglen 41 Switzerland Espace Mittelland N Biglen
+OBJE 782 598284.006 197100.369 30 10 Köniz 41 Switzerland Espace Mittelland N Köniz
+OBJE 783 575496.429 197195.001 30 10 Murten 41 Switzerland Espace Mittelland N Murten
+OBJE 784 595306.096 197157.570 30 10 Niederwangen 41 Switzerland Espace Mittelland N Niederwangen
+OBJE 785 718649.300 198367.218 30 10 Linthal 41 Switzerland Ostschweiz N Linthal
+OBJE 786 608192.506 197283.556 30 10 Langenloh 41 Switzerland Espace Mittelland N Worb
+OBJE 787 718933.786 198617.498 30 10 Linthal Braunwaldbahn 41 Switzerland Ostschweiz N Linthal
+OBJE 788 600568.847 197500.347 30 10 Wabern bei Bern 41 Switzerland Espace Mittelland N Bern
+OBJE 789 603478.034 197545.784 30 10 Muri bei Bern 41 Switzerland Espace Mittelland N Bern
+OBJE 790 607103.073 197571.208 30 10 Rüfenacht 41 Switzerland Espace Mittelland N Rüfenacht
+OBJE 791 552301.577 197791.180 30 10 Bevaix 41 Switzerland Espace Mittelland N Bevaix
+OBJE 792 598527.856 197611.683 30 10 Liebefeld 41 Switzerland Espace Mittelland N Köniz
+OBJE 793 609463.766 197674.522 30 10 Worb Dorf 41 Switzerland Espace Mittelland N Worb
+OBJE 794 773658.928 200247.460 30 10 Jenaz 41 Switzerland Ostschweiz N Jenaz
+OBJE 795 540073.184 198079.345 30 10 la Presta 41 Switzerland Espace Mittelland N Couvet
+OBJE 796 606767.746 197782.043 30 10 Scheyenholz 41 Switzerland Espace Mittelland N Rüfenacht
+OBJE 797 585696.490 198006.688 30 10 Rüplisried-Mauss 41 Switzerland Espace Mittelland N Rüplisried
+OBJE 798 605967.921 197992.418 30 10 Siloah 41 Switzerland Espace Mittelland N Gümligen
+OBJE 799 604163.115 198024.248 30 10 Seidenberg 41 Switzerland Espace Mittelland N Bern
+OBJE 800 605160.633 198091.723 30 10 Gümligen 41 Switzerland Espace Mittelland Y Gümligen
+OBJE 801 605183.449 198125.094 30 10 Gümligen 41 Switzerland Espace Mittelland Y Gümligen
+OBJE 802 672680.555 198564.851 30 10 Dallenwil 41 Switzerland Zentralschweiz N Dallenwil
+OBJE 803 589298.733 198165.879 30 10 Rosshäusern 41 Switzerland Espace Mittelland N Rosshäusern
+OBJE 804 602655.243 198223.502 30 10 Bern Egghölzli 41 Switzerland Espace Mittelland N Bern
+OBJE 805 604589.407 198224.664 30 10 Melchenbühl 41 Switzerland Espace Mittelland N Gümligen
+OBJE 806 596586.289 198323.976 30 10 Bern Bümpliz Süd 41 Switzerland Espace Mittelland N Bern
+OBJE 807 599358.037 198323.018 30 10 Bern Weissenbühl 41 Switzerland Espace Mittelland N Bern
+OBJE 808 720102.837 199574.909 30 10 Rüti GL 41 Switzerland Ostschweiz N Rüti
+OBJE 809 761598.578 200553.861 30 10 Zizers 41 Switzerland Ostschweiz N Zizers
+OBJE 810 576796.408 198534.964 30 10 Muntelier-Löwenberg 41 Switzerland Espace Mittelland N Muntelier
+OBJE 811 626510.713 198659.612 30 10 Langnau 41 Switzerland Espace Mittelland N Langnau im Emmental
+OBJE 812 663802.240 199163.829 30 10 Alpnach Dorf 41 Switzerland Zentralschweiz N Alpnach Dorf
+OBJE 813 772949.241 201339.023 30 10 Furna 41 Switzerland Ostschweiz N Furna
+OBJE 814 592002.963 198861.999 30 10 Riedbach 41 Switzerland Espace Mittelland N Riedbach
+OBJE 815 601687.936 199034.696 30 10 Bern Beunardernstrasse 41 Switzerland Espace Mittelland N Bern
+OBJE 816 597812.523 199045.998 30 10 Bern Ausserholligen 41 Switzerland Espace Mittelland N Bern
+OBJE 817 672509.315 199496.666 30 10 Büren NW 41 Switzerland Zentralschweiz N Büren
+OBJE 818 584496.112 199088.043 30 10 Gümmenen 41 Switzerland Espace Mittelland N Gümmenen
+OBJE 819 542005.245 199405.472 30 10 Travers 41 Switzerland Espace Mittelland N Travers
+OBJE 820 600911.287 199323.573 30 10 Bern Helvetiaplatz 41 Switzerland Espace Mittelland N Bern
+OBJE 821 596175.792 199402.576 30 10 Bern Bümpliz Nord 41 Switzerland Espace Mittelland N Bern
+OBJE 822 597119.882 199479.859 30 10 Bern Stöckacker 41 Switzerland Espace Mittelland N Bern
+OBJE 823 720688.740 200732.007 30 10 Diesbach-Betschwanden 41 Switzerland Ostschweiz N Betschwanden
+OBJE 824 613746.909 199594.949 30 10 Walkringen 41 Switzerland Espace Mittelland N Walkringen
+OBJE 825 609019.088 199652.663 30 10 Vechigen 41 Switzerland Espace Mittelland N Vechigen
+OBJE 826 623567.353 199725.642 30 10 Emmenmatt 41 Switzerland Espace Mittelland N Emmenmatt
+OBJE 827 672006.683 200135.417 30 10 Oberdorf NW 41 Switzerland Zentralschweiz N Stans
+OBJE 828 690100.281 200425.504 30 10 Sisikon 41 Switzerland Zentralschweiz N Sisikon
+OBJE 829 600127.097 199890.477 30 10 Bern 41 Switzerland Espace Mittelland N Bern
+OBJE 830 600119.484 199901.594 30 10 Bern RBS 41 Switzerland Espace Mittelland N Bern
+OBJE 831 578286.447 199963.452 30 10 Galmiz 41 Switzerland Espace Mittelland N Galmiz
+OBJE 832 643990.467 200130.153 30 10 Schüpfheim 41 Switzerland Zentralschweiz N Schüpfheim
+OBJE 833 761935.751 202164.434 30 10 Igis 41 Switzerland Ostschweiz N Igis
+OBJE 834 608393.950 200274.308 30 10 Boll-Utzigen 41 Switzerland Espace Mittelland N Boll
+OBJE 835 663953.666 200666.330 30 10 Alpnachstad 41 Switzerland Zentralschweiz N Alpnachstad
+OBJE 836 583243.477 200381.013 30 10 Ferenbalm-Gurbrü 41 Switzerland Espace Mittelland N Gurbrü
+OBJE 837 603400.248 200436.159 30 10 Ostermundigen 41 Switzerland Espace Mittelland N Bern
+OBJE 838 545489.626 200762.300 30 10 Noirague 41 Switzerland Espace Mittelland N Noiraigue
+OBJE 839 606642.712 200661.208 30 10 Stettlen 41 Switzerland Espace Mittelland N Stettlen
+OBJE 840 605835.860 200671.486 30 10 Deisswill 41 Switzerland Espace Mittelland N Deisswill
+OBJE 841 670668.969 201231.215 30 10 Stans 41 Switzerland Zentralschweiz N Stans
+OBJE 842 554170.986 201222.899 30 10 Boudry 41 Switzerland Espace Mittelland N Boudry
+OBJE 843 549452.750 201327.733 30 10 Champ-du-Moulin 41 Switzerland Espace Mittelland N Champ-du-Moulin
+OBJE 844 575863.748 201384.646 30 10 Sugiez 41 Switzerland Espace Mittelland N Sugiez
+OBJE 845 721606.129 202796.580 30 10 Luchsingen-Hätzingen 41 Switzerland Ostschweiz N Hätzingen
+OBJE 846 623727.068 201682.885 30 10 Neumühle 41 Switzerland Espace Mittelland Y Obermatt
+OBJE 847 614137.770 201719.217 30 10 Bigenthal 41 Switzerland Espace Mittelland N Bigenthal
+OBJE 848 555128.469 202027.184 30 10 Colombier 41 Switzerland Espace Mittelland Y Colombier
+OBJE 849 600492.355 201858.208 30 10 Bern Felsenau 41 Switzerland Espace Mittelland N Bern
+OBJE 850 552388.974 202059.549 30 10 Chambrelien 41 Switzerland Espace Mittelland N Chambrelien
+OBJE 851 771268.607 204426.854 30 10 Schiers 41 Switzerland Ostschweiz N Schiers
+OBJE 852 604540.822 202059.998 30 10 Bolligen 41 Switzerland Espace Mittelland N Bolligen
+OBJE 853 761056.892 204253.657 30 10 Landquart 41 Switzerland Ostschweiz N Landquart
+OBJE 854 761094.628 204265.797 30 10 Landquart Ried 41 Switzerland Ostschweiz N Landquart
+OBJE 855 554430.392 202299.296 30 10 Bôle 41 Switzerland Espace Mittelland N Bôle
+OBJE 856 600629.312 202125.029 30 10 Bern Tiefenau 41 Switzerland Espace Mittelland N Bern
+OBJE 857 603452.379 202448.372 30 10 Ittigen bei Bern 41 Switzerland Espace Mittelland N Ittigen
+OBJE 858 602881.598 202603.712 30 10 Papiermühle 41 Switzerland Espace Mittelland Y Ittigen
+OBJE 859 581286.936 202732.546 30 10 Kerzers 41 Switzerland Espace Mittelland N Kerzers
+OBJE 860 623045.110 202880.867 30 10 Zollbrück 41 Switzerland Espace Mittelland N Zollbrück
+OBJE 861 668385.321 203228.056 30 10 Stansstad 41 Switzerland Zentralschweiz N Stansstad
+OBJE 862 646364.968 203160.921 30 10 Hasle LU 41 Switzerland Zentralschweiz N Hasle
+OBJE 863 767041.234 205319.044 30 10 Seewis Valzeina 41 Switzerland Ostschweiz N Seewis im Prättigau
+OBJE 864 762489.303 205326.767 30 10 Malans 41 Switzerland Ostschweiz N Malans
+OBJE 865 722446.487 204503.911 30 10 Leuggelbach 41 Switzerland Ostschweiz N Leuggelbach
+OBJE 866 557398.645 203411.314 30 10 Auvernier 41 Switzerland Espace Mittelland N Auvernier
+OBJE 867 601648.712 203303.626 30 10 Worblaufen 41 Switzerland Espace Mittelland N Worblaufen
+OBJE 868 768057.678 205714.603 30 10 Grüsch 41 Switzerland Ostschweiz N Grüsch
+OBJE 869 666355.416 203749.913 30 10 Hergiswil 41 Switzerland Zentralschweiz Y Hergiswil
+OBJE 870 666363.024 203749.997 30 10 Hergiswil 41 Switzerland Zentralschweiz Y Hergiswil
+OBJE 871 559173.567 203721.295 30 10 Neuchâtel-Serrières 41 Switzerland Espace Mittelland N Neuchâtel
+OBJE 872 557880.633 203785.879 30 10 Corcelles-Peseux 41 Switzerland Espace Mittelland N Peseux
+OBJE 873 722793.483 205022.537 30 10 Nidfurn-Haslen 41 Switzerland Ostschweiz N Haslen
+OBJE 874 601504.025 203826.091 30 10 Steinbach 41 Switzerland Espace Mittelland N Zollikofen
+OBJE 875 559168.625 204110.435 30 10 les Deurres 41 Switzerland Espace Mittelland N Neuchâtel
+OBJE 876 666491.541 204507.436 30 10 Hergiswil Matt 41 Switzerland Zentralschweiz Y Hergiswil
+OBJE 877 666476.080 204529.499 30 10 Hergiswil Matt 41 Switzerland Zentralschweiz Y Hergiswil
+OBJE 878 601488.666 204415.293 30 10 Unterzollikofen 41 Switzerland Espace Mittelland N Zollikofen
+OBJE 879 560313.129 204614.101 30 10 Neuchâtel-Vauseyon 41 Switzerland Espace Mittelland N Neuchâtel
+OBJE 880 554753.178 204720.429 30 10 Montmollin-Montezillon 41 Switzerland Espace Mittelland N Montmollin
+OBJE 881 577543.174 204735.457 30 10 Müntschemier 41 Switzerland Espace Mittelland N Müntschemier
+OBJE 882 647544.715 205026.811 30 10 Entlebuch 41 Switzerland Zentralschweiz N Entlebuch
+OBJE 883 616670.574 204971.939 30 10 Schafhausen im Emmental 41 Switzerland Espace Mittelland N Schafhausen im Emmental
+OBJE 884 561457.294 205095.753 30 10 Neuchâtel 41 Switzerland Espace Mittelland N Neuchâtel
+OBJE 885 620701.015 205229.122 30 10 Ramsei 41 Switzerland Espace Mittelland N Ramsei
+OBJE 886 601823.104 205304.752 30 10 Oberzollikofen 41 Switzerland Espace Mittelland N Zollikofen
+OBJE 887 724768.945 206620.261 30 10 Schwanden 41 Switzerland Ostschweiz N Schwanden
+OBJE 888 689117.532 206069.968 30 10 Brunnen 41 Switzerland Zentralschweiz N Ingenbohl
+OBJE 889 574176.722 205493.957 30 10 Ins 41 Switzerland Espace Mittelland N Ins
+OBJE 890 582436.368 205463.859 30 10 Fräschels 41 Switzerland Espace Mittelland N Fräschels
+OBJE 891 546669.122 205821.222 30 10 les Ponts-de-Martel 41 Switzerland Espace Mittelland N Ponts-de-Martel
+OBJE 892 601997.873 205805.077 30 10 Zollikofen 41 Switzerland Espace Mittelland Y Zollikofen
+OBJE 893 601959.840 205827.299 30 10 Zollikofen 41 Switzerland Espace Mittelland Y Zollikofen
+OBJE 894 759050.156 208136.670 30 10 Maienfeld 41 Switzerland Ostschweiz N Maienfeld
+OBJE 895 618758.895 206056.495 30 10 Lützelflüh-Goldbach 41 Switzerland Espace Mittelland N Goldbach
+OBJE 896 547335.092 206304.471 30 10 le Stand 41 Switzerland Espace Mittelland N Ponts-de-Martel
+OBJE 897 574886.851 206157.953 30 10 Ins-dorf 41 Switzerland Espace Mittelland N Ins
+OBJE 898 569192.783 206540.442 30 10 Zihlbrüche 41 Switzerland Espace Mittelland N Marin-Epagnier
+OBJE 899 570972.279 206553.736 30 10 Gampelen 41 Switzerland Espace Mittelland N Gampelen
+OBJE 900 621761.139 206522.484 30 10 Grünenmatt 41 Switzerland Espace Mittelland N Grünenmatt
+OBJE 901 567580.933 206593.467 30 10 Marin-Epagnier 41 Switzerland Espace Mittelland N Marin-Epagnier
+OBJE 902 724972.142 207814.308 30 10 Mitlödi 41 Switzerland Ostschweiz N Mitlödi
+OBJE 903 679368.170 207066.328 30 10 Vitznau 41 Switzerland Zentralschweiz N Vitznau
+OBJE 904 548031.564 206809.763 30 10 Petit-Martel 41 Switzerland Espace Mittelland N Petit-Martel
+OBJE 905 757146.353 208786.810 30 10 Bad Ragaz 41 Switzerland Ostschweiz N Bad Ragaz
+OBJE 906 602704.674 206872.596 30 10 Moosseedorf 41 Switzerland Espace Mittelland N Moosseedorf
+OBJE 907 548810.694 207214.367 30 10 Petit-Martel-Est 41 Switzerland Espace Mittelland N Petit-Martel
+OBJE 908 565356.413 207206.327 30 10 Saint-Blaise 41 Switzerland Espace Mittelland N Saint-Blaise
+OBJE 909 555556.393 207360.333 30 10 les Geneveys-sur-Coffrane 41 Switzerland Espace Mittelland N Geneveys-sur-Coffrane
+OBJE 910 603556.061 207273.255 30 10 Schönbühl Shoppyland 41 Switzerland Espace Mittelland N Schönbühl
+OBJE 911 616466.285 207339.329 30 10 Hasle Rüegsau 41 Switzerland Espace Mittelland N Hasle
+OBJE 912 665983.637 207781.548 30 10 Horw 41 Switzerland Zentralschweiz Y Horw
+OBJE 913 666014.048 207781.885 30 10 Horw 41 Switzerland Zentralschweiz Y Horw
+OBJE 914 604544.286 207540.733 30 10 Schönbühl SBB 41 Switzerland Espace Mittelland N Schönbühl
+OBJE 915 679330.423 208188.757 30 10 Mittlerschwanden 41 Switzerland Zentralschweiz N Vitznau
+OBJE 916 577964.998 207724.409 30 10 Brüttelen 41 Switzerland Espace Mittelland N Brüttelen
+OBJE 917 601267.385 207705.912 30 10 Münchenbuchsee 41 Switzerland Espace Mittelland N Münchenbuchsee
+OBJE 918 604521.284 207796.410 30 10 Schönbühl RBS 41 Switzerland Espace Mittelland N Schönbühl
+OBJE 919 690811.300 208730.580 30 10 Schwyz 41 Switzerland Zentralschweiz N Schwyz
+OBJE 920 584459.054 208215.292 30 10 Kallnach 41 Switzerland Espace Mittelland N Kallnach
+OBJE 921 622659.122 208349.050 30 10 Sumiswald-Grünen 41 Switzerland Espace Mittelland N Sumiswald
+OBJE 922 679381.472 208923.234 30 10 Grubisbalm 41 Switzerland Zentralschweiz N Rigi Kaltbad
+OBJE 923 606215.975 208464.956 30 10 Mattstetten 41 Switzerland Espace Mittelland N Schönbühl
+OBJE 924 647833.947 208797.953 30 10 Doppelschwand-Romoos 41 Switzerland Zentralschweiz N Doppleschwand
+OBJE 925 580218.837 208750.392 30 10 Finsterhennen 41 Switzerland Espace Mittelland N Siselen
+OBJE 926 604763.809 208752.674 30 10 Urtenen 41 Switzerland Espace Mittelland N Schönbühl
+OBJE 927 550756.748 208987.886 30 10 les Coeudres 41 Switzerland Espace Mittelland N Coeudres
+OBJE 928 679109.531 209364.346 30 10 Freibergen 41 Switzerland Zentralschweiz N Rigi Kaltbad
+OBJE 929 724730.440 210277.796 30 10 Ennenda 41 Switzerland Ostschweiz N Ennenda
+OBJE 930 580546.788 209082.828 30 10 Siselen BE 41 Switzerland Espace Mittelland N Siselen
+OBJE 931 622754.132 209349.964 30 10 Gammenthal 41 Switzerland Espace Mittelland N Sumiswald
+OBJE 932 678834.836 210016.678 30 10 Romiti Felsentor 41 Switzerland Zentralschweiz N Rigi Kaltbad
+OBJE 933 653616.942 209869.962 30 10 Schachen LV 41 Switzerland Zentralschweiz N Schachen
+OBJE 934 656359.788 209973.082 30 10 Malters 41 Switzerland Zentralschweiz N Malters
+OBJE 935 681035.290 210301.904 30 10 Fruttli 41 Switzerland Zentralschweiz N Goldau
+OBJE 936 614589.844 209813.589 30 10 Oberburg 41 Switzerland Espace Mittelland N Oberburg
+OBJE 937 568511.017 209912.556 30 10 Cornaux 41 Switzerland Espace Mittelland N Cornaux
+OBJE 938 724201.587 211211.918 30 10 Glarus 41 Switzerland Ostschweiz N Glarus
+OBJE 939 586621.949 209944.317 30 10 Bargen 41 Switzerland Espace Mittelland N Bargen
+OBJE 940 682955.308 210517.325 30 10 Kräbel 41 Switzerland Zentralschweiz N Goldau
+OBJE 941 551739.600 210202.771 30 10 les Coeudres-Est 41 Switzerland Espace Mittelland N Coeudres
+OBJE 942 595893.920 210097.417 30 10 Schüpfen 41 Switzerland Espace Mittelland N Schüpfen
+OBJE 943 679661.748 210705.881 30 10 Rigi Klösterli 41 Switzerland Zentralschweiz N Rigi Kaltbad
+OBJE 944 587831.057 210297.469 30 10 Aarberg 41 Switzerland Espace Mittelland N Aarberg
+OBJE 945 684196.383 210901.631 30 10 Goldau N4 41 Switzerland Zentralschweiz N Goldau
+OBJE 946 678078.553 210885.059 30 10 Rigi Kaltbad-First 41 Switzerland Zentralschweiz N Rigi Kaltbad
+OBJE 947 752641.861 212406.371 30 10 Sargans 41 Switzerland Ostschweiz N Sargans
+OBJE 948 623137.195 210529.869 30 10 Griesbach 41 Switzerland Espace Mittelland Y Neueg
+OBJE 949 605271.393 210698.608 30 10 Jegenstorf 41 Switzerland Espace Mittelland N Jegenstorf
+OBJE 950 580210.257 210740.409 30 10 Lüscherz BTI 41 Switzerland Espace Mittelland N Lüscherz
+OBJE 951 678849.205 211228.749 30 10 Rigi First 41 Switzerland Zentralschweiz N Rigi Kaltbad
+OBJE 952 666235.849 211086.351 30 10 Luzern HB 41 Switzerland Zentralschweiz Y Luzern
+OBJE 953 677898.844 211260.725 30 10 Rigi Staffelhöhe 41 Switzerland Zentralschweiz N Rigi Kaltbad
+OBJE 954 557163.693 210939.499 30 10 les Hauts-Geneveys 41 Switzerland Espace Mittelland N Hauts-Geneveys
+OBJE 955 688740.335 211479.002 30 10 Steinen 41 Switzerland Zentralschweiz Y Steinen
+OBJE 956 666211.572 211219.496 30 10 Luzern HB 41 Switzerland Zentralschweiz Y Luzern
+OBJE 957 685039.341 211480.634 30 10 Arth-Goldau AB 41 Switzerland Zentralschweiz N Goldau
+OBJE 958 685039.183 211491.750 30 10 Arth-Goldau 41 Switzerland Zentralschweiz N Goldau
+OBJE 959 671726.931 211361.142 30 10 Meggen 41 Switzerland Zentralschweiz N Meggen
+OBJE 960 545478.863 211224.046 30 10 le Locle-Col-des-Roches 41 Switzerland Espace Mittelland N Col-des-Roches
+OBJE 961 545319.504 211247.743 3 10 Col-des-Roches Rail 41 Switzerland Espace Mittelland N @
+OBJE 962 608264.947 211002.156 30 10 Hindelbank 41 Switzerland Espace Mittelland N Hindelbank
+OBJE 963 552994.968 211337.837 30 10 la Sagne 41 Switzerland Espace Mittelland N Sagne
+OBJE 964 613781.110 211167.972 30 10 Burgdorf Steinhof 41 Switzerland Espace Mittelland N Burgdorf
+OBJE 965 662089.718 211519.788 30 10 Littau 41 Switzerland Zentralschweiz N Littau
+OBJE 966 569848.438 211373.121 30 10 Cressier NE 41 Switzerland Espace Mittelland N Cressier
+OBJE 967 687107.391 211933.003 30 10 Steinerberg 41 Switzerland Zentralschweiz N Steinerberg
+OBJE 968 678649.860 211937.680 30 10 Rigi Staffel 41 Switzerland Zentralschweiz N Rigi Kaltbad
+OBJE 969 750490.340 213319.146 30 10 Mels 41 Switzerland Ostschweiz N Mels
+OBJE 970 648691.547 211762.167 30 10 Wolhusen 41 Switzerland Zentralschweiz N Wolhusen
+OBJE 971 679437.907 212103.787 30 10 Rigi Kulm 41 Switzerland Zentralschweiz N Rigi Kaltbad
+OBJE 972 544922.353 211851.760 30 10 les Frêtes 41 Switzerland Espace Mittelland N Frêtes
+OBJE 973 546814.814 211912.374 30 10 Le Locle 41 Switzerland Espace Mittelland Y Locle
+OBJE 974 546776.926 211923.831 30 10 Le Locle 41 Switzerland Espace Mittelland Y Locle
+OBJE 975 571864.026 211807.942 30 10 le Landeron 41 Switzerland Espace Mittelland N Landeron
+OBJE 976 650414.403 211987.724 30 10 Werthenstein 41 Switzerland Zentralschweiz N Werthenstein
+OBJE 977 592483.935 211890.637 30 10 Suberg-Grossaffoltern 41 Switzerland Espace Mittelland N Suberg
+OBJE 978 545875.370 212209.902 30 10 le Châlet NE 41 Switzerland Espace Mittelland N Locle
+OBJE 979 553563.992 212200.541 30 10 la Sagne-Eglise 41 Switzerland Espace Mittelland N Sagne
+OBJE 980 613565.807 212290.323 30 10 Burgdorf 41 Switzerland Espace Mittelland N Burgdorf
+OBJE 981 573849.662 212410.337 30 10 la Neuveville 41 Switzerland Espace Mittelland N Neuveville
+OBJE 982 623699.267 212510.958 30 10 Affoltern Weier 41 Switzerland Espace Mittelland N Affoltern
+OBJE 983 723227.702 213827.047 30 10 Netstal 41 Switzerland Ostschweiz N Netstal
+OBJE 984 610913.967 212573.938 30 10 Lyssach 41 Switzerland Espace Mittelland N Lyssach
+OBJE 985 612995.194 212678.158 30 10 Burgdorf Buchmatt 41 Switzerland Espace Mittelland N Burgdorf
+OBJE 986 544531.397 213111.693 30 10 les Brenets 41 Switzerland Espace Mittelland N Brenets
+OBJE 987 581820.212 212892.024 30 10 Hagneck 41 Switzerland Espace Mittelland N Hagneck
+OBJE 988 673692.458 213419.731 30 10 Merlischachen 41 Switzerland Zentralschweiz N Merlischachen
+OBJE 989 554264.974 213451.401 30 10 la Corbatière 41 Switzerland Espace Mittelland N Corbatière
+OBJE 990 663973.144 213741.047 30 10 Emmenbrücke 41 Switzerland Zentralschweiz N Emmenbrücke
+OBJE 991 755377.006 215668.809 30 10 Trübbach 41 Switzerland Ostschweiz N Trübbach
+OBJE 992 582005.346 213825.316 30 10 Täuffelen 41 Switzerland Espace Mittelland N Täuffelen
+OBJE 993 550115.242 214073.978 30 10 le Crêt-du-Locle 41 Switzerland Espace Mittelland N Crêt-du-Locle
+OBJE 994 665439.617 214390.697 30 10 Emmen 41 Switzerland Zentralschweiz Y Emmen
+OBJE 995 589897.050 214140.169 30 10 Lyss 41 Switzerland Espace Mittelland N Lyss
+OBJE 996 623684.870 214222.973 30 10 Häusernmoos 41 Switzerland Espace Mittelland N Häusernmoos
+OBJE 997 605518.880 214256.353 30 10 Grafenried 41 Switzerland Espace Mittelland N Grafenried
+OBJE 998 690372.756 215083.702 30 10 Sattel-Aegeri 41 Switzerland Zentralschweiz N Sattel
+OBJE 999 645795.827 214841.027 30 10 Menznau 41 Switzerland Zentralschweiz N Menznau
+OBJE 1000 576988.510 214720.892 30 10 Ligerz 41 Switzerland Espace Mittelland N Ligerz
+OBJE 1001 610788.567 214708.231 30 10 Kirchberg-Alchenflüh 41 Switzerland Espace Mittelland N Kirchberg
+OBJE 1002 556456.005 214958.072 30 10 Convers 41 Switzerland Espace Mittelland N Chaux-de-Fonds
+OBJE 1003 582729.805 214834.844 30 10 Gerolfingen 41 Switzerland Espace Mittelland N Gerolfingen
+OBJE 1004 668620.079 215215.863 30 10 Ebikon 41 Switzerland Zentralschweiz N Ebikon
+OBJE 1005 675620.065 215367.330 30 10 Küssnacht am Rigi 41 Switzerland Zentralschweiz N Küssnacht am Rigi
+OBJE 1006 606368.598 215057.642 30 10 Fraubrunnen 41 Switzerland Espace Mittelland N Fraubrunnen
+OBJE 1007 554924.904 215336.358 30 10 le Reymond 41 Switzerland Espace Mittelland N Chaux-de-Fonds
+OBJE 1008 583027.259 215289.798 30 10 Mörigen 41 Switzerland Espace Mittelland N Mörigen
+OBJE 1009 661416.340 215659.773 30 10 Rothenburg 41 Switzerland Zentralschweiz N Rothenburg
+OBJE 1010 663283.285 215757.141 30 10 Rothenburg Dorf 41 Switzerland Zentralschweiz N Rothenburg
+OBJE 1011 625426.084 215519.763 30 10 Mussachen 41 Switzerland Espace Mittelland N Dürrenroth
+OBJE 1012 756685.173 217638.167 30 10 Weite 41 Switzerland Ostschweiz N Weite
+OBJE 1013 626875.598 215681.766 30 10 Dürrenroth 41 Switzerland Espace Mittelland N Dürrenroth
+OBJE 1014 677743.957 216139.598 30 10 Immensee 41 Switzerland Zentralschweiz N Immensee
+OBJE 1015 578678.359 215837.446 30 10 Twann 41 Switzerland Espace Mittelland N Twann
+OBJE 1016 693538.885 216600.252 30 10 Biberegg 41 Switzerland Zentralschweiz N Biberegg
+OBJE 1017 552888.467 216119.257 30 10 les Eplatures 41 Switzerland Espace Mittelland N Eplatures
+OBJE 1018 666434.917 216402.952 30 10 Emmerfeld 41 Switzerland Zentralschweiz N Emmen
+OBJE 1019 609290.498 216050.910 30 10 Aefligen 41 Switzerland Espace Mittelland N Aefligen
+OBJE 1020 606101.743 216124.627 30 10 Büren zum Hof 41 Switzerland Espace Mittelland N Büren zum Hof
+OBJE 1021 582991.999 216234.875 30 10 Lattrigen 41 Switzerland Espace Mittelland N Lattrigen
+OBJE 1022 643908.646 216394.405 30 10 Daiwil 41 Switzerland Zentralschweiz N Daiwil
+OBJE 1023 553285.783 216438.536 30 10 La Chaux-de-Fonds-Ouest 41 Switzerland Espace Mittelland N Chaux-de-Fonds
+OBJE 1024 723923.481 217633.301 30 10 Näfels-Mollis 41 Switzerland Ostschweiz N Näfels
+OBJE 1025 744886.433 218106.630 30 10 Flums 41 Switzerland Ostschweiz N Flums
+OBJE 1026 554250.856 216553.328 30 10 La Chaux-de-Fonds-Grenier 41 Switzerland Espace Mittelland N Chaux-de-Fonds
+OBJE 1027 681878.299 216984.413 30 10 Walchwil 41 Switzerland Zentralschweiz N Walchwil
+OBJE 1028 590887.892 216450.968 30 10 Busswil 41 Switzerland Espace Mittelland N Busswil bei Büren
+OBJE 1029 553781.915 216779.308 30 10 La Chaux-de-Fonds 41 Switzerland Espace Mittelland Y Chaux-de-Fonds
+OBJE 1030 553850.408 216801.011 30 10 La Chaux-de-Fonds 41 Switzerland Espace Mittelland Y Chaux-de-Fonds
+OBJE 1031 556917.309 216789.120 30 10 le Creux 41 Switzerland Espace Mittelland N Creux
+OBJE 1032 583335.005 216723.068 30 10 Sutz 41 Switzerland Espace Mittelland N Sutz
+OBJE 1033 554476.625 217285.362 30 10 La Chaux-de-Fonds-Est 41 Switzerland Espace Mittelland N Chaux-de-Fonds
+OBJE 1034 617016.182 217135.205 30 10 Wynigen 41 Switzerland Espace Mittelland N Wynigen
+OBJE 1035 693903.426 218040.305 30 10 Rothenthurm 41 Switzerland Zentralschweiz N Rothenthurm
+OBJE 1036 666888.987 217886.735 30 10 Waldibrücke 41 Switzerland Zentralschweiz N Waldibrücke
+OBJE 1037 606555.448 217781.593 30 10 Schalunen 41 Switzerland Espace Mittelland N Schalunen
+OBJE 1038 734853.634 219516.670 30 10 Murg 41 Switzerland Ostschweiz N Murg
+OBJE 1039 739397.043 219688.087 30 10 Mols 41 Switzerland Ostschweiz N Mols
+OBJE 1040 581631.347 218140.003 30 10 Tüscherz 41 Switzerland Espace Mittelland N Tüscherz-Alfermée
+OBJE 1041 738113.214 219724.873 30 10 Unterterzen 41 Switzerland Ostschweiz N Unterterzen
+OBJE 1042 630825.615 218269.028 30 10 Huttwil 41 Switzerland Espace Mittelland N Huttwil
+OBJE 1043 657720.874 218535.696 30 10 Sempach-Neuenkirch 41 Switzerland Zentralschweiz N Sempach Station
+OBJE 1044 584599.677 218465.085 30 10 Ipsach Herdi 41 Switzerland Espace Mittelland N Ipsach
+OBJE 1045 731548.772 219976.462 30 10 Mühlehorn 41 Switzerland Ostschweiz N Mühlehorn
+OBJE 1046 556453.644 218782.559 30 10 Bellevue 41 Switzerland Espace Mittelland Y Bellevue
+OBJE 1047 672414.997 219141.031 30 10 Gisikon-Root 41 Switzerland Zentralschweiz N Root
+OBJE 1048 742219.324 220399.861 30 10 Walenstadt 41 Switzerland Ostschweiz N Walenstadt
+OBJE 1049 584957.092 218753.222 30 10 Ipsach 41 Switzerland Espace Mittelland N Biel
+OBJE 1050 592500.304 218816.708 30 10 Dotzigen 41 Switzerland Espace Mittelland N Dotzigen
+OBJE 1051 585048.436 218864.165 30 10 Nidau Beunden 41 Switzerland Espace Mittelland N Biel
+OBJE 1052 642423.972 219118.587 30 10 Willisau 41 Switzerland Zentralschweiz N Willisau-Stadt
+OBJE 1053 557944.157 219216.534 30 10 la Cibourg 41 Switzerland Espace Mittelland N Cibourg
+OBJE 1054 723319.635 220389.580 30 10 Niederurnen-unt Oberurnen 41 Switzerland Ostschweiz N Oberurnen
+OBJE 1055 676825.822 219618.824 30 10 Meierskappel-Risch 41 Switzerland Zentralschweiz N Meierskappel
+OBJE 1056 585117.541 219186.397 30 10 Nidau 41 Switzerland Espace Mittelland N Biel
+OBJE 1057 587758.195 219180.361 30 10 Brügg BE 41 Switzerland Espace Mittelland N Brügg
+OBJE 1058 560958.442 219473.913 30 10 Renan BE 41 Switzerland Espace Mittelland N Renan
+OBJE 1059 756044.538 221502.634 30 10 Sevelen 41 Switzerland Ostschweiz N Sevelen
+OBJE 1060 633708.999 219718.814 30 10 Gondiswil 41 Switzerland Espace Mittelland N Gondiswil
+OBJE 1061 726014.366 221090.995 30 10 Weesen 41 Switzerland Ostschweiz N Weesen
+OBJE 1062 635521.524 219873.879 30 10 Hüswil 41 Switzerland Zentralschweiz N Hüswil
+OBJE 1063 608745.893 219852.233 30 10 Utzenstorf 41 Switzerland Espace Mittelland N Utzenstorf
+OBJE 1064 607281.489 219905.856 30 10 Bätterkinden 41 Switzerland Espace Mittelland N Bätterkinden
+OBJE 1065 699285.951 220762.834 30 10 Einsiedeln 41 Switzerland Zentralschweiz N Einsiedeln
+OBJE 1066 695445.059 220844.528 30 10 Altmatt 41 Switzerland Zentralschweiz N Dritte Altmatt
+OBJE 1067 667079.894 220479.400 30 10 Eschenbach 41 Switzerland Zentralschweiz N Eschenbach
+OBJE 1068 585036.679 220220.523 30 10 Biel 41 Switzerland Espace Mittelland Y Biel
+OBJE 1069 558089.522 220460.689 30 10 la Seignant 41 Switzerland Espace Mittelland N Ferrière
+OBJE 1070 723130.868 221809.005 30 10 Ziegelbrücke 41 Switzerland Ostschweiz N Ziegelbrücke
+OBJE 1071 636988.054 220749.984 30 10 Zell 41 Switzerland Zentralschweiz N Zell
+OBJE 1072 628612.711 220759.433 30 10 Rohrbach 41 Switzerland Espace Mittelland N Rohrbachberg
+OBJE 1073 594884.757 220715.245 30 10 Büren an der Aare 41 Switzerland Espace Mittelland N Büren an der Aare
+OBJE 1074 653068.424 221093.986 30 10 Nottwil 41 Switzerland Zentralschweiz N Nottwil
+OBJE 1075 640407.109 221105.740 30 10 Gettnau 41 Switzerland Zentralschweiz N Gettnau
+OBJE 1076 619363.881 221144.651 30 10 Riedtwil 41 Switzerland Espace Mittelland N Riedtwil
+OBJE 1077 564505.151 221263.845 30 10 Sonvilier 41 Switzerland Espace Mittelland N Sonvilier
+OBJE 1078 558741.242 221445.604 30 10 la Ferrière 41 Switzerland Espace Mittelland N Ferrière
+OBJE 1079 675508.288 221781.153 30 10 Rotkreuz 41 Switzerland Zentralschweiz N Rotkreuz
+OBJE 1080 626810.655 221673.805 30 10 Kleindietwil 41 Switzerland Espace Mittelland N Kleindietwil
+OBJE 1081 587763.701 221848.539 30 10 Biel Mett 41 Switzerland Espace Mittelland N Biel
+OBJE 1082 681257.503 222412.823 30 10 Zug Oberwil 41 Switzerland Zentralschweiz N Zug
+OBJE 1083 755296.605 224274.492 30 10 Räfis-Burgerau 41 Switzerland Ostschweiz N Räfis
+OBJE 1084 566824.920 222362.202 30 10 Saint-Imier 41 Switzerland Espace Mittelland N Saint-Imier
+OBJE 1085 606884.216 222284.519 30 10 Küttigkofen-Krälligen 41 Switzerland Espace Mittelland N Küttigkofen
+OBJE 1086 720773.360 223562.073 30 10 Bilten 41 Switzerland Ostschweiz N Bilten
+OBJE 1087 666620.452 222886.876 30 10 Ballwil 41 Switzerland Zentralschweiz N Ballwil
+OBJE 1088 651278.241 222834.916 30 10 Oberkirch 41 Switzerland Zentralschweiz Y Oberkirch
+OBJE 1089 626745.232 222729.681 30 10 Lindenholz 41 Switzerland Espace Mittelland N Lindenholz
+OBJE 1090 609098.036 222776.651 30 10 Wiler bei Utzenstorf 41 Switzerland Espace Mittelland N Wiler bei Utzenstorf
+OBJE 1091 721798.501 224250.170 30 10 Schänis 41 Switzerland Ostschweiz N Schänis
+OBJE 1092 697467.744 223823.839 30 10 Biberbrugg 41 Switzerland Zentralschweiz N Biberbrugg
+OBJE 1093 568271.114 223332.653 30 10 Villeret 41 Switzerland Espace Mittelland N Villeret
+OBJE 1094 606738.826 223429.455 30 10 Lohn-Lüterkofen 41 Switzerland Espace Mittelland N Lüterkofen
+OBJE 1095 755605.794 225795.073 3 10 Buchs Rail 41 Switzerland Ostschweiz N @
+OBJE 1096 673277.605 224277.120 30 10 Oberrüti 41 Switzerland Nordwestschweiz N Oberrüti
+OBJE 1097 627103.269 224043.178 30 10 Madiswil 41 Switzerland Espace Mittelland N Madiswil
+OBJE 1098 754826.299 226019.388 30 10 Buchs SG 41 Switzerland Ostschweiz N Buchs
+OBJE 1099 650188.918 224304.307 30 10 Sursee 41 Switzerland Zentralschweiz N Sursee
+OBJE 1100 664320.541 224462.577 30 10 Hochdorf 41 Switzerland Zentralschweiz N Hochdorf
+OBJE 1101 586320.490 224219.723 30 10 Frinvillier-Taubenloch 41 Switzerland Espace Mittelland N Frinvillier
+OBJE 1102 592446.721 224397.743 30 10 Pieterlen 41 Switzerland Espace Mittelland N Pieterlen
+OBJE 1103 609633.592 224556.294 30 10 Gerlafingen 41 Switzerland Espace Mittelland N Gerlafingen
+OBJE 1104 717286.804 225727.342 30 10 Reichenburg 41 Switzerland Zentralschweiz N Reichenburg
+OBJE 1105 570924.373 224719.892 30 10 Cormoret 41 Switzerland Espace Mittelland N Cormoret
+OBJE 1106 607586.503 224675.634 30 10 Ammannsegg 41 Switzerland Espace Mittelland N Ammannsegg
+OBJE 1107 571865.580 224959.945 30 10 Courtelary 41 Switzerland Espace Mittelland N Courtelary
+OBJE 1108 696472.879 225775.676 30 10 Schindellegi-Feusisberg 41 Switzerland Zentralschweiz N Schindellegi
+OBJE 1109 713829.061 226127.152 30 10 Schübelbach-Buttikon 41 Switzerland Zentralschweiz N Schübelbach
+OBJE 1110 559707.607 225241.243 30 10 les Bois 41 Switzerland Espace Mittelland N Bois
+OBJE 1111 594365.599 225207.183 30 10 Lengnau 41 Switzerland Espace Mittelland N Lengnau
+OBJE 1112 681681.585 225776.433 30 10 Zug 41 Switzerland Zentralschweiz N Zug
+OBJE 1113 677330.539 225740.486 30 10 Cham 41 Switzerland Zentralschweiz Y Cham
+OBJE 1114 648138.858 225599.275 30 10 Sankt Erhard-Knutwil 41 Switzerland Zentralschweiz N Sankt Erhard
+OBJE 1115 609715.392 225534.771 30 10 Biberist EBT 41 Switzerland Espace Mittelland N Biberist
+OBJE 1116 626898.501 225732.131 30 10 Gutenburg 41 Switzerland Espace Mittelland N Gutenburg
+OBJE 1117 710875.242 226771.851 30 10 Siebnen-Wangen 41 Switzerland Zentralschweiz N Wangen
+OBJE 1118 608888.727 225833.656 30 10 Biberist RBS 41 Switzerland Espace Mittelland N Biberist
+OBJE 1119 644284.781 226036.278 30 10 Wauwil 41 Switzerland Zentralschweiz N Wauwil
+OBJE 1120 663792.432 226335.861 30 10 Baldegg 41 Switzerland Zentralschweiz N Baldegg
+OBJE 1121 619847.664 226204.734 30 10 Herzogenbuchsee 41 Switzerland Espace Mittelland N Herzogenbuchsee
+OBJE 1122 672708.447 226794.005 30 10 Sins 41 Switzerland Nordwestschweiz N Sins
+OBJE 1123 575048.450 226502.183 30 10 Cortébert 41 Switzerland Espace Mittelland N Cortébert
+OBJE 1124 583764.100 226494.159 30 10 la Heutte 41 Switzerland Espace Mittelland N Heutte
+OBJE 1125 707079.974 227458.385 30 10 Lachen 41 Switzerland Zentralschweiz N Lachen
+OBJE 1126 597383.181 226505.825 30 10 Grenchen Süd 41 Switzerland Espace Mittelland N Grenchen
+OBJE 1127 585310.361 226567.949 30 10 Reuchenette-Péry 41 Switzerland Espace Mittelland N Reuchenette
+OBJE 1128 626530.559 226653.246 30 10 Lotzwil 41 Switzerland Espace Mittelland N Lotzwil
+OBJE 1129 640906.535 226801.449 30 10 Nebikon 41 Switzerland Zentralschweiz N Nebikon
+OBJE 1130 596284.396 226717.651 30 10 Grenchen Nord 41 Switzerland Espace Mittelland N Grenchen
+OBJE 1131 609092.003 226734.487 30 10 Bleichenberg 41 Switzerland Espace Mittelland N Solothurn
+OBJE 1132 694496.264 227545.202 30 10 Samstagern 41 Switzerland Zürich N Samstagern
+OBJE 1133 577725.422 226936.235 30 10 Corgémont 41 Switzerland Espace Mittelland N Corgémont
+OBJE 1134 678823.778 227472.350 30 10 Steinhausen 41 Switzerland Zentralschweiz N Steinhausen
+OBJE 1135 704956.804 227931.999 30 10 Altendorf 41 Switzerland Zentralschweiz N Altendorf
+OBJE 1136 560971.232 227189.536 30 10 Boéchet 41 Switzerland Espace Mittelland N Boéchet
+OBJE 1137 695105.765 227821.781 30 10 Riedmatt SZ 41 Switzerland Zürich N Samstagern
+OBJE 1138 579529.648 227107.616 30 10 Sonceboz-Sombeval 41 Switzerland Espace Mittelland N Sonceboz-Sombeval
+OBJE 1139 599262.784 227072.280 30 10 Bettlach 41 Switzerland Espace Mittelland N Bettlach
+OBJE 1140 682095.103 227672.295 30 10 Baar 41 Switzerland Zentralschweiz N Baar
+OBJE 1141 697505.500 227994.097 30 10 Wollerau 41 Switzerland Zentralschweiz N Wollerau
+OBJE 1142 698259.692 228217.783 30 10 Wilen bei Wollerau 41 Switzerland Zentralschweiz N Wollerau
+OBJE 1143 694952.031 228430.868 30 10 Grüenfeld 41 Switzerland Zürich N Samstagern
+OBJE 1144 601460.259 227706.103 30 10 Selzach 41 Switzerland Espace Mittelland N Selzach
+OBJE 1145 697760.631 228609.840 30 10 Bäch 41 Switzerland Zentralschweiz N Bäch
+OBJE 1146 701825.336 228889.369 30 10 Pfäffikon SZ 41 Switzerland Zentralschweiz N Pfäffikon
+OBJE 1147 607998.902 228078.151 30 10 Solothurn 41 Switzerland Espace Mittelland Y Solothurn
+OBJE 1148 562372.118 228214.448 30 10 le Creux-des-Biches 41 Switzerland Espace Mittelland N Creux-des-Biches
+OBJE 1149 607938.244 228111.423 30 10 Solothurn 41 Switzerland Espace Mittelland Y Solothurn
+OBJE 1150 700171.766 228983.573 30 10 Freienbach SOB 41 Switzerland Zentralschweiz N Freienbach
+OBJE 1151 625955.376 228207.187 30 10 Langenthal Süd 41 Switzerland Espace Mittelland N Langenthal
+OBJE 1152 718965.160 229385.748 30 10 Benken BL 41 Switzerland Ostschweiz N Benken
+OBJE 1153 607900.184 228244.784 30 10 Solothurn 41 Switzerland Espace Mittelland Y Solothurn
+OBJE 1154 607089.323 228388.295 30 10 Solothurn West 41 Switzerland Espace Mittelland N Solothurn
+OBJE 1155 754612.052 230462.347 30 10 Haag-Gams 41 Switzerland Ostschweiz N Haag
+OBJE 1156 696325.155 229275.779 30 10 Richterswil 41 Switzerland Zürich N Richterswil
+OBJE 1157 699938.515 229335.459 30 10 Freienbach SBB 41 Switzerland Zentralschweiz N Freienbach
+OBJE 1158 604467.725 228630.348 30 10 Bellach 41 Switzerland Espace Mittelland N Bellach
+OBJE 1159 695147.612 229468.068 30 10 Burghalden 41 Switzerland Zürich N Burghalden
+OBJE 1160 567096.339 228909.030 30 10 les Breuleux 41 Switzerland Espace Mittelland N Breuleux
+OBJE 1161 703079.923 229956.215 30 10 Hurden 41 Switzerland Zentralschweiz N Hurden
+OBJE 1162 567007.224 229231.941 30 10 Breuleux-Eglise 41 Switzerland Espace Mittelland N Breuleux
+OBJE 1163 662599.590 229480.756 30 10 Gelfingen 41 Switzerland Zentralschweiz N Gelfingen
+OBJE 1164 640910.141 229580.942 30 10 Dagmersellen 41 Switzerland Zentralschweiz N Dagmersellen
+OBJE 1165 610739.197 229461.045 30 10 Luterbach-Attisholz 41 Switzerland Espace Mittelland N Luterbach
+OBJE 1166 608481.821 229479.641 30 10 Solothurn Baseltor 41 Switzerland Espace Mittelland N Solothurn
+OBJE 1167 709213.467 230566.188 30 10 Bollingen 41 Switzerland Ostschweiz N Bollingen
+OBJE 1168 626183.984 229631.259 30 10 Langenthal 41 Switzerland Espace Mittelland Y Langenthal
+OBJE 1169 626176.360 229642.344 30 10 Langenthal 41 Switzerland Espace Mittelland Y Langenthal
+OBJE 1170 720163.987 230810.983 30 10 Kaltbrunn 41 Switzerland Ostschweiz N Kaltbrunn
+OBJE 1171 605694.100 229620.860 30 10 Langendorf 41 Switzerland Espace Mittelland Y Langendorf
+OBJE 1172 602444.494 229685.358 30 10 Lommiswil 41 Switzerland Espace Mittelland N Lommiswil
+OBJE 1173 608663.297 229702.255 30 10 Sankt Katharinen 41 Switzerland Espace Mittelland N Solothurn
+OBJE 1174 613760.995 229734.084 30 10 Deitingen 41 Switzerland Espace Mittelland N Deitingen
+OBJE 1175 626372.613 229798.859 30 10 Langenthal Gaswerk 41 Switzerland Espace Mittelland Y Langenthal
+OBJE 1176 626364.990 229809.943 30 10 Langenthal Gaswerk 41 Switzerland Espace Mittelland Y Langenthal
+OBJE 1177 677883.870 230373.027 30 10 Knonau 41 Switzerland Zürich N Knonau
+OBJE 1178 568685.351 229978.857 30 10 Chaux-des-Breuleux 41 Switzerland Espace Mittelland N Chaux-des-Breuleux
+OBJE 1179 582281.587 230011.586 30 10 Tavannes 41 Switzerland Espace Mittelland Y Tavannes
+OBJE 1180 582274.046 230022.726 30 10 Tavannes 41 Switzerland Espace Mittelland Y Tavannes
+OBJE 1181 608996.079 230036.278 30 10 Feldbrunnen 41 Switzerland Espace Mittelland N Feldbrunnen
+OBJE 1182 574086.629 230130.683 30 10 Tramelan-Dessous 41 Switzerland Espace Mittelland N Tramelan
+OBJE 1183 571072.348 230189.091 30 10 le Pied-d'or 41 Switzerland Espace Mittelland N Reussilles
+OBJE 1184 661596.321 230526.505 30 10 Hitzkirch 41 Switzerland Zentralschweiz N Ermensee
+OBJE 1185 573845.091 230320.745 30 10 Tramelan 41 Switzerland Espace Mittelland N Tramelan
+OBJE 1186 706420.809 231249.382 30 10 Blumenau 41 Switzerland Ostschweiz Y Bollingen
+OBJE 1187 563582.798 230419.348 30 10 le Noirmont 41 Switzerland Espace Mittelland N Noirmont
+OBJE 1188 573565.105 230377.576 30 10 Tramelan-Chalet 41 Switzerland Espace Mittelland N Tramelan
+OBJE 1189 573004.694 230391.218 30 10 les Reussilles 41 Switzerland Espace Mittelland N Reussilles
+OBJE 1190 716656.754 231552.812 30 10 Uznach 41 Switzerland Ostschweiz N Uznach
+OBJE 1191 573891.219 230476.191 30 10 Tramelan-Collège 41 Switzerland Espace Mittelland N Tramelan
+OBJE 1192 713725.616 231529.319 30 10 Schmerikon 41 Switzerland Ostschweiz N Schmerikon
+OBJE 1193 671885.409 230920.053 30 10 Mühlau 41 Switzerland Nordwestschweiz N Mühlau
+OBJE 1194 626051.170 230553.451 30 10 Hard-Mumenthal 41 Switzerland Espace Mittelland N Langenthal
+OBJE 1195 733365.874 232015.747 30 10 Nesslau Neu Sankt Johann 41 Switzerland Ostschweiz N Nesslau
+OBJE 1196 704945.809 231556.719 30 10 Rapperswil 41 Switzerland Ostschweiz N Rapperswil
+OBJE 1197 630155.031 230772.970 30 10 Sankt Urban Ziegelei 41 Switzerland Espace Mittelland N Sankt Urban
+OBJE 1198 609729.510 230815.668 30 10 Bei den Weihern 41 Switzerland Espace Mittelland N Feldbrunnen
+OBJE 1199 660930.688 231175.619 30 10 Ermensee 41 Switzerland Zentralschweiz N Ermensee
+OBJE 1200 602837.706 231108.593 30 10 Im Holz 41 Switzerland Espace Mittelland N Im Holz
+OBJE 1201 610259.102 231127.852 30 10 Riedholz 41 Switzerland Espace Mittelland N Riedholz
+OBJE 1202 693707.827 231880.256 30 10 Wädenswil 41 Switzerland Zürich N Wädenswil
+OBJE 1203 705815.085 232083.638 30 10 Jona 41 Switzerland Ostschweiz N Jona
+OBJE 1204 616513.900 231275.330 30 10 Wangen an der Aare 41 Switzerland Espace Mittelland N Wangen an der Aare
+OBJE 1205 565656.037 231374.237 30 10 les Emibois 41 Switzerland Espace Mittelland N Emibois
+OBJE 1206 610955.129 231495.975 30 10 Flumenthal 41 Switzerland Espace Mittelland N Flumenthal
+OBJE 1207 604177.780 231576.320 30 10 Oberdorf SO 41 Switzerland Espace Mittelland N Oberdorf
+OBJE 1208 584179.463 231618.285 30 10 Reconvilier 41 Switzerland Espace Mittelland N Reconvilier
+OBJE 1209 699763.714 232523.742 30 10 Uerikon 41 Switzerland Zürich N Uerikon
+OBJE 1210 627393.119 231893.619 30 10 Kaltenherberg 41 Switzerland Espace Mittelland N Kaltenherberg
+OBJE 1211 628483.362 231920.979 30 10 Roggwil Dorf 41 Switzerland Espace Mittelland N Roggwil
+OBJE 1212 686170.322 232522.195 30 10 Sihlbrugg 41 Switzerland Zürich N Sihlbrugg
+OBJE 1213 587701.267 231954.573 30 10 Malleray-Bévilard 41 Switzerland Espace Mittelland N Bévilard
+OBJE 1214 589965.291 231983.654 30 10 Sorvilier 41 Switzerland Espace Mittelland N Sorvilier
+OBJE 1215 612044.540 231998.377 30 10 Attiswil 41 Switzerland Espace Mittelland N Attiswil
+OBJE 1216 585937.170 232014.089 30 10 Pontenet 41 Switzerland Espace Mittelland N Pontenet
+OBJE 1217 701824.893 232892.309 30 10 Feldbach 41 Switzerland Zürich Y Feldbach
+OBJE 1218 592668.563 232101.978 30 10 Court 41 Switzerland Espace Mittelland N Court
+OBJE 1219 629186.342 232168.982 30 10 Sankt Urban 41 Switzerland Espace Mittelland N Sankt Urban
+OBJE 1220 656874.030 232469.584 30 10 Menziken-Burg 41 Switzerland Nordwestschweiz N Burg
+OBJE 1221 697233.800 233015.500 30 10 Stäfa 41 Switzerland Zürich N Stäfa
+OBJE 1222 625112.151 232317.140 30 10 Aarwangen 41 Switzerland Espace Mittelland N Aarwangen
+OBJE 1223 640109.744 232566.213 30 10 Reiden 41 Switzerland Zentralschweiz N Reiden
+OBJE 1224 756392.483 234512.713 30 10 Salez-Sennwald 41 Switzerland Ostschweiz N Salez
+OBJE 1225 659443.873 232928.360 30 10 Mosen 41 Switzerland Zentralschweiz N Mosen
+OBJE 1226 565717.272 232796.973 30 10 Muriaux 41 Switzerland Espace Mittelland N Muriaux
+OBJE 1227 622899.564 232764.036 30 10 Bannwil 41 Switzerland Espace Mittelland N Bannwil
+OBJE 1228 624655.981 232771.061 30 10 Aarwangen Schloss 41 Switzerland Espace Mittelland N Aarwangen
+OBJE 1229 677081.538 233242.289 30 10 Mettmenstetten 41 Switzerland Zürich N Mettmenstetten
+OBJE 1230 670252.681 233202.046 30 10 Benzenschwil 41 Switzerland Nordwestschweiz N Benzenschwil
+OBJE 1231 691704.086 233628.025 30 10 Au ZH 41 Switzerland Zürich N Au
+OBJE 1232 730968.323 234586.806 30 10 Krummenau 41 Switzerland Ostschweiz N Krummenau
+OBJE 1233 656485.533 233510.991 30 10 Reinach Lindenplatz 41 Switzerland Nordwestschweiz N Reinach
+OBJE 1234 621617.477 233481.894 30 10 Holzhäusern 41 Switzerland Espace Mittelland N Holzhäusern
+OBJE 1235 628755.558 233567.733 30 10 Roggwil-Wynau 41 Switzerland Espace Mittelland N Roggwil
+OBJE 1236 615652.075 233596.612 30 10 Wiedlisbach 41 Switzerland Espace Mittelland N Wiedlisbach
+OBJE 1237 695152.895 234338.327 30 10 Männedorf 41 Switzerland Zürich N Männedorf
+OBJE 1238 656391.106 233888.114 30 10 Reinach 41 Switzerland Nordwestschweiz N Reinach
+OBJE 1239 566503.150 233870.920 30 10 Saignelégier 41 Switzerland Espace Mittelland N Saignelégier
+OBJE 1240 620645.833 234256.688 30 10 Scharnageln 41 Switzerland Espace Mittelland N Niederbipp
+OBJE 1241 687112.568 234882.038 30 10 Horgen Oberdorf 41 Switzerland Zürich N Horgen
+OBJE 1242 693999.272 234998.217 30 10 Uetikon 41 Switzerland Zürich N Uetikon am See
+OBJE 1243 707347.224 235313.568 30 10 Rüti ZH 41 Switzerland Zürich N Rüti
+OBJE 1244 639315.872 234684.443 30 10 Brittnau-Wikon 41 Switzerland Zentralschweiz N Wikon
+OBJE 1245 687629.348 235256.571 30 10 Horgen 41 Switzerland Zürich N Horgen
+OBJE 1246 727455.304 235978.219 30 10 Ebnat-Kappel 41 Switzerland Ostschweiz N Ebnat-Kappel
+OBJE 1247 567999.836 234885.502 30 10 le Bémont 41 Switzerland Espace Mittelland N Bémont
+OBJE 1248 620053.511 234832.788 30 10 Niederbipp Dorf 41 Switzerland Espace Mittelland N Niederbipp
+OBJE 1249 602018.546 234966.119 30 10 Gänsbrunnen 41 Switzerland Espace Mittelland N Gänsbrunnen
+OBJE 1250 629890.868 235107.608 30 10 Murgenthal 41 Switzerland Nordwestschweiz N Murgenthal
+OBJE 1251 657798.877 235469.330 30 10 Beinwil am See 41 Switzerland Nordwestschweiz N Beinwil am See
+OBJE 1252 684705.980 235903.507 30 10 Sihlwald 41 Switzerland Zürich N Sihlwald
+OBJE 1253 706776.994 236292.926 30 10 Tann-Dürnten 41 Switzerland Zürich N Tann
+OBJE 1254 704928.657 236382.272 30 10 Bubikon 41 Switzerland Zürich N Bubikon
+OBJE 1255 691163.504 236288.281 30 10 Meilen 41 Switzerland Zürich N Meilen
+OBJE 1256 711650.716 236727.335 30 10 Wald 41 Switzerland Zürich N Wald
+OBJE 1257 655190.754 235978.188 30 10 Leimbach 41 Switzerland Nordwestschweiz N Leimbach
+OBJE 1258 619550.687 235842.838 30 10 Niederbipp 41 Switzerland Espace Mittelland Y Niederbipp
+OBJE 1259 619618.678 235876.416 30 10 Niederbipp 41 Switzerland Espace Mittelland Y Niederbipp
+OBJE 1260 676147.180 236432.417 30 10 Affoltern am Albis 41 Switzerland Zürich N Affoltern am Albis
+OBJE 1261 600981.575 235977.583 30 10 Zoo bei Gänsbrunnen 41 Switzerland Espace Mittelland N Gänsbrunnen
+OBJE 1262 668245.946 236525.318 30 10 Muri AG 41 Switzerland Nordwestschweiz N Muri
+OBJE 1263 686267.258 236793.276 30 10 Oberrieden Dorf 41 Switzerland Zürich N Oberrieden
+OBJE 1264 571238.311 236291.997 30 10 Pré-Petitjean 41 Switzerland Espace Mittelland N Pré-Petitjean
+OBJE 1265 686323.255 237105.423 30 10 Oberrieden 41 Switzerland Zürich N Oberrieden
+OBJE 1266 595556.696 236535.090 30 10 Moutier 41 Switzerland Espace Mittelland N Moutier
+OBJE 1267 653457.542 236851.790 30 10 Gontenschwil 41 Switzerland Nordwestschweiz N Gontenschwil
+OBJE 1268 654038.166 237068.295 30 10 Zetzwil 41 Switzerland Nordwestschweiz N Zetzwil
+OBJE 1269 688851.773 237531.914 30 10 Herrliberg-Feldmeilen 41 Switzerland Zürich N Herrliberg
+OBJE 1270 598840.419 237022.704 30 10 Grandval 41 Switzerland Espace Mittelland N Grandval
+OBJE 1271 574435.070 237155.657 30 10 la Combe 41 Switzerland Espace Mittelland N Lajoux
+OBJE 1272 600966.260 237133.835 30 10 Corcelles BE 41 Switzerland Espace Mittelland N Corcelles
+OBJE 1273 599748.267 237178.241 30 10 Crémines 41 Switzerland Espace Mittelland N Crémines
+OBJE 1274 620597.659 237236.112 30 10 Oensingen 41 Switzerland Espace Mittelland N Oensingen
+OBJE 1275 750633.321 239112.602 30 10 Wasserauen 41 Switzerland Ostschweiz N Wasserauen
+OBJE 1276 683647.433 237978.854 30 10 Langnau-Gattikon 41 Switzerland Zürich N Langnau
+OBJE 1277 758824.868 239559.861 30 10 Rüthi 41 Switzerland Ostschweiz N Rüthi
+OBJE 1278 638192.300 237567.805 30 10 Zofingen 41 Switzerland Nordwestschweiz N Zofingen
+OBJE 1279 657534.304 237779.377 30 10 Birrwil 41 Switzerland Nordwestschweiz N Birrwil
+OBJE 1280 696381.230 238416.680 30 10 Esslingen 41 Switzerland Zürich N Esslingen
+OBJE 1281 620435.350 238236.165 30 10 Maiacker 41 Switzerland Espace Mittelland N Oensingen
+OBJE 1282 685322.076 238847.747 30 10 Thalwil 41 Switzerland Zürich N Thalwil
+OBJE 1283 660589.919 238588.081 30 10 Fahrwangen-Meisterschwanden 41 Switzerland Nordwestschweiz N Meisterschwanden
+OBJE 1284 695097.896 239185.440 30 10 Langwies 41 Switzerland Zürich Y Langwies
+OBJE 1285 724854.859 239759.444 30 10 Wattwil 41 Switzerland Ostschweiz N Wattwil
+OBJE 1286 576233.459 238504.559 30 10 Bollement 41 Switzerland Espace Mittelland N Saulcy
+OBJE 1287 683027.367 239037.565 30 10 Wildpark-Höfli 41 Switzerland Zürich N Adliswil
+OBJE 1288 687797.305 239250.795 30 10 Winkel 41 Switzerland Zürich N Erlenbach
+OBJE 1289 620063.185 238690.733 30 10 Klus 41 Switzerland Espace Mittelland N Oensingen
+OBJE 1290 651888.421 238916.986 30 10 Oberkulm 41 Switzerland Nordwestschweiz N Oberkulm
+OBJE 1291 676148.905 239245.489 30 10 Hedingen 41 Switzerland Zürich N Hedingen
+OBJE 1292 751135.906 240771.370 30 10 Schwende 41 Switzerland Ostschweiz N Schwende
+OBJE 1293 595785.380 238914.146 30 10 Roches BE 41 Switzerland Espace Mittelland N Roches
+OBJE 1294 694742.027 239680.115 30 10 Egg 41 Switzerland Zürich N Egg
+OBJE 1295 705963.583 239881.106 30 10 Hinwil 41 Switzerland Zürich N Hinwil
+OBJE 1296 682170.017 239770.598 30 10 Sihlau 41 Switzerland Zürich N Adliswil
+OBJE 1297 666249.853 239771.559 30 10 Boswil-Bünzen 41 Switzerland Nordwestschweiz N Boswil
+OBJE 1298 646263.430 239604.268 30 10 Schöftland 41 Switzerland Nordwestschweiz N Schöftland
+OBJE 1299 625285.943 239511.169 30 10 Oberbuchsiten 41 Switzerland Espace Mittelland N Oberbuchsiten
+OBJE 1300 633248.622 239594.901 30 10 Rothrist 41 Switzerland Nordwestschweiz N Rothrist
+OBJE 1301 638148.748 239635.495 30 10 Küngoldingen 41 Switzerland Nordwestschweiz N Küngoldingen
+OBJE 1302 687216.222 240187.347 30 10 Erlenbach 41 Switzerland Zürich N Erlenbach
+OBJE 1303 684455.230 240225.221 30 10 Rüschlikon 41 Switzerland Zürich N Rüschlikon
+OBJE 1304 661035.381 240138.118 30 10 Sarmenstorf 41 Switzerland Nordwestschweiz N Sarmenstorf
+OBJE 1305 618871.876 239909.805 30 10 Thalbrücke 41 Switzerland Espace Mittelland N Balsthal
+OBJE 1306 751122.129 241905.416 30 10 Weissbad 41 Switzerland Ostschweiz N Weissbad
+OBJE 1307 682112.025 240681.552 30 10 Adliswil 41 Switzerland Zürich N Adliswil
+OBJE 1308 693594.766 240962.859 30 10 Hinteregg 41 Switzerland Zürich N Hinteregg
+OBJE 1309 711701.250 241276.306 30 10 Gibswil 41 Switzerland Zürich N Gibswil-Ried
+OBJE 1310 619558.045 240501.279 30 10 Balsthal 41 Switzerland Espace Mittelland N Balsthal
+OBJE 1311 627254.968 240542.742 30 10 Egerkingen 41 Switzerland Espace Mittelland N Egerkingen
+OBJE 1312 656368.478 241048.120 30 10 Boniswil-Seengen 41 Switzerland Nordwestschweiz N Boniswil
+OBJE 1313 702445.548 241676.266 30 10 Wetzikon 41 Switzerland Zürich N Wetzikon
+OBJE 1314 724283.688 242104.966 30 10 Lichtensteig 41 Switzerland Ostschweiz N Lichtensteig
+OBJE 1315 739762.482 242505.297 30 10 Urnäsch 41 Switzerland Ostschweiz N Urnäsch
+OBJE 1316 646448.030 241140.032 30 10 Hirschthal 41 Switzerland Nordwestschweiz N Hirschthal
+OBJE 1317 681918.896 241523.926 30 10 Sood Oberleimbach 41 Switzerland Zürich N Zürich
+OBJE 1318 639658.750 241135.231 30 10 Walterswil-Striegel 41 Switzerland Nordwestschweiz N Striegel
+OBJE 1319 692818.296 241773.484 30 10 Scheuren 41 Switzerland Zürich N Scheuren
+OBJE 1320 742924.854 242769.762 30 10 Jakobsbad 41 Switzerland Ostschweiz N Jakobsbad
+OBJE 1321 686369.855 241698.281 30 10 Küsnacht 41 Switzerland Zürich N Küsnacht
+OBJE 1322 635553.080 241198.152 30 10 Aarburg-Oftringen 41 Switzerland Nordwestschweiz N Aarburg
+OBJE 1323 750699.666 243051.304 30 10 Steinegg 41 Switzerland Ostschweiz N Steinegg
+OBJE 1324 641252.381 241368.463 30 10 Safenwil 41 Switzerland Nordwestschweiz N Safenwil
+OBJE 1325 595288.222 241404.941 30 10 Choindez 41 Switzerland Espace Mittelland N Choindez
+OBJE 1326 761278.322 243674.498 30 10 Oberriet 41 Switzerland Ostschweiz N Oberriet
+OBJE 1327 677828.962 242058.137 30 10 Bonstetten-Wettswil 41 Switzerland Zürich N Bonstetten
+OBJE 1328 692137.226 242296.588 30 10 Forch 41 Switzerland Zürich N Forch
+OBJE 1329 644114.725 241767.081 30 10 Kölliken Oberdorf 41 Switzerland Nordwestschweiz N Kölliken
+OBJE 1330 683874.635 242240.652 30 10 Kilchberg 41 Switzerland Zürich N Kilchberg
+OBJE 1331 686018.715 242449.279 30 10 Küsnacht Goldbach 41 Switzerland Zürich N Küsnacht
+OBJE 1332 740355.943 243631.429 30 10 Zürchersmühle 41 Switzerland Ostschweiz N Zürchersmühle
+OBJE 1333 749135.803 243890.349 30 10 Appenzell 41 Switzerland Ostschweiz N Appenzell
+OBJE 1334 651065.595 242245.353 30 10 Teufenthal 41 Switzerland Nordwestschweiz N Teufenthal
+OBJE 1335 744420.176 243784.680 30 10 Gonten 41 Switzerland Ostschweiz N Gonten
+OBJE 1336 581266.966 242077.603 30 10 Combe-Tabeillon 41 Switzerland Espace Mittelland N Glovelier
+OBJE 1337 655668.184 242353.485 30 10 Hallwil-Dürrenäsch 41 Switzerland Nordwestschweiz N Hallwil
+OBJE 1338 750281.301 244041.623 30 10 Hirschberg 41 Switzerland Ostschweiz N Hirschberg
+OBJE 1339 630716.353 242305.192 30 10 Hägendorf 41 Switzerland Espace Mittelland N Hägendorf
+OBJE 1340 746576.440 244037.803 30 10 Gontenbad 41 Switzerland Ostschweiz N Gontenbad
+OBJE 1341 703303.067 243236.780 30 10 Kempten 41 Switzerland Zürich N Kempten
+OBJE 1342 689645.722 243070.097 30 10 Maiacher 41 Switzerland Zürich N Zumikon
+OBJE 1343 712330.260 243601.144 30 10 Fischenthal 41 Switzerland Zürich N Fischenthal
+OBJE 1344 661052.359 242895.694 30 10 Hilfikon 41 Switzerland Nordwestschweiz N Hilfikon
+OBJE 1345 588728.893 242736.868 30 10 Courfaivre 41 Switzerland Espace Mittelland N Courfaivre
+OBJE 1346 681750.887 243289.536 30 10 Zürich Leimbach 41 Switzerland Zürich N Zürich
+OBJE 1347 689201.357 243463.687 30 10 Zumikon 41 Switzerland Zürich N Zumikon
+OBJE 1348 582561.766 242829.671 30 10 Glovelier 41 Switzerland Espace Mittelland Y Glovelier
+OBJE 1349 582471.136 242852.175 30 10 Glovelier 41 Switzerland Espace Mittelland Y Glovelier
+OBJE 1350 585501.883 242855.085 30 10 Bassecourt 41 Switzerland Espace Mittelland N Bassecourt
+OBJE 1351 700400.093 243687.280 30 10 Aathal 41 Switzerland Zürich N Aathal-Seegräben
+OBJE 1352 646500.900 243075.036 30 10 Muhen 41 Switzerland Nordwestschweiz N Muhen
+OBJE 1353 644490.072 243126.318 30 10 Kölliken 41 Switzerland Nordwestschweiz N Kölliken
+OBJE 1354 727940.949 244340.162 30 10 Brunnadern-Neckertal 41 Switzerland Ostschweiz N Brunnadern
+OBJE 1355 594745.320 242973.039 30 10 Courrendlin 41 Switzerland Espace Mittelland N Courrendlin
+OBJE 1356 685533.569 243587.533 30 10 Zollikon 41 Switzerland Zürich N Zollikon
+OBJE 1357 688795.666 243802.293 30 10 Waltikon 41 Switzerland Zürich N Waltikon
+OBJE 1358 632508.838 243493.270 30 10 Wangen bei Olten 41 Switzerland Espace Mittelland N Wangen bei Olten
+OBJE 1359 590800.942 243467.067 30 10 Courtételle 41 Switzerland Espace Mittelland N Courtételle
+OBJE 1360 681746.178 244178.998 30 10 Zürich Mannegg 41 Switzerland Zürich N Zürich
+OBJE 1361 651021.583 243846.028 30 10 Bleien 41 Switzerland Nordwestschweiz N Bleien
+OBJE 1362 723995.979 245012.497 30 10 Dietfurt 41 Switzerland Ostschweiz N Dietfurt
+OBJE 1363 667930.417 244249.169 30 10 Bremgarten West 41 Switzerland Nordwestschweiz N Bremgarten
+OBJE 1364 661114.641 244186.096 30 10 Villmergen 41 Switzerland Nordwestschweiz N Villmergen
+OBJE 1365 687968.652 244523.832 30 10 Zollikerberg 41 Switzerland Zürich N Zollikerberg
+OBJE 1366 654419.098 244198.678 30 10 Seon 41 Switzerland Nordwestschweiz N Seon
+OBJE 1367 687468.658 244605.386 30 10 Spital Neumünster 41 Switzerland Zürich N Zollikerberg
+OBJE 1368 663969.437 244349.641 30 10 Wohlen Oberdorf 41 Switzerland Nordwestschweiz N Wohlen
+OBJE 1369 686892.960 244696.990 30 10 Waldburg 41 Switzerland Zürich N Zollikerberg
+OBJE 1370 634892.948 244173.910 30 10 Olten Hammer 41 Switzerland Espace Mittelland N Olten
+OBJE 1371 662887.632 244460.370 30 10 Wohlen 41 Switzerland Nordwestschweiz N Wohlen
+OBJE 1372 750735.261 246110.655 30 10 Sammelplatz 41 Switzerland Ostschweiz N Gais
+OBJE 1373 682765.281 244804.694 30 10 Zürich Wollishofen 41 Switzerland Zürich N Zürich
+OBJE 1374 685054.086 244870.459 30 10 Zürich Tiefenbrünnen 41 Switzerland Zürich N Zürich
+OBJE 1375 668737.967 244992.320 30 10 Bremgarten 41 Switzerland Nordwestschweiz N Bremgarten
+OBJE 1376 686181.886 245264.807 30 10 Zürich Rehalp 41 Switzerland Zürich N Zürich
+OBJE 1377 635516.650 244755.762 30 10 Olten 41 Switzerland Espace Mittelland N Olten
+OBJE 1378 669182.813 245075.328 30 10 Zufikon 41 Switzerland Nordwestschweiz N Zufikon
+OBJE 1379 679298.790 245213.177 30 10 Uetliberg 41 Switzerland Zürich N Uetliberg
+OBJE 1380 682229.769 245275.362 30 10 Zürich Brunau 41 Switzerland Zürich N Zürich
+OBJE 1381 696583.654 245491.941 30 10 Uster 41 Switzerland Zürich N Uster
+OBJE 1382 640200.125 244919.087 30 10 Däniken 41 Switzerland Espace Mittelland N Däniken
+OBJE 1383 638439.243 244985.237 30 10 Dulliken 41 Switzerland Espace Mittelland N Dulliken
+OBJE 1384 712867.461 245957.684 30 10 Steg 41 Switzerland Zürich N Steg
+OBJE 1385 669277.260 245398.878 30 10 Zufikon Hammergut 41 Switzerland Nordwestschweiz N Zufikon
+OBJE 1386 650517.988 245298.234 30 10 Gränichen 41 Switzerland Nordwestschweiz N Gränichen
+OBJE 1387 739696.993 246885.476 30 10 Waldstatt 41 Switzerland Ostschweiz N Waldstatt
+OBJE 1388 675453.387 245752.273 30 10 Birmensdorf ZH 41 Switzerland Zürich N Birmensdorf
+OBJE 1389 681919.738 245838.144 30 10 Zürich Saalsporthalle 41 Switzerland Zürich N Zürich
+OBJE 1390 723743.443 246608.570 30 10 Bütschwil 41 Switzerland Ostschweiz N Bütschwil
+OBJE 1391 592881.552 245454.323 30 10 Delémont 41 Switzerland Espace Mittelland N Delémont
+OBJE 1392 645852.633 245782.874 30 10 Oberentfelden 41 Switzerland Nordwestschweiz N Oberentfelden
+OBJE 1393 752043.590 247556.552 30 10 Gais 41 Switzerland Ostschweiz N Gais
+OBJE 1394 678439.985 246157.986 30 10 Ringlikon 41 Switzerland Zürich N Ringlikon
+OBJE 1395 754836.909 247662.285 30 10 Stoss AR 41 Switzerland Ostschweiz N Rietli
+OBJE 1396 669141.177 246053.300 30 10 Heinrüti 41 Switzerland Nordwestschweiz N Heinrüti
+OBJE 1397 681703.011 246213.203 30 10 Zürich Giesshübel 41 Switzerland Zürich N Zürich
+OBJE 1398 670100.117 246097.924 30 10 Berikon-Widen 41 Switzerland Nordwestschweiz N Mutschellen
+OBJE 1399 754004.477 247707.313 30 10 Rietli 41 Switzerland Ostschweiz N Rietli
+OBJE 1400 753347.189 247701.379 30 10 Schachen AB 41 Switzerland Ostschweiz N Gais
+OBJE 1401 752704.718 247707.023 30 10 Hebrig 41 Switzerland Ostschweiz N Gais
+OBJE 1402 755732.646 247796.991 30 10 Kreuzstrasse 41 Switzerland Ostschweiz N Altstätten
+OBJE 1403 681541.325 246433.358 30 10 Zürich Binz 41 Switzerland Zürich N Zürich
+OBJE 1404 728844.766 247273.368 30 10 Mogelsberg 41 Switzerland Ostschweiz N Mogelsberg
+OBJE 1405 682521.863 246547.008 30 10 Zürich Enge 41 Switzerland Zürich N Zürich
+OBJE 1406 750787.051 247935.932 30 10 Zweibrücken 41 Switzerland Ostschweiz N Gais
+OBJE 1407 670934.324 246463.657 30 10 Rudolfstetten Hofacker 41 Switzerland Nordwestschweiz N Rudolfstetten
+OBJE 1408 680745.345 246633.721 30 10 Friesenberg 41 Switzerland Zürich N Zürich
+OBJE 1409 679861.484 246632.859 30 10 Triemli 41 Switzerland Zürich N Zürich
+OBJE 1410 680518.602 246641.754 30 10 Schweighof 41 Switzerland Zürich Y Zürich
+OBJE 1411 635114.875 246254.338 30 10 Trimbach 41 Switzerland Espace Mittelland N Trimbach
+OBJE 1412 756681.112 248222.399 30 10 Warmesberg 41 Switzerland Ostschweiz N Altstätten
+OBJE 1413 677677.328 246703.891 30 10 Uitikon Waldegg 41 Switzerland Zürich N Uitikon Waldegg
+OBJE 1414 683953.343 246822.862 30 10 Zürich Stadelhofen FB 41 Switzerland Zürich N Zürich
+OBJE 1415 683990.635 246856.748 30 10 Zürich Stadelhofen 41 Switzerland Zürich N Zürich
+OBJE 1416 579528.129 246363.841 30 10 Saint-Ursanne 41 Switzerland Espace Mittelland N Saint-Ursanne
+OBJE 1417 701713.968 247290.229 30 10 Pfäffikon ZH 41 Switzerland Zürich N Pfäffikon
+OBJE 1418 708840.963 247539.222 30 10 Bauma 41 Switzerland Zürich N Bauma
+OBJE 1419 682438.287 247124.042 30 10 Zürich Selnau 41 Switzerland Zürich N Zürich
+OBJE 1420 642385.823 246735.488 30 10 Schönenwerd SO 41 Switzerland Espace Mittelland N Schönenwerd
+OBJE 1421 645776.744 246805.184 30 10 Unterentfelden Post 41 Switzerland Nordwestschweiz N Unterentfelden
+OBJE 1422 671312.182 247079.733 30 10 Rudolfstetten 41 Switzerland Nordwestschweiz N Rudolfstetten
+OBJE 1423 694225.196 247444.359 30 10 Nänikon-Greifensee 41 Switzerland Zürich N Greifensee
+OBJE 1424 648660.652 246983.823 30 10 Suhr 41 Switzerland Nordwestschweiz N Suhr
+OBJE 1425 750661.818 248700.145 30 10 Strahlholz 41 Switzerland Ostschweiz N Bühler
+OBJE 1426 758113.402 248916.672 30 10 Alter Zoll 41 Switzerland Ostschweiz N Altstätten
+OBJE 1427 648622.341 247050.219 30 10 Suhr Ausweiche 41 Switzerland Nordwestschweiz N Suhr
+OBJE 1428 733201.795 248403.998 30 10 Degersheim 41 Switzerland Ostschweiz N Degersheim
+OBJE 1429 681881.118 247538.844 30 10 Zürich Wiedikon 41 Switzerland Zürich N Zürich
+OBJE 1430 660266.906 247290.643 30 10 Dottikon-Dintikon 41 Switzerland Nordwestschweiz N Dintikon
+OBJE 1431 760022.428 249290.500 30 10 Altstätten SG 41 Switzerland Ostschweiz N Altstätten
+OBJE 1432 739130.149 248818.345 30 10 Wilen 41 Switzerland Ostschweiz N Wilen
+OBJE 1433 646134.780 247386.121 30 10 Distelberg 41 Switzerland Nordwestschweiz N Aarau
+OBJE 1434 758608.651 249608.368 30 10 Altstätten Stadt 41 Switzerland Ostschweiz N Altstätten
+OBJE 1435 683193.021 248246.518 30 10 Zürich HB 41 Switzerland Zürich Y Zürich
+OBJE 1436 683245.722 248258.377 30 10 Zürich HB 41 Switzerland Zürich Y Zürich
+OBJE 1437 655418.726 248010.496 30 10 Lenzburg 41 Switzerland Nordwestschweiz N Lenzburg
+OBJE 1438 748107.935 249614.422 30 10 Steigbach 41 Switzerland Ostschweiz N Steigbach
+OBJE 1439 674898.547 248402.679 30 10 Urdorf Weihermatt 41 Switzerland Zürich N Urdorf
+OBJE 1440 672372.763 248682.610 30 10 Reppischhof 41 Switzerland Zürich N Rudolfstetten
+OBJE 1441 692275.168 248970.391 30 10 Schwerzenbach 41 Switzerland Zürich N Schwerzenbach
+OBJE 1442 723334.640 249546.991 30 10 Lütisburg 41 Switzerland Ostschweiz N Lütisburg
+OBJE 1443 736310.675 249876.004 30 10 Schachen BT 41 Switzerland Ostschweiz N Schachen bei Herisau
+OBJE 1444 681363.140 248954.966 30 10 Zürich Hardbrücke 41 Switzerland Zürich N Zürich
+OBJE 1445 699059.855 249246.797 30 10 Fehraltorf 41 Switzerland Zürich N Fehraltorf
+OBJE 1446 623457.770 248587.181 30 10 Waldenburg 41 Switzerland Nordwestschweiz N Waldenburg
+OBJE 1447 651899.268 248901.463 30 10 Hunzenschwil 41 Switzerland Nordwestschweiz N Hunzenschwil
+OBJE 1448 647723.019 248988.650 30 10 Buchs AG 41 Switzerland Nordwestschweiz N Buchs
+OBJE 1449 747445.002 250754.527 30 10 Teufen 41 Switzerland Ostschweiz N Teufen
+OBJE 1450 657951.440 249268.908 30 10 Hendschiken 41 Switzerland Nordwestschweiz N Hendschiken
+OBJE 1451 746567.800 250799.472 30 10 Stofel 41 Switzerland Ostschweiz N Teufen
+OBJE 1452 746023.537 250819.386 30 10 Niederteufen 41 Switzerland Ostschweiz N Niederteufen
+OBJE 1453 675322.212 249531.079 30 10 Urdorf 41 Switzerland Zürich N Urdorf
+OBJE 1454 682350.014 249669.121 30 10 Zürich Wipkingen 41 Switzerland Zürich N Zürich
+OBJE 1455 739371.786 250748.007 30 10 Herisau 41 Switzerland Ostschweiz Y Herisau
+OBJE 1456 679208.641 249692.982 30 10 Zürich Altstetten 41 Switzerland Zürich N Zürich
+OBJE 1457 631571.246 249258.589 30 10 Läufelfingen 41 Switzerland Nordwestschweiz N Läufelfingen
+OBJE 1458 739347.573 250814.165 30 10 Herisau 41 Switzerland Ostschweiz Y Herisau
+OBJE 1459 646874.155 249393.258 30 10 Aarau WSB 41 Switzerland Nordwestschweiz N Aarau
+OBJE 1460 672594.970 249652.685 30 10 Dietikon Stoffelbach 41 Switzerland Zürich N Dietikon
+OBJE 1461 646858.968 249404.257 30 10 Aarau 41 Switzerland Nordwestschweiz N Aarau
+OBJE 1462 762192.017 251451.662 30 10 Rebstein-Marbach 41 Switzerland Ostschweiz N Rebstein
+OBJE 1463 706900.586 250406.201 30 10 Saland 41 Switzerland Zürich N Saland
+OBJE 1464 648757.972 249842.090 30 10 Rohr-Buchs 41 Switzerland Nordwestschweiz N Rohr
+OBJE 1465 741982.956 251455.105 30 10 Gübensee 41 Switzerland Ostschweiz N Herisau
+OBJE 1466 687420.750 250408.980 30 10 Stettbach 41 Switzerland Zürich N Dübendorf
+OBJE 1467 623467.853 249854.706 30 10 Oberdorf BL 41 Switzerland Nordwestschweiz N Oberdorf
+OBJE 1468 675915.187 250394.825 30 10 Schlieren 41 Switzerland Zürich N Schlieren
+OBJE 1469 623542.636 250032.895 30 10 Oberdorf Winkelweg 41 Switzerland Nordwestschweiz N Oberdorf
+OBJE 1470 745100.011 251830.982 30 10 Lustmühle 41 Switzerland Ostschweiz N Lustmühle
+OBJE 1471 689491.644 250762.386 30 10 Dübendorf 41 Switzerland Zürich N Dübendorf
+OBJE 1472 651967.685 250569.859 30 10 Rupperswil 41 Switzerland Nordwestschweiz N Rupperswil
+OBJE 1473 752131.325 252374.571 30 10 Gfeld 41 Switzerland Ostschweiz N Trogen
+OBJE 1474 740562.589 252121.850 30 10 Sankt Gallen Winkeln 41 Switzerland Ostschweiz N Sankt Gallen
+OBJE 1475 576282.014 250600.915 30 10 Courgenay 41 Switzerland Espace Mittelland N Courgenay
+OBJE 1476 672970.264 251058.301 30 10 Dietikon 41 Switzerland Zürich Y Dietikon
+OBJE 1477 673007.727 251081.001 30 10 Dietikon 41 Switzerland Zürich Y Dietikon
+OBJE 1478 745846.040 252505.496 30 10 Riethüsli 41 Switzerland Ostschweiz N Riethüsli
+OBJE 1479 742728.615 252473.973 30 10 Sankt Gallen Bruggen 41 Switzerland Ostschweiz N Sankt Gallen
+OBJE 1480 751979.107 252715.440 30 10 Bendlehn 41 Switzerland Ostschweiz N Bendlehn
+OBJE 1481 658635.177 251132.473 30 10 Othmarsingen 41 Switzerland Nordwestschweiz N Othmarsingen
+OBJE 1482 743405.567 252579.311 30 10 Sankt Gallen Haggen 41 Switzerland Ostschweiz N Haggen
+OBJE 1483 752865.722 252882.863 30 10 Trogen 41 Switzerland Ostschweiz N Trogen
+OBJE 1484 751505.319 252936.851 30 10 Speicher 41 Switzerland Ostschweiz Y Speicher
+OBJE 1485 630919.480 251178.633 30 10 Buckten 41 Switzerland Nordwestschweiz N Buckten
+OBJE 1486 723124.679 252378.384 30 10 Bazenheid 41 Switzerland Ostschweiz N Bazenheid
+OBJE 1487 683152.003 251704.048 30 10 Zürich Oerlikon 41 Switzerland Zürich N Zürich
+OBJE 1488 696977.157 251914.414 30 10 Illnau 41 Switzerland Zürich N Illnau
+OBJE 1489 736854.788 252802.314 30 10 Gossau SG 41 Switzerland Ostschweiz Y Gossau
+OBJE 1490 624020.573 251313.422 30 10 Niederdorf 41 Switzerland Nordwestschweiz Y Niederdorf
+OBJE 1491 736831.124 252846.252 30 10 Gossau SG 41 Switzerland Ostschweiz Y Gossau
+OBJE 1492 751286.669 253220.426 30 10 Schützengarten 41 Switzerland Ostschweiz N Speicher
+OBJE 1493 765304.267 253595.447 30 10 Heerbrugg 41 Switzerland Ostschweiz N Heerbrugg
+OBJE 1494 751095.781 253304.524 30 10 Vögelinsegg 41 Switzerland Ostschweiz N Speicher
+OBJE 1495 686980.273 252126.007 30 10 Wallisellen 41 Switzerland Zürich N Wallisellen
+OBJE 1496 624177.973 251580.903 30 10 Hirschlang 41 Switzerland Nordwestschweiz N Niederdorf
+OBJE 1497 660159.489 251914.965 30 10 Mägenwil 41 Switzerland Nordwestschweiz N Mägenwil
+OBJE 1498 750954.024 253534.466 30 10 Rank 41 Switzerland Ostschweiz N Speicher
+OBJE 1499 654769.424 252073.902 30 10 Wildegg 41 Switzerland Nordwestschweiz N Wildegg
+OBJE 1500 732034.301 253326.694 30 10 Flawil 41 Switzerland Ostschweiz N Flawil
+OBJE 1501 604827.679 251900.492 30 10 Laufen 41 Switzerland Espace Mittelland Y Laufen
+OBJE 1502 750386.987 253864.805 30 10 Notkersegg 41 Switzerland Ostschweiz N Speicher
+OBJE 1503 750634.237 253937.827 30 10 Schwarzer Bären 41 Switzerland Ostschweiz N Speicher
+OBJE 1504 706461.477 252989.262 30 10 Wila 41 Switzerland Zürich N Wila
+OBJE 1505 624575.415 252194.049 30 10 Hölstein Weidbächli 41 Switzerland Nordwestschweiz N Hölstein
+OBJE 1506 683643.171 252733.952 30 10 Zürich Seebach 41 Switzerland Zürich N Zürich
+OBJE 1507 745553.394 253966.350 30 10 Sankt Gallen TB 41 Switzerland Ostschweiz N Sankt Gallen
+OBJE 1508 689111.801 252924.965 30 10 Dietlikon 41 Switzerland Zürich N Dietlikon
+OBJE 1509 745845.407 254062.515 30 10 Sankt Gallen AB 41 Switzerland Ostschweiz N Sankt Gallen
+OBJE 1510 745571.649 254144.746 30 10 Sankt Gallen 41 Switzerland Ostschweiz N Sankt Gallen
+OBJE 1511 749977.018 254254.787 30 10 Schülerhaus 41 Switzerland Ostschweiz N Speicher
+OBJE 1512 572999.416 252438.418 30 10 Porrentruy 41 Switzerland Espace Mittelland N Porrentruy
+OBJE 1513 680780.003 252949.925 30 10 Zürich Affoltern 41 Switzerland Zürich N Zürich
+OBJE 1514 576486.450 252656.996 30 10 Alle 41 Switzerland Espace Mittelland N Alle
+OBJE 1515 749329.378 254494.207 30 10 Spisertor 41 Switzerland Ostschweiz N Speicher
+OBJE 1516 624927.924 252706.968 30 10 Hölstein Süd 41 Switzerland Nordwestschweiz N Hölstein
+OBJE 1517 748470.315 254739.508 30 10 Sankt Gallen Marktplatz 41 Switzerland Ostschweiz N Sankt Gallen
+OBJE 1518 631158.887 253014.431 30 10 Rümlingen 41 Switzerland Nordwestschweiz N Rümlingen
+OBJE 1519 694320.007 253817.424 30 10 Effretikon 41 Switzerland Zürich N Effretikon
+OBJE 1520 625121.886 253230.353 30 10 Hölstein 41 Switzerland Nordwestschweiz N Hölstein
+OBJE 1521 766131.996 255576.229 30 10 Au SG 41 Switzerland Ostschweiz N Au
+OBJE 1522 684743.314 253906.027 30 10 Opfikon 41 Switzerland Zürich N Glattbrugg
+OBJE 1523 663084.066 253679.963 30 10 Mellingen 41 Switzerland Nordwestschweiz N Mellingen
+OBJE 1524 684598.075 254037.383 30 10 Glattbrugg 41 Switzerland Zürich N Glattbrugg
+OBJE 1525 606765.131 253625.719 30 10 Zwingen 41 Switzerland Espace Mittelland N Zwingen
+OBJE 1526 669167.433 254148.226 30 10 Killwangen-Spreitenbach 41 Switzerland Nordwestschweiz N Killwangen
+OBJE 1527 727798.432 255135.368 30 10 Uzwil 41 Switzerland Ostschweiz N Uzwil
+OBJE 1528 706163.687 254863.213 30 10 Turbenthal 41 Switzerland Zürich N Turbenthal
+OBJE 1529 658815.452 254258.659 30 10 Birr 41 Switzerland Nordwestschweiz N Birr
+OBJE 1530 747786.876 255812.334 30 10 Sankt Gallen Sankt Fiden 41 Switzerland Ostschweiz N Sankt Gallen
+OBJE 1531 631296.600 254082.533 30 10 Sommerau 41 Switzerland Nordwestschweiz N Sommerau
+OBJE 1532 678147.391 254582.472 30 10 Regensdorf-Watt 41 Switzerland Zürich N Regensdorf
+OBJE 1533 571371.491 254402.932 30 10 Courchavon 41 Switzerland Espace Mittelland N Courchavon
+OBJE 1534 689856.688 255060.077 30 10 Bassersdorf 41 Switzerland Zürich N Bassersdorf
+OBJE 1535 611802.722 254589.777 30 10 Grellingen 41 Switzerland Espace Mittelland N Grellingen
+OBJE 1536 704319.071 255497.603 30 10 Rämismühle-Zell 41 Switzerland Zürich N Rämismühle
+OBJE 1537 685222.627 255202.775 30 10 Kloten Balsberg 41 Switzerland Zürich N Kloten
+OBJE 1538 624580.216 254673.479 30 10 Lampenberg-Ramlinsburg 41 Switzerland Nordwestschweiz N Ramlinsburg
+OBJE 1539 736942.024 256207.456 30 10 Arnegg 41 Switzerland Ostschweiz N Arnegg
+OBJE 1540 667797.627 255177.568 30 10 Neuenhof 41 Switzerland Nordwestschweiz N Neuenhof
+OBJE 1541 658663.310 255146.663 30 10 Lupfig 41 Switzerland Nordwestschweiz N Lupfig
+OBJE 1542 702707.843 255747.408 30 10 Rikon 41 Switzerland Zürich N Rikon
+OBJE 1543 655034.768 255189.632 30 10 Schinznach Bad 41 Switzerland Nordwestschweiz N Schinznach Bad
+OBJE 1544 723073.666 256280.705 30 10 Schwarzenbach SG 41 Switzerland Ostschweiz N Schwarzenbach
+OBJE 1545 669453.119 255519.226 30 10 Würenlos 41 Switzerland Nordwestschweiz N Würenlos
+OBJE 1546 630483.655 255201.262 30 10 Diepflingen 41 Switzerland Nordwestschweiz N Diepflingen
+OBJE 1547 758446.062 257367.369 30 10 Heiden 41 Switzerland Ostschweiz N Heiden
+OBJE 1548 767340.489 257679.147 3 10 Sankt Margarethen Rail 41 Switzerland Ostschweiz N @
+OBJE 1549 664374.234 255761.996 30 10 Dättwil 41 Switzerland Nordwestschweiz N Dättwil
+OBJE 1550 726126.435 256756.498 30 10 Algetshausen-Henau 41 Switzerland Ostschweiz N Henau
+OBJE 1551 683068.629 256028.337 30 10 Rümlang 41 Switzerland Zürich N Rümlang
+OBJE 1552 633656.997 255552.011 30 10 Tecknau 41 Switzerland Nordwestschweiz N Tecknau
+OBJE 1553 623686.561 255570.434 30 10 Talhaus 41 Switzerland Nordwestschweiz N Bubendorf
+OBJE 1554 686513.595 256166.679 30 10 Kloten 41 Switzerland Zürich N Kloten
+OBJE 1555 684710.833 256173.943 30 10 Zürich Flughafen 41 Switzerland Zürich N Zürich
+OBJE 1556 578829.423 255839.124 30 10 Vendlincourt 41 Switzerland Espace Mittelland N Vendlincourt
+OBJE 1557 695686.291 256585.961 30 10 Kemptthal 41 Switzerland Zürich N Kemptthal
+OBJE 1558 766458.481 258188.146 30 10 Sankt Margrethen 41 Switzerland Ostschweiz N Sankt Margrethen
+OBJE 1559 671050.560 256283.183 30 10 Otelfingen 41 Switzerland Nordwestschweiz N Otelfingen
+OBJE 1560 763176.508 258196.754 30 10 Walzenhausen 41 Switzerland Ostschweiz N Walzenhausen
+OBJE 1561 612508.825 255981.026 30 10 Duggingen 41 Switzerland Espace Mittelland N Duggingen
+OBJE 1562 675226.573 256457.133 30 10 Buchs-Dällikon 41 Switzerland Zürich N Buchs
+OBJE 1563 571154.321 256271.902 30 10 Courtemaîche 41 Switzerland Espace Mittelland N Courtemaîche
+OBJE 1564 672093.576 256718.336 30 10 Otelfingen-Rietholz 41 Switzerland Zürich N Otelfingen
+OBJE 1565 700862.852 257328.064 30 10 Kollbrunn 41 Switzerland Zürich N Kollbrunn
+OBJE 1566 622950.579 256712.743 30 10 Bubendorf 41 Switzerland Nordwestschweiz N Bubendorf
+OBJE 1567 757910.160 258787.825 30 10 Schwendi bei Heiden 41 Switzerland Ostschweiz N Wienacht-Tobel
+OBJE 1568 714766.789 257892.957 30 10 Eschlikon 41 Switzerland Ostschweiz N Eschlikon
+OBJE 1569 721196.795 258043.509 30 10 Wil 41 Switzerland Ostschweiz N Wil
+OBJE 1570 718014.186 258045.850 30 10 Sirnach 41 Switzerland Ostschweiz N Sirnach
+OBJE 1571 747239.235 258712.605 30 10 Wittenbach 41 Switzerland Ostschweiz N Wittenbach
+OBJE 1572 665880.882 257279.664 30 10 Wettingen 41 Switzerland Nordwestschweiz N Wettingen
+OBJE 1573 762634.543 259249.597 30 10 Rheineck 41 Switzerland Ostschweiz Y Rheineck
+OBJE 1574 762641.774 259260.918 30 10 Rheineck 41 Switzerland Ostschweiz Y Rheineck
+OBJE 1575 628151.522 257113.222 30 10 Sissach 41 Switzerland Nordwestschweiz N Sissach
+OBJE 1576 699809.646 258066.356 30 10 Sennhoff-Kyburg 41 Switzerland Zürich N Kyburg
+OBJE 1577 758616.171 259462.953 30 10 Wienacht-Tobel 41 Switzerland Ostschweiz N Wienacht-Tobel
+OBJE 1578 631022.282 257483.370 30 10 Gelterkinden 41 Switzerland Nordwestschweiz N Gelterkinden
+OBJE 1579 570708.660 257641.682 30 10 Grandgourt 41 Switzerland Espace Mittelland N Grandgourt
+OBJE 1580 612497.814 257626.537 30 10 Aesch 41 Switzerland Nordwestschweiz N Aesch
+OBJE 1581 626052.986 257670.661 30 10 Itingen 41 Switzerland Nordwestschweiz N Itingen
+OBJE 1582 624491.539 257875.246 30 10 Lausen 41 Switzerland Nordwestschweiz Y Lausen
+OBJE 1583 665154.462 258194.505 30 10 Baden Oberstadt 41 Switzerland Nordwestschweiz N Baden
+OBJE 1584 758252.814 260076.073 30 10 Wartensee 41 Switzerland Ostschweiz N Rorschach
+OBJE 1585 680701.852 258675.369 30 10 Oberglatt 41 Switzerland Zürich N Oberglatt
+OBJE 1586 578739.879 258196.573 30 10 Bonfol 41 Switzerland Espace Mittelland N Bonfol
+OBJE 1587 757967.745 260302.019 30 10 Sandbüchel 41 Switzerland Ostschweiz N Rorschach
+OBJE 1588 711566.114 259255.115 30 10 Guntershausen 41 Switzerland Ostschweiz Y Guntershausen bei Aadorf
+OBJE 1589 757710.939 260317.405 30 10 Seebleiche 41 Switzerland Ostschweiz N Rorschach
+OBJE 1590 623064.941 258325.377 30 10 Altmarkt 41 Switzerland Nordwestschweiz N Liestal
+OBJE 1591 753240.531 260266.532 30 10 Goldach 41 Switzerland Ostschweiz N Goldach
+OBJE 1592 720426.537 259573.561 30 10 Bronschhofen 41 Switzerland Ostschweiz N Trungen
+OBJE 1593 749063.189 260259.792 30 10 Mörschwil 41 Switzerland Ostschweiz N Mörschwil
+OBJE 1594 717847.907 259577.189 30 10 Münchwilen TG 41 Switzerland Ostschweiz N Münchwilen
+OBJE 1595 655047.317 258703.330 30 10 Villnachern 41 Switzerland Nordwestschweiz N Villnachern
+OBJE 1596 665569.334 258855.123 30 10 Baden 41 Switzerland Nordwestschweiz Y Baden
+OBJE 1597 736814.775 260074.771 30 10 Hauptwil 41 Switzerland Ostschweiz N Hauptwil
+OBJE 1598 679715.651 259129.009 30 10 Niederhasli 41 Switzerland Zürich N Niederhasli
+OBJE 1599 756794.864 260737.927 30 10 Rorschach 41 Switzerland Ostschweiz Y Rorschach
+OBJE 1600 569289.741 258794.113 30 10 Buix 41 Switzerland Espace Mittelland N Buix
+OBJE 1601 601520.642 258792.146 30 10 Rodersdorf 41 Switzerland Espace Mittelland N Rodersdorf
+OBJE 1602 756798.861 260871.503 30 10 Rorschach 41 Switzerland Ostschweiz Y Rorschach
+OBJE 1603 658125.849 259177.551 30 10 Brugg AG 41 Switzerland Nordwestschweiz N Brugg
+OBJE 1604 758209.174 261142.666 30 10 Staad 41 Switzerland Ostschweiz N Staad
+OBJE 1605 754185.378 261047.425 30 10 Rorschach Hafen 41 Switzerland Ostschweiz N Rorschach
+OBJE 1606 677101.703 259561.359 30 10 Dielsdorf 41 Switzerland Zürich N Dielsdorf
+OBJE 1607 717056.446 260328.791 30 10 Münchwilen Pflegenheim 41 Switzerland Ostschweiz N Münchwilen
+OBJE 1608 608085.223 259264.420 30 10 Ettingen 41 Switzerland Nordwestschweiz N Ettingen
+OBJE 1609 622239.395 259356.247 30 10 Liestal 41 Switzerland Nordwestschweiz Y Liestal
+OBJE 1610 622277.038 259367.507 30 10 Liestal 41 Switzerland Nordwestschweiz Y Liestal
+OBJE 1611 602040.546 259348.226 3 10 Rodersdorf Rail 41 Switzerland Espace Mittelland N @
+OBJE 1612 747425.860 261208.579 30 10 Roggwil-Berg 41 Switzerland Ostschweiz N Berg
+OBJE 1613 606584.973 259618.360 30 10 Witterswil 41 Switzerland Espace Mittelland N Witterswil
+OBJE 1614 700242.900 260531.231 30 10 Winterthur Seen 41 Switzerland Zürich N Winterthur
+OBJE 1615 710344.963 260855.782 30 10 Aadorf 41 Switzerland Ostschweiz N Aadorf
+OBJE 1616 605311.084 259861.693 30 10 Flüh 41 Switzerland Espace Mittelland N Flüh
+OBJE 1617 604617.693 259938.945 3 10 Flüh Rail 41 Switzerland Espace Mittelland N @
+OBJE 1618 613020.441 259951.437 30 10 Dornach 41 Switzerland Espace Mittelland Y Dornach
+OBJE 1619 613065.657 259951.536 30 10 Dornach-Arlesheim 41 Switzerland Espace Mittelland N Dornach
+OBJE 1620 695965.634 260749.351 30 10 Winterthur Töss 41 Switzerland Zürich N Winterthur
+OBJE 1621 676215.416 260483.901 30 10 Steinmaur 41 Switzerland Zürich N Steinmaur
+OBJE 1622 716140.916 261267.110 30 10 Rosental 41 Switzerland Ostschweiz N Rosental
+OBJE 1623 661504.452 260468.194 30 10 Turgi 41 Switzerland Nordwestschweiz N Turgi
+OBJE 1624 680500.925 260696.390 30 10 Niederglatt 41 Switzerland Zürich N Niederglatt
+OBJE 1625 736059.951 261747.814 30 10 Bischofszell Stadt 41 Switzerland Ostschweiz N Bischofszell
+OBJE 1626 568205.301 260378.711 30 10 Boncourt 41 Switzerland Espace Mittelland N Boncourt
+OBJE 1627 752734.653 262333.302 30 10 Horn 41 Switzerland Ostschweiz Y Horn
+OBJE 1628 674522.013 260895.967 30 10 Schöfflisdorf-Oberweningen 41 Switzerland Zürich N Schöfflisdorf
+OBJE 1629 613622.100 260486.482 30 10 Arlesheim Dorf 41 Switzerland Nordwestschweiz N Arlesheim
+OBJE 1630 696658.212 261261.041 30 10 Winterthur 41 Switzerland Zürich N Winterthur
+OBJE 1631 568139.102 260679.273 30 10 Delle 41 Switzerland Espace Mittelland N Boncourt
+OBJE 1632 714315.437 261731.942 30 10 Wängi 41 Switzerland Ostschweiz N Wängi
+OBJE 1633 719351.259 262042.815 30 10 Bettwiesen 41 Switzerland Ostschweiz N Bettwiesen
+OBJE 1634 707507.463 261871.042 30 10 Elgg 41 Switzerland Zürich N Elgg
+OBJE 1635 673159.263 261401.554 30 10 Niederweningen Dorf 41 Switzerland Zürich N Niederweningen
+OBJE 1636 702247.589 261855.522 30 10 Räterschen 41 Switzerland Zürich N Räterschen
+OBJE 1637 698856.492 261853.414 30 10 Winterthur Grüze 41 Switzerland Zürich N Winterthur
+OBJE 1638 609017.085 261055.853 30 10 Therwil 41 Switzerland Nordwestschweiz N Therwil
+OBJE 1639 621215.702 261086.995 30 10 Frenkendorf-Füllinsdorf 41 Switzerland Nordwestschweiz N Füllinsdorf
+OBJE 1640 703473.238 262010.302 30 10 Schottikon 41 Switzerland Zürich N Schottikon
+OBJE 1641 735510.146 262713.872 30 10 Bischofszell Nord 41 Switzerland Ostschweiz N Bischofszell
+OBJE 1642 713941.379 262369.716 30 10 Wiesengrund 41 Switzerland Ostschweiz N Wängi
+OBJE 1643 567932.106 261414.232 3 10 Boncourt Rail 41 Switzerland Espace Mittelland N @
+OBJE 1644 744834.664 263268.788 30 10 Häggenschwil-Winden 41 Switzerland Ostschweiz N Winden
+OBJE 1645 736445.640 263324.850 30 10 Sitterdorf 41 Switzerland Ostschweiz N Sitterdorf
+OBJE 1646 670911.582 262208.113 30 10 Niederweningen 41 Switzerland Zürich N Niederweningen
+OBJE 1647 693637.298 262613.521 30 10 Winterthur Wülflingen 41 Switzerland Zürich N Winterthur
+OBJE 1648 750440.919 263898.293 30 10 Arbon 41 Switzerland Ostschweiz N Arbon
+OBJE 1649 713572.580 263129.942 30 10 Jakobstal 41 Switzerland Ostschweiz N Matzingen
+OBJE 1650 699839.493 262993.083 30 10 Oberwinterthur 41 Switzerland Zürich N Winterthur
+OBJE 1651 643502.067 262354.193 30 10 Frick 41 Switzerland Nordwestschweiz N Frick
+OBJE 1652 613511.936 262532.058 30 10 Münchenstein 41 Switzerland Nordwestschweiz N Münchenstein
+OBJE 1653 613677.606 262554.676 30 10 Münchenstein Dorf 41 Switzerland Nordwestschweiz N Münchenstein
+OBJE 1654 609172.750 262712.768 30 10 Oberwil 41 Switzerland Nordwestschweiz N Oberwil
+OBJE 1655 691257.082 263543.713 30 10 Pfungen-Neftenbach 41 Switzerland Zürich N Dättlikon
+OBJE 1656 660406.004 263236.665 30 10 Siggenthal-Würenlingen 41 Switzerland Nordwestschweiz N Siggenthal Station
+OBJE 1657 743163.864 264729.517 30 10 Muolen 41 Switzerland Ostschweiz N Muolen
+OBJE 1658 712773.429 264337.907 30 10 Matzingen 41 Switzerland Ostschweiz N Matzingen
+OBJE 1659 699660.494 264224.407 30 10 Winterthur Wallrüti 41 Switzerland Zürich N Winterthur
+OBJE 1660 720330.789 264642.744 30 10 Tobel A 41 Switzerland Ostschweiz N Tobel
+OBJE 1661 687338.837 264118.316 30 10 Embrach-Rorbas 41 Switzerland Zürich N Rorbas
+OBJE 1662 619090.035 263692.649 30 10 Pratteln 41 Switzerland Nordwestschweiz N Pratteln
+OBJE 1663 682801.075 264353.196 30 10 Bülach 41 Switzerland Zürich N Bülach
+OBJE 1664 610082.355 263792.757 30 10 Bottmingen 41 Switzerland Nordwestschweiz N Bottmingen
+OBJE 1665 732888.267 265356.831 30 10 Kradolf 41 Switzerland Ostschweiz N Kradolf
+OBJE 1666 700826.732 264744.615 30 10 Wiesendangen 41 Switzerland Zürich N Wiesendangen
+OBJE 1667 642253.532 264179.762 30 10 Eiken 41 Switzerland Nordwestschweiz N Eiken
+OBJE 1668 711876.773 265143.785 30 10 Weberei Matzingen 41 Switzerland Ostschweiz N Matzingen
+OBJE 1669 613319.914 264177.190 30 10 Hofmatt 41 Switzerland Nordwestschweiz N Münchenstein
+OBJE 1670 699133.107 265127.394 30 10 Reutlingen 41 Switzerland Zürich Y Winterthur
+OBJE 1671 744081.653 266331.165 30 10 Steinebrunn 41 Switzerland Ostschweiz N Steinebrunn
+OBJE 1672 610193.907 264615.733 30 10 Binningen 41 Switzerland Nordwestschweiz N Basel
+OBJE 1673 722865.572 265918.260 30 10 Märwil 41 Switzerland Ostschweiz N Märwil
+OBJE 1674 616014.307 264773.161 30 10 Muttenz 41 Switzerland Nordwestschweiz N Muttenz
+OBJE 1675 701726.810 265838.726 30 10 Rickenbach-Attikon 41 Switzerland Zürich N Rickenbach-Attikon
+OBJE 1676 698005.454 265909.230 30 10 Seuzach 41 Switzerland Zürich N Seuzach
+OBJE 1677 711372.658 266313.051 30 10 Murkart 41 Switzerland Ostschweiz N Matzingen
+OBJE 1678 612790.242 265343.490 30 10 Dreispitz 41 Switzerland Nordwestschweiz N Basel
+OBJE 1679 731500.073 266804.911 30 10 Sulgen 41 Switzerland Ostschweiz N Sulgen
+OBJE 1680 621666.633 265513.888 30 10 Kaiseraugst 41 Switzerland Nordwestschweiz N Kaiseraugst
+OBJE 1681 638749.146 265701.279 30 10 Stein-Säckingen 41 Switzerland Nordwestschweiz N Stein
+OBJE 1682 746125.694 267438.009 30 10 Neukirch-Egnach 41 Switzerland Ostschweiz N Egnach
+OBJE 1683 710242.267 266758.905 30 10 Lüdem 41 Switzerland Ostschweiz N Matzingen
+OBJE 1684 710023.558 266777.066 30 10 Frauenfeld Stadt 41 Switzerland Ostschweiz N Frauenfeld
+OBJE 1685 746637.570 267751.003 30 10 Egnach 41 Switzerland Ostschweiz N Egnach
+OBJE 1686 635824.816 266205.414 30 10 Mumpf 41 Switzerland Nordwestschweiz N Mumpf
+OBJE 1687 694699.437 266856.100 30 10 Hettlingen 41 Switzerland Zürich N Hettlingen
+OBJE 1688 641681.590 266254.954 30 10 Sisseln 41 Switzerland Nordwestschweiz N Sisseln
+OBJE 1689 611011.363 266407.317 30 10 Basel SBB 41 Switzerland Nordwestschweiz N Basel
+OBJE 1690 706142.861 267351.012 30 10 Islikon 41 Switzerland Ostschweiz N Islikon
+OBJE 1691 728891.959 267948.505 30 10 Bürglen 41 Switzerland Ostschweiz N Bürglen
+OBJE 1692 626254.470 266622.133 30 10 Rheinfelden 41 Switzerland Nordwestschweiz N Rheinfelden
+OBJE 1693 611492.649 266663.964 30 10 Basel Aeschenplatz 41 Switzerland Nordwestschweiz N Basel
+OBJE 1694 611123.717 266707.735 30 10 Basel Heuwaage 41 Switzerland Nordwestschweiz N Basel
+OBJE 1695 739905.435 268377.249 30 10 Amriswil 41 Switzerland Ostschweiz N Amriswil
+OBJE 1696 734726.920 268301.249 30 10 Erlen 41 Switzerland Ostschweiz N Erlen
+OBJE 1697 681764.706 267396.707 30 10 Glattfelden 41 Switzerland Zürich N Glattfelden
+OBJE 1698 722323.074 268108.985 30 10 Oppikon 41 Switzerland Ostschweiz N Bissegg
+OBJE 1699 699050.687 267794.889 30 10 Dinhard 41 Switzerland Zürich N Dinhard
+OBJE 1700 737693.493 268625.518 30 10 Oberaach 41 Switzerland Ostschweiz N Oberaach
+OBJE 1701 724067.909 268556.893 30 10 Bussnang 41 Switzerland Ostschweiz N Bussnang
+OBJE 1702 710013.191 268545.069 30 10 Frauenfeld 41 Switzerland Ostschweiz Y Frauenfeld
+OBJE 1703 709988.337 268666.935 30 10 Frauenfeld 41 Switzerland Ostschweiz Y Frauenfeld
+OBJE 1704 646901.291 267839.656 30 10 Laufenburg 41 Switzerland Nordwestschweiz N Laufenburg
+OBJE 1705 674924.906 268340.072 30 10 Weiach Kaiserstuhl 41 Switzerland Zürich N Weiach
+OBJE 1706 614801.197 268094.527 3 10 Basel Rail 41 Switzerland Nordwestschweiz Y @
+OBJE 1707 693982.586 268846.285 30 10 Henggart 41 Switzerland Zürich N Henggart
+OBJE 1708 630514.042 268299.320 30 10 Möhlin 41 Switzerland Nordwestschweiz N Möhlin
+OBJE 1709 746226.264 270065.348 30 10 Romanshorn 41 Switzerland Ostschweiz N Romanshorn
+OBJE 1710 725768.885 269638.306 30 10 Weinfelden 41 Switzerland Ostschweiz N Weinfelden
+OBJE 1711 669740.183 268888.118 30 10 Rümikon-Mellikon 41 Switzerland Nordwestschweiz N Mellikon
+OBJE 1712 699330.438 269512.134 30 10 Thalheim-Altikon 41 Switzerland Zürich N Altikon
+OBJE 1713 612647.443 268745.543 30 10 Basel Bad Bf 41 Switzerland Nordwestschweiz N Basel
+OBJE 1714 677238.169 269292.832 30 10 Zweidlen 41 Switzerland Zürich N Zweidlen
+OBJE 1715 661692.623 269143.225 30 10 Döttingen-Klingnau 41 Switzerland Nordwestschweiz N Döttingen
+OBJE 1716 666446.374 269339.381 30 10 Rekingen AG 41 Switzerland Nordwestschweiz N Rekingen
+OBJE 1717 730409.581 270484.194 30 10 Kehlhof 41 Switzerland Ostschweiz N Kehlhof
+OBJE 1718 680896.637 269764.403 30 10 Eglisau 41 Switzerland Zürich N Eglisau
+OBJE 1719 609741.488 269562.845 3 10 Basel Rail 41 Switzerland Nordwestschweiz Y @
+OBJE 1720 713352.231 270676.748 30 10 Felben-Wellhausen 41 Switzerland Ostschweiz N Felben
+OBJE 1721 680782.935 270374.442 30 10 Hüntwangen-Wil 41 Switzerland Zürich N Hüntwangen
+OBJE 1722 722367.469 271412.920 30 10 Märstetten 41 Switzerland Ostschweiz N Märstetten Station
+OBJE 1723 715665.097 271311.056 30 10 Hüttlingen 41 Switzerland Ostschweiz N Hüttlingen
+OBJE 1724 730677.107 271657.887 30 10 Berg 41 Switzerland Ostschweiz Y Andhausen
+OBJE 1725 616112.072 270343.974 30 10 Riehen 41 Switzerland Nordwestschweiz N Riehen
+OBJE 1726 612478.072 270557.567 3 10 Klein-Basel Rail 41 Switzerland Nordwestschweiz N @
+OBJE 1727 720335.111 271815.961 30 10 Mettendorf 41 Switzerland Ostschweiz N Bonau
+OBJE 1728 743098.520 272391.052 30 10 Uttwil 41 Switzerland Ostschweiz N Uttwil
+OBJE 1729 718698.583 272005.224 30 10 Müllheim-Wigoltingen 41 Switzerland Ostschweiz N Wigoltingen
+OBJE 1730 664377.247 271384.690 30 10 Zurzach 41 Switzerland Nordwestschweiz N Zurzach
+OBJE 1731 616469.945 271501.335 3 10 Riehen Rail 41 Switzerland Nordwestschweiz N @
+OBJE 1732 693236.709 272226.145 30 10 Andelfingen 41 Switzerland Zürich N Andelfingen
+OBJE 1733 663701.949 271922.221 30 10 Rietheim 41 Switzerland Nordwestschweiz N Rietheim
+OBJE 1734 741402.898 273440.128 30 10 Kesswil 41 Switzerland Ostschweiz N Kesswil
+OBJE 1735 659408.907 272489.004 30 10 Koblenz 41 Switzerland Nordwestschweiz N Koblenz
+OBJE 1736 683277.607 273278.102 30 10 Rafz 41 Switzerland Zürich N Rafz
+OBJE 1737 659925.824 273428.277 3 10 Koblenz Rail 41 Switzerland Nordwestschweiz N @
+OBJE 1738 660309.174 273443.304 30 10 Koblenz Dorf 41 Switzerland Nordwestschweiz N Koblenz
+OBJE 1739 739420.530 274872.167 30 10 Güttingen 41 Switzerland Ostschweiz N Güttingen
+OBJE 1740 730186.204 274805.596 30 10 Siegershausen 41 Switzerland Ostschweiz N Siegershausen
+OBJE 1741 696785.432 274629.738 30 10 Ossingen 41 Switzerland Zürich N Ossingen
+OBJE 1742 684345.925 274827.870 3 10 Rafz Rail 41 Switzerland Zürich N @
+OBJE 1743 737472.814 276149.956 30 10 Altnau 41 Switzerland Ostschweiz N Altnau
+OBJE 1744 731787.653 276509.459 30 10 Lengwil 41 Switzerland Ostschweiz N Lengwil
+OBJE 1745 691406.229 276756.856 30 10 Marthalen 41 Switzerland Zürich N Marthalen
+OBJE 1746 701586.920 277012.512 30 10 Stammheim 41 Switzerland Zürich N Unterstammheim
+OBJE 1747 729628.797 278263.319 30 10 Kreuzlingen Bernrain 41 Switzerland Ostschweiz N Kreuzlingen
+OBJE 1748 733053.333 278395.270 30 10 Bottighofen 41 Switzerland Ostschweiz N Kreuzlingen
+OBJE 1749 710889.084 278003.168 30 10 Mammern 41 Switzerland Ostschweiz N Mammern
+OBJE 1750 708286.077 278143.814 30 10 Eschenz 41 Switzerland Ostschweiz N Eschenz
+OBJE 1751 731206.392 278976.679 30 10 Kreuzlingen Hafen 41 Switzerland Ostschweiz N Kreuzlingen
+OBJE 1752 730053.791 279440.486 30 10 Kreuzlingen 41 Switzerland Ostschweiz N Kreuzlingen
+OBJE 1753 728272.410 279457.036 30 10 Tägerwilen MThB 41 Switzerland Ostschweiz N Tägerwilen
+OBJE 1754 730693.838 279721.580 3 10 Kreuzlingen Rail 41 Switzerland Ostschweiz N @
+OBJE 1755 706558.323 279346.750 30 10 Stein am Rhein 41 Switzerland Ostschweiz N Stein am Rhein
+OBJE 1756 689337.139 279371.803 30 10 Dachsen 41 Switzerland Zürich N Dachsen
+OBJE 1757 727325.636 280148.293 30 10 Tägerwilen SSB 41 Switzerland Ostschweiz N Tägerwilen
+OBJE 1758 674657.357 279356.534 3 10 Wilchingen Rail 41 Switzerland Ostschweiz N @
+OBJE 1759 703880.996 279910.583 30 10 Etzwilen 41 Switzerland Ostschweiz N Etzwilen
+OBJE 1760 715982.450 280414.475 30 10 Steckborn 41 Switzerland Ostschweiz N Steckborn
+OBJE 1761 700183.229 280435.939 30 10 Schlattingen 41 Switzerland Ostschweiz N Schlattingen
+OBJE 1762 723884.788 281198.213 30 10 Ermatingen 41 Switzerland Ostschweiz N Ermatingen
+OBJE 1763 675560.618 280391.106 30 10 Trasadingen 41 Switzerland Ostschweiz N Trasadingen
+OBJE 1764 687481.913 280856.350 3 10 Neuhausen Rail 41 Switzerland Ostschweiz N @
+OBJE 1765 719042.432 281420.862 30 10 Berlingen 41 Switzerland Ostschweiz N Berlingen
+OBJE 1766 721389.901 281602.245 30 10 Mannenbach-Salenstein 41 Switzerland Ostschweiz N Mannenbach
+OBJE 1767 689012.268 281479.792 30 10 Schloss Laufen am Rheinfall 41 Switzerland Ostschweiz N Neuhausen
+OBJE 1768 693911.830 281778.302 30 10 Schlatt 41 Switzerland Ostschweiz N Neu-Paradies
+OBJE 1769 677316.048 281703.837 30 10 Wilchingen-Hallau 41 Switzerland Ostschweiz N Wilchingen
+OBJE 1770 688276.263 281980.260 30 10 Neuhausen Bad BF 41 Switzerland Ostschweiz N Neuhausen
+OBJE 1771 689150.658 282260.329 30 10 Neuhausen 41 Switzerland Ostschweiz N Neuhausen
+OBJE 1772 698826.949 282470.391 30 10 Diessenhofen 41 Switzerland Ostschweiz N Diessenhofen
+OBJE 1773 691687.020 282377.121 30 10 Langwiesen 41 Switzerland Zürich N Langwiesen
+OBJE 1774 679136.575 282584.288 30 10 Neunkirch 41 Switzerland Ostschweiz N Neunkirch
+OBJE 1775 690872.220 283109.577 30 10 Feuerthalen 41 Switzerland Zürich N Feuerthalen
+OBJE 1776 685342.520 283360.441 30 10 Beringen Sonne 41 Switzerland Ostschweiz N Beringen
+OBJE 1777 689646.674 283713.548 30 10 Schaffhausen 41 Switzerland Ostschweiz N Schaffhausen
+OBJE 1778 692111.460 285964.643 30 10 Herblingen 41 Switzerland Ostschweiz N Schaffhausen
+OBJE 1779 694806.975 289143.582 30 10 Thayngen 41 Switzerland Ostschweiz N Thayngen
+OBJE 1780 696741.128 289208.443 3 10 Thayngen Rail 41 Switzerland Ostschweiz N @
+ETAB
+ETOP
+EMOD
+ENDE

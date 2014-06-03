@@ -27,19 +27,17 @@
  *	\date 13/06/14
  */
 
-#pragma comment(linker, "/SUBSYSTEM:CONSOLE")
+#include <QDebug>
 #include "App.h"
-#include <iostream>
+#include "cpl_conv.h"
 
 int main(int argc, char **argv) {
     QApplication app(argc, argv);
     string dataPath = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + "data").toStdString();
     CPLSetConfigOption("GDAL_DATA", dataPath.c_str());
     if(1 < argc) {
-        for(int i=0;i<argc;++i) {
-            std::cout << argv[i] << " ";
-        }
-        std::cout << std::endl;
+        for(int i=0;i<argc;++i)
+            qDebug() << argv[i];
         return ogr2ogr(argc, argv);
     } else {
         new App();

@@ -7,35 +7,44 @@ by
 David Tran, University of Applied Sciences Rapperswil (HSR)
 
 
-# About OGR2GUI x64
-OGR2GUI x64 is an application to convert and manipulate geospatial data.
-The front end is based on GDAL/OGR ogr2ogr command line utility therefore
+1. About
+OGR2GUI x64 is a fork from the original ogr2gui from Inventis. It is
+an application to convert and manipulate geospatial data. The front
+end is build upon GDAL/OGR ogr2ogr command line utility therefore
 it is also fully compatible with the well-known ogr2ogr options.
 
-# Installation
-1. Extract zip file
-2. Start ogr2gui.exe
-
-# Features
+2. Features
 - GUI for ogr2ogr:
 * File
 * Database
 * Web service
 * Projections
 * Option input
-- ogr2ogr command line
+- ogr2ogr 1.12dev as command line
 
-# Known issues
+3. System Requirements
+- Windows XP, Windows XP x64
+- Windows Vista, Windows Vista x64
+- Windows 7, Windows 7 x64
+- Windows 8, Windows 8 x64
+
+4. Installation
+- Extract zip file
+* Start ogr2gui.exe
+or
+* Start ogr2gui64.exe in Windows x64
+
+5. Known issues
 WFS crashes with OGR2GUI. Using OGR2GUI x64 should solve it.
 
-# Credits
+6. Credits
 David Tran (HSR), 2014
 
-# Website
+7. Website
 http://www.hsr.ch
 http://www.ogr2gui.ca
 
-# Licence
+8. Licence
 
 This file is part of OGR2GUI.
 

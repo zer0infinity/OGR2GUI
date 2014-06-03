@@ -107,12 +107,6 @@ public:
     ~WFSConnect( void );
 
     /*!
-         *	\fn void show( void )
-         *	\brief show dialog
-         */
-    void show( void );
-
-    /*!
          *	\fn void setConnectionType( QString )
          *	\brief Sets connection type
          */
@@ -122,19 +116,19 @@ public:
          *	\fn QString getConnectionString( void )
          *	\brief returns connection string
          */
-    QString getConnectionString( void );
+    QString getConnectionString( void ) const;
 
     /*!
          *	\fn QSring getSelectedTables( void )
          *	\brief returns selected layers
          */
-    QString getSelectedLayers( void );
+    QString getSelectedLayers( void ) const;
 
     /*!
          *	\fn QSringList getSelectedTables( void )
          *	\brief returns selected layers
          */
-    QStringList getSelectedLayersAsList( void );
+    QStringList getSelectedLayersAsList( void ) const;
 };
 
 QT_END_NAMESPACE

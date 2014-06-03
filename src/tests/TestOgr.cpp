@@ -77,29 +77,3 @@ void TestOgr::testOpenDriver() {
     resVal = ogr->OpenDriver(drivername);
     QCOMPARE(resVal, true);
 }
-
-void TestOgr::testOpenTarget() {
-    string path = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + "test" + QDir::separator()).toStdString();
-    int projection = 0;
-    bool resVal = ogr->OpenTarget(path, projection);
-    QCOMPARE(resVal, false);
-}
-
-void TestOgr::testCloseTarget() {
-    bool resVal = ogr->CloseTarget();
-    QCOMPARE(resVal, false);
-}
-
-void TestOgr::testOpenTarget2() {
-    string path = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + "test" + QDir::separator()).toStdString();
-    string filename = "test.shp";
-    string sourcename = path + filename;
-    int projection = 0;
-    bool resVal = ogr->OpenTarget(sourcename, projection);
-    QCOMPARE(resVal, true);
-}
-
-void TestOgr::testCloseTarget2() {
-    bool resVal = ogr->CloseTarget();
-    QCOMPARE(resVal, true);
-}

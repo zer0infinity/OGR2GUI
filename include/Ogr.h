@@ -1,7 +1,9 @@
 /*****************************************************************************
  * ogr2gui is an application used to convert and manipulate geospatial
- * data.
+ * data. It is based on the "OGR Simple Feature Library" from the
+ * "Geospatial Data Abstraction Library" <http://gdal.org>.
  *
+ * Copyright (c) 2009 Inventis <mailto:developpement@inventis.ca>
  * Copyright (c) 2014 University of Applied Sciences Rapperswil
  *
  * This program is free software: you can redistribute it and/or modify
@@ -31,15 +33,22 @@
 
 #include "ogr_api.h"
 #include "ogr_srs_api.h"
+#include "utils.h"
+#include "ogr2ogrThread.h"
 
 #include <string>
 #include <QStringList>
+#include <QPushButton>
 
 using std::string;
 
 class Ogr
 {
 private :
+
+    Ogr2ogrThread *ogr2ogr;
+
+    QProcess *process;
 
     OGRSFDriverH formatDriver;
 
@@ -89,6 +98,14 @@ public:
     ~Ogr( void );
 
     /*!
+     * \brief OpenOgr2ogr(QString &command)
+     * \param command : command with arguments
+     * \param btnExecute : btnExecute
+     * \return true on success
+     */
+    bool OpenOgr2ogr(QString command, QPushButton *btnExecute);
+
+    /*!
          * \fn OpenWFS(QStringList &fileList)
          * \brief Open WFS data
          * \param uri : source uri
@@ -136,20 +153,16 @@ public:
     bool OpenDriver( string drivername);
 
     /*!
-         *	\fn bool OpenTarget( string filename, int projection = 0, bool update = 0 );
-         *	\brief Opens target
-         *	\param filename : target filename
-         *	\param projection : epsg code
-         *	\returns true on success
-        */
-    bool OpenTarget(string filename, int projection = 0);
+     *	\fn bool Process( void );
+     *	\brief Process a feature
+     */
+    void TestFeature( void );
 
     /*!
-     *	\fn bool CloseTarget( void );
-     *	\brief Closes Target
-     *	\returns true on success
+     * \brief OpenProjection(int projection)
+     * \param projection : projection
      */
-    bool CloseTarget( void );
+    void TestProjection(int projection);
 };
 
 #endif

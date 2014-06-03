@@ -1,7 +1,9 @@
 /*****************************************************************************
  * ogr2gui is an application used to convert and manipulate geospatial
- * data.
+ * data. It is based on the "OGR Simple Feature Library" from the
+ * "Geospatial Data Abstraction Library" <http://gdal.org>.
  *
+ * Copyright (c) 2009 Inventis <mailto:developpement@inventis.ca>
  * Copyright (c) 2014 University of Applied Sciences Rapperswil
  *
  * This program is free software: you can redistribute it and/or modify
@@ -30,11 +32,14 @@
 
 App::App( QWidget *widget ) : QMainWindow( widget )
 {
+    inf = new Inf( this );
+    wfs = new WFSConnect(this);
     InitData();
     InitInterface();
     TranslateInterface();
     InitProjections();
     UpdateParameters();
+    this->show();
 }
 
 App::~App( void )
@@ -77,18 +82,27 @@ void App::InitProjections( void )
     QString filename = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + folder + QDir::separator() + gcs);
     QFile file(filename);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        txtOutput->setText(tr("No gcs.csv file found in folder data"));
+        QMessageBox msg;
+        msg.setText("* No " + gcs + " file found in folder data");
+        msg.exec();
         return;
     }
     QTextStream in(&file);
     QString line;
     QPair<QString, QString> pair;
-    projectionsList << pair;
     in.readLine();
     while(!(line = in.readLine()).isNull()) {
         QStringList t = line.split(",");
-        pair.first = t.at(0);
-        pair.second = t.at(1);
+        if(t.size() <= 1) {
+            QMessageBox msg;
+            msg.setText("* Wrong " + gcs + " file found in folder data");
+            msg.exec();
+            break;
+        }
+        if(!t.at(0).isNull())
+            pair.first = t.at(0);
+        if(!t.at(1).isNull())
+            pair.second = t.at(1);
         projectionsList << pair;
         cmbTargetProj->addItem(t.at(0) + tr(" : ") + t.at(1));
     }
@@ -97,9 +111,6 @@ void App::InitProjections( void )
 void App::InitInterface( void )
 {
     thePanel = new QWidget();
-
-    inf = new Inf( this );
-    wfs = new WFSConnect(this);
 
     InitMenu();
     InitLayout();
@@ -111,7 +122,6 @@ void App::InitInterface( void )
     btnExecute->setEnabled(false);
 
     this->setCentralWidget(thePanel);
-    this->show();
 }
 
 void App::InitMenu( void )
@@ -368,7 +378,6 @@ void App::InitLayout( void )
         theLayout->addLayout( lytExecute );
 
         theProgress = new QProgressBar();
-        theProgress->setValue(0);
 
         theLayout->addWidget( theProgress );
     }
@@ -473,44 +482,34 @@ void App::TranslateInterface( void )
     btnExit->setText( tr( "Exit" ) );
 }
 
-void App::UpdateParameters( void )
-{
+void App::UpdateParameters(void) {
     parameters = tr("ogr2ogr");
     parameters += currentParameters();
     if(radSourceWebservice->isChecked())
         parameters += tr(" ") + wfs->getSelectedLayers();
-    if(!txtInput->toPlainText().isEmpty()) {
-        QString input = txtInput->toPlainText().simplified();
-        parameters += tr(" ") + input;
-    }
+    if(!txtInput->toPlainText().isEmpty())
+        parameters += tr(" ") + txtInput->toPlainText().simplified();
     txtOutput->setText(parameters);
-    theProgress->setValue(0);
 }
 
-QString App::currentParameters() {
+QString App::currentParameters(void) {
     QString parameters = tr(" -f ") + tr("\"") + cmbTargetFormat->currentText() + tr("\" ");
     parameters += tr("\"") + txtTargetName->text()+ tr("\" ");
-    if(radSourceWebservice->isChecked()) {
-        parameters += webservices[0][1];
-    }
-    parameters += tr("\"");
-    parameters += txtSourceName->text() + tr("\"");
+    if(radSourceWebservice->isChecked() && !cmbSourceFormat->currentText().isEmpty())
+        parameters += webservices[cmbSourceFormat->currentIndex()][1];
+    parameters += tr("\"") + txtSourceName->text() + tr("\"");
     if(!cmbTargetProj->currentText().isEmpty()) {
         parameters += tr(" ") + tr("-T_SRS");
         parameters += tr(" EPSG:") + projectionsList.at(cmbTargetProj->currentIndex()).first;
     }
-    if(!txtSourceQuery->text().isEmpty()) {
+    if(!txtSourceQuery->text().isEmpty())
         parameters += tr(" -sql ") + tr("\"") + txtSourceQuery->text() + tr("\"");
-    }
-    if(radTargetOverwrite->isChecked()) {
+    if(radTargetOverwrite->isChecked())
         parameters += tr(" -overwrite");
-    }
-    if(radTargetAppend->isChecked()) {
+    if(radTargetAppend->isChecked())
         parameters += tr(" -append");
-    }
-    if(radTargetUpdate->isChecked()) {
+    if(radTargetUpdate->isChecked())
         parameters += tr(" -update");
-    }
     return parameters;
 }
 
@@ -649,7 +648,7 @@ void App::evtTxtSourceName( void ) {
     if( txtSourceName->text().startsWith(tr("file://"))) {
         txtSourceName->setText( QUrl( txtSourceName->text() ).authority().trimmed() );
     }
-    string name = txtSourceName->text().toStdString();
+    string name = txtSourceName->text().trimmed().toStdString();
     string epsg;
     string query;
     string error;
@@ -737,7 +736,6 @@ void App::evtBtnSourceName( void )
         }
     } else if(radSourceWebservice->isChecked()) {
         wfs->setConnectionType(webservices[idx][1]);
-        wfs->show();
         if(wfs->exec() == QDialog::Accepted) {
             txtSourceName->setText(wfs->getConnectionString());
         }
@@ -858,20 +856,17 @@ void App::evtUpdateParameters( void )
     UpdateParameters();
 }
 
-#include <QDebug>
 void App::evtBtnExecute( void )
 {
-    QString sourcename;
-    QString targetname;
+    UpdateParameters();
 
+    QString sourcename = txtSourceName->text();
+    QString targetname = txtTargetName->text();
     string epsg;
     string query;
     string error;
 
-    sourcename = txtSourceName->text();
-    targetname = txtTargetName->text();
-
-    bool resVal;
+    bool resVal = true;
     if(radSourceWebservice->isChecked()) {
         QStringList fileList = wfs->getSelectedLayersAsList();
         sourcename = webservices[cmbSourceFormat->currentIndex()][1] + sourcename;
@@ -884,64 +879,48 @@ void App::evtBtnExecute( void )
     } else {
         resVal = ogr->OpenSource(sourcename.toStdString(), epsg, query, error);
     }
-    ogr->CloseSource();
     if(resVal) {
         if(ogr->OpenDriver(cmbTargetFormat->currentText().toStdString())) {
-            if(ogr->OpenTarget( targetname.toStdString(), atoi(projectionsList.at(cmbTargetProj->currentIndex()).first.toStdString().c_str()))) {
-                ogr->CloseTarget();
-                theProgress->setValue(0);
+            ogr->TestProjection((projectionsList.at(cmbTargetProj->currentIndex()).first).toInt());
+            if(!radSourceDatabase->isChecked())
+                ogr->TestFeature();
+            ogr->CloseSource();
+
+            theProgress->setValue(0);
+            QString parameters = currentParameters();
+            QString path = QDir::toNativeSeparators(QCoreApplication::applicationFilePath());
+            path += parameters;
+            if(!wfs->getSelectedLayers().isEmpty()) {
+                QStringList wfsLayerList = wfs->getSelectedLayersAsList();
+                for(int i=0;i<wfsLayerList.size();++i) {
+                    QString layer = tr(" ") + wfsLayerList.at(i).simplified();
+                    QString pathTemp = path;
+                    pathTemp += layer;
+                    txtOutput->append(sourcename + tr(" ") + layer + tr(" > ") + targetname + tr(" ... "));
+                    if(!ogr->OpenOgr2ogr(pathTemp, btnExecute))
+                        txtOutput->append(tr("\n * unable to open ogr2ogr !\n"));
+                    int progressValue = i*100/wfsLayerList.size();
+                    if(progressValue <= 100)
+                        theProgress->setValue(progressValue);
+                }
+            } else {
                 theProgress->setMinimum(0);
                 theProgress->setMaximum(0);
-                QString parameters = currentParameters();
-                parameters = parameters.replace("\\", "\\\\");
-                string path = QDir::toNativeSeparators(QCoreApplication::applicationFilePath()).toStdString();
-                path += parameters.toStdString();
-
-                if(!wfs->getSelectedLayers().isEmpty()) {
-                    QStringList wfsLayerList = wfs->getSelectedLayersAsList();
-                    qDebug() << wfsLayerList;
-                    for(int i=0;i<wfsLayerList.size();++i) {
-                        QString layer = tr(" ") + wfsLayerList.at(i);
-                        string pathTemp = path;
-                        pathTemp += layer.toStdString();
-
-                        if(!startOgr2ogr(pathTemp))
-                            txtOutput->append(tr("failed.\n"));
-
-                        txtOutput->append(sourcename + tr(" ") + layer + tr(" > ") + targetname + tr(" ... "));
-                        double progressValue = i*100/wfsLayerList.size();
-                        theProgress->setValue(progressValue);
-                    }
-                } else {
-                    if(!startOgr2ogr(path))
-                        txtOutput->append(tr("failed.\n"));
+                txtOutput->append(sourcename + tr(" > ") + targetname + tr(" ... "));
+                if(!txtInput->toPlainText().isEmpty()) {
+                    path += tr(" ") + txtInput->toPlainText();
                 }
-                theProgress->setMaximum(100);
-                theProgress->setValue(100);
-            } else {
-                txtOutput->append( tr( "\n * unable to open target !\n" ) );
+                if(!ogr->OpenOgr2ogr(path, btnExecute))
+                    txtOutput->append(tr("\n * unable to open ogr2ogr !\n"));
             }
+            theProgress->setValue(100);
+            theProgress->setMaximum(100);
         } else {
-            txtOutput->append( tr( "\n * unable to open driver !\n" ) );
+            txtOutput->append(tr("\n * unable to open driver !\n"));
         }
     } else {
-        txtOutput->append( tr( "\n * unable to open source !\n" ) );
+        txtOutput->append(tr("\n * unable to open source !\n"));
     }
-}
-
-bool App::startOgr2ogr(string &path) {
-    std::wstring widestring = std::wstring(path.begin(), path.end());
-    LPWSTR lpwstr = const_cast<LPWSTR>(widestring.c_str());
-    STARTUPINFO si;
-    PROCESS_INFORMATION pi;
-    ZeroMemory(&si, sizeof(si));
-    si.cb = sizeof(si);
-    ZeroMemory(&pi, sizeof(pi));
-    bool resVal = CreateProcess(NULL, lpwstr, 0, 0, FALSE, 0, 0, 0, &si, &pi);
-    WaitForSingleObject(pi.hProcess, INFINITE);
-    CloseHandle(pi.hProcess);
-    CloseHandle(pi.hThread);
-    return resVal;
 }
 
 void App::evtBtnQuit( void )

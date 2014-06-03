@@ -1,7 +1,9 @@
 /*****************************************************************************
  * ogr2gui is an application used to convert and manipulate geospatial
- * data.
+ * data. It is based on the "OGR Simple Feature Library" from the
+ * "Geospatial Data Abstraction Library" <http://gdal.org>.
  *
+ * Copyright (c) 2009 Inventis <mailto:developpement@inventis.ca>
  * Copyright (c) 2014 University of Applied Sciences Rapperswil
  *
  * This program is free software: you can redistribute it and/or modify
@@ -24,9 +26,9 @@
  *
  *	ogr2gui is an application used to convert and manipulate geospatial data.
  *  It is based on ogr2ogr, a command line utility from the "Geospatial Data
- *  Abstraction Library" (gdal.org). <p>Through its graphical user interface,
+ *  Abstraction Library" (gdal.org). Through its graphical user interface,
  *  ogr2gui gives all the power of ogr2ogr without worrying about its complex
- *  syntax. It brings speed, efficiency and simplicity to its users. <p>ogr2gui
+ *  syntax. It brings speed, efficiency and simplicity to its users. ogr2gui
  *  is a free, open source project released under GPL License. Everyone in
  *  the geospatial community is invited to join. If you want to get involved
  *  in the project development, please contact us at dev@ogr2gui.ca
@@ -49,9 +51,6 @@
 #include "Ogr.h"
 #include "Inf.h"
 #include "wfsConnect.h"
-#include "utils.h"
-#include "cpl_conv.h"
-#include "cpl_string.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -70,11 +69,11 @@ private:
     QString parameters;
 
     // file formats
-    const static int formatsCount = 51;
+    const static int formatsCount = 47;
     QString **formats;
 
     // output formats
-    const static int formatsOutput = 27;
+    const static int formatsOutput = 28;
 
     // database formats
     const static int databasesCount = 4;
@@ -178,7 +177,6 @@ private:
     QPushButton *btnExecute;
     QPushButton *btnExit;
 
-
     /*!
          *	\fn void InitData( void );
          *	\brief Inits data
@@ -228,11 +226,18 @@ private:
     void UpdateParameters( void );
 
     /*!
+     * \brief QString currentParameters(void);
+     * \return QString with parameters
+     */
+    QString currentParameters(void);
+
+    /*!
      * \fn bool startOgr2ogr(void);
      * \param path : absolute path with parameters
+     * \param edit : debug console output
      * \brief start ogr2ogr
      */
-    bool startOgr2ogr(string &path);
+    bool startOgr2ogr(QString &path, QTextEdit &edit);
 
 
 private slots :
@@ -260,7 +265,6 @@ private slots :
     void evtTxtTargetProj( void );
 
     void evtUpdateParameters( void );
-    QString currentParameters();
 
     void evtBtnExecute( void );
     void evtBtnQuit( void );

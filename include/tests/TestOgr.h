@@ -45,10 +45,6 @@ private slots:
     void testOpenSource2();
     void testCloseSource2();
     void testOpenDriver();
-    void testOpenTarget();
-    void testCloseTarget();
-    void testOpenTarget2();
-    void testCloseTarget2();
 };
 
 #endif // TESTOGR_H

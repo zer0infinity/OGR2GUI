@@ -1,0 +1,37 @@
+TRANSFER INTERLIS1;
+
+MODEL Bahnhoefe
+  DOMAIN
+    POINT = COORD2
+      480000.000 70000.000
+      850000.000 310000.000;
+    /* !! Integer (2.0) */
+    INTEGER2 = [0 .. 99]; 
+    /* Integer (3.0) */
+    INTEGER3 = [0 .. 999]; 
+
+  TOPIC Bahnhoefe =
+
+    TABLE Bahnhoefe =
+      GEOMETRY: POINT;
+      TYPE_: INTEGER3;
+      LEVEL: INTEGER2;
+      NAME_: TEXT*60;
+      NATION: INTEGER3;
+      CNTRYNAME: TEXT*25;
+      PROV1NAME: TEXT*60;
+      DUP_NAME: TEXT*1;
+      CONURB: TEXT*60;
+    NO IDENT
+    END Bahnhoefe;
+
+  END Bahnhoefe.
+
+END Bahnhoefe.
+
+FORMAT FIX WITH LINESIZE = 75, TIDSIZE = 10;
+
+CODE
+  BLANK = DEFAULT, UNDEFINED = DEFAULT, CONTINUE = DEFAULT;
+  TID = ANY;
+END.

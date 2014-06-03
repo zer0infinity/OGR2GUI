@@ -1,7 +1,9 @@
 /*****************************************************************************
  * ogr2gui is an application used to convert and manipulate geospatial
- * data.
+ * data. It is based on the "OGR Simple Feature Library" from the
+ * "Geospatial Data Abstraction Library" <http://gdal.org>.
  *
+ * Copyright (c) 2009 Inventis <mailto:developpement@inventis.ca>
  * Copyright (c) 2014 University of Applied Sciences Rapperswil
  *
  * This program is free software: you can redistribute it and/or modify
@@ -38,6 +40,25 @@ Ogr::~Ogr( void )
 
 }
 
+bool Ogr::OpenOgr2ogr(QString command, QPushButton *btnExecute) {
+    ogr2ogr = new Ogr2ogrThread(command, btnExecute);
+    ogr2ogr->start();
+    return ogr2ogr->isRunning();
+
+//    std::wstring widestring = std::wstring(path.begin(), path.end());
+//    LPWSTR lpwstr = const_cast<LPWSTR>(widestring.c_str());
+//    STARTUPINFO si;
+//    PROCESS_INFORMATION pi;
+//    ZeroMemory(&si, sizeof(si));
+//    si.cb = sizeof(si);
+//    ZeroMemory(&pi, sizeof(pi));
+//    bool resVal = CreateProcess(NULL, lpwstr, 0, 0, FALSE, 0, 0, 0, &si, &pi);
+//    WaitForSingleObject(pi.hProcess, INFINITE);
+//    CloseHandle(pi.hProcess);
+//    CloseHandle(pi.hThread);
+//    return resVal;
+}
+
 bool Ogr::OpenWFS(QString uri, QStringList &fileList) {
     sourceName = uri.toStdString();
     OGRDataSourceH sourceData = OGROpen(sourceName.c_str(), 0, NULL);
@@ -59,31 +80,28 @@ bool Ogr::OpenSource(string filename, string layername, string &epsg, string &qu
     return OpenSource(filename, epsg, query, error);
 }
 
-bool Ogr::OpenSource(string filename, string &epsg, string &query, string &error)
-{
+bool Ogr::OpenSource(string filename, string &epsg, string &query, string &error) {
     sourceSRS = NULL;
     sourceName = filename;
-    sourceData = OGROpen( sourceName.c_str(), 0, NULL );
-    if( sourceData != NULL ) {
+    sourceData = OGROpen(sourceName.c_str(), 0, NULL);
+    if(sourceData != NULL) {
         if(layerName != "")
             sourceLayer = OGR_DS_GetLayerByName(sourceData, layerName.c_str());
         else
             sourceLayer = OGR_DS_GetLayer(sourceData, 0);
-        if( sourceLayer != NULL ) {
+        OGR_L_ResetReading(sourceLayer);
+        if(sourceLayer != NULL) {
             sourceLayerDefn = OGR_L_GetLayerDefn( sourceLayer );
             sourceLayerName = OGR_FD_GetName( sourceLayerDefn );
             sourceLayerGeom = OGR_FD_GetGeomType( sourceLayerDefn );
             sourceGeom = OGR_L_GetSpatialFilter( sourceLayer );
             sourceSRS = OGR_L_GetSpatialRef( sourceLayer );
-            if( sourceSRS != NULL && ! Error( OSRAutoIdentifyEPSG( sourceSRS ), error ) )
-            {
-                epsg = OSRGetAttrValue( sourceSRS, "AUTHORITY", 1 );
-            }
-            else
-            {
+            if(sourceSRS != NULL && ! Error(OSRAutoIdentifyEPSG(sourceSRS), error)) {
+                epsg = OSRGetAttrValue(sourceSRS, "AUTHORITY", 1);
+            } else {
                 perror("unable to open source spatial reference");
+                query = "SELECT * FROM " + sourceLayerName;
             }
-            query = "SELECT * FROM " + sourceLayerName;
         } else {
             perror("unable to open source layer");
             return false;
@@ -97,8 +115,8 @@ bool Ogr::OpenSource(string filename, string &epsg, string &query, string &error
 
 bool Ogr::CloseSource( void )
 {
-    if( sourceData != NULL ) {
-        OGR_DS_Destroy( sourceData );
+    if(sourceData != NULL) {
+        OGR_DS_Destroy(sourceData);
         return true;
     }
     return false;
@@ -107,37 +125,31 @@ bool Ogr::CloseSource( void )
 bool Ogr::OpenDriver(string drivername)
 {
     formatDriver = OGRGetDriverByName( drivername.c_str() );
-    if( formatDriver == NULL )
-    {
+    if( formatDriver == NULL ) {
         perror("unable to find driver");
         return false;
     }
     return true;
 }
 
-bool Ogr::OpenTarget(string filename, int projection) {
+void Ogr::TestProjection(int projection) {
     targetSRS = NULL;
-    targetName = filename;
     if(projection > 0) {
         targetSRS = OSRNewSpatialReference( NULL );
         if(Error( OSRImportFromEPSG( targetSRS, projection ), error)) {
             error.insert(0, "unable to create spatial reference : ");
         }
     }
-    targetData = OGR_Dr_CreateDataSource(formatDriver, targetName.c_str(), 0);
-    if(targetData == NULL) {
-        perror("unable to create target data");
-        return false;
-    }
-    return true;
 }
 
-bool Ogr::CloseTarget(void) {
-    if(targetData != NULL) {
-        OGR_DS_Destroy(targetData);
-        return true;
+void Ogr::TestFeature(void) {
+    OGR_L_ResetReading(sourceLayer);
+    OGRFeatureH feature;
+    while((feature = OGR_L_GetNextFeature(sourceLayer)) != NULL) {
+        if(targetSRS)
+            Error(OGR_G_TransformTo(OGR_F_GetGeometryRef(feature), targetSRS), error);
+        OGR_F_Destroy(feature);
     }
-    return false;
 }
 
 bool Ogr::Error( OGRErr code, string &type )
