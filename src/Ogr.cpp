@@ -4,7 +4,9 @@
  * "Geospatial Data Abstraction Library" <http://gdal.org>.
  *
  * Copyright (c) 2009 Inventis <mailto:developpement@inventis.ca>
- * Copyright (c) 2014 University of Applied Sciences Rapperswil
+ * Copyright (c) 2014 Faculty of Computer Science,
+ * University of Applied Sciences Rapperswil (HSR),
+ * 8600 Rapperswil, Switzerland
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,19 +46,6 @@ bool Ogr::OpenOgr2ogr(QString command, QPushButton *btnExecute) {
     ogr2ogr = new Ogr2ogrThread(command, btnExecute);
     ogr2ogr->start();
     return ogr2ogr->isRunning();
-
-//    std::wstring widestring = std::wstring(path.begin(), path.end());
-//    LPWSTR lpwstr = const_cast<LPWSTR>(widestring.c_str());
-//    STARTUPINFO si;
-//    PROCESS_INFORMATION pi;
-//    ZeroMemory(&si, sizeof(si));
-//    si.cb = sizeof(si);
-//    ZeroMemory(&pi, sizeof(pi));
-//    bool resVal = CreateProcess(NULL, lpwstr, 0, 0, FALSE, 0, 0, 0, &si, &pi);
-//    WaitForSingleObject(pi.hProcess, INFINITE);
-//    CloseHandle(pi.hProcess);
-//    CloseHandle(pi.hThread);
-//    return resVal;
 }
 
 bool Ogr::OpenWFS(QString uri, QStringList &fileList) {

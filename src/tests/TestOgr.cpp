@@ -3,7 +3,9 @@
  * data. It is based on the "OGR Simple Feature Library" from the
  * "Geospatial Data Abstraction Library" <http://gdal.org>.
  *
- * Copyright (c) 2014 University of Applied Sciences Rapperswil
+ * Copyright (c) 2014 Faculty of Computer Science,
+ * University of Applied Sciences Rapperswil (HSR),
+ * 8600 Rapperswil, Switzerland
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +23,7 @@
 
 /*!
  *	\file TestOgr.cpp
- *	\brief Unit Test Ogr
+ *	\brief Qt Test Ogr
  *	\author David Tran [ HSR ]
  *	\version 0.1
  *	\date 13/06/14
@@ -31,6 +33,7 @@
 
 TestOgr::TestOgr() {
     ogr = new Ogr();
+    path = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + "test" + QDir::separator()).toStdString();
 }
 
 void TestOgr::testOpenWFS() {
@@ -40,7 +43,7 @@ void TestOgr::testOpenWFS() {
     QCOMPARE(resVal, false);
 }
 
-void TestOgr::testOpenSource() {
+void TestOgr::testOpenSourceFalseInput() {
     string filename = "poly.shp";
     string epsg;
     string query;
@@ -49,13 +52,12 @@ void TestOgr::testOpenSource() {
     QCOMPARE(resVal, false);
 }
 
-void TestOgr::testCloseSource() {
+void TestOgr::testCloseSourceFalseInput() {
     bool resVal = ogr->CloseSource();
     QCOMPARE(resVal, false);
 }
 
-void TestOgr::testOpenSource2() {
-    string path = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + "test" + QDir::separator()).toStdString();
+void TestOgr::testOpenSourceFile() {
     string filename = "poly.shp";
     string sourcename = path + filename;
     string epsg;
@@ -65,15 +67,67 @@ void TestOgr::testOpenSource2() {
     QCOMPARE(resVal, true);
 }
 
-void TestOgr::testCloseSource2() {
+void TestOgr::testOpenSourceSQLite() {
+    string filename = "poly.sqlite";
+    string sourcename = path + filename;
+    string epsg;
+    string query;
+    string error;
+    bool resVal = ogr->OpenSource(sourcename, epsg, query, error);
+    QCOMPARE(resVal, true);
+}
+
+void TestOgr::testCloseSource() {
     bool resVal = ogr->CloseSource();
     QCOMPARE(resVal, true);
 }
 
-void TestOgr::testOpenDriver() {
-    string drivername = "ESRI Shapefile";
+void TestOgr::testOpenDriverFalseInput() {
     bool resVal = ogr->OpenDriver("");
     QCOMPARE(resVal, false);
-    resVal = ogr->OpenDriver(drivername);
+}
+
+void TestOgr::testOpenDriverESRIShapefile() {
+    string drivername = "ESRI Shapefile";
+    bool resVal = ogr->OpenDriver(drivername);
     QCOMPARE(resVal, true);
+}
+
+void TestOgr::getLayerList(string sourcename, QStringList &layerList) {
+    OGRDataSourceH sourceData = OGROpen(sourcename.c_str(), 0, NULL);
+    if(sourceData != NULL) {
+        OGRLayerH sourceLayer = OGR_DS_GetLayer(sourceData, 0);
+        OGR_L_ResetReading(sourceLayer);
+        if(sourceLayer != NULL) {
+            OGRFeatureDefnH sourceLayerDefn = OGR_L_GetLayerDefn(sourceLayer);
+            layerList << OGR_FD_GetName(sourceLayerDefn);
+        }
+    }
+}
+
+void TestOgr::testCompareLayerNames() {
+    QStringList layerListShapefile, layerListSQLite;
+    string epsg;
+    string query;
+    string error;
+
+    string sourcename = path + "poly.shp";
+    bool resVal = ogr->OpenSource(sourcename, epsg, query, error);
+    QCOMPARE(resVal, true);
+    resVal = ogr->OpenDriver("ESRI Shapefile");
+    QCOMPARE(resVal, true);
+    getLayerList(sourcename, layerListShapefile);
+    resVal = ogr->CloseSource();
+    QCOMPARE(resVal, true);
+
+    sourcename = path + "poly.sqlite";
+    resVal = ogr->OpenSource(sourcename, epsg, query, error);
+    QCOMPARE(resVal, true);
+    resVal = ogr->OpenDriver("SQLite");
+    QCOMPARE(resVal, true);
+    getLayerList(sourcename, layerListSQLite);
+    resVal = ogr->CloseSource();
+    QCOMPARE(resVal, true);
+
+    QCOMPARE(layerListShapefile, layerListSQLite);
 }

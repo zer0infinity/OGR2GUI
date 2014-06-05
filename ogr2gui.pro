@@ -4,7 +4,9 @@
 # * "Geospatial Data Abstraction Library" <http://gdal.org>.
 # *
 # * Copyright (c) 2009 Inventis <mailto:developpement@inventis.ca>
-# * Copyright (c) 2014 University of Applied Sciences Rapperswil
+# * Copyright (c) 2014 Faculty of Computer Science,
+# * University of Applied Sciences Rapperswil (HSR),
+# * 8600 Rapperswil, Switzerland
 # *
 # * This program is free software: you can redistribute it and/or modify
 # * it under the terms of the GNU General Public License as published by
@@ -23,6 +25,7 @@
 
 TEMPLATE = app
 INCLUDEPATH += $$PWD/include $$PWD/include/ogr
+#DESTDIR += $$PWD/bin
 
 HEADERS += \
     include/App.h \
@@ -49,13 +52,11 @@ QT += sql widgets
 win32: contains(QMAKE_TARGET.arch, x86) {
 	TARGET = ogr2gui
 	LIBS += -L$$PWD/lib -lgdal_i
-#        DESTDIR += $$PWD/bin
 }
 
 win32: contains(QMAKE_TARGET.arch, x86_64) {
 	TARGET = ogr2gui64
 	LIBS += -L$$PWD/lib -lgdal_i_x64
-#        DESTDIR += $$PWD/bin
 }
 
 static {

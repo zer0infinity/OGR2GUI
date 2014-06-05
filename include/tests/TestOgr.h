@@ -3,7 +3,9 @@
  * data. It is based on the "OGR Simple Feature Library" from the
  * "Geospatial Data Abstraction Library" <http://gdal.org>.
  *
- * Copyright (c) 2014 University of Applied Sciences Rapperswil
+ * Copyright (c) 2014 Faculty of Computer Science,
+ * University of Applied Sciences Rapperswil (HSR),
+ * 8600 Rapperswil, Switzerland
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +23,7 @@
 
 /*!
  *	\file TestOgr.h
- *	\brief Unit Test Ogr
+ *	\brief Qt Test Ogr
  *	\author David Tran [ HSR ]
  *	\version 0.1
  *	\date 13/06/14
@@ -40,11 +42,17 @@ public:
     Ogr *ogr;
 private slots:
     void testOpenWFS();
-    void testOpenSource();
+    void testOpenSourceFalseInput();
+    void testCloseSourceFalseInput();
+    void testOpenSourceFile();
+    void testOpenSourceSQLite();
     void testCloseSource();
-    void testOpenSource2();
-    void testCloseSource2();
-    void testOpenDriver();
+    void testOpenDriverFalseInput();
+    void testOpenDriverESRIShapefile();
+    void testCompareLayerNames();
+private:
+    string path;
+    void getLayerList(string, QStringList&);
 };
 
 #endif // TESTOGR_H

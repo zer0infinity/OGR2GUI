@@ -4,7 +4,9 @@ Copyright © 2014
 
 by
 
-David Tran, University of Applied Sciences Rapperswil (HSR)
+David Tran, Faculty of Computer Science,
+University of Applied Sciences Rapperswil (HSR),
+8600 Rapperswil, Switzerland
 
 
 1. About
@@ -19,7 +21,7 @@ it is also fully compatible with the well-known ogr2ogr options.
 * Database
 * Web service
 * Projections
-* Option input
+* Option input (optional)
 - ogr2ogr 1.12dev as command line
 
 3. System Requirements
@@ -29,7 +31,7 @@ it is also fully compatible with the well-known ogr2ogr options.
 - Windows 8, Windows 8 x64
 
 4. Installation
-- Extract zip file
+- Extract the zip file
 * Start ogr2gui.exe
 or
 * Start ogr2gui64.exe in Windows x64
@@ -45,7 +47,6 @@ http://www.hsr.ch
 http://www.ogr2gui.ca
 
 8. Licence
-
 This file is part of OGR2GUI.
 
 OGR2GUI is free software: you can redistribute it and/or modify

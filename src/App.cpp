@@ -4,7 +4,9 @@
  * "Geospatial Data Abstraction Library" <http://gdal.org>.
  *
  * Copyright (c) 2009 Inventis <mailto:developpement@inventis.ca>
- * Copyright (c) 2014 University of Applied Sciences Rapperswil
+ * Copyright (c) 2014 Faculty of Computer Science,
+ * University of Applied Sciences Rapperswil (HSR),
+ * 8600 Rapperswil, Switzerland
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,9 +32,9 @@
 
 #include "App.h"
 
-App::App( QWidget *widget ) : QMainWindow( widget )
+App::App(QWidget *widget) : QMainWindow(widget)
 {
-    inf = new Inf( this );
+    inf = new Inf(this);
     wfs = new WFSConnect(this);
     InitData();
     InitInterface();
@@ -49,26 +51,20 @@ App::~App( void )
     delete [] *webservices;
 }
 
-void App::InitData( void )
-{
+void App::InitData(void) {
     ogr = new Ogr();
 
-    formats = new QString * [ formatsCount ];
-    for( int i = 0; i < formatsCount; i ++ )
-    {
-        formats[ i ] = new QString[ 2 ];
+    formats = new QString*[formatsCount];
+    for(int i = 0; i < formatsCount; ++i) {
+        formats[i] = new QString[2];
     }
-
-    databases = new QString * [ databasesCount ];
-    for( int i = 0; i < databasesCount; i ++ )
-    {
-        databases[ i ] = new QString[ 2 ];
+    databases = new QString *[databasesCount];
+    for(int i = 0; i < databasesCount; ++i) {
+        databases[i] = new QString[2];
     }
-
-    webservices = new QString*[ webservicesCount ];
-    for( int i = 0; i < webservicesCount; i ++ )
-    {
-        webservices[ i ] = new QString[ 2 ];
+    webservices = new QString*[webservicesCount];
+    for(int i = 0; i < webservicesCount; ++i) {
+        webservices[i] = new QString[2];
     }
 
 #include "Dta.h"
@@ -76,7 +72,6 @@ void App::InitData( void )
 
 void App::InitProjections( void )
 {
-    cmbTargetProj->addItem(tr(""));
     QString folder = tr("data");
     QString gcs = tr("gcs.csv");
     QString filename = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + folder + QDir::separator() + gcs);
@@ -90,6 +85,8 @@ void App::InitProjections( void )
     QTextStream in(&file);
     QString line;
     QPair<QString, QString> pair;
+    projectionsList << pair;
+    cmbTargetProj->addItem(tr(""));
     in.readLine();
     while(!(line = in.readLine()).isNull()) {
         QStringList t = line.split(",");
@@ -130,8 +127,12 @@ void App::InitMenu( void )
     {
         fileMenu = new QMenu( theMenu );
         {
+            mnuOgrinfo = new QAction(this);
             mnuExit = new QAction( this );
             mnuExit->setShortcuts(QKeySequence::Quit);
+
+            fileMenu->addAction(mnuOgrinfo);
+            fileMenu->addSeparator();
             fileMenu->addAction( mnuExit );
         }
 
@@ -378,6 +379,7 @@ void App::InitLayout( void )
         theLayout->addLayout( lytExecute );
 
         theProgress = new QProgressBar();
+        theProgress->setValue(0);
 
         theLayout->addWidget( theProgress );
     }
@@ -390,6 +392,7 @@ void App::InitSlots( void )
     QObject::connect( mnuExit, SIGNAL( triggered() ), this, SLOT( close( void ) ) );
     QObject::connect( mnuOgrHelp, SIGNAL( triggered() ), this, SLOT( evtMnuOgrHelp( void ) ) );
     QObject::connect( mnuGuiHelp, SIGNAL( triggered() ), this, SLOT( evtMnuGuiHelp( void ) ) );
+    QObject::connect(mnuOgrinfo, SIGNAL(triggered()), this, SLOT(evtMnuOgrinfo(void)));
     QObject::connect( mnuAbout, SIGNAL( triggered() ), this, SLOT( evtMnuOgrAbout( void ) ) );
     QObject::connect(mnuHsrAbout, SIGNAL(triggered()), this, SLOT(evtMnuHsrAbout(void)));
 
@@ -430,6 +433,7 @@ void App::TranslateInterface( void )
 
     fileMenu->setTitle( tr( "File" ) );
     {
+        mnuOgrinfo->setText(tr("Ogrinfo CMD Options"));
         mnuExit->setText( tr( "Exit" ) );
     }
 
@@ -522,6 +526,10 @@ void App::evtMnuGuiHelp( void )
 {
     QString docPath = tr("file:///") + QCoreApplication::applicationDirPath() + tr("/doc/html/index.html");
     QDesktopServices::openUrl(QUrl(docPath));
+}
+
+void App::evtMnuOgrinfo(void) {
+    QDesktopServices::openUrl(QUrl(tr("http://gdal.org/ogrinfo.html")));
 }
 
 void App::evtMnuHsrAbout( void )
@@ -840,11 +848,9 @@ void App::evtBtnTargetName( void )
 void App::evtTxtTargetProj( void )
 {
     QString projection = txtTargetProj->text();
-    for( int i = 0; i < projectionsList.size(); i ++ )
-    {
-        if(projectionsList.at(i).first.startsWith(projection))
-        {
-            cmbTargetProj->setCurrentIndex( i );
+    for( int i = 0; i < projectionsList.size(); ++i) {
+        if(projectionsList.at(i).first.startsWith(projection)) {
+            cmbTargetProj->setCurrentIndex(i);
             break;
         }
     }

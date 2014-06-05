@@ -3,7 +3,9 @@
  * data. It is based on the "OGR Simple Feature Library" from the
  * "Geospatial Data Abstraction Library" <http://gdal.org>.
  *
- * Copyright (c) 2014 University of Applied Sciences Rapperswil
+ * Copyright (c) 2014 Faculty of Computer Science,
+ * University of Applied Sciences Rapperswil (HSR),
+ * 8600 Rapperswil, Switzerland
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
