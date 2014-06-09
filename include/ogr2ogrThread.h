@@ -21,7 +21,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-/*!
+/**
  *	\file processThread.h
  *	\brief process Thread
  *	\author David Tran [ HSR ]
@@ -35,10 +35,21 @@
 #include <QThread>
 #include <QProcess>
 #include <QPushButton>
+#include <QDir>
+#include <QCoreApplication>
 
 class Ogr2ogrThread : public QThread {
 public:
+    /**
+         *	\fn Ogr2ogrThread(QString&, QPushButton*)
+         *	\brief Constructor
+         */
     Ogr2ogrThread(QString&, QPushButton*);
+
+    /**
+         *	\fn ~Ogr2ogrThread
+         *	\brief Destructor
+         */
     ~Ogr2ogrThread();
 protected:
     void run();

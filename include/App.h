@@ -22,7 +22,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-/*!
+/**
  *	\mainpage ogr2gui
  *	\section desc_sec Description
  *
@@ -39,7 +39,7 @@
  *	<a href="mailto:dev@ogr2gui.ca">dev@ogr2gui.ca</a>
  */
 
-/*!
+/**
  *	\file App.h
  *	\brief Qt Application
  *	\author Olivier Pilotte [ Inventis ], Mohamed Hedi Lassoued [ Inventis ], David Tran [ HSR ]
@@ -180,67 +180,59 @@ private:
     QPushButton *btnExecute;
     QPushButton *btnExit;
 
-    /*!
+    /**
          *	\fn void InitData( void );
          *	\brief Inits data
          */
     void InitData( void );
 
-    /*!
+    /**
          *	\fn void void InitProjections( void );
          *	\brief Inits projections
          */
     void InitProjections( void );
 
-    /*!
+    /**
          *	\fn void InitInterface( void );
          *	\brief Inits Interface
          */
     void InitInterface( void );
 
-    /*!
+    /**
          *	\fn void InitMenu( void );
          *	\brief Inits Menu
          */
     void InitMenu( void );
 
-    /*!
+    /**
          *	\fn void InitLayout( void );
          *	\brief Inits Layout
          */
     void InitLayout( void );
 
-    /*!
+    /**
          *	\fn void InitSlots( void );
          *	\brief Inits Slots
          */
     void InitSlots( void );
 
-    /*!
+    /**
          *	\fn void TranslateInterface( void );
          *	\brief Translates Interface
          */
     void TranslateInterface( void );
 
-    /*!
+    /**
          *	\fn void UpdateParameters( void );
          *	\brief Updates parameters
          */
     void UpdateParameters( void );
 
-    /*!
-     * \brief QString currentParameters(void);
-     * \return QString with parameters
-     */
+    /**
+         * \brief QString currentParameters(void);
+         * \return QString with parameters
+         */
     QString currentParameters(void);
-
-    /*!
-     * \fn bool startOgr2ogr(void);
-     * \param path : absolute path with parameters
-     * \param edit : debug console output
-     * \brief start ogr2ogr
-     */
-    bool startOgr2ogr(QString &path, QTextEdit &edit);
 
 
 private slots :
@@ -275,14 +267,14 @@ private slots :
 
 public:
 
-    /*!
-         *	\fn Frm( const QWidget & );
+    /**
+         *	\fn App( QWidget * = 0 );
          *	\brief Constructor
          */
     App( QWidget * = 0 );
 
-    /*!
-         *	\fn ~Frm
+    /**
+         *	\fn ~App
          *	\brief Destructor
          */
     ~App( void );

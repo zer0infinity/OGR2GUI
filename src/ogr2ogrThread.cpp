@@ -38,12 +38,13 @@ Ogr2ogrThread::~Ogr2ogrThread(void) {
 }
 
 void Ogr2ogrThread::run() {
+    QString logPath = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + "ogr2ogr.log");
     btnExecute->setEnabled(false);
     process = new QProcess();
     process->setProcessChannelMode(QProcess::MergedChannels);
+    process->setStandardOutputFile(logPath);
     process->start(command);
-    while(process->waitForFinished());
-    process->close();
-    wait();
+    process->waitForStarted();
+    process->waitForFinished();
     btnExecute->setEnabled(true);
 }

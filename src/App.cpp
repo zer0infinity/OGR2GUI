@@ -207,7 +207,6 @@ void App::InitLayout( void )
                 lytSourceName = new QHBoxLayout();
                 {
                     txtSourceName = new QLineEdit();
-                    txtSourceName->setReadOnly(true);
 
                     btnSourceName = new QPushButton();
 
@@ -291,7 +290,7 @@ void App::InitLayout( void )
                 lytTargetName = new QHBoxLayout();
                 {
                     txtTargetName = new QLineEdit();
-                    txtTargetName->setReadOnly( true );
+                    txtTargetName->setReadOnly(true);
 
                     btnTargetName = new QPushButton();
 
@@ -433,7 +432,7 @@ void App::TranslateInterface( void )
 
     fileMenu->setTitle( tr( "File" ) );
     {
-        mnuOgrinfo->setText(tr("Ogrinfo CMD Options"));
+        mnuOgrinfo->setText(tr("Ogrinfo Documentation"));
         mnuExit->setText( tr( "Exit" ) );
     }
 
@@ -450,7 +449,7 @@ void App::TranslateInterface( void )
         radSourceFile->setText( tr( "File" ) );
         radSourceFolder->setText( tr( "Folder" ) );
         radSourceDatabase->setText( tr( "Database" ) );
-        radSourceWebservice->setText( tr( "Web service" ) );
+        radSourceWebservice->setText( tr( "Web Service" ) );
 
         lblSourceFormat->setText( tr( "Format" ) );
 
@@ -494,6 +493,7 @@ void App::UpdateParameters(void) {
     if(!txtInput->toPlainText().isEmpty())
         parameters += tr(" ") + txtInput->toPlainText().simplified();
     txtOutput->setText(parameters);
+    theProgress->setValue(0);
 }
 
 QString App::currentParameters(void) {
@@ -501,7 +501,7 @@ QString App::currentParameters(void) {
     parameters += tr("\"") + txtTargetName->text()+ tr("\" ");
     if(radSourceWebservice->isChecked() && !cmbSourceFormat->currentText().isEmpty())
         parameters += webservices[cmbSourceFormat->currentIndex()][1];
-    parameters += tr("\"") + txtSourceName->text() + tr("\"");
+    parameters += tr("\"") + txtSourceName->text().trimmed() + tr("\"");
     if(!cmbTargetProj->currentText().isEmpty()) {
         parameters += tr(" ") + tr("-T_SRS");
         parameters += tr(" EPSG:") + projectionsList.at(cmbTargetProj->currentIndex()).first;
@@ -636,8 +636,6 @@ void App::evtRadSourceWebservice( void )
     radTargetDatabase->setEnabled( true );
 
     lblSourceName->setText(tr("URI"));
-    txtSourceName->selectAll();
-    txtSourceName->setFocus();
     txtSourceProj->clear();
     txtSourceQuery->clear();
 
@@ -664,6 +662,7 @@ void App::evtTxtSourceName( void ) {
     if(radSourceWebservice->isChecked()) {
         name = webservices[0][1].toStdString() + name;
     }
+    txtSourceProj->clear();
     if(ogr->OpenSource(name, epsg, query, error)) {
         for(int i = 0; i < projectionsList.size(); i++) {
             if( strcmp(epsg.c_str(), projectionsList.at(i).first.toStdString().c_str()) == 0) {
@@ -691,6 +690,8 @@ void App::evtTxtSourceName( void ) {
 
 void App::evtBtnSourceName( void )
 {
+    txtSourceName->selectAll();
+    txtSourceName->setFocus();
     int idx = cmbSourceFormat->currentIndex();
 
     QString type;
@@ -733,7 +734,7 @@ void App::evtBtnSourceName( void )
         QString connectionString = txtSourceName->text();
         connectionString.truncate( connectionString.lastIndexOf( tr( "tables=" ) ) );
 
-        for( int i = 0; i < tables.size(); i ++ )
+        for( int i = 0; i < tables.size(); ++i)
         {
             fileList.append( connectionString + tr( "tables=" ) + tables.at( i ) );
         }
@@ -756,7 +757,7 @@ void App::evtRadTargetFile( void )
     btnTargetName->setText( tr( "Save" ) );
 
     cmbTargetFormat->clear();
-    for( int i = 0; i < formatsOutput; i ++ )
+    for( int i = 0; i < formatsOutput; ++i )
     {
         cmbTargetFormat->addItem( formats[ i ][ 0 ] );
     }
@@ -772,7 +773,7 @@ void App::evtRadTargetFolder( void )
     btnTargetName->setText( tr( "Browse" ) );
 
     cmbTargetFormat->clear();
-    for( int i = 0; i < formatsOutput; i ++ )
+    for( int i = 0; i < formatsOutput; ++i )
     {
         cmbTargetFormat->addItem( formats[ i ][ 0 ] );
     }
@@ -783,7 +784,7 @@ void App::evtRadTargetDatabase( void )
     btnTargetName->setText( tr( "Connect" ) );
 
     cmbTargetFormat->clear();
-    for( int i = 0; i < databasesOutput; i ++ )
+    for( int i = 0; i < databasesOutput; ++i )
     {
         cmbTargetFormat->addItem( databases[ i ][ 0 ] );
     }
@@ -866,12 +867,16 @@ void App::evtBtnExecute( void )
 {
     UpdateParameters();
 
-    QString sourcename = txtSourceName->text();
-    QString targetname = txtTargetName->text();
+    QString sourcename = txtSourceName->text().trimmed();
+    QString targetname = txtTargetName->text().trimmed();
     string epsg;
     string query;
     string error;
 
+    if(txtTargetName->text().isEmpty()) {
+        txtOutput->append(tr("\n * unable to open target !\n"));
+        return;
+    }
     bool resVal = true;
     if(radSourceWebservice->isChecked()) {
         QStringList fileList = wfs->getSelectedLayersAsList();
@@ -879,7 +884,7 @@ void App::evtBtnExecute( void )
         for(int i=0;i<fileList.size();++i) {
             if(!ogr->OpenSource(sourcename.toStdString(), fileList.at(i).toStdString(), epsg, query, error)) {
                 resVal = false;
-                return;
+                break;
             }
         }
     } else {
@@ -887,40 +892,38 @@ void App::evtBtnExecute( void )
     }
     if(resVal) {
         if(ogr->OpenDriver(cmbTargetFormat->currentText().toStdString())) {
-            ogr->TestProjection((projectionsList.at(cmbTargetProj->currentIndex()).first).toInt());
+            if(!txtSourceQuery->text().isEmpty()) {
+                if(!ogr->ExecuteSQL(txtSourceQuery->text().toStdString())) {
+                    txtOutput->append(tr("\n * unable to execute sql query !\n"));
+                    return;
+                }
+            }
+            if(!ogr->TestSpatialReference((projectionsList.at(cmbTargetProj->currentIndex()).first).toInt()))
+                txtOutput->append(tr("\n * unable to create spatial reference !\n"));
             if(!radSourceDatabase->isChecked())
-                ogr->TestFeature();
-            ogr->CloseSource();
+                if(!ogr->TestFeatureProjection())
+                    txtOutput->append(tr("\n * unable to transform feature with projection !\n"));
 
             theProgress->setValue(0);
+            theProgress->setMinimum(0);
+            theProgress->setMaximum(0);
+
+            txtOutput->append(tr("\n") + sourcename + tr(" > ") + targetname + tr(" ... "));
             QString parameters = currentParameters();
-            QString path = QDir::toNativeSeparators(QCoreApplication::applicationFilePath());
-            path += parameters;
-            if(!wfs->getSelectedLayers().isEmpty()) {
-                QStringList wfsLayerList = wfs->getSelectedLayersAsList();
-                for(int i=0;i<wfsLayerList.size();++i) {
-                    QString layer = tr(" ") + wfsLayerList.at(i).simplified();
-                    QString pathTemp = path;
-                    pathTemp += layer;
-                    txtOutput->append(sourcename + tr(" ") + layer + tr(" > ") + targetname + tr(" ... "));
-                    if(!ogr->OpenOgr2ogr(pathTemp, btnExecute))
-                        txtOutput->append(tr("\n * unable to open ogr2ogr !\n"));
-                    int progressValue = i*100/wfsLayerList.size();
-                    if(progressValue <= 100)
-                        theProgress->setValue(progressValue);
-                }
+            QString command = QDir::toNativeSeparators(QCoreApplication::applicationFilePath());
+            command += parameters;
+            if(radSourceWebservice->isChecked())
+                command += tr(" ") + wfs->getSelectedLayers();
+            if(!txtInput->toPlainText().isEmpty())
+                command += tr(" ") + txtInput->toPlainText();
+            if(ogr->OpenOgr2ogr(command, btnExecute)) {
+                theProgress->setValue(100);
+                theProgress->setMaximum(100);
             } else {
-                theProgress->setMinimum(0);
+                txtOutput->append(tr("\n * unable to open ogr2ogr !\n"));
+                theProgress->setValue(0);
                 theProgress->setMaximum(0);
-                txtOutput->append(sourcename + tr(" > ") + targetname + tr(" ... "));
-                if(!txtInput->toPlainText().isEmpty()) {
-                    path += tr(" ") + txtInput->toPlainText();
-                }
-                if(!ogr->OpenOgr2ogr(path, btnExecute))
-                    txtOutput->append(tr("\n * unable to open ogr2ogr !\n"));
             }
-            theProgress->setValue(100);
-            theProgress->setMaximum(100);
         } else {
             txtOutput->append(tr("\n * unable to open driver !\n"));
         }

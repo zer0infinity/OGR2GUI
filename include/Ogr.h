@@ -22,7 +22,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-/*!
+/**
  *	\file Ogr.h
  *	\brief OGR C API
  *	\author Olivier Pilotte [ Inventis ], David Tran [ HSR ]
@@ -41,6 +41,8 @@
 #include <string>
 #include <QStringList>
 #include <QPushButton>
+#include <QProgressBar>
+#include <QThreadPool>
 
 using std::string;
 
@@ -76,7 +78,7 @@ private :
 
     string error;
 
-    /*!
+    /**
          *	\fn bool Error( OGRErr e, string &s );
          *	\brief OGR errors
          *	\param e : OGR error
@@ -87,27 +89,27 @@ private :
 
 public:
 
-    /*!
+    /**
          *	\fn Ogr( void );
          *	\brief Constructor
          */
     Ogr( void );
 
-    /*!
+    /**
          *	\fn ~Ogr( void );
          *	\brief Destructor
          */
     ~Ogr( void );
 
-    /*!
-     * \brief OpenOgr2ogr(QString &command)
+    /**
+     * \brief OpenOgr2ogr(QString command, QPushButton *btnExecute)
      * \param command : command with arguments
-     * \param btnExecute : btnExecute
+     * \param btnExecute : execute button
      * \return true on success
      */
     bool OpenOgr2ogr(QString command, QPushButton *btnExecute);
 
-    /*!
+    /**
          * \fn OpenWFS(QStringList &fileList)
          * \brief Open WFS data
          * \param uri : source uri
@@ -116,7 +118,7 @@ public:
          */
     bool OpenWFS(QString uri, QStringList &fileList);
 
-    /*!
+    /**
          * \fn OpenSource(string filename, string layername, string &epsg, string &query, string &error);
          * \brief Opens souorce data
          * \param filename : source filename
@@ -128,7 +130,7 @@ public:
          */
     bool OpenSource(string filename, string layername, string &epsg, string &query, string &error);
 
-    /*!
+    /**
          *	\fn bool OpenSource( string filename, string &epsg = 0, string &query = 0, string &error = 0 );
          *	\brief Opens source data
          *	\param filename : source filename
@@ -139,14 +141,14 @@ public:
          */
     bool OpenSource(string filename, string &epsg, string &query, string &error);
 
-    /*!
+    /**
          *	\fn bool CloseSource( void );
          *	\brief Closes source data
          *	\returns true on success
          */
     bool CloseSource( void );
 
-    /*!
+    /**
          *	\fn bool OpenDriver( string drivername, string error = 0 );
          *	\brief Opens target driver
          *	\param drivername : selected driver
@@ -154,17 +156,25 @@ public:
          */
     bool OpenDriver( string drivername);
 
-    /*!
-     *	\fn bool Process( void );
+    /**
+     *	\fn bool Process(void);
      *	\brief Process a feature
      */
-    void TestFeature( void );
+    bool TestFeatureProjection(void);
 
-    /*!
+    /**
      * \brief OpenProjection(int projection)
      * \param projection : projection
+     * \return true on success
      */
-    void TestProjection(int projection);
+    bool TestSpatialReference(int projection);
+
+    /**
+     * \brief Ogr::TestSQL(string query)
+     * \param query : sql query
+     * \return true on success
+     */
+    bool ExecuteSQL(string query);
 };
 
 #endif

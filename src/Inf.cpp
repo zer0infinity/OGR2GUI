@@ -85,6 +85,8 @@ void Inf::InitInterface( void )
                 lblPort->setMaximumSize( 30, 20 );
 
                 txtPort = new QLineEdit();
+                QValidator *validator = new QIntValidator(0, 65535, this);
+                txtPort->setValidator(validator);
                 txtPort->setMaxLength( 5 );
                 txtPort->setMinimumSize( 50, 20 );
                 txtPort->setMaximumSize( 50, 20 );
@@ -305,14 +307,6 @@ void Inf::evtBtnAccept( void )
         if( user.size() > 0 )	connectionString += ",user=" + user;
         if( pass.size() > 0 )	connectionString += ",password=" + pass;
     }
-    //	else if( connectionType.compare( "QOCI" ) == 0 )
-    //	{
-    //		separator = "";
-
-    //		if( user.size() > 0 )	connectionString = "OCI:" + user;
-    //		if( pass.size() > 0 )	connectionString += "/" + pass;
-    //		if( host.size() > 0 )	connectionString += "@" + host;
-    //	}
     else if( connectionType.compare( "QODBC" ) == 0 )
     {
         separator = "";
@@ -386,12 +380,7 @@ void Inf::setConnectionType(QString type) {
         txtPort->setText(tr("5432"));
     } else if( connectionType.compare(tr("QMYSQL")) == 0) {
         txtPort->setText(tr("3306"));
-    }
-    //	else if( connectionType.compare( tr( "QOCI" ) ) == 0 )
-    //	{
-    //		txtPort->setText( tr( "1521" ) );
-    //	}
-    else if(connectionType.compare(tr("QODBC")) == 0) {
+    } else if(connectionType.compare(tr("QODBC")) == 0) {
         txtPort->setText(tr("1433"));
     } else if(connectionType.compare(tr("QSQLITE")) == 0) {
         txtHost->setEnabled(false);

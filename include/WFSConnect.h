@@ -21,7 +21,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-/*!
+/**
  *	\file wfsConnect.h
  *	\brief WFS Connection
  *	\author David Tran [ HSR ]
@@ -69,19 +69,19 @@ private:
     QPushButton *btnAccept;
     QPushButton *btnCancel;
 
-    /*!
+    /**
          *	\fn void InitInterface( void );
          *	\brief Inits Interface
          */
     void InitInterface( void );
 
-    /*!
+    /**
          *	\fn void InitSlots( void );
          *	\brief Inits Slots
          */
     void InitSlots( void );
 
-    /*!
+    /**
          *	\fn void TranslateInterface( void );
          *	\brief Translates Interface
          */
@@ -96,37 +96,37 @@ public slots:
 
 public:
 
-    /*!
-         *	\fn Frm( const QWidget & );
+    /**
+         *	\fn WFSConnect( QWidget * = 0 );
          *	\brief Constructor
          */
     WFSConnect( QWidget * = 0 );
 
-    /*!
-         *	\fn ~Frm
+    /**
+         *	\fn ~WFSConnect
          *	\brief Destructor
          */
     ~WFSConnect( void );
 
-    /*!
+    /**
          *	\fn void setConnectionType( QString )
          *	\brief Sets connection type
          */
     void setConnectionType( QString );
 
-    /*!
+    /**
          *	\fn QString getConnectionString( void )
          *	\brief returns connection string
          */
     QString getConnectionString( void ) const;
 
-    /*!
+    /**
          *	\fn QSring getSelectedTables( void )
          *	\brief returns selected layers
          */
     QString getSelectedLayers( void ) const;
 
-    /*!
+    /**
          *	\fn QSringList getSelectedTables( void )
          *	\brief returns selected layers
          */

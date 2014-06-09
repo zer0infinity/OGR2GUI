@@ -22,7 +22,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-/*!
+/**
  *	\file Inf.h
  *	\brief Database Informations
  *	\author Olivier Pilotte [ Inventis ], David Tran [ HSR ]
@@ -83,19 +83,19 @@ private:
     QPushButton *btnAccept;
     QPushButton *btnCancel;
 
-    /*!
+    /**
          *	\fn void InitInterface( void );
          *	\brief Inits Interface
          */
     void InitInterface( void );
 
-    /*!
+    /**
          *	\fn void InitSlots( void );
          *	\brief Inits Slots
          */
     void InitSlots( void );
 
-    /*!
+    /**
          *	\fn void TranslateInterface( void );
          *	\brief Translates Interface
          */
@@ -110,37 +110,37 @@ public slots:
 
 public:
 
-    /*!
+    /**
          *	\fn Frm( const QWidget & );
          *	\brief Constructor
          */
     Inf( QWidget * = 0 );
 
-    /*!
+    /**
          *	\fn ~Frm
          *	\brief Destructor
          */
     ~Inf( void );
 
-    /*!
+    /**
          *	\fn void showTables(bool enable)
          *	\brief show tables
          */
     void showTables(bool enable);
 
-    /*!
+    /**
          *	\fn void setConnectionType( QString )
          *	\brief Sets connection type
          */
     void setConnectionType( QString );
 
-    /*!
+    /**
          *	\fn QString getConnectionString( void )
          *	\brief returns connection string
          */
     QString getConnectionString( void );
 
-    /*!
+    /**
          *	\fn QSringList getSelectedTables( void )
          *	\brief returns selected tables
          */

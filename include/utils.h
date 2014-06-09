@@ -21,7 +21,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-/*!
+/**
  *	\file utils.h
  *	\brief Utilities
  *	\author David Tran [ HSR ]
@@ -32,6 +32,10 @@
 #ifndef UTIL
 #define UTIL
 
+    /**
+     *	\fn int ogr2ogr( int nArgc, char ** papszArgv )
+     *	\brief ogr2ogr command line
+     */
 int ogr2ogr( int nArgc, char ** papszArgv );
 
 #endif

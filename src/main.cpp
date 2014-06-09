@@ -29,9 +29,10 @@
  *	\date 13/06/14
  */
 
-#include <QDebug>
+//#pragma comment(linker, "/SUBSYSTEM:CONSOLE")
 #include "App.h"
 #include "cpl_conv.h"
+#include <iostream>
 
 int main(int argc, char **argv) {
     QApplication app(argc, argv);
@@ -39,7 +40,8 @@ int main(int argc, char **argv) {
     CPLSetConfigOption("GDAL_DATA", dataPath.c_str());
     if(1 < argc) {
         for(int i=0;i<argc;++i)
-            qDebug() << argv[i];
+            std::cout << argv[i] << " ";
+        std::cout << std::endl;
         return ogr2ogr(argc, argv);
     } else {
         new App();

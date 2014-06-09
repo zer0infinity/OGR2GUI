@@ -12,16 +12,17 @@ University of Applied Sciences Rapperswil (HSR),
 1. About
 OGR2GUI x64 is a fork from the original ogr2gui from Inventis. It is
 an application to convert and manipulate geospatial data. The front
-end is build upon GDAL/OGR ogr2ogr command line utility therefore
-it is also fully compatible with the well-known ogr2ogr options.
+end is build upon GDAL/OGR ogr2ogr command line utility therefore it
+is also fully compatible with the well-known ogr2ogr options.
 
 2. Features
 - GUI for ogr2ogr:
 * File
 * Database
-* Web service
+* Web Service
 * Projections
 * Option input (optional)
+* Log file
 - ogr2ogr 1.12dev as command line
 
 3. System Requirements

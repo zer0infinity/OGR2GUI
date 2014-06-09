@@ -121,24 +121,38 @@ bool Ogr::OpenDriver(string drivername)
     return true;
 }
 
-void Ogr::TestProjection(int projection) {
+bool Ogr::TestSpatialReference(int projection) {
     targetSRS = NULL;
     if(projection > 0) {
         targetSRS = OSRNewSpatialReference( NULL );
-        if(Error( OSRImportFromEPSG( targetSRS, projection ), error)) {
+        if(Error(OSRImportFromEPSG( targetSRS, projection ), error)) {
             error.insert(0, "unable to create spatial reference : ");
+            return false;
         }
     }
+    return true;
 }
 
-void Ogr::TestFeature(void) {
+bool Ogr::TestFeatureProjection(void) {
     OGR_L_ResetReading(sourceLayer);
     OGRFeatureH feature;
+    bool resVal = true;
     while((feature = OGR_L_GetNextFeature(sourceLayer)) != NULL) {
         if(targetSRS)
-            Error(OGR_G_TransformTo(OGR_F_GetGeometryRef(feature), targetSRS), error);
+            if(Error(OGR_G_TransformTo(OGR_F_GetGeometryRef(feature), targetSRS), error))
+                return resVal;
         OGR_F_Destroy(feature);
     }
+    return resVal;
+}
+
+bool Ogr::ExecuteSQL(string query) {
+    OGRLayerH squeryLayer = OGR_DS_ExecuteSQL(sourceData, query.c_str(), NULL, "");
+    if(squeryLayer == NULL) {
+        perror("unable to execute sql query");
+        return false;
+    }
+    return true;
 }
 
 bool Ogr::Error( OGRErr code, string &type )
