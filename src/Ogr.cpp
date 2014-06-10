@@ -32,6 +32,21 @@
 
 #include "Ogr.h"
 
+#include <windows.h>
+#include <tchar.h>
+#include <QtCore/QSysInfo>
+
+typedef enum { Win_64, Win_32, Other } OsType;
+
+OsType checkOS() {
+#ifndef Q_OS_WIN32
+    return Other;
+#else
+    if (QSysInfo::WordSize == 64) return Win_64;
+    else return Win_32;
+#endif
+}
+
 Ogr::Ogr( void )
 {
     OGRRegisterAll();
@@ -43,9 +58,23 @@ Ogr::~Ogr( void )
 }
 
 bool Ogr::OpenOgr2ogr(QString command, QPushButton *btnExecute) {
-    ogr2ogr = new Ogr2ogrThread(command, btnExecute);
-    ogr2ogr->start();
-    return ogr2ogr->isRunning();
+    bool resVal = true;
+    if(checkOS() == Win_64) {
+        ogr2ogr = new Ogr2ogrThread(command, btnExecute);
+        ogr2ogr->start();
+        resVal = ogr2ogr->isRunning();
+    } else if(checkOS() == Win_32) {
+        QString logPath = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + "ogr2ogr.log");
+        btnExecute->setEnabled(false);
+        process = new QProcess();
+        process->setProcessChannelMode(QProcess::MergedChannels);
+        process->setStandardOutputFile(logPath);
+        process->start(command);
+        process->waitForStarted();
+        resVal = process->waitForFinished();
+        btnExecute->setEnabled(true);
+    }
+    return resVal;
 }
 
 bool Ogr::OpenWFS(QString uri, QStringList &fileList) {
