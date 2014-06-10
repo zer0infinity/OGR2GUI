@@ -111,20 +111,21 @@ public slots:
 public:
 
     /**
-         *	\fn Frm( const QWidget & );
+         *	\fn Inf( const QWidget & );
          *	\brief Constructor
          */
     Inf( QWidget * = 0 );
 
     /**
-         *	\fn ~Frm
+         *	\fn ~Inf
          *	\brief Destructor
          */
     ~Inf( void );
 
     /**
-         *	\fn void showTables(bool enable)
-         *	\brief show tables
+         * \fn void showTables(bool enable)
+         * \brief show tables
+         * \param enable : show tables
          */
     void showTables(bool enable);
 

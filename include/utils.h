@@ -35,6 +35,8 @@
     /**
      *	\fn int ogr2ogr( int nArgc, char ** papszArgv )
      *	\brief ogr2ogr command line
+     *  \param nArgc : arguments count
+     *  \param  papszArgv : arguments
      */
 int ogr2ogr( int nArgc, char ** papszArgv );
 

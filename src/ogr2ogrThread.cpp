@@ -22,8 +22,8 @@
  *****************************************************************************/
 
 /*!
- *	\file processThread.cpp
- *	\brief process Thread
+ *	\file ogr2ogrThread.cpp
+ *	\brief ogr2ogr Thread
  *	\author David Tran [ HSR ]
  *	\version 0.7
  *	\date 13/06/14

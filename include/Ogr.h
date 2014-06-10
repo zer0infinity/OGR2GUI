@@ -102,7 +102,8 @@ public:
     ~Ogr( void );
 
     /**
-     * \brief OpenOgr2ogr(QString command, QPushButton *btnExecute)
+     * \fn bool OpenOgr2ogr(QString command, QPushButton *btnExecute)
+     * \brief Open ogr2ogr command line
      * \param command : command with arguments
      * \param btnExecute : execute button
      * \return true on success
@@ -110,7 +111,7 @@ public:
     bool OpenOgr2ogr(QString command, QPushButton *btnExecute);
 
     /**
-         * \fn OpenWFS(QStringList &fileList)
+         * \fn bool OpenWFS(QStringList &fileList)
          * \brief Open WFS data
          * \param uri : source uri
          * \param &fileList : layer list
@@ -120,7 +121,7 @@ public:
 
     /**
          * \fn OpenSource(string filename, string layername, string &epsg, string &query, string &error);
-         * \brief Opens souorce data
+         * \brief Opens source data
          * \param filename : source filename
          * \param layername : layername
          * \param &epsg : epsg code
@@ -158,19 +159,21 @@ public:
 
     /**
      *	\fn bool Process(void);
-     *	\brief Process a feature
+     *	\brief Test feature projections
      */
     bool TestFeatureProjection(void);
 
     /**
-     * \brief OpenProjection(int projection)
+     * \fn bool OpenProjection(int projection)
+     * \brief Test spatial reference
      * \param projection : projection
      * \return true on success
      */
     bool TestSpatialReference(int projection);
 
     /**
-     * \brief Ogr::TestSQL(string query)
+     * \fn bool TestSQL(string query)
+     * \brief Execute sql query
      * \param query : sql query
      * \return true on success
      */

@@ -111,6 +111,7 @@ public:
     /**
          *	\fn void setConnectionType( QString )
          *	\brief Sets connection type
+         *  \param QString : connection type
          */
     void setConnectionType( QString );
 

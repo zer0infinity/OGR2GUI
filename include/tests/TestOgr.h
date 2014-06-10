@@ -49,10 +49,20 @@ private slots:
     void testCloseSource();
     void testOpenDriverFalseInput();
     void testOpenDriverESRIShapefile();
-    void testCompareLayerNames();
+    void testLayerNames();
+    void testLayerCount();
+    void testFeatureCount();
+    void testSQLQueryFalseQuery();
+    void testSQLQuery();
 private:
     string path;
-    void getLayerList(string, QStringList&);
+    string filename;
+    string sqlitedb;
+    OGRDataSourceH sourceData;
+    OGRLayerH sourceLayer;
+    OGRFeatureDefnH sourceLayerDefn;
+    string sourceLayerName;
+    void setSource(string sourcename);
 };
 
 #endif // TESTOGR_H

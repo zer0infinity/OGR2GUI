@@ -23,7 +23,7 @@
  *****************************************************************************/
 
 /*!
- *	\file Inf.c
+ *	\file Inf.cpp
  *	\brief Database Informations
  *	\author Olivier Pilotte [ Inventis ], David Tran [ HSR ]
  *	\version 0.7
