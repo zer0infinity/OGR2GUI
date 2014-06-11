@@ -46,7 +46,7 @@ WFS might crashes with OGR2GUI. Using OGR2GUI x64 should solve it.
 David Tran (HSR), 2014
 
 7. Thanks
-Stefan Keller (sfkeller@hsr.ch), HSR, 2014
+Prof. Stefan Keller (sfkeller@hsr.ch), IFS-HSR, 2014
 
 8. Website
 http://giswiki.hsr.ch/OGR2GUI
