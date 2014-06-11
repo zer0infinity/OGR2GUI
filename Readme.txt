@@ -26,24 +26,27 @@ is also fully compatible with the well-known ogr2ogr options.
 - ogr2ogr 1.12dev as command line
 
 3. System Requirements
-- Windows XP, Windows XP x64
-- Windows Vista, Windows Vista x64
-- Windows 7, Windows 7 x64
-- Windows 8, Windows 8 x64
+- Windows XP, Windows XP x64 (all editions)
+- Windows Vista, Windows Vista x64 (all editions)
+- Windows 7, Windows 7 x64 (all editions)
+- Windows 8, Windows 8 x64 (all editions)
+
+Note: OGR2GUI does not currently support Linux.
 
 4. Installation
 - Extract the zip file
-* Start ogr2gui.exe
+* Start OGR2GUI.exe
 or
-* Start ogr2gui64.exe in Windows x64
+* Start OGR2GUI64.exe in Windows x64
 
 5. Known issues
-WFS crashes with OGR2GUI. Using OGR2GUI x64 should solve it.
+WFS might crashes with OGR2GUI. Using OGR2GUI x64 should solve it.
 
 6. Credits
 David Tran (HSR), 2014
 
 7. Website
+http://giswiki.hsr.ch/OGR2GUI
 http://www.hsr.ch
 http://www.ogr2gui.ca
 
