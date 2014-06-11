@@ -6,7 +6,7 @@ by
 
 David Tran, Faculty of Computer Science,
 University of Applied Sciences Rapperswil (HSR),
-8600 Rapperswil, Switzerland
+8640 Rapperswil, Switzerland
 
 
 1. About
@@ -31,7 +31,7 @@ is also fully compatible with the well-known ogr2ogr options.
 - Windows 7, Windows 7 x64 (all editions)
 - Windows 8, Windows 8 x64 (all editions)
 
-Note: OGR2GUI does not currently support Linux.
+Note: OGR2GUI does not currently support WINE.
 
 4. Installation
 - Extract the zip file
@@ -45,12 +45,15 @@ WFS might crashes with OGR2GUI. Using OGR2GUI x64 should solve it.
 6. Credits
 David Tran (HSR), 2014
 
-7. Website
+7. Thanks
+Stefan Keller (sfkeller@hsr.ch), HSR, 2014
+
+8. Website
 http://giswiki.hsr.ch/OGR2GUI
 http://www.hsr.ch
 http://www.ogr2gui.ca
 
-8. Licence
+9. Licence
 This file is part of OGR2GUI.
 
 OGR2GUI is free software: you can redistribute it and/or modify
