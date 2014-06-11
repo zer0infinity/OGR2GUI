@@ -11,6 +11,7 @@ var searchData=
   ['equaln',['EQUALN',['../cpl__port_8h.html#a96b4fe28af61448f5ae7cb219601eee3',1,'cpl_port.h']]],
   ['equals',['Equals',['../class_o_g_r_geometry.html#a39f0916390b54b20445926d6e322f002',1,'OGRGeometry::Equals()'],['../class_o_g_r_point.html#ae9a2c96e244bfc553bade42ff85466b8',1,'OGRPoint::Equals()'],['../class_o_g_r_line_string.html#a515d9174bc0505adf0287376f23c36d6',1,'OGRLineString::Equals()'],['../class_o_g_r_polygon.html#a5757e182bda79c74a46d3eac1fff5fcf',1,'OGRPolygon::Equals()'],['../class_o_g_r_geometry_collection.html#acac4e795db5c3d1709be9e4f6188d568',1,'OGRGeometryCollection::Equals()']]],
   ['erase',['Erase',['../class_o_g_r_layer.html#ae8fcf55ffa259f32df35edcb05274439',1,'OGRLayer']]],
+  ['error',['Error',['../_ogr_8cpp.html#ad01b63a115c529ad6a3439db497835b3a4dfd42ec49d09d8c6555c218301cc30f',1,'Ogr.cpp']]],
   ['etype',['eType',['../struct_c_p_l_x_m_l_node.html#a9ff2b585ad97ac6fe6b092390344a052',1,'CPLXMLNode::eType()'],['../structogr__style__param.html#ae79012fd24c9d94e5c340cb38db1ccfb',1,'ogr_style_param::eType()'],['../struct_list_field_desc.html#a2ba212901b003203f9a113ec4ddac75c',1,'ListFieldDesc::eType()']]],
   ['eunit',['eUnit',['../structogr__style__value.html#a046e0a1180ae7f1f08eff09e23e46f9c',1,'ogr_style_value']]],
   ['evaluate',['Evaluate',['../class_o_g_r_feature_query.html#ac3c93161d8841e40dddd53f1a0021b05',1,'OGRFeatureQuery']]],

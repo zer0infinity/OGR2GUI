@@ -732,6 +732,8 @@ var searchData=
   ['osrsetwellknowngeogcs',['OSRSetWellKnownGeogCS',['../ogr__srs__api_8h.html#a6e74734746c78ea89257892bba2a23c0',1,'ogr_srs_api.h']]],
   ['osrstripctparms',['OSRStripCTParms',['../ogr__srs__api_8h.html#afb19db549b5bdca56f56b7c4d5ea57bb',1,'ogr_srs_api.h']]],
   ['osrvalidate',['OSRValidate',['../ogr__srs__api_8h.html#acc6d79b1b735eb8b53506529506e375d',1,'ogr_srs_api.h']]],
+  ['ostype',['OsType',['../_ogr_8cpp.html#ad01b63a115c529ad6a3439db497835b3',1,'Ogr.cpp']]],
+  ['other',['Other',['../_ogr_8cpp.html#ad01b63a115c529ad6a3439db497835b3ab41fe07a134a62397420ef854d35c7b1',1,'Ogr.cpp']]],
   ['outlinecolor',['OutlineColor',['../class_o_g_r_style_label.html#a254ac571fd9a9c49d39731b648e84d55',1,'OGRStyleLabel']]],
   ['overlaps',['Overlaps',['../class_o_g_r_geometry.html#a5d007395e2346b0a11f7d4e13f6a73aa',1,'OGRGeometry']]]
 ];

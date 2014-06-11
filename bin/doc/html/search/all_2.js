@@ -8,6 +8,7 @@ var searchData=
   ['binary',['Binary',['../union_o_g_r_field.html#ab5b626d806abe6d3bec1b6563f64f0d5',1,'OGRField']]],
   ['blarge',['bLarge',['../struct_c_p_l_shared_file_info.html#ab6b8c11104bc00f1502b17b0ebd6d346',1,'CPLSharedFileInfo']]],
   ['bold',['Bold',['../class_o_g_r_style_label.html#ac6bfc9d03fe535a7f124b0387bd6c16f',1,'OGRStyleLabel']]],
+  ['bool',['BOOL',['../_ogr_8cpp.html#a7ca02251638f0223f68659d45476edb2',1,'Ogr.cpp']]],
   ['boundary',['Boundary',['../class_o_g_r_geometry.html#aec9c5dc206ece9d2f4c777c66ba6ffd4',1,'OGRGeometry']]],
   ['bperfeaturect',['bPerFeatureCT',['../struct_target_layer_info.html#a56eb54d3f15771c902366814f95f1444',1,'TargetLayerInfo']]],
   ['buffer',['Buffer',['../class_o_g_r_geometry.html#ad256b4185a293681a1bb47a4809f2cf4',1,'OGRGeometry']]],

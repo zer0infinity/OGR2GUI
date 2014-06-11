@@ -10,6 +10,7 @@ var searchData=
   ['papofielddefn',['papoFieldDefn',['../class_o_g_r_feature_defn.html#a9e79222a69c736950d616a04aad2cfcf',1,'OGRFeatureDefn']]],
   ['papogeomfielddefn',['papoGeomFieldDefn',['../class_o_g_r_feature_defn.html#a1e5d7503c7d420fe2a6ac811ccf9f908',1,'OGRFeatureDefn']]],
   ['papszoptions',['papszOptions',['../struct_g_d_a_l_option_definition.html#ae3b33a429623650a836da238bc57d325',1,'GDALOptionDefinition']]],
+  ['pbool',['PBOOL',['../_ogr_8cpp.html#a85326e1ccfeff8dbee821eaea17b16d8',1,'Ogr.cpp']]],
   ['pfncleanup',['pfnCleanup',['../struct_g_d_a_l_transformer_info.html#a6f79205881bae991d89477ae57a04b2d',1,'GDALTransformerInfo']]],
   ['pfnserialize',['pfnSerialize',['../struct_g_d_a_l_transformer_info.html#a8af608f2e46054364da7ea932b580169',1,'GDALTransformerInfo']]],
   ['pfntransform',['pfnTransform',['../struct_g_d_a_l_transformer_info.html#a51ae3767b411799bb872af9b037ad1ca',1,'GDALTransformerInfo']]],

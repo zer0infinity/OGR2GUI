@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['virtualmem_5freadonly',['VIRTUALMEM_READONLY',['../cpl__virtualmem_8h.html#aeba7fc305d946740f9e88513220c73a1ac449c40cb0760b72f362e2cf4cd3da79',1,'cpl_virtualmem.h']]],
-  ['virtualmem_5freadonly_5fenforced',['VIRTUALMEM_READONLY_ENFORCED',['../cpl__virtualmem_8h.html#aeba7fc305d946740f9e88513220c73a1a67628910ddcd5816bf230061adc45d97',1,'cpl_virtualmem.h']]],
-  ['virtualmem_5freadwrite',['VIRTUALMEM_READWRITE',['../cpl__virtualmem_8h.html#aeba7fc305d946740f9e88513220c73a1aa6486140a01b52ef723a17a39f9e1169',1,'cpl_virtualmem.h']]]
+  ['segmentize',['SEGMENTIZE',['../ogr2ogr_8cpp.html#a4da8b5f9c735a024dbf759a28a88d76ba91d198d0ffc3c94301a7b347e52b4084',1,'ogr2ogr.cpp']]],
+  ['simplify_5fpreserve_5ftopology',['SIMPLIFY_PRESERVE_TOPOLOGY',['../ogr2ogr_8cpp.html#a4da8b5f9c735a024dbf759a28a88d76bad670e3677f9d119436f17b4837bca2ff',1,'ogr2ogr.cpp']]]
 ];

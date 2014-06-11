@@ -14,7 +14,7 @@ var indexSectionsWithContent =
   4: "abcdefhimnoprstwxy",
   5: "cgov",
   6: "cgo",
-  7: "cgnosvw",
+  7: "cegnosvw",
   8: "o",
   9: "_acdefghilmnostuvw",
   10: "o"

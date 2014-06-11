@@ -14,6 +14,7 @@ var searchData=
   ['centroid',['Centroid',['../class_o_g_r_geometry.html#ae41efab18f7053c2737a396d71df34d7',1,'OGRGeometry']]],
   ['check_5fhas_5fenough_5fadditional_5fargs',['CHECK_HAS_ENOUGH_ADDITIONAL_ARGS',['../ogr2ogr_8cpp.html#a4eb6f872ed83617806629e3734e1fe37',1,'ogr2ogr.cpp']]],
   ['checkextensionconsistency',['CheckExtensionConsistency',['../commonutils_8h.html#a332c3b8efd623b8a8a3d48bfca8caed5',1,'CheckExtensionConsistency(const char *pszDestFilename, const char *pszDriverName):&#160;commonutils.cpp'],['../commonutils_8cpp.html#ac895172708a3bfd6b0216e2a180bf8e5',1,'CheckExtensionConsistency(const char *pszDestFilename, const char *pszDriverName):&#160;commonutils.cpp']]],
+  ['checkos',['checkOS',['../_ogr_8cpp.html#a5165a116bde25da2e0505f07dbb074de',1,'Ogr.cpp']]],
   ['clear',['Clear',['../class_o_g_r_style_table.html#a2e10074ef4c336e47dec90b0adf4b249',1,'OGRStyleTable::Clear()'],['../class_o_g_r_spatial_reference.html#ab9d2695768309948130772917b47366b',1,'OGRSpatialReference::Clear()']]],
   ['clearchildren',['ClearChildren',['../class_o_g_r___s_r_s_node.html#af599fd462c258828a6c1c1987bc96ff2',1,'OGR_SRSNode']]],
   ['clip',['Clip',['../class_o_g_r_layer.html#a56d7ee3b2020e53c730d67ee4f1e2fb6',1,'OGRLayer']]],

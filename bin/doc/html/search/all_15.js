@@ -5,6 +5,8 @@ var searchData=
   ['wfsconnect_2ecpp',['wfsConnect.cpp',['../wfs_connect_8cpp.html',1,'']]],
   ['wfsconnect_2eh',['wfsConnect.h',['../wfs_connect_8h.html',1,'']]],
   ['width',['Width',['../class_o_g_r_style_pen.html#a81b4cdbca7adb700729d3b2d7c9b69d6',1,'OGRStylePen']]],
+  ['win_5f32',['Win_32',['../_ogr_8cpp.html#ad01b63a115c529ad6a3439db497835b3a9bac0fe6e4eade735ef7424ab5a6f3cd',1,'Ogr.cpp']]],
+  ['win_5f64',['Win_64',['../_ogr_8cpp.html#ad01b63a115c529ad6a3439db497835b3a40def8897644ce56ef545edafce41ced',1,'Ogr.cpp']]],
   ['within',['Within',['../class_o_g_r_geometry.html#ab945f74a40f58fb85a15e65b4d60fbe9',1,'OGRGeometry']]],
   ['wkb25dbit',['wkb25DBit',['../ogr__core_8h.html#ae4932f824a0f693faeca375991cd2731',1,'ogr_core.h']]],
   ['wkbflatten',['wkbFlatten',['../ogr__core_8h.html#a5d2800b1a2d4f4dbcb906390969bb823',1,'ogr_core.h']]],
@@ -29,5 +31,6 @@ var searchData=
   ['wkbunknown',['wkbUnknown',['../ogr__core_8h.html#a800236a0d460ef66e687b7b65610f12aa3645f782f9b9f7632d7e7cdd0451d58f',1,'ogr_core.h']]],
   ['wkbvariantiso',['wkbVariantIso',['../ogr__core_8h.html#a6716bd3399c31e7bc8b0fd94fd7d9ba6ac103ec17c4045fb9f3013638726a8bd5',1,'ogr_core.h']]],
   ['wkbvariantogc',['wkbVariantOgc',['../ogr__core_8h.html#a6716bd3399c31e7bc8b0fd94fd7d9ba6a5d0541e06abb0f9c6496f9ff75f8578c',1,'ogr_core.h']]],
-  ['wkbxdr',['wkbXDR',['../ogr__core_8h.html#a36cc1f4d807ba8f6fb8951f3adf251e2a2682cb271fcd2dff2e3af02c0e0630f2',1,'ogr_core.h']]]
+  ['wkbxdr',['wkbXDR',['../ogr__core_8h.html#a36cc1f4d807ba8f6fb8951f3adf251e2a2682cb271fcd2dff2e3af02c0e0630f2',1,'ogr_core.h']]],
+  ['wow64',['WOW64',['../_ogr_8cpp.html#ad01b63a115c529ad6a3439db497835b3a54b3311c645a6f28d71d7dba3e3fe248',1,'Ogr.cpp']]]
 ];

@@ -84,6 +84,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">Ogr.cpp File Reference</div>  </div>
 </div><!--header-->
@@ -92,8 +96,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>OGR C API.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="_ogr_8h_source.html">Ogr.h</a>&quot;</code><br />
+<code>#include &lt;QtCore/QSysInfo&gt;</code><br />
+<code>#include &lt;windows.h&gt;</code><br />
 </div>
 <p><a href="_ogr_8cpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ad01b63a115c529ad6a3439db497835b3"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_ogr_8cpp.html#ad01b63a115c529ad6a3439db497835b3">OsType</a> { <br />
+&#160;&#160;<a class="el" href="_ogr_8cpp.html#ad01b63a115c529ad6a3439db497835b3a40def8897644ce56ef545edafce41ced">Win_64</a>, 
+<a class="el" href="_ogr_8cpp.html#ad01b63a115c529ad6a3439db497835b3a9bac0fe6e4eade735ef7424ab5a6f3cd">Win_32</a>, 
+<a class="el" href="_ogr_8cpp.html#ad01b63a115c529ad6a3439db497835b3a54b3311c645a6f28d71d7dba3e3fe248">WOW64</a>, 
+<a class="el" href="_ogr_8cpp.html#ad01b63a115c529ad6a3439db497835b3a4dfd42ec49d09d8c6555c218301cc30f">Error</a>, 
+<br />
+&#160;&#160;<a class="el" href="_ogr_8cpp.html#ad01b63a115c529ad6a3439db497835b3ab41fe07a134a62397420ef854d35c7b1">Other</a>
+<br />
+ }</td></tr>
+<tr class="separator:ad01b63a115c529ad6a3439db497835b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a7ca02251638f0223f68659d45476edb2"><td class="memItemLeft" align="right" valign="top">typedef&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_ogr_8cpp.html#a7ca02251638f0223f68659d45476edb2">BOOL</a> (WINAPI *LPFN_ISWOW64PROCESS)(HANDLE</td></tr>
+<tr class="separator:a7ca02251638f0223f68659d45476edb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5165a116bde25da2e0505f07dbb074de"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_ogr_8cpp.html#ad01b63a115c529ad6a3439db497835b3">OsType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_ogr_8cpp.html#a5165a116bde25da2e0505f07dbb074de">checkOS</a> ()</td></tr>
+<tr class="separator:a5165a116bde25da2e0505f07dbb074de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a85326e1ccfeff8dbee821eaea17b16d8"><td class="memItemLeft" align="right" valign="top">typedef&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_ogr_8cpp.html#a85326e1ccfeff8dbee821eaea17b16d8">PBOOL</a></td></tr>
+<tr class="separator:a85326e1ccfeff8dbee821eaea17b16d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>OGR C API. </p>
 <dl class="section author"><dt>Author</dt><dd>Olivier Pilotte [ Inventis ], David Tran [ HSR ] </dd></dl>
@@ -101,10 +133,86 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <dl class="section date"><dt>Date</dt><dd>13/06/14 </dd></dl>
 
 <p>Definition in file <a class="el" href="_ogr_8cpp_source.html">Ogr.cpp</a>.</p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Enumeration Type Documentation</h2>
+<a class="anchor" id="ad01b63a115c529ad6a3439db497835b3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="_ogr_8cpp.html#ad01b63a115c529ad6a3439db497835b3">OsType</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="ad01b63a115c529ad6a3439db497835b3a40def8897644ce56ef545edafce41ced"></a>Win_64&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ad01b63a115c529ad6a3439db497835b3a9bac0fe6e4eade735ef7424ab5a6f3cd"></a>Win_32&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ad01b63a115c529ad6a3439db497835b3a54b3311c645a6f28d71d7dba3e3fe248"></a>WOW64&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ad01b63a115c529ad6a3439db497835b3a4dfd42ec49d09d8c6555c218301cc30f"></a>Error&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ad01b63a115c529ad6a3439db497835b3ab41fe07a134a62397420ef854d35c7b1"></a>Other&#160;</td><td class="fielddoc">
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="_ogr_8cpp_source.html#l00037">37</a> of file <a class="el" href="_ogr_8cpp_source.html">Ogr.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a7ca02251638f0223f68659d45476edb2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef BOOL </td>
+          <td>(</td>
+          <td class="paramtype">WINAPI *&#160;</td>
+          <td class="paramname"><em>LPFN_ISWOW64PROCESS</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5165a116bde25da2e0505f07dbb074de"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_ogr_8cpp.html#ad01b63a115c529ad6a3439db497835b3">OsType</a> checkOS </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_ogr_8cpp_source.html#l00041">41</a> of file <a class="el" href="_ogr_8cpp_source.html">Ogr.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="a85326e1ccfeff8dbee821eaea17b16d8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef PBOOL</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_ogr_8cpp_source.html#l00039">39</a> of file <a class="el" href="_ogr_8cpp_source.html">Ogr.cpp</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jun 10 2014 20:40:39 for OGR2GUI x64 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jun 11 2014 12:55:42 for OGR2GUI x64 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

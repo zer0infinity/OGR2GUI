@@ -13,5 +13,6 @@ var searchData=
   ['ogrjustification',['OGRJustification',['../ogr__core_8h.html#a701976be938cd60a2fa96454f61d3600',1,'ogr_core.h']]],
   ['ogrwkbbyteorder',['OGRwkbByteOrder',['../ogr__core_8h.html#a36cc1f4d807ba8f6fb8951f3adf251e2',1,'ogr_core.h']]],
   ['ogrwkbgeometrytype',['OGRwkbGeometryType',['../ogr__core_8h.html#a800236a0d460ef66e687b7b65610f12a',1,'ogr_core.h']]],
-  ['ogrwkbvariant',['OGRwkbVariant',['../ogr__core_8h.html#a6716bd3399c31e7bc8b0fd94fd7d9ba6',1,'ogr_core.h']]]
+  ['ogrwkbvariant',['OGRwkbVariant',['../ogr__core_8h.html#a6716bd3399c31e7bc8b0fd94fd7d9ba6',1,'ogr_core.h']]],
+  ['ostype',['OsType',['../_ogr_8cpp.html#ad01b63a115c529ad6a3439db497835b3',1,'Ogr.cpp']]]
 ];

@@ -31,39 +31,44 @@
  */
 
 #include "Ogr.h"
-
-#include <windows.h>
-#include <tchar.h>
 #include <QtCore/QSysInfo>
+#include <windows.h>
 
-typedef enum { Win_64, Win_32, Other } OsType;
+typedef enum { Win_64, Win_32, WOW64, Error, Other } OsType;
+
+typedef BOOL (WINAPI *LPFN_ISWOW64PROCESS) (HANDLE, PBOOL);
 
 OsType checkOS() {
 #ifndef Q_OS_WIN32
     return Other;
 #else
-    if (QSysInfo::WordSize == 64) return Win_64;
-    else return Win_32;
+    if (QSysInfo::WordSize == 64)
+        return Win_64;
+    BOOL isWOW64 = FALSE;
+    LPFN_ISWOW64PROCESS fnIsWow64Process;
+    fnIsWow64Process = (LPFN_ISWOW64PROCESS) GetProcAddress(GetModuleHandle(TEXT("kernel32")),"IsWow64Process");
+    if(fnIsWow64Process == NULL)
+        return Win_32;
+    if(!IsWow64Process(GetCurrentProcess(), &isWOW64))
+        return Error;
+    return isWOW64? WOW64 : Win_32;
 #endif
 }
 
-Ogr::Ogr( void )
-{
+Ogr::Ogr(void) {
     OGRRegisterAll();
 }
 
-Ogr::~Ogr( void )
-{
-
+Ogr::~Ogr(void) {
 }
 
 bool Ogr::OpenOgr2ogr(QString command, QPushButton *btnExecute) {
-    bool resVal = true;
+    bool resVal = false;
     if(checkOS() == Win_64) {
         ogr2ogr = new Ogr2ogrThread(command, btnExecute);
         ogr2ogr->start();
         resVal = ogr2ogr->isRunning();
-    } else if(checkOS() == Win_32) {
+    } else if(checkOS() == WOW64) {
         QString logPath = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + "ogr2ogr.log");
         btnExecute->setEnabled(false);
         process = new QProcess();
@@ -73,6 +78,19 @@ bool Ogr::OpenOgr2ogr(QString command, QPushButton *btnExecute) {
         process->waitForStarted();
         resVal = process->waitForFinished();
         btnExecute->setEnabled(true);
+    } else if(checkOS() == Win_32){
+        std::string cmd = command.toStdString();
+        std::wstring widestring = std::wstring(cmd.begin(), cmd.end());
+        LPWSTR lpwstr = const_cast<LPWSTR>(widestring.c_str());
+        STARTUPINFO si;
+        PROCESS_INFORMATION pi;
+        ZeroMemory(&si, sizeof(si));
+        si.cb = sizeof(si);
+        ZeroMemory(&pi, sizeof(pi));
+        resVal = CreateProcess(NULL, lpwstr, 0, 0, FALSE, CREATE_NO_WINDOW, 0, 0, &si, &pi);
+        WaitForSingleObject(pi.hProcess, INFINITE);
+        CloseHandle(pi.hProcess);
+        CloseHandle(pi.hThread);
     }
     return resVal;
 }

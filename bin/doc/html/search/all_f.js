@@ -12,6 +12,7 @@ var searchData=
   ['papszoptions',['papszOptions',['../struct_g_d_a_l_option_definition.html#ae3b33a429623650a836da238bc57d325',1,'GDALOptionDefinition']]],
   ['parse',['Parse',['../class_o_g_r_style_tool.html#a5bbcb9eed988e4ab09b78286cfc7c1ff',1,'OGRStyleTool']]],
   ['pattern',['Pattern',['../class_o_g_r_style_pen.html#a2eec50d0b16c41219332c1156312105c',1,'OGRStylePen']]],
+  ['pbool',['PBOOL',['../_ogr_8cpp.html#a85326e1ccfeff8dbee821eaea17b16d8',1,'Ogr.cpp']]],
   ['perp',['Perp',['../class_o_g_r_style_symbol.html#aa8c8873672ea7c9d388ad3c3a22186c9',1,'OGRStyleSymbol::Perp()'],['../class_o_g_r_style_label.html#a234f285e9d270e91c4ed6f8fd802d5ce',1,'OGRStyleLabel::Perp()']]],
   ['perpendicularoffset',['PerpendicularOffset',['../class_o_g_r_style_pen.html#a7c02be331a6f2972ea14fdb334858faa',1,'OGRStylePen']]],
   ['pfncleanup',['pfnCleanup',['../struct_g_d_a_l_transformer_info.html#a6f79205881bae991d89477ae57a04b2d',1,'GDALTransformerInfo']]],
