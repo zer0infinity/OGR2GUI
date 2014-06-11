@@ -23,7 +23,7 @@
 # ogr2gui 0.7
 
 TEMPLATE = app
-TARGET = ogr2gui_test
+TARGET = OGR2GUI_test
 INCLUDEPATH += $$PWD/include $$PWD/include/ogr $$PWD/include/tests
 DESTDIR += $$PWD/bin
 LIBS += -L$$PWD/lib -lgdal_i

@@ -195,9 +195,9 @@ void TestOgr::testSQLQueryFalseQuery() {
     string sourcename = path + filename;
     bool resVal = ogr->OpenSource(sourcename, epsg, query, error);
     QCOMPARE(resVal, true);
-    resVal = ogr->ExecuteSQL("SELECT none FROM " + sourceLayerName);
+    resVal = ogr->TestExecuteSQL("SELECT none FROM " + sourceLayerName);
     QCOMPARE(resVal, false);
-    resVal = ogr->ExecuteSQL("SELECT * FROM polyy");
+    resVal = ogr->TestExecuteSQL("SELECT * FROM polyy");
     QCOMPARE(resVal, false);
 }
 
@@ -208,12 +208,12 @@ void TestOgr::testSQLQuery() {
     string sourcename = path + filename;
     bool resVal = ogr->OpenSource(sourcename, epsg, query, error);
     QCOMPARE(resVal, true);
-    resVal = ogr->ExecuteSQL("SELECT * FROM " + sourceLayerName);
+    resVal = ogr->TestExecuteSQL("SELECT * FROM " + sourceLayerName);
     QCOMPARE(resVal, true);
-    resVal = ogr->ExecuteSQL("SELECT area FROM " + sourceLayerName);
+    resVal = ogr->TestExecuteSQL("SELECT area FROM " + sourceLayerName);
     QCOMPARE(resVal, true);
-    resVal = ogr->ExecuteSQL("SELECT eas_id FROM " + sourceLayerName);
+    resVal = ogr->TestExecuteSQL("SELECT eas_id FROM " + sourceLayerName);
     QCOMPARE(resVal, true);
-    resVal = ogr->ExecuteSQL("SELECT prfedea FROM " + sourceLayerName);
+    resVal = ogr->TestExecuteSQL("SELECT prfedea FROM " + sourceLayerName);
     QCOMPARE(resVal, true);
 }

@@ -893,14 +893,14 @@ void App::evtBtnExecute( void )
     if(resVal) {
         if(ogr->OpenDriver(cmbTargetFormat->currentText().toStdString())) {
             if(!txtSourceQuery->text().isEmpty()) {
-                if(!ogr->ExecuteSQL(txtSourceQuery->text().toStdString())) {
+                if(!ogr->TestExecuteSQL(txtSourceQuery->text().toStdString())) {
                     txtOutput->append(tr("\n * unable to execute sql query !\n"));
                     return;
                 }
             }
             if(!ogr->TestSpatialReference((projectionsList.at(cmbTargetProj->currentIndex()).first).toInt()))
                 txtOutput->append(tr("\n * unable to create spatial reference !\n"));
-            if(!radSourceDatabase->isChecked())
+            if(!radSourceDatabase->isChecked() && !radSourceWebservice->isChecked())
                 if(!ogr->TestFeatureProjection())
                     txtOutput->append(tr("\n * unable to transform feature with projection !\n"));
 
@@ -911,11 +911,11 @@ void App::evtBtnExecute( void )
             txtOutput->append(tr("\n") + sourcename + tr(" > ") + targetname + tr(" ... "));
             QString parameters = currentParameters();
             QString command = QDir::toNativeSeparators(QCoreApplication::applicationFilePath());
-            command += parameters;
             if(radSourceWebservice->isChecked())
-                command += tr(" ") + wfs->getSelectedLayers();
+                parameters += tr(" ") + wfs->getSelectedLayers();
             if(!txtInput->toPlainText().isEmpty())
-                command += tr(" ") + txtInput->toPlainText();
+                parameters += tr(" ") + txtInput->toPlainText();
+            command += parameters;
             if(ogr->OpenOgr2ogr(command, btnExecute)) {
                 theProgress->setValue(100);
                 theProgress->setMaximum(100);

@@ -193,7 +193,7 @@ bool Ogr::TestFeatureProjection(void) {
     return resVal;
 }
 
-bool Ogr::ExecuteSQL(string query) {
+bool Ogr::TestExecuteSQL(string query) {
     OGRLayerH squeryLayer = OGR_DS_ExecuteSQL(sourceData, query.c_str(), NULL, "");
     if(squeryLayer == NULL) {
         perror("unable to execute sql query");

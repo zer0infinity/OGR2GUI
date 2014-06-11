@@ -17,7 +17,7 @@ var searchData=
   ['evtradalltables',['evtRadAllTables',['../class_inf.html#acea5a9bb4c012252dcfb170a9a488a98',1,'Inf']]],
   ['evtradnonlayers',['evtRadNonLayers',['../class_w_f_s_connect.html#a3dc681ddefeb1b5a2357581b41c43e19',1,'WFSConnect']]],
   ['evtradnontables',['evtRadNonTables',['../class_inf.html#a02fb747e092aa4c88f2cdf8ecf33b43a',1,'Inf']]],
-  ['executesql',['ExecuteSQL',['../class_o_g_r_data_source.html#ad8eeb2b03e5724258aa642c0c5fb234e',1,'OGRDataSource::ExecuteSQL()'],['../class_ogr.html#a85b14a0cc71bae2fd8f81e07f50a5b62',1,'Ogr::ExecuteSQL()']]],
+  ['executesql',['ExecuteSQL',['../class_o_g_r_data_source.html#ad8eeb2b03e5724258aa642c0c5fb234e',1,'OGRDataSource']]],
   ['exporttoerm',['exportToERM',['../class_o_g_r_spatial_reference.html#a574b5f221ae0b41bc4f82baeb8ab2f1c',1,'OGRSpatialReference']]],
   ['exporttogeos',['exportToGEOS',['../class_o_g_r_geometry.html#ae12ef4a2317612301ca2ac2220419fe9',1,'OGRGeometry']]],
   ['exporttogml',['exportToGML',['../class_o_g_r_geometry.html#ad63cb74af6069be19197762770630ec1',1,'OGRGeometry']]],

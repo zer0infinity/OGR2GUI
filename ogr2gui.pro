@@ -50,12 +50,12 @@ CONFIG += c++11
 QT += sql widgets
 
 win32: contains(QMAKE_TARGET.arch, x86) {
-	TARGET = ogr2gui
+        TARGET = OGR2GUI
 	LIBS += -L$$PWD/lib -lgdal_i
 }
 
 win32: contains(QMAKE_TARGET.arch, x86_64) {
-	TARGET = ogr2gui64
+        TARGET = OGR2GUI64
 	LIBS += -L$$PWD/lib -lgdal_i_x64
 }
 

@@ -975,14 +975,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00893"></a><span class="lineno">  893</span>&#160;    <span class="keywordflow">if</span>(resVal) {</div>
 <div class="line"><a name="l00894"></a><span class="lineno">  894</span>&#160;        <span class="keywordflow">if</span>(ogr-&gt;<a class="code" href="class_ogr.html#ac7d6151f17dabdaaf73d04bd9e473338">OpenDriver</a>(cmbTargetFormat-&gt;currentText().toStdString())) {</div>
 <div class="line"><a name="l00895"></a><span class="lineno">  895</span>&#160;            <span class="keywordflow">if</span>(!txtSourceQuery-&gt;text().isEmpty()) {</div>
-<div class="line"><a name="l00896"></a><span class="lineno">  896</span>&#160;                <span class="keywordflow">if</span>(!ogr-&gt;<a class="code" href="class_ogr.html#a85b14a0cc71bae2fd8f81e07f50a5b62">ExecuteSQL</a>(txtSourceQuery-&gt;text().toStdString())) {</div>
+<div class="line"><a name="l00896"></a><span class="lineno">  896</span>&#160;                <span class="keywordflow">if</span>(!ogr-&gt;<a class="code" href="class_ogr.html#a4817d92d7460cd3de69f4d565fddb71b">TestExecuteSQL</a>(txtSourceQuery-&gt;text().toStdString())) {</div>
 <div class="line"><a name="l00897"></a><span class="lineno">  897</span>&#160;                    txtOutput-&gt;append(tr(<span class="stringliteral">&quot;\n * unable to execute sql query !\n&quot;</span>));</div>
 <div class="line"><a name="l00898"></a><span class="lineno">  898</span>&#160;                    <span class="keywordflow">return</span>;</div>
 <div class="line"><a name="l00899"></a><span class="lineno">  899</span>&#160;                }</div>
 <div class="line"><a name="l00900"></a><span class="lineno">  900</span>&#160;            }</div>
 <div class="line"><a name="l00901"></a><span class="lineno">  901</span>&#160;            <span class="keywordflow">if</span>(!ogr-&gt;<a class="code" href="class_ogr.html#a8a672537c840fce0ab25fcdd4c90b650">TestSpatialReference</a>((projectionsList.at(cmbTargetProj-&gt;currentIndex()).first).toInt()))</div>
 <div class="line"><a name="l00902"></a><span class="lineno">  902</span>&#160;                txtOutput-&gt;append(tr(<span class="stringliteral">&quot;\n * unable to create spatial reference !\n&quot;</span>));</div>
-<div class="line"><a name="l00903"></a><span class="lineno">  903</span>&#160;            <span class="keywordflow">if</span>(!radSourceDatabase-&gt;isChecked())</div>
+<div class="line"><a name="l00903"></a><span class="lineno">  903</span>&#160;            <span class="keywordflow">if</span>(!radSourceDatabase-&gt;isChecked() &amp;&amp; !radSourceWebservice-&gt;isChecked())</div>
 <div class="line"><a name="l00904"></a><span class="lineno">  904</span>&#160;                <span class="keywordflow">if</span>(!ogr-&gt;<a class="code" href="class_ogr.html#a7cd091ec4a3e7a9a83e0cca185a6e81c">TestFeatureProjection</a>())</div>
 <div class="line"><a name="l00905"></a><span class="lineno">  905</span>&#160;                    txtOutput-&gt;append(tr(<span class="stringliteral">&quot;\n * unable to transform feature with projection !\n&quot;</span>));</div>
 <div class="line"><a name="l00906"></a><span class="lineno">  906</span>&#160;</div>
@@ -993,11 +993,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00911"></a><span class="lineno">  911</span>&#160;            txtOutput-&gt;append(tr(<span class="stringliteral">&quot;\n&quot;</span>) + sourcename + tr(<span class="stringliteral">&quot; &gt; &quot;</span>) + targetname + tr(<span class="stringliteral">&quot; ... &quot;</span>));</div>
 <div class="line"><a name="l00912"></a><span class="lineno">  912</span>&#160;            QString parameters = currentParameters();</div>
 <div class="line"><a name="l00913"></a><span class="lineno">  913</span>&#160;            QString command = QDir::toNativeSeparators(QCoreApplication::applicationFilePath());</div>
-<div class="line"><a name="l00914"></a><span class="lineno">  914</span>&#160;            command += parameters;</div>
-<div class="line"><a name="l00915"></a><span class="lineno">  915</span>&#160;            <span class="keywordflow">if</span>(radSourceWebservice-&gt;isChecked())</div>
-<div class="line"><a name="l00916"></a><span class="lineno">  916</span>&#160;                command += tr(<span class="stringliteral">&quot; &quot;</span>) + wfs-&gt;<a class="code" href="class_w_f_s_connect.html#acd1d153bae6111aaacd55546be7a05a7">getSelectedLayers</a>();</div>
-<div class="line"><a name="l00917"></a><span class="lineno">  917</span>&#160;            <span class="keywordflow">if</span>(!txtInput-&gt;toPlainText().isEmpty())</div>
-<div class="line"><a name="l00918"></a><span class="lineno">  918</span>&#160;                command += tr(<span class="stringliteral">&quot; &quot;</span>) + txtInput-&gt;toPlainText();</div>
+<div class="line"><a name="l00914"></a><span class="lineno">  914</span>&#160;            <span class="keywordflow">if</span>(radSourceWebservice-&gt;isChecked())</div>
+<div class="line"><a name="l00915"></a><span class="lineno">  915</span>&#160;                parameters += tr(<span class="stringliteral">&quot; &quot;</span>) + wfs-&gt;<a class="code" href="class_w_f_s_connect.html#acd1d153bae6111aaacd55546be7a05a7">getSelectedLayers</a>();</div>
+<div class="line"><a name="l00916"></a><span class="lineno">  916</span>&#160;            <span class="keywordflow">if</span>(!txtInput-&gt;toPlainText().isEmpty())</div>
+<div class="line"><a name="l00917"></a><span class="lineno">  917</span>&#160;                parameters += tr(<span class="stringliteral">&quot; &quot;</span>) + txtInput-&gt;toPlainText();</div>
+<div class="line"><a name="l00918"></a><span class="lineno">  918</span>&#160;            command += parameters;</div>
 <div class="line"><a name="l00919"></a><span class="lineno">  919</span>&#160;            <span class="keywordflow">if</span>(ogr-&gt;<a class="code" href="class_ogr.html#abfbd0d4fcbe11e181865a33055698e4c">OpenOgr2ogr</a>(command, btnExecute)) {</div>
 <div class="line"><a name="l00920"></a><span class="lineno">  920</span>&#160;                theProgress-&gt;setValue(100);</div>
 <div class="line"><a name="l00921"></a><span class="lineno">  921</span>&#160;                theProgress-&gt;setMaximum(100);</div>
@@ -1026,9 +1026,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="class_ogr_html"><div class="ttname"><a href="class_ogr.html">Ogr</a></div><div class="ttdef"><b>Definition:</b> <a href="_ogr_8h_source.html#l00049">Ogr.h:49</a></div></div>
 <div class="ttc" id="class_inf_html_ab69b94e2f4cfb7fe7c1660e35161a961"><div class="ttname"><a href="class_inf.html#ab69b94e2f4cfb7fe7c1660e35161a961">Inf::getConnectionString</a></div><div class="ttdeci">QString getConnectionString(void)</div><div class="ttdoc">returns connection string </div><div class="ttdef"><b>Definition:</b> <a href="_inf_8cpp_source.html#l00397">Inf.cpp:397</a></div></div>
 <div class="ttc" id="class_ogr_html_a8ccafcbac45c29b94a5c41d73d28c50c"><div class="ttname"><a href="class_ogr.html#a8ccafcbac45c29b94a5c41d73d28c50c">Ogr::OpenSource</a></div><div class="ttdeci">bool OpenSource(string filename, string layername, string &amp;epsg, string &amp;query, string &amp;error)</div><div class="ttdoc">Opens source data. </div><div class="ttdef"><b>Definition:</b> <a href="_ogr_8cpp_source.html#l00114">Ogr.cpp:114</a></div></div>
-<div class="ttc" id="class_ogr_html_a85b14a0cc71bae2fd8f81e07f50a5b62"><div class="ttname"><a href="class_ogr.html#a85b14a0cc71bae2fd8f81e07f50a5b62">Ogr::ExecuteSQL</a></div><div class="ttdeci">bool ExecuteSQL(string query)</div><div class="ttdef"><b>Definition:</b> <a href="_ogr_8cpp_source.html#l00196">Ogr.cpp:196</a></div></div>
 <div class="ttc" id="class_inf_html"><div class="ttname"><a href="class_inf.html">Inf</a></div><div class="ttdef"><b>Definition:</b> <a href="_inf_8h_source.html#l00041">Inf.h:41</a></div></div>
 <div class="ttc" id="class_ogr_html_a9722e77cb09a03542434f328052c9f55"><div class="ttname"><a href="class_ogr.html#a9722e77cb09a03542434f328052c9f55">Ogr::CloseSource</a></div><div class="ttdeci">bool CloseSource(void)</div><div class="ttdoc">Closes source data. </div><div class="ttdef"><b>Definition:</b> <a href="_ogr_8cpp_source.html#l00152">Ogr.cpp:152</a></div></div>
+<div class="ttc" id="class_ogr_html_a4817d92d7460cd3de69f4d565fddb71b"><div class="ttname"><a href="class_ogr.html#a4817d92d7460cd3de69f4d565fddb71b">Ogr::TestExecuteSQL</a></div><div class="ttdeci">bool TestExecuteSQL(string query)</div><div class="ttdef"><b>Definition:</b> <a href="_ogr_8cpp_source.html#l00196">Ogr.cpp:196</a></div></div>
 <div class="ttc" id="class_ogr_html_a7cd091ec4a3e7a9a83e0cca185a6e81c"><div class="ttname"><a href="class_ogr.html#a7cd091ec4a3e7a9a83e0cca185a6e81c">Ogr::TestFeatureProjection</a></div><div class="ttdeci">bool TestFeatureProjection(void)</div><div class="ttdef"><b>Definition:</b> <a href="_ogr_8cpp_source.html#l00183">Ogr.cpp:183</a></div></div>
 <div class="ttc" id="class_w_f_s_connect_html_a29e65c0bd4567f744c89db513ffa2d5f"><div class="ttname"><a href="class_w_f_s_connect.html#a29e65c0bd4567f744c89db513ffa2d5f">WFSConnect::setConnectionType</a></div><div class="ttdeci">void setConnectionType(QString)</div><div class="ttdoc">Sets connection type. </div><div class="ttdef"><b>Definition:</b> <a href="wfs_connect_8cpp_source.html#l00208">wfsConnect.cpp:208</a></div></div>
 <div class="ttc" id="class_w_f_s_connect_html_ad899410e617af836f5b68f882d71fa37"><div class="ttname"><a href="class_w_f_s_connect.html#ad899410e617af836f5b68f882d71fa37">WFSConnect::getSelectedLayersAsList</a></div><div class="ttdeci">QStringList getSelectedLayersAsList(void) const </div><div class="ttdef"><b>Definition:</b> <a href="wfs_connect_8cpp_source.html#l00223">wfsConnect.cpp:223</a></div></div>
@@ -1043,7 +1043,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jun 11 2014 12:55:41 for OGR2GUI x64 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jun 11 2014 16:02:20 for OGR2GUI x64 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

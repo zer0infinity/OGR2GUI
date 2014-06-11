@@ -29,8 +29,8 @@
  *	\date 13/06/14
  */
 
-#ifndef UTIL
-#define UTIL
+#ifndef UTIL_H
+#define UTIL_H
 
     /**
      *	\fn int ogr2ogr( int nArgc, char ** papszArgv )

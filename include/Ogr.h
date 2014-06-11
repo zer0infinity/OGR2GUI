@@ -177,7 +177,7 @@ public:
      * \param query : sql query
      * \return true on success
      */
-    bool ExecuteSQL(string query);
+    bool TestExecuteSQL(string query);
 };
 
 #endif
