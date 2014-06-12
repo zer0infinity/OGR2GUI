@@ -503,7 +503,7 @@ QString App::currentParameters(void) {
         parameters += webservices[cmbSourceFormat->currentIndex()][1];
     parameters += tr("\"") + txtSourceName->text().trimmed() + tr("\"");
     if(!cmbTargetProj->currentText().isEmpty()) {
-        parameters += tr(" ") + tr("-T_SRS");
+        parameters += tr(" ") + tr("-t_srs");
         parameters += tr(" EPSG:") + projectionsList.at(cmbTargetProj->currentIndex()).first;
     }
     if(!txtSourceQuery->text().isEmpty())
