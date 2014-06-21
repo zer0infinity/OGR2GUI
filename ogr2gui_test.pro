@@ -5,7 +5,7 @@
 # *
 # * Copyright (c) 2014 Faculty of Computer Science,
 # * University of Applied Sciences Rapperswil (HSR),
-# * 8600 Rapperswil, Switzerland
+# * 8640 Rapperswil, Switzerland
 # *
 # * This program is free software: you can redistribute it and/or modify
 # * it under the terms of the GNU General Public License as published by
