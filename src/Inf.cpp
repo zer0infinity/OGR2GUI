@@ -256,19 +256,15 @@ void Inf::evtBtnConnect( void )
     base.close();
 }
 
-void Inf::evtRadAllTables( void )
-{
-    for( int i = 0; i < lstTables->count(); i ++ )
-    {
-        lstTables->item( i )->setCheckState( Qt::Checked );
+void Inf::evtRadAllTables(void) {
+    for(int i = 0; i < lstTables->count(); ++i) {
+        lstTables->item(i)->setCheckState(Qt::Checked);
     }
 }
 
-void Inf::evtRadNonTables( void )
-{
-    for( int i = 0; i < lstTables->count(); i ++ )
-    {
-        lstTables->item( i )->setCheckState( Qt::Unchecked );
+void Inf::evtRadNonTables(void) {
+    for(int i = 0; i < lstTables->count(); ++i) {
+        lstTables->item(i)->setCheckState(Qt::Unchecked);
     }
 }
 
@@ -322,20 +318,14 @@ void Inf::evtBtnAccept( void )
 
     selectedTables.clear();
 
-    for( int i = 0; i < lstTables->count(); i ++ )
-    {
-        if( lstTables->item( i )->checkState() == Qt::Checked )
-        {
-            if( nb > 0 )
-            {
+    for(int i = 0; i < lstTables->count(); ++i) {
+        if( lstTables->item( i )->checkState() == Qt::Checked ) {
+            if( nb > 0 ) {
                 tables += ",";
             }
-
             tables += lstTables->item( i )->text();
-
             selectedTables.append( lstTables->item( i )->text() );
-
-            nb ++;
+            ++nb;
         }
     }
     if(connectionType.compare(tr("QSQLITE")) != 0) {
@@ -394,12 +384,12 @@ void Inf::setConnectionType(QString type) {
     }
 }
 
-QString Inf::getConnectionString( void )
+QString Inf::getConnectionString( void ) const
 {
     return connectionString;
 }
 
-QStringList Inf::getSelectedTables( void )
+QStringList Inf::getSelectedTables( void ) const
 {
     return selectedTables;
 }

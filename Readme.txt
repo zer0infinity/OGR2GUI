@@ -49,7 +49,6 @@ David Tran (HSR), 2014
 Prof. Stefan Keller (sfkeller@hsr.ch), IFS-HSR, 2014
 
 8. Website
-http://giswiki.hsr.ch/OGR2GUI
 http://www.hsr.ch
 http://www.ogr2gui.ca
 

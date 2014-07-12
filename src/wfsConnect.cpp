@@ -125,7 +125,7 @@ void WFSConnect::InitSlots( void )
 
 void WFSConnect::TranslateInterface( void )
 {
-    this->setWindowTitle( tr( "Web feature service" ) );
+    this->setWindowTitle( tr( "Web Feature Service" ) );
 
     lblHost->setText( tr( "URI" ) );
 
@@ -162,18 +162,14 @@ void WFSConnect::evtBtnConnect( void )
     }
 }
 
-void WFSConnect::evtRadAllLayers( void )
-{
-    for( int i = 0; i < lstTables->count(); i ++ )
-    {
+void WFSConnect::evtRadAllLayers( void ) {
+    for(int i = 0; i < lstTables->count(); ++i) {
         lstTables->item( i )->setCheckState( Qt::Checked );
     }
 }
 
-void WFSConnect::evtRadNonLayers( void )
-{
-    for( int i = 0; i < lstTables->count(); i ++ )
-    {
+void WFSConnect::evtRadNonLayers( void ) {
+    for(int i = 0; i < lstTables->count(); ++i) {
         lstTables->item( i )->setCheckState( Qt::Unchecked );
     }
 }

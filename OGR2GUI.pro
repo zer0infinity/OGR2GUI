@@ -21,11 +21,11 @@
 # * You should have received a copy of the GNU General Public License
 # * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # *****************************************************************************/
-# ogr2gui 0.7
 
 TEMPLATE = app
 INCLUDEPATH += $$PWD/include $$PWD/include/ogr
-DESTDIR += $$PWD/bin
+RESOURCES += res/gdalicon.qrc
+#DESTDIR += $$PWD/bin
 
 HEADERS += \
     include/App.h \

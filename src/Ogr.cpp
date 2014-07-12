@@ -173,7 +173,7 @@ bool Ogr::TestSpatialReference(int projection) {
     if(projection > 0) {
         targetSRS = OSRNewSpatialReference( NULL );
         if(Error(OSRImportFromEPSG( targetSRS, projection ), error)) {
-            error.insert(0, "unable to create spatial reference : ");
+            error.insert(0, "unable to create spatial reference");
             return false;
         }
     }
@@ -187,7 +187,7 @@ bool Ogr::TestFeatureProjection(void) {
     while((feature = OGR_L_GetNextFeature(sourceLayer)) != NULL) {
         if(targetSRS)
             if(Error(OGR_G_TransformTo(OGR_F_GetGeometryRef(feature), targetSRS), error))
-                return resVal;
+                return false;
         OGR_F_Destroy(feature);
     }
     return resVal;

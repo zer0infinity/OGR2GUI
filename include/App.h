@@ -23,10 +23,10 @@
  *****************************************************************************/
 
 /**
- *	\mainpage ogr2gui
+ *	\mainpage OGR2GUI
  *	\section desc_sec Description
  *
- *	ogr2gui is an application used to convert and manipulate geospatial data.
+ *	OGR2GUI is an application used to convert and manipulate geospatial data.
  *  It is based on ogr2ogr, a command line utility from the "Geospatial Data
  *  Abstraction Library" (gdal.org). Through its graphical user interface,
  *  ogr2gui gives all the power of ogr2ogr without worrying about its complex

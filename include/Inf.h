@@ -139,13 +139,13 @@ public:
          *	\fn QString getConnectionString( void )
          *	\brief returns connection string
          */
-    QString getConnectionString( void );
+    QString getConnectionString( void ) const;
 
     /**
          *	\fn QSringList getSelectedTables( void )
          *	\brief returns selected tables
          */
-    QStringList getSelectedTables( void );
+    QStringList getSelectedTables( void ) const;
 };
 
 QT_END_NAMESPACE

@@ -20,13 +20,12 @@
 # * You should have received a copy of the GNU General Public License
 # * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # *****************************************************************************/
-# ogr2gui 0.7
 
 TEMPLATE = app
 TARGET = OGR2GUI_test
 INCLUDEPATH += $$PWD/include $$PWD/include/ogr $$PWD/include/tests
-DESTDIR += $$PWD/bin
 LIBS += -L$$PWD/lib -lgdal_i
+#DESTDIR += $$PWD/bin
 
 HEADERS += \
     include/App.h \

@@ -78,7 +78,7 @@ void App::InitProjections( void )
     QFile file(filename);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QMessageBox msg;
-        msg.setText("* No " + gcs + " file found in folder data");
+        msg.setText("* No " + gcs + " file found in folder " + folder);
         msg.exec();
         return;
     }
@@ -92,7 +92,7 @@ void App::InitProjections( void )
         QStringList t = line.split(",");
         if(t.size() <= 1) {
             QMessageBox msg;
-            msg.setText("* Wrong " + gcs + " file found in folder data");
+            msg.setText("* Wrong " + gcs + " file found in folder " + folder);
             msg.exec();
             break;
         }
@@ -429,6 +429,7 @@ void App::InitSlots( void )
 void App::TranslateInterface( void )
 {
     this->setWindowTitle( tr( "OGR2GUI" ) );
+    this->setWindowIcon(QIcon(":/icons/bin/gdalicon.png"));
 
     fileMenu->setTitle( tr( "File" ) );
     {
