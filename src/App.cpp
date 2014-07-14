@@ -429,7 +429,7 @@ void App::InitSlots( void )
 void App::TranslateInterface( void )
 {
     this->setWindowTitle( tr( "OGR2GUI" ) );
-    this->setWindowIcon(QIcon(":/icons/bin/gdalicon.png"));
+    this->setWindowIcon(QIcon(":/icons/gdalicon.png"));
 
     fileMenu->setTitle( tr( "File" ) );
     {
