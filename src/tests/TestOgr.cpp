@@ -41,7 +41,7 @@ TestOgr::TestOgr() {
 void TestOgr::testOpenWFS() {
     QString uri = "";
     QStringList fileList;
-    bool resVal = ogr->OpenWFS(uri, fileList);
+    bool resVal = ogr->openWFS(uri, fileList);
     QCOMPARE(resVal, false);
 }
 
@@ -49,12 +49,12 @@ void TestOgr::testOpenSourceFalseInput() {
     string epsg;
     string query;
     string error;
-    bool resVal = ogr->OpenSource(filename, epsg, query, error);
+    bool resVal = ogr->openSource(filename, epsg, query, error);
     QCOMPARE(resVal, false);
 }
 
 void TestOgr::testCloseSourceFalseInput() {
-    bool resVal = ogr->CloseSource();
+    bool resVal = ogr->closeSource();
     QCOMPARE(resVal, false);
 }
 
@@ -63,7 +63,7 @@ void TestOgr::testOpenSourceFile() {
     string epsg;
     string query;
     string error;
-    bool resVal = ogr->OpenSource(sourcename, epsg, query, error);
+    bool resVal = ogr->openSource(sourcename, epsg, query, error);
     QCOMPARE(resVal, true);
 }
 
@@ -72,23 +72,29 @@ void TestOgr::testOpenSourceSQLite() {
     string epsg;
     string query;
     string error;
-    bool resVal = ogr->OpenSource(sourcename, epsg, query, error);
+    bool resVal = ogr->openSource(sourcename, epsg, query, error);
     QCOMPARE(resVal, true);
 }
 
 void TestOgr::testCloseSource() {
-    bool resVal = ogr->CloseSource();
+    bool resVal = ogr->closeSource();
     QCOMPARE(resVal, true);
 }
 
 void TestOgr::testOpenDriverFalseInput() {
-    bool resVal = ogr->OpenDriver("");
+    bool resVal = ogr->openDriver("");
     QCOMPARE(resVal, false);
 }
 
 void TestOgr::testOpenDriverESRIShapefile() {
     string drivername = "ESRI Shapefile";
-    bool resVal = ogr->OpenDriver(drivername);
+    bool resVal = ogr->openDriver(drivername);
+    QCOMPARE(resVal, true);
+}
+
+void TestOgr::testOpenDriverSQLite() {
+    string drivername = "SQLite";
+    bool resVal = ogr->openDriver(drivername);
     QCOMPARE(resVal, true);
 }
 
@@ -110,23 +116,23 @@ void TestOgr::testLayerNames() {
     string error;
 
     string sourcename = path + filename;
-    bool resVal = ogr->OpenSource(sourcename, epsg, query, error);
+    bool resVal = ogr->openSource(sourcename, epsg, query, error);
     QCOMPARE(resVal, true);
-    resVal = ogr->OpenDriver("ESRI Shapefile");
+    resVal = ogr->openDriver("ESRI Shapefile");
     QCOMPARE(resVal, true);
     setSource(sourcename);
     string layerNameShapefile = sourceLayerName;
-    resVal = ogr->CloseSource();
+    resVal = ogr->closeSource();
     QCOMPARE(resVal, true);
 
     sourcename = path + sqlitedb;
-    resVal = ogr->OpenSource(sourcename, epsg, query, error);
+    resVal = ogr->openSource(sourcename, epsg, query, error);
     QCOMPARE(resVal, true);
-    resVal = ogr->OpenDriver("SQLite");
+    resVal = ogr->openDriver("SQLite");
     QCOMPARE(resVal, true);
     setSource(sourcename);
     string layerNameSQLite = sourceLayerName;
-    resVal = ogr->CloseSource();
+    resVal = ogr->closeSource();
     QCOMPARE(resVal, true);
 
     QCOMPARE(layerNameShapefile, layerNameSQLite);
@@ -138,23 +144,23 @@ void TestOgr::testLayerCount() {
     string error;
 
     string sourcename = path + filename;
-    bool resVal = ogr->OpenSource(sourcename, epsg, query, error);
+    bool resVal = ogr->openSource(sourcename, epsg, query, error);
     QCOMPARE(resVal, true);
-    resVal = ogr->OpenDriver("ESRI Shapefile");
+    resVal = ogr->openDriver("ESRI Shapefile");
     QCOMPARE(resVal, true);
     setSource(sourcename);
     int layerCountShapefile = OGR_DS_GetLayerCount(sourceData);
-    resVal = ogr->CloseSource();
+    resVal = ogr->closeSource();
     QCOMPARE(resVal, true);
 
     sourcename = path + sqlitedb;
-    resVal = ogr->OpenSource(sourcename, epsg, query, error);
+    resVal = ogr->openSource(sourcename, epsg, query, error);
     QCOMPARE(resVal, true);
-    resVal = ogr->OpenDriver("SQLite");
+    resVal = ogr->openDriver("SQLite");
     QCOMPARE(resVal, true);
     setSource(sourcename);
     int layerCountSQLite = OGR_DS_GetLayerCount(sourceData);
-    resVal = ogr->CloseSource();
+    resVal = ogr->closeSource();
     QCOMPARE(resVal, true);
 
     QCOMPARE(layerCountShapefile, layerCountSQLite);
@@ -166,23 +172,23 @@ void TestOgr::testFeatureCount() {
     string error;
 
     string sourcename = path + filename;
-    bool resVal = ogr->OpenSource(sourcename, epsg, query, error);
+    bool resVal = ogr->openSource(sourcename, epsg, query, error);
     QCOMPARE(resVal, true);
-    resVal = ogr->OpenDriver("ESRI Shapefile");
+    resVal = ogr->openDriver("ESRI Shapefile");
     QCOMPARE(resVal, true);
     setSource(sourcename);
     int featureCountShapefile = OGR_L_GetFeatureCount(sourceLayer, true);
-    resVal = ogr->CloseSource();
+    resVal = ogr->closeSource();
     QCOMPARE(resVal, true);
 
     sourcename = path + sqlitedb;
-    resVal = ogr->OpenSource(sourcename, epsg, query, error);
+    resVal = ogr->openSource(sourcename, epsg, query, error);
     QCOMPARE(resVal, true);
-    resVal = ogr->OpenDriver("SQLite");
+    resVal = ogr->openDriver("SQLite");
     QCOMPARE(resVal, true);
     setSource(sourcename);
     int featureCountSQLite = OGR_L_GetFeatureCount(sourceLayer, true);
-    resVal = ogr->CloseSource();
+    resVal = ogr->closeSource();
     QCOMPARE(resVal, true);
 
     QCOMPARE(featureCountShapefile, featureCountSQLite);
@@ -193,11 +199,19 @@ void TestOgr::testSQLQueryFalseQuery() {
     string query;
     string error;
     string sourcename = path + filename;
-    bool resVal = ogr->OpenSource(sourcename, epsg, query, error);
+    bool resVal = ogr->openSource(sourcename, epsg, query, error);
     QCOMPARE(resVal, true);
-    resVal = ogr->TestExecuteSQL("SELECT none FROM " + sourceLayerName);
+    resVal = ogr->testExecuteSQL("SELECT none FROM " + sourceLayerName);
     QCOMPARE(resVal, false);
-    resVal = ogr->TestExecuteSQL("SELECT * FROM polyy");
+    resVal = ogr->testExecuteSQL("SELECT * FROM polyy");
+    QCOMPARE(resVal, false);
+
+    sourcename = path + sqlitedb;
+    resVal = ogr->openSource(sourcename, epsg, query, error);
+    QCOMPARE(resVal, true);
+    resVal = ogr->testExecuteSQL("SELECT none FROM " + sourceLayerName);
+    QCOMPARE(resVal, false);
+    resVal = ogr->testExecuteSQL("SELECT * FROM polyy");
     QCOMPARE(resVal, false);
 }
 
@@ -206,14 +220,26 @@ void TestOgr::testSQLQuery() {
     string query;
     string error;
     string sourcename = path + filename;
-    bool resVal = ogr->OpenSource(sourcename, epsg, query, error);
+    bool resVal = ogr->openSource(sourcename, epsg, query, error);
     QCOMPARE(resVal, true);
-    resVal = ogr->TestExecuteSQL("SELECT * FROM " + sourceLayerName);
+    resVal = ogr->testExecuteSQL("SELECT * FROM " + sourceLayerName);
     QCOMPARE(resVal, true);
-    resVal = ogr->TestExecuteSQL("SELECT area FROM " + sourceLayerName);
+    resVal = ogr->testExecuteSQL("SELECT area FROM " + sourceLayerName);
     QCOMPARE(resVal, true);
-    resVal = ogr->TestExecuteSQL("SELECT eas_id FROM " + sourceLayerName);
+    resVal = ogr->testExecuteSQL("SELECT eas_id FROM " + sourceLayerName);
     QCOMPARE(resVal, true);
-    resVal = ogr->TestExecuteSQL("SELECT prfedea FROM " + sourceLayerName);
+    resVal = ogr->testExecuteSQL("SELECT prfedea FROM " + sourceLayerName);
+    QCOMPARE(resVal, true);
+
+    sourcename = path + sqlitedb;
+    resVal = ogr->openSource(sourcename, epsg, query, error);
+    QCOMPARE(resVal, true);
+    resVal = ogr->testExecuteSQL("SELECT * FROM " + sourceLayerName);
+    QCOMPARE(resVal, true);
+    resVal = ogr->testExecuteSQL("SELECT area FROM " + sourceLayerName);
+    QCOMPARE(resVal, true);
+    resVal = ogr->testExecuteSQL("SELECT eas_id FROM " + sourceLayerName);
+    QCOMPARE(resVal, true);
+    resVal = ogr->testExecuteSQL("SELECT prfedea FROM " + sourceLayerName);
     QCOMPARE(resVal, true);
 }

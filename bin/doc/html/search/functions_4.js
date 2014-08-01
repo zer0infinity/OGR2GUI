@@ -1,0 +1,22 @@
+var searchData=
+[
+  ['deletedatasource',['DeleteDataSource',['../class_o_g_r_s_f_driver.html#a2bf4a05a2d10b6d26cc68f21dc2f00e8',1,'OGRSFDriver']]],
+  ['deletefeature',['DeleteFeature',['../class_o_g_r_layer.html#a78cbcae842405aa3fc89d92295deba9d',1,'OGRLayer']]],
+  ['deletefield',['DeleteField',['../class_o_g_r_layer.html#a2534ab6dc0dcc9479fcbdb7545b20d99',1,'OGRLayer']]],
+  ['deletefielddefn',['DeleteFieldDefn',['../class_o_g_r_feature_defn.html#a184066dbcd163cf632f889c315de7243',1,'OGRFeatureDefn']]],
+  ['deletegeomfielddefn',['DeleteGeomFieldDefn',['../class_o_g_r_feature_defn.html#a23658f8a4dd8247dd8526c3856970c4d',1,'OGRFeatureDefn']]],
+  ['deletelayer',['DeleteLayer',['../class_o_g_r_data_source.html#a133ad1277481e73cde7336199a31ff5b',1,'OGRDataSource']]],
+  ['dereference',['Dereference',['../class_o_g_r_feature_defn.html#a87a280dd42634206dfbcfc47b1ecfea4',1,'OGRFeatureDefn::Dereference()'],['../class_o_g_r_spatial_reference.html#ade185ac8ef1724fea5ec3c0e68eaae81',1,'OGRSpatialReference::Dereference()'],['../class_o_g_r_layer.html#a2271d53f75d4f6ff2f4a8aeb71e825d6',1,'OGRLayer::Dereference()'],['../class_o_g_r_data_source.html#a538760ac249d06681fd26c383e678cb1',1,'OGRDataSource::Dereference()']]],
+  ['deregisterdriver',['DeregisterDriver',['../class_o_g_r_s_f_driver_registrar.html#a2ed3257e6310a7d14ce9be39498b87ad',1,'OGRSFDriverRegistrar']]],
+  ['destroychild',['DestroyChild',['../class_o_g_r___s_r_s_node.html#ad292fa90c3d86e79a7dcc0d1ed7bfa72',1,'OGR_SRSNode']]],
+  ['destroyct',['DestroyCT',['../class_o_g_r_coordinate_transformation.html#a2f6f3ca64de01566945a8a0d389eb973',1,'OGRCoordinateTransformation']]],
+  ['destroydatasource',['DestroyDataSource',['../class_o_g_r_data_source.html#a0eb9be6aba80c27baee398630812b714',1,'OGRDataSource']]],
+  ['destroyfeature',['DestroyFeature',['../class_o_g_r_feature.html#aa66a492071a9da4201292525691fec86',1,'OGRFeature']]],
+  ['destroyfeaturedefn',['DestroyFeatureDefn',['../class_o_g_r_feature_defn.html#a6dc089c1536cfc098eb57917d8e8b7a4',1,'OGRFeatureDefn']]],
+  ['destroygeometry',['destroyGeometry',['../class_o_g_r_geometry_factory.html#a38d0078e16b5b90d2ef338897528b0e7',1,'OGRGeometryFactory']]],
+  ['destroyspatialreference',['DestroySpatialReference',['../class_o_g_r_spatial_reference.html#adeee531836540763be4e2fb880fbc133',1,'OGRSpatialReference']]],
+  ['difference',['Difference',['../class_o_g_r_geometry.html#a0d5608ad56b00f4044e3135445f7b82d',1,'OGRGeometry']]],
+  ['disjoint',['Disjoint',['../class_o_g_r_geometry.html#ac38d8a57a33e812be25717d0b75cc762',1,'OGRGeometry']]],
+  ['distance',['Distance',['../class_o_g_r_geometry.html#a9508e1363f8a417167813fcd0aa7e88c',1,'OGRGeometry']]],
+  ['dumpreadable',['dumpReadable',['../class_o_g_r_geometry.html#adb364f8b6c08cb51e2337d569061ccea',1,'OGRGeometry::dumpReadable()'],['../class_o_g_r_spatial_reference.html#a63b61b8f4e029d91aa0de3a5b9f604e7',1,'OGRSpatialReference::dumpReadable()'],['../class_o_g_r_feature.html#a6c787aeb650bd03420309ca4f52c0083',1,'OGRFeature::DumpReadable()']]]
+];

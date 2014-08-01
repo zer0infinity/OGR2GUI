@@ -117,7 +117,7 @@ public:
          * \param &fileList : layer list
          * \return true on success
          */
-    bool OpenWFS(QString uri, QStringList &fileList);
+    bool openWFS(QString uri, QStringList &fileList);
 
     /**
          * \fn OpenSource(string filename, string layername, string &epsg, string &query, string &error);
@@ -129,7 +129,7 @@ public:
          * \param &error : error text
          * \return true on success
          */
-    bool OpenSource(string filename, string layername, string &epsg, string &query, string &error);
+    bool openSource(string filename, string layername, string &epsg, string &query, string &Error);
 
     /**
          *	\fn bool OpenSource( string filename, string &epsg = 0, string &query = 0, string &error = 0 );
@@ -140,14 +140,14 @@ public:
          *	\param &error : error text
          *	\returns true on success
          */
-    bool OpenSource(string filename, string &epsg, string &query, string &error);
+    bool openSource(string filename, string &epsg, string &query, string &Error);
 
     /**
          *	\fn bool CloseSource( void );
          *	\brief Closes source data
          *	\returns true on success
          */
-    bool CloseSource( void );
+    bool closeSource( void );
 
     /**
          *	\fn bool OpenDriver( string drivername, string error = 0 );
@@ -155,13 +155,13 @@ public:
          *	\param drivername : selected driver
          *	\returns true on success
          */
-    bool OpenDriver( string drivername);
+    bool openDriver( string drivername);
 
     /**
      *	\fn bool Process(void);
      *	\brief Test feature projections
      */
-    bool TestFeatureProjection(void);
+    bool testFeatureProjection(void);
 
     /**
      * \fn bool OpenProjection(int projection)
@@ -169,7 +169,7 @@ public:
      * \param projection : projection
      * \return true on success
      */
-    bool TestSpatialReference(int projection);
+    bool testSpatialReference(int projection);
 
     /**
      * \fn bool TestSQL(string query)
@@ -177,7 +177,7 @@ public:
      * \param query : sql query
      * \return true on success
      */
-    bool TestExecuteSQL(string query);
+    bool testExecuteSQL(string query);
 };
 
 #endif

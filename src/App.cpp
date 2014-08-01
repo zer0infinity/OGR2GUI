@@ -36,11 +36,11 @@ App::App(QWidget *widget) : QMainWindow(widget)
 {
     inf = new Inf(this);
     wfs = new WFSConnect(this);
-    InitData();
-    InitInterface();
-    TranslateInterface();
-    InitProjections();
-    UpdateParameters();
+    initData();
+    initInterface();
+    translateInterface();
+    initProjections();
+    updateParameters();
     this->show();
 }
 
@@ -51,7 +51,7 @@ App::~App( void )
     delete [] *webservices;
 }
 
-void App::InitData(void) {
+void App::initData(void) {
     ogr = new Ogr();
 
     formats = new QString*[formatsCount];
@@ -70,29 +70,33 @@ void App::InitData(void) {
 #include "Dta.h"
 }
 
-void App::InitProjections( void )
-{
+void App::initProjections( void ) {
+    QString file_gcs = tr("gcs.csv");
+    QString file_pcs = tr("pcs.csv");
+    readProjections(file_gcs);
+    readProjections(file_pcs);
+    addProjections();
+}
+
+void App::readProjections(QString filename) {
     QString folder = tr("data");
-    QString gcs = tr("gcs.csv");
-    QString filename = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + folder + QDir::separator() + gcs);
-    QFile file(filename);
+    QString filepath = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + folder + QDir::separator() + filename);
+    QFile file(filepath);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QMessageBox msg;
-        msg.setText("* No " + gcs + " file found in folder " + folder);
+        msg.setText("* No " + filename + " file found in folder " + folder);
         msg.exec();
         return;
     }
     QTextStream in(&file);
     QString line;
     QPair<QString, QString> pair;
-    projectionsList << pair;
-    cmbTargetProj->addItem(tr(""));
     in.readLine();
     while(!(line = in.readLine()).isNull()) {
         QStringList t = line.split(",");
         if(t.size() <= 1) {
             QMessageBox msg;
-            msg.setText("* Wrong " + gcs + " file found in folder " + folder);
+            msg.setText("* Wrong " + filename + " file found in folder " + folder);
             msg.exec();
             break;
         }
@@ -101,17 +105,31 @@ void App::InitProjections( void )
         if(!t.at(1).isNull())
             pair.second = t.at(1);
         projectionsList << pair;
-        cmbTargetProj->addItem(t.at(0) + tr(" : ") + t.at(1));
     }
 }
 
-void App::InitInterface( void )
+bool sortCOORD_REF_SYS_CODE(const QPair<QString, QString> &s1, const QPair<QString, QString> &s2) {
+  return s1.first.toInt() < s2.first.toInt();
+}
+
+void App::addProjections() {
+    qSort(projectionsList.begin(), projectionsList.end(), sortCOORD_REF_SYS_CODE);
+    QPair<QString, QString> pair;
+    projectionsList.insert(0, pair);
+    cmbTargetProj->addItem(tr(""));
+    for(int i=1;i<projectionsList.size();++i) {
+        QPair<QString, QString> pair = projectionsList.at(i);
+        cmbTargetProj->addItem(pair.first + tr(" : ") + pair.second);
+    }
+}
+
+void App::initInterface( void )
 {
     thePanel = new QWidget();
 
-    InitMenu();
-    InitLayout();
-    InitSlots();
+    initMenu();
+    initLayout();
+    initSlots();
 
     radSourceFile->setChecked(true);
     radTargetFile->setChecked(true);
@@ -121,7 +139,7 @@ void App::InitInterface( void )
     this->setCentralWidget(thePanel);
 }
 
-void App::InitMenu( void )
+void App::initMenu( void )
 {
     theMenu = new QMenuBar( this );
     {
@@ -158,7 +176,7 @@ void App::InitMenu( void )
     this->setMenuBar( theMenu );
 }
 
-void App::InitLayout( void )
+void App::initLayout( void )
 {
     theLayout = new QVBoxLayout( thePanel );
     {
@@ -386,7 +404,7 @@ void App::InitLayout( void )
     thePanel->setLayout( theLayout );
 }
 
-void App::InitSlots( void )
+void App::initSlots( void )
 {
     QObject::connect( mnuExit, SIGNAL( triggered() ), this, SLOT( close( void ) ) );
     QObject::connect( mnuOgrHelp, SIGNAL( triggered() ), this, SLOT( evtMnuOgrHelp( void ) ) );
@@ -426,7 +444,7 @@ void App::InitSlots( void )
     QMetaObject::connectSlotsByName( this );
 }
 
-void App::TranslateInterface( void )
+void App::translateInterface( void )
 {
     this->setWindowTitle( tr( "OGR2GUI" ) );
     this->setWindowIcon(QIcon(":/icons/gdalicon.png"));
@@ -486,7 +504,7 @@ void App::TranslateInterface( void )
     btnExit->setText( tr( "Exit" ) );
 }
 
-void App::UpdateParameters(void) {
+void App::updateParameters(void) {
     parameters = tr("ogr2ogr");
     parameters += currentParameters();
     if(radSourceWebservice->isChecked())
@@ -664,7 +682,7 @@ void App::evtTxtSourceName( void ) {
         name = webservices[0][1].toStdString() + name;
     }
     txtSourceProj->clear();
-    if(ogr->OpenSource(name, epsg, query, error)) {
+    if(ogr->openSource(name, epsg, query, error)) {
         for(int i = 0; i < projectionsList.size(); i++) {
             if( strcmp(epsg.c_str(), projectionsList.at(i).first.toStdString().c_str()) == 0) {
                 if(i > 1) {
@@ -673,7 +691,7 @@ void App::evtTxtSourceName( void ) {
                 break;
             }
         }
-        ogr->CloseSource();
+        ogr->closeSource();
         if( radSourceFile->isChecked()) {
             txtSourceQuery->setText( query.c_str() );
         } else if(radSourceWebservice->isChecked()) {
@@ -686,7 +704,7 @@ void App::evtTxtSourceName( void ) {
             btnSourceName->setText(tr("Connect"));
         }
     }
-    UpdateParameters();
+    updateParameters();
 }
 
 void App::evtBtnSourceName( void )
@@ -750,7 +768,7 @@ void App::evtBtnSourceName( void )
             txtSourceName->setText(wfs->getConnectionString());
         }
     }
-    UpdateParameters();
+    updateParameters();
 }
 
 void App::evtRadTargetFile( void )
@@ -794,7 +812,7 @@ void App::evtRadTargetDatabase( void )
 void App::evtCmbTargetFormat( void )
 {
     txtTargetName->clear();
-    UpdateParameters();
+    updateParameters();
 }
 
 void App::evtTxtTargetName( void )
@@ -813,7 +831,7 @@ void App::evtBtnTargetName( void )
         if(databases[idx][0] == "SQLite") {
             type = tr("\"") + databases[idx][0] + tr(" (*") + tr(".sqlite") + tr(")\"");
             txtTargetName->setText(QDir::toNativeSeparators(QFileDialog::getSaveFileName(this, tr("Save File"), tr(""), type )));
-            UpdateParameters();
+            updateParameters();
             return;
         }
         inf->showTables(false);
@@ -844,7 +862,7 @@ void App::evtBtnTargetName( void )
     }
 
     btnExecute->setEnabled( true );
-    UpdateParameters();
+    updateParameters();
 }
 
 void App::evtTxtTargetProj( void )
@@ -856,17 +874,17 @@ void App::evtTxtTargetProj( void )
             break;
         }
     }
-    UpdateParameters();
+    updateParameters();
 }
 
 void App::evtUpdateParameters( void )
 {
-    UpdateParameters();
+    updateParameters();
 }
 
 void App::evtBtnExecute( void )
 {
-    UpdateParameters();
+    updateParameters();
 
     QString sourcename = txtSourceName->text().trimmed();
     QString targetname = txtTargetName->text().trimmed();
@@ -883,26 +901,26 @@ void App::evtBtnExecute( void )
         QStringList fileList = wfs->getSelectedLayersAsList();
         sourcename = webservices[cmbSourceFormat->currentIndex()][1] + sourcename;
         for(int i=0;i<fileList.size();++i) {
-            if(!ogr->OpenSource(sourcename.toStdString(), fileList.at(i).toStdString(), epsg, query, error)) {
+            if(!ogr->openSource(sourcename.toStdString(), fileList.at(i).toStdString(), epsg, query, error)) {
                 resVal = false;
                 break;
             }
         }
     } else {
-        resVal = ogr->OpenSource(sourcename.toStdString(), epsg, query, error);
+        resVal = ogr->openSource(sourcename.toStdString(), epsg, query, error);
     }
     if(resVal) {
-        if(ogr->OpenDriver(cmbTargetFormat->currentText().toStdString())) {
+        if(ogr->openDriver(cmbTargetFormat->currentText().toStdString())) {
             if(!txtSourceQuery->text().isEmpty()) {
-                if(!ogr->TestExecuteSQL(txtSourceQuery->text().toStdString())) {
+                if(!ogr->testExecuteSQL(txtSourceQuery->text().toStdString())) {
                     txtOutput->append(tr("\n * unable to execute sql query !\n"));
                     return;
                 }
             }
-            if(!ogr->TestSpatialReference((projectionsList.at(cmbTargetProj->currentIndex()).first).toInt()))
+            if(!ogr->testSpatialReference((projectionsList.at(cmbTargetProj->currentIndex()).first).toInt()))
                 txtOutput->append(tr("\n * unable to create spatial reference !\n"));
             if(!radSourceDatabase->isChecked() && !radSourceWebservice->isChecked())
-                if(!ogr->TestFeatureProjection())
+                if(!ogr->testFeatureProjection())
                     txtOutput->append(tr("\n * unable to transform feature with projection !\n"));
 
             theProgress->setValue(0);

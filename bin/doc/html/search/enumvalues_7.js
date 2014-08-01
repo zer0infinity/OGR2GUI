@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['win_5f32',['Win_32',['../_ogr_8cpp.html#ad01b63a115c529ad6a3439db497835b3a9bac0fe6e4eade735ef7424ab5a6f3cd',1,'Ogr.cpp']]],
+  ['win_5f64',['Win_64',['../_ogr_8cpp.html#ad01b63a115c529ad6a3439db497835b3a40def8897644ce56ef545edafce41ced',1,'Ogr.cpp']]],
+  ['wkbgeometrycollection',['wkbGeometryCollection',['../ogr__core_8h.html#a800236a0d460ef66e687b7b65610f12aa7f299e8edaee30fd3c7a40baf19b48b1',1,'ogr_core.h']]],
+  ['wkbgeometrycollection25d',['wkbGeometryCollection25D',['../ogr__core_8h.html#a800236a0d460ef66e687b7b65610f12aa4f5e3e491182628c831ed8124ec64e96',1,'ogr_core.h']]],
+  ['wkblinearring',['wkbLinearRing',['../ogr__core_8h.html#a800236a0d460ef66e687b7b65610f12aa48a515899277ce8ccd0bb6041fd42bcc',1,'ogr_core.h']]],
+  ['wkblinestring',['wkbLineString',['../ogr__core_8h.html#a800236a0d460ef66e687b7b65610f12aa09fd8f51759a1cf351b04e786a2a9058',1,'ogr_core.h']]],
+  ['wkblinestring25d',['wkbLineString25D',['../ogr__core_8h.html#a800236a0d460ef66e687b7b65610f12aacf06aa306a087638fa4bebb7caf01ce1',1,'ogr_core.h']]],
+  ['wkbmultilinestring',['wkbMultiLineString',['../ogr__core_8h.html#a800236a0d460ef66e687b7b65610f12aa2ecf4d40ab038779cbc1de22ddcb3429',1,'ogr_core.h']]],
+  ['wkbmultilinestring25d',['wkbMultiLineString25D',['../ogr__core_8h.html#a800236a0d460ef66e687b7b65610f12aaebb9eb043391cd9f4c98f465dcc5b41b',1,'ogr_core.h']]],
+  ['wkbmultipoint',['wkbMultiPoint',['../ogr__core_8h.html#a800236a0d460ef66e687b7b65610f12aa826c812d3551fa07feb4c3664517c29c',1,'ogr_core.h']]],
+  ['wkbmultipoint25d',['wkbMultiPoint25D',['../ogr__core_8h.html#a800236a0d460ef66e687b7b65610f12aa95019b3d8d9acf9730406a455e646e15',1,'ogr_core.h']]],
+  ['wkbmultipolygon',['wkbMultiPolygon',['../ogr__core_8h.html#a800236a0d460ef66e687b7b65610f12aa7ff2322e0696d383d7715b7e7be1a7b1',1,'ogr_core.h']]],
+  ['wkbmultipolygon25d',['wkbMultiPolygon25D',['../ogr__core_8h.html#a800236a0d460ef66e687b7b65610f12aa222e72c0c3e89838350888948f2e6af2',1,'ogr_core.h']]],
+  ['wkbndr',['wkbNDR',['../ogr__core_8h.html#a36cc1f4d807ba8f6fb8951f3adf251e2afa81110d052bb483845dfa235c76991d',1,'ogr_core.h']]],
+  ['wkbnone',['wkbNone',['../ogr__core_8h.html#a800236a0d460ef66e687b7b65610f12aa988c33f9e94f35d2081e5882d4167ec6',1,'ogr_core.h']]],
+  ['wkbpoint',['wkbPoint',['../ogr__core_8h.html#a800236a0d460ef66e687b7b65610f12aa6f8377c5a4a9d36ae2384f4a5f45d77f',1,'ogr_core.h']]],
+  ['wkbpoint25d',['wkbPoint25D',['../ogr__core_8h.html#a800236a0d460ef66e687b7b65610f12aa18b9353087d48fa575fa0e3281b46f13',1,'ogr_core.h']]],
+  ['wkbpolygon',['wkbPolygon',['../ogr__core_8h.html#a800236a0d460ef66e687b7b65610f12aa11991cd1245f146f3efd694553433aeb',1,'ogr_core.h']]],
+  ['wkbpolygon25d',['wkbPolygon25D',['../ogr__core_8h.html#a800236a0d460ef66e687b7b65610f12aa05fb2cddfbd20fb5c7c684cb765ef897',1,'ogr_core.h']]],
+  ['wkbunknown',['wkbUnknown',['../ogr__core_8h.html#a800236a0d460ef66e687b7b65610f12aa3645f782f9b9f7632d7e7cdd0451d58f',1,'ogr_core.h']]],
+  ['wkbvariantiso',['wkbVariantIso',['../ogr__core_8h.html#a6716bd3399c31e7bc8b0fd94fd7d9ba6ac103ec17c4045fb9f3013638726a8bd5',1,'ogr_core.h']]],
+  ['wkbvariantogc',['wkbVariantOgc',['../ogr__core_8h.html#a6716bd3399c31e7bc8b0fd94fd7d9ba6a5d0541e06abb0f9c6496f9ff75f8578c',1,'ogr_core.h']]],
+  ['wkbxdr',['wkbXDR',['../ogr__core_8h.html#a36cc1f4d807ba8f6fb8951f3adf251e2a2682cb271fcd2dff2e3af02c0e0630f2',1,'ogr_core.h']]],
+  ['wow64',['WOW64',['../_ogr_8cpp.html#ad01b63a115c529ad6a3439db497835b3a54b3311c645a6f28d71d7dba3e3fe248',1,'Ogr.cpp']]]
+];

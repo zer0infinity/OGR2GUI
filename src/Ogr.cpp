@@ -95,7 +95,7 @@ bool Ogr::OpenOgr2ogr(QString command, QPushButton *btnExecute) {
     return resVal;
 }
 
-bool Ogr::OpenWFS(QString uri, QStringList &fileList) {
+bool Ogr::openWFS(QString uri, QStringList &fileList) {
     sourceName = uri.toStdString();
     OGRDataSourceH sourceData = OGROpen(sourceName.c_str(), 0, NULL);
     if(sourceData != NULL) {
@@ -111,12 +111,12 @@ bool Ogr::OpenWFS(QString uri, QStringList &fileList) {
     return false;
 }
 
-bool Ogr::OpenSource(string filename, string layername, string &epsg, string &query, string &error) {
+bool Ogr::openSource(string filename, string layername, string &epsg, string &query, string &error) {
     layerName = layername;
-    return OpenSource(filename, epsg, query, error);
+    return openSource(filename, epsg, query, error);
 }
 
-bool Ogr::OpenSource(string filename, string &epsg, string &query, string &error) {
+bool Ogr::openSource(string filename, string &epsg, string &query, string &error) {
     sourceSRS = NULL;
     sourceName = filename;
     sourceData = OGROpen(sourceName.c_str(), 0, NULL);
@@ -149,7 +149,7 @@ bool Ogr::OpenSource(string filename, string &epsg, string &query, string &error
     return true;
 }
 
-bool Ogr::CloseSource( void )
+bool Ogr::closeSource( void )
 {
     if(sourceData != NULL) {
         OGR_DS_Destroy(sourceData);
@@ -158,7 +158,7 @@ bool Ogr::CloseSource( void )
     return false;
 }
 
-bool Ogr::OpenDriver(string drivername)
+bool Ogr::openDriver(string drivername)
 {
     formatDriver = OGRGetDriverByName( drivername.c_str() );
     if( formatDriver == NULL ) {
@@ -168,7 +168,7 @@ bool Ogr::OpenDriver(string drivername)
     return true;
 }
 
-bool Ogr::TestSpatialReference(int projection) {
+bool Ogr::testSpatialReference(int projection) {
     targetSRS = NULL;
     if(projection > 0) {
         targetSRS = OSRNewSpatialReference( NULL );
@@ -180,7 +180,7 @@ bool Ogr::TestSpatialReference(int projection) {
     return true;
 }
 
-bool Ogr::TestFeatureProjection(void) {
+bool Ogr::testFeatureProjection(void) {
     OGR_L_ResetReading(sourceLayer);
     OGRFeatureH feature;
     bool resVal = true;
@@ -193,7 +193,7 @@ bool Ogr::TestFeatureProjection(void) {
     return resVal;
 }
 
-bool Ogr::TestExecuteSQL(string query) {
+bool Ogr::testExecuteSQL(string query) {
     OGRLayerH squeryLayer = OGR_DS_ExecuteSQL(sourceData, query.c_str(), NULL, "");
     if(squeryLayer == NULL) {
         perror("unable to execute sql query");

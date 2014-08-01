@@ -33,9 +33,9 @@
 
 WFSConnect::WFSConnect( QWidget *parent ) : QDialog( parent )
 {
-    InitInterface();
-    InitSlots();
-    TranslateInterface();
+    initInterface();
+    initSlots();
+    translateInterface();
 
     this->setWindowModality( Qt::ApplicationModal );
     this->setMinimumWidth( 380 );
@@ -46,7 +46,7 @@ WFSConnect::~WFSConnect( void )
 
 }
 
-void WFSConnect::InitInterface( void )
+void WFSConnect::initInterface( void )
 {
     theLayout = new QVBoxLayout( this );
     {
@@ -114,7 +114,7 @@ void WFSConnect::InitInterface( void )
     this->setLayout( theLayout );
 }
 
-void WFSConnect::InitSlots( void )
+void WFSConnect::initSlots( void )
 {
     QObject::connect( btnConnect, SIGNAL( clicked() ), this, SLOT( evtBtnConnect( void ) ) );
     QObject::connect( radAllTables, SIGNAL( clicked() ), this, SLOT( evtRadAllLayers( void ) ) );
@@ -123,7 +123,7 @@ void WFSConnect::InitSlots( void )
     QObject::connect( btnAccept, SIGNAL( clicked() ), this, SLOT( evtBtnAccept( void ) ) );
 }
 
-void WFSConnect::TranslateInterface( void )
+void WFSConnect::translateInterface( void )
 {
     this->setWindowTitle( tr( "Web Feature Service" ) );
 
@@ -147,7 +147,7 @@ void WFSConnect::evtBtnConnect( void )
     Ogr ogr;
     QStringList fileList;
     QString filename = connectionType + txtHost->text();
-    if(ogr.OpenWFS(filename, fileList)) {
+    if(ogr.openWFS(filename, fileList)) {
         QStringList::Iterator it = fileList.begin();
         while(it != fileList.end()) {
             QListWidgetItem *item = new QListWidgetItem(*it);

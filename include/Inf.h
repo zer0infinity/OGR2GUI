@@ -87,19 +87,19 @@ private:
          *	\fn void InitInterface( void );
          *	\brief Inits Interface
          */
-    void InitInterface( void );
+    void initInterface( void );
 
     /**
          *	\fn void InitSlots( void );
          *	\brief Inits Slots
          */
-    void InitSlots( void );
+    void initSlots( void );
 
     /**
          *	\fn void TranslateInterface( void );
          *	\brief Translates Interface
          */
-    void TranslateInterface( void );
+    void translateInterface( void );
 
 public slots:
     void evtBtnConnect( void );

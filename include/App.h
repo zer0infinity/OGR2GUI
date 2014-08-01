@@ -184,49 +184,61 @@ private:
          *	\fn void InitData( void );
          *	\brief Inits data
          */
-    void InitData( void );
+    void initData( void );
 
     /**
          *	\fn void void InitProjections( void );
          *	\brief Inits projections
          */
-    void InitProjections( void );
+    void initProjections( void );
+
+    /**
+        * \fn void ReadProjections(QString filename);
+        * \brief Read projections
+        */
+    void readProjections(QString filename);
+
+    /**
+        * \fn addProjections();
+        * \brief Add Projections to UI
+        */
+    void addProjections();
 
     /**
          *	\fn void InitInterface( void );
          *	\brief Inits Interface
          */
-    void InitInterface( void );
+    void initInterface( void );
 
     /**
          *	\fn void InitMenu( void );
          *	\brief Inits Menu
          */
-    void InitMenu( void );
+    void initMenu( void );
 
     /**
          *	\fn void InitLayout( void );
          *	\brief Inits Layout
          */
-    void InitLayout( void );
+    void initLayout( void );
 
     /**
          *	\fn void InitSlots( void );
          *	\brief Inits Slots
          */
-    void InitSlots( void );
+    void initSlots( void );
 
     /**
          *	\fn void TranslateInterface( void );
          *	\brief Translates Interface
          */
-    void TranslateInterface( void );
+    void translateInterface( void );
 
     /**
          *	\fn void UpdateParameters( void );
          *	\brief Updates parameters
          */
-    void UpdateParameters( void );
+    void updateParameters( void );
 
     /**
          * \brief QString currentParameters(void);

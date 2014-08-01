@@ -49,6 +49,7 @@ private slots:
     void testCloseSource();
     void testOpenDriverFalseInput();
     void testOpenDriverESRIShapefile();
+    void testOpenDriverSQLite();
     void testLayerNames();
     void testLayerCount();
     void testFeatureCount();
