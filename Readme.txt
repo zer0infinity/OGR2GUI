@@ -26,7 +26,6 @@ is also fully compatible with the well-known ogr2ogr options.
 - ogr2ogr 1.12dev as command line
 
 3. System Requirements
-- Windows XP, Windows XP x64 (all editions)
 - Windows Vista, Windows Vista x64 (all editions)
 - Windows 7, Windows 7 x64 (all editions)
 - Windows 8, Windows 8 x64 (all editions)
