@@ -22,22 +22,24 @@
  *****************************************************************************/
 
 /*!
- *	\file testMain.cpp
- *	\brief Qt Test Main
+ *	\file TestInf.cpp
+ *	\brief Qt Test Inf
  *	\author David Tran [ HSR ]
  *	\version 0.1
  *	\date 13/06/14
  */
 
-#include "TestInf.h"
-#include "TestOgr.h"
-#include "cpl_conv.h"
+#include "testInf.h"
 
-int main(int argc, char **argv) {
-    QApplication app(argc, argv);
-	string dataPath = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + "data").toStdString();
-    CPLSetConfigOption("GDAL_DATA", dataPath.c_str());
-    QTest::qExec(&TestInf());
-    QTest::qExec(&TestOgr());
-    return app.exec();
+TestInf::TestInf() {
+    inf = new Inf();
+}
+
+void TestInf::testConnection() {
+    inf->setConnectionType("");
+    QCOMPARE(inf->getConnectionString(), QString(""));
+}
+
+void TestInf::testSelectedTables() {
+    QCOMPARE(inf->getSelectedTables(), QStringList());
 }

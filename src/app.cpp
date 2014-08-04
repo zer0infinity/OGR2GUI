@@ -30,7 +30,7 @@
  *	\date 13/06/14
  */
 
-#include "App.h"
+#include "app.h"
 
 App::App(QWidget *widget) : QMainWindow(widget)
 {
@@ -67,7 +67,7 @@ void App::initData(void) {
         webservices[i] = new QString[2];
     }
 
-#include "Dta.h"
+#include "dta.h"
 }
 
 void App::initProjections( void ) {
@@ -935,7 +935,7 @@ void App::evtBtnExecute( void )
             if(!txtInput->toPlainText().isEmpty())
                 parameters += tr(" ") + txtInput->toPlainText();
             command += parameters;
-            if(ogr->OpenOgr2ogr(command, btnExecute)) {
+            if(ogr->openOgr2ogr(command, btnExecute)) {
                 theProgress->setValue(100);
                 theProgress->setMaximum(100);
             } else {

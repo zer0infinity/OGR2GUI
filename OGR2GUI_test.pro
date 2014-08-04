@@ -25,30 +25,30 @@ TEMPLATE = app
 TARGET = OGR2GUI_test
 INCLUDEPATH += $$PWD/include $$PWD/include/ogr $$PWD/include/tests
 LIBS += -L$$PWD/lib -lgdal_i
-DESTDIR += $$PWD/bin
+#DESTDIR += $$PWD/bin
 
 HEADERS += \
-    include/App.h \
-    include/Dta.h \
-    include/Ogr.h \
-    include/Inf.h \
+    include/app.h \
+    include/dta.h \
+    include/ogr.h \
+    include/inf.h \
     include/utils.h \
     include/wfsConnect.h \
     include/ogr2ogrThread.h \
-    include/tests/TestInf.h \
-    include/tests/TestOgr.h
+    include/tests/testInf.h \
+    include/tests/testOgr.h
 
 SOURCES += \
-    src/Ogr.cpp \
-    src/Inf.cpp \
-    src/App.cpp \
+    src/ogr.cpp \
+    src/inf.cpp \
+    src/app.cpp \
     src/utils/ogr2ogr.cpp \
     src/utils/commonutils.cpp \
     src/wfsConnect.cpp \
     src/ogr2ogrThread.cpp \
-    src/tests/TestInf.cpp \
-    src/tests/TestMain.cpp \
-    src/tests/TestOgr.cpp
+    src/tests/testInf.cpp \
+    src/tests/testMain.cpp \
+    src/tests/testOgr.cpp
 SOURCES -= src/main.cpp
 
 CONFIG += c++11

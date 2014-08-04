@@ -30,7 +30,7 @@
  *	\date 13/06/14
  */
 
-#include "Ogr.h"
+#include "ogr.h"
 #include <QtCore/QSysInfo>
 #include <windows.h>
 
@@ -62,7 +62,7 @@ Ogr::Ogr(void) {
 Ogr::~Ogr(void) {
 }
 
-bool Ogr::OpenOgr2ogr(QString command, QPushButton *btnExecute) {
+bool Ogr::openOgr2ogr(QString command, QPushButton *btnExecute) {
     bool resVal = false;
     if(checkOS() == Win_64) {
         ogr2ogr = new Ogr2ogrThread(command, btnExecute);
@@ -135,15 +135,12 @@ bool Ogr::openSource(string filename, string &epsg, string &query, string &error
             if(sourceSRS != NULL && ! Error(OSRAutoIdentifyEPSG(sourceSRS), error)) {
                 epsg = OSRGetAttrValue(sourceSRS, "AUTHORITY", 1);
             } else {
-                perror("unable to open source spatial reference");
                 query = "SELECT * FROM " + sourceLayerName;
             }
         } else {
-            perror("unable to open source layer");
             return false;
         }
     } else {
-        perror("unable to open source data");
         return false;
     }
     return true;
@@ -161,11 +158,7 @@ bool Ogr::closeSource( void )
 bool Ogr::openDriver(string drivername)
 {
     formatDriver = OGRGetDriverByName( drivername.c_str() );
-    if( formatDriver == NULL ) {
-        perror("unable to find driver");
-        return false;
-    }
-    return true;
+    return formatDriver != NULL;
 }
 
 bool Ogr::testSpatialReference(int projection) {
@@ -173,7 +166,6 @@ bool Ogr::testSpatialReference(int projection) {
     if(projection > 0) {
         targetSRS = OSRNewSpatialReference( NULL );
         if(Error(OSRImportFromEPSG( targetSRS, projection ), error)) {
-            error.insert(0, "unable to create spatial reference");
             return false;
         }
     }
@@ -183,23 +175,20 @@ bool Ogr::testSpatialReference(int projection) {
 bool Ogr::testFeatureProjection(void) {
     OGR_L_ResetReading(sourceLayer);
     OGRFeatureH feature;
-    bool resVal = true;
     while((feature = OGR_L_GetNextFeature(sourceLayer)) != NULL) {
         if(targetSRS)
-            if(Error(OGR_G_TransformTo(OGR_F_GetGeometryRef(feature), targetSRS), error))
+            if(Error(OGR_G_TransformTo(OGR_F_GetGeometryRef(feature), targetSRS), error)) {
+                OGR_F_Destroy(feature);
                 return false;
+            }
         OGR_F_Destroy(feature);
     }
-    return resVal;
+    return true;
 }
 
 bool Ogr::testExecuteSQL(string query) {
     OGRLayerH squeryLayer = OGR_DS_ExecuteSQL(sourceData, query.c_str(), NULL, "");
-    if(squeryLayer == NULL) {
-        perror("unable to execute sql query");
-        return false;
-    }
-    return true;
+    return squeryLayer != NULL;
 }
 
 bool Ogr::Error( OGRErr code, string &type )

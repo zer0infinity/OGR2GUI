@@ -22,24 +22,28 @@
  *****************************************************************************/
 
 /*!
- *	\file TestInf.cpp
+ *	\file TestInf.h
  *	\brief Qt Test Inf
  *	\author David Tran [ HSR ]
  *	\version 0.1
  *	\date 13/06/14
  */
 
-#include "TestInf.h"
+#ifndef TESTINF_H
+#define TESTINF_H
 
-TestInf::TestInf() {
-    inf = new Inf();
-}
+#include <QtTest/QtTest>
+#include "inf.h"
 
-void TestInf::testConnection() {
-    inf->setConnectionType("");
-    QCOMPARE(inf->getConnectionString(), QString(""));
-}
+class TestInf: public QObject
+{
+    Q_OBJECT
+public:
+    TestInf();
+    Inf *inf;
+private slots:
+    void testConnection();
+    void testSelectedTables();
+};
 
-void TestInf::testSelectedTables() {
-    QCOMPARE(inf->getSelectedTables(), QStringList());
-}
+#endif // TESTINF_H

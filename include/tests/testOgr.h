@@ -22,28 +22,48 @@
  *****************************************************************************/
 
 /*!
- *	\file TestInf.h
- *	\brief Qt Test Inf
+ *	\file TestOgr.h
+ *	\brief Qt Test Ogr
  *	\author David Tran [ HSR ]
  *	\version 0.1
  *	\date 13/06/14
  */
 
-#ifndef TESTINF_H
-#define TESTINF_H
+#ifndef TESTOGR_H
+#define TESTOGR_H
 
-#include <QtTest/QtTest>
-#include "Inf.h"
+#include <QtTest>
+#include "ogr.h"
 
-class TestInf: public QObject
-{
+class TestOgr: public QObject {
     Q_OBJECT
 public:
-    TestInf();
-    Inf *inf;
+    TestOgr();
+    Ogr *ogr;
 private slots:
-    void testConnection();
-    void testSelectedTables();
+    void testOpenWFS();
+    void testOpenSourceFalseInput();
+    void testCloseSourceFalseInput();
+    void testOpenSourceFile();
+    void testOpenSourceSQLite();
+    void testCloseSource();
+    void testOpenDriverFalseInput();
+    void testOpenDriverESRIShapefile();
+    void testOpenDriverSQLite();
+    void testLayerNames();
+    void testLayerCount();
+    void testFeatureCount();
+    void testSQLQueryFalseQuery();
+    void testSQLQuery();
+private:
+    string path;
+    string filename;
+    string sqlitedb;
+    OGRDataSourceH sourceData;
+    OGRLayerH sourceLayer;
+    OGRFeatureDefnH sourceLayerDefn;
+    string sourceLayerName;
+    void setSource(string sourcename);
 };
 
-#endif // TESTINF_H
+#endif // TESTOGR_H

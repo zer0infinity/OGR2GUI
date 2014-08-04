@@ -108,7 +108,7 @@ public:
      * \param btnExecute : execute button
      * \return true on success
      */
-    bool OpenOgr2ogr(QString command, QPushButton *btnExecute);
+    bool openOgr2ogr(QString command, QPushButton *btnExecute);
 
     /**
          * \fn bool OpenWFS(QStringList &fileList)

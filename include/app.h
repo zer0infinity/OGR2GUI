@@ -50,8 +50,8 @@
 #ifndef APP
 #define APP
 
-#include "Ogr.h"
-#include "Inf.h"
+#include "ogr.h"
+#include "inf.h"
 #include "wfsConnect.h"
 
 QT_BEGIN_NAMESPACE

@@ -29,7 +29,7 @@
  *	\date 13/06/14
  */
 
-#include "TestOgr.h"
+#include "testOgr.h"
 
 TestOgr::TestOgr() {
     ogr = new Ogr();

@@ -33,7 +33,7 @@
 #define WFSCONNECT_H
 
 #include <QtWidgets>
-#include "Ogr.h"
+#include "ogr.h"
 
 QT_BEGIN_NAMESPACE
 

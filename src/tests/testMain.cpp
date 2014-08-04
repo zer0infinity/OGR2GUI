@@ -22,48 +22,22 @@
  *****************************************************************************/
 
 /*!
- *	\file TestOgr.h
- *	\brief Qt Test Ogr
+ *	\file testMain.cpp
+ *	\brief Qt Test Main
  *	\author David Tran [ HSR ]
  *	\version 0.1
  *	\date 13/06/14
  */
 
-#ifndef TESTOGR_H
-#define TESTOGR_H
+#include "testInf.h"
+#include "testOgr.h"
+#include "cpl_conv.h"
 
-#include <QtTest>
-#include "Ogr.h"
-
-class TestOgr: public QObject {
-    Q_OBJECT
-public:
-    TestOgr();
-    Ogr *ogr;
-private slots:
-    void testOpenWFS();
-    void testOpenSourceFalseInput();
-    void testCloseSourceFalseInput();
-    void testOpenSourceFile();
-    void testOpenSourceSQLite();
-    void testCloseSource();
-    void testOpenDriverFalseInput();
-    void testOpenDriverESRIShapefile();
-    void testOpenDriverSQLite();
-    void testLayerNames();
-    void testLayerCount();
-    void testFeatureCount();
-    void testSQLQueryFalseQuery();
-    void testSQLQuery();
-private:
-    string path;
-    string filename;
-    string sqlitedb;
-    OGRDataSourceH sourceData;
-    OGRLayerH sourceLayer;
-    OGRFeatureDefnH sourceLayerDefn;
-    string sourceLayerName;
-    void setSource(string sourcename);
-};
-
-#endif // TESTOGR_H
+int main(int argc, char **argv) {
+    QApplication app(argc, argv);
+	string dataPath = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + "data").toStdString();
+    CPLSetConfigOption("GDAL_DATA", dataPath.c_str());
+    QTest::qExec(&TestInf());
+    QTest::qExec(&TestOgr());
+    return app.exec();
+}

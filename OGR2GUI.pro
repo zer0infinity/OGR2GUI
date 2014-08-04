@@ -26,21 +26,21 @@ TEMPLATE = app
 INCLUDEPATH += $$PWD/include $$PWD/include/ogr
 RESOURCES += res/gdalicon.qrc
 RC_FILE = res/gdalicon.rc
-DESTDIR += $$PWD/bin
+#DESTDIR += $$PWD/bin
 
 HEADERS += \
-    include/App.h \
-    include/Dta.h \
-    include/Ogr.h \
-    include/Inf.h \
+    include/app.h \
+    include/dta.h \
+    include/ogr.h \
+    include/inf.h \
     include/utils.h \
     include/wfsConnect.h \
     include/ogr2ogrThread.h
 
 SOURCES += \
-    src/Ogr.cpp \
-    src/Inf.cpp \
-    src/App.cpp \
+    src/ogr.cpp \
+    src/inf.cpp \
+    src/app.cpp \
     src/main.cpp \
     src/utils/ogr2ogr.cpp \
     src/utils/commonutils.cpp \
