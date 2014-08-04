@@ -1,5 +1,5 @@
 /*****************************************************************************
- * ogr2gui is an application used to convert and manipulate geospatial
+ * OGR2GUI is an application used to convert and manipulate geospatial
  * data. It is based on the "OGR Simple Feature Library" from the
  * "Geospatial Data Abstraction Library" <http://gdal.org>.
  *

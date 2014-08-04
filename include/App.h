@@ -1,5 +1,5 @@
 /*****************************************************************************
- * ogr2gui is an application used to convert and manipulate geospatial
+ * OGR2GUI is an application used to convert and manipulate geospatial
  * data. It is based on the "OGR Simple Feature Library" from the
  * "Geospatial Data Abstraction Library" <http://gdal.org>.
  *
@@ -29,8 +29,8 @@
  *	OGR2GUI is an application used to convert and manipulate geospatial data.
  *  It is based on ogr2ogr, a command line utility from the "Geospatial Data
  *  Abstraction Library" (gdal.org). Through its graphical user interface,
- *  ogr2gui gives all the power of ogr2ogr without worrying about its complex
- *  syntax. It brings speed, efficiency and simplicity to its users. ogr2gui
+ *  OGR2GUI gives all the power of ogr2ogr without worrying about its complex
+ *  syntax. It brings speed, efficiency and simplicity to its users. OGR2GUI
  *  is a free, open source project released under GPL License. Everyone in
  *  the geospatial community is invited to join. If you want to get involved
  *  in the project development, please contact us at dev@ogr2gui.ca
