@@ -153,7 +153,7 @@ void WebServiceConnect::evtBtnConnect( void )
         }
         btnAccept->setEnabled( true );
     } else {
-        msg.setText( "* can't connect to web service !" );
+        msg.setText( "* Can't connect to web service !" );
         msg.exec();
     }
 }

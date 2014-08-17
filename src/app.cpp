@@ -197,12 +197,12 @@ void App::initLayout( void )
                     radSourceFile = new QRadioButton();
                     radSourceFolder = new QRadioButton();
                     radSourceDatabase = new QRadioButton();
-                    radSourceWebservice = new QRadioButton();
+                    radSourceWebService = new QRadioButton();
 
                     lytSourceInput->addWidget( radSourceFile );
                     lytSourceInput->addWidget( radSourceFolder );
                     lytSourceInput->addWidget( radSourceDatabase );
-                    lytSourceInput->addWidget( radSourceWebservice);
+                    lytSourceInput->addWidget( radSourceWebService);
                 }
 
                 lytSource->addLayout( lytSourceInput, 0, 1 );
@@ -411,7 +411,7 @@ void App::initSlots( void )
     QObject::connect( radSourceFile, SIGNAL( toggled( bool ) ), this, SLOT( evtRadSourceFile( void ) ) );
     QObject::connect( radSourceFolder, SIGNAL( toggled( bool ) ), this, SLOT( evtRadSourceFolder( void ) ) );
     QObject::connect( radSourceDatabase, SIGNAL( toggled( bool ) ), this, SLOT( evtRadSourceDatabase( void ) ) );
-    QObject::connect( radSourceWebservice, SIGNAL( toggled( bool ) ), this, SLOT( evtRadSourceWebservice( void ) ) );
+    QObject::connect( radSourceWebService, SIGNAL( toggled( bool ) ), this, SLOT( evtRadSourceWebService( void ) ) );
 
     QObject::connect( cmbSourceFormat, SIGNAL( currentIndexChanged( int ) ), this, SLOT( evtCmbSourceFormat( void ) ) );
     QObject::connect( txtSourceName, SIGNAL( textChanged( QString ) ), this, SLOT( evtTxtSourceName( void ) ) );
@@ -462,7 +462,7 @@ void App::translateInterface( void )
         radSourceFile->setText( tr( "File" ) );
         radSourceFolder->setText( tr( "Folder" ) );
         radSourceDatabase->setText( tr( "Database" ) );
-        radSourceWebservice->setText( tr( "Web Service" ) );
+        radSourceWebService->setText( tr( "Web Service" ) );
 
         lblSourceFormat->setText( tr( "Format" ) );
 
@@ -500,7 +500,7 @@ void App::translateInterface( void )
 void App::updateParameters(void) {
     parameters = tr("ogr2ogr");
     parameters += currentParameters();
-    if(radSourceWebservice->isChecked())
+    if(radSourceWebService->isChecked())
         parameters += tr(" ") + wfs->getSelectedLayers();
     if(!txtInput->toPlainText().isEmpty())
         parameters += tr(" ") + txtInput->toPlainText().simplified();
@@ -511,7 +511,7 @@ void App::updateParameters(void) {
 QString App::currentParameters(void) {
     QString parameters = tr(" -f ") + tr("\"") + cmbTargetFormat->currentText() + tr("\" ");
     parameters += tr("\"") + txtTargetName->text()+ tr("\" ");
-    if(radSourceWebservice->isChecked() && !cmbSourceFormat->currentText().isEmpty())
+    if(radSourceWebService->isChecked() && !cmbSourceFormat->currentText().isEmpty())
         parameters += webservices[cmbSourceFormat->currentIndex()][1];
     parameters += tr("\"") + txtSourceName->text().trimmed() + tr("\"");
     if(!cmbTargetProj->currentText().isEmpty()) {
@@ -632,7 +632,7 @@ void App::evtRadSourceDatabase( void )
     txtSourceQuery->setEnabled( true );
 }
 
-void App::evtRadSourceWebservice( void )
+void App::evtRadSourceWebService( void )
 {
     btnSourceName->setText( tr( "Connect" ) );
 
@@ -671,7 +671,7 @@ void App::evtTxtSourceName( void ) {
     string query;
     string error;
 
-    if(radSourceWebservice->isChecked()) {
+    if(radSourceWebService->isChecked()) {
         name = webservices[0][1].toStdString() + name;
     }
     txtSourceProj->clear();
@@ -687,13 +687,13 @@ void App::evtTxtSourceName( void ) {
         ogr->closeSource();
         if( radSourceFile->isChecked()) {
             txtSourceQuery->setText( query.c_str() );
-        } else if(radSourceWebservice->isChecked()) {
+        } else if(radSourceWebService->isChecked()) {
             btnSourceName->setText(tr("Connected"));
         }
     } else {
         txtSourceProj->clear();
         txtSourceQuery->clear();
-        if( radSourceWebservice->isChecked() ) {
+        if( radSourceWebService->isChecked() ) {
             btnSourceName->setText(tr("Connect"));
         }
     }
@@ -755,7 +755,7 @@ void App::evtBtnSourceName( void )
             txtSourceProj->setEnabled( false );
             txtSourceQuery->setEnabled( false );
         }
-    } else if(radSourceWebservice->isChecked()) {
+    } else if(radSourceWebService->isChecked()) {
         wfs->setConnectionType(webservices[idx][1]);
         if(wfs->exec() == QDialog::Accepted) {
             txtSourceName->setText(wfs->getConnectionString());
@@ -887,7 +887,7 @@ void App::evtBtnExecute( void )
         return;
     }
     bool resVal = true;
-    if(radSourceWebservice->isChecked()) {
+    if(radSourceWebService->isChecked()) {
         QStringList fileList = wfs->getSelectedLayersAsList();
         sourcename = webservices[cmbSourceFormat->currentIndex()][1] + sourcename;
         for(int i=0;i<fileList.size();++i) {
@@ -909,7 +909,7 @@ void App::evtBtnExecute( void )
             }
             if(!ogr->testSpatialReference((projectionsList.at(cmbTargetProj->currentIndex()).first).toInt()))
                 txtOutput->append(tr("\n * unable to create spatial reference !\n"));
-            if(!radSourceDatabase->isChecked() && !radSourceWebservice->isChecked())
+            if(!radSourceDatabase->isChecked() && !radSourceWebService->isChecked())
                 if(!ogr->testFeatureProjection())
                     txtOutput->append(tr("\n * unable to transform feature with projection !\n"));
 
@@ -920,7 +920,7 @@ void App::evtBtnExecute( void )
             txtOutput->append(tr("\n") + sourcename + tr(" > ") + targetname + tr(" ... "));
             QString parameters = currentParameters();
             QString command = QDir::toNativeSeparators(QCoreApplication::applicationFilePath());
-            if(radSourceWebservice->isChecked())
+            if(radSourceWebService->isChecked())
                 parameters += tr(" ") + wfs->getSelectedLayers();
             if(!txtInput->toPlainText().isEmpty())
                 parameters += tr(" ") + txtInput->toPlainText();
@@ -939,9 +939,4 @@ void App::evtBtnExecute( void )
     } else {
         txtOutput->append(tr("\n * unable to open source !\n"));
     }
-}
-
-void App::evtBtnQuit( void )
-{
-    this->close();
 }

@@ -67,44 +67,26 @@ private:
 
     WebServiceConnect *wfs;
 
-    // ogr2ogr parameters
     QString parameters;
 
-    // file formats
     const static int formatsCount = 47;
     QString **formats;
 
-    // output formats
     const static int formatsOutput = 28;
 
-    // database formats
     const static int databasesCount = 4;
     QString **databases;
 
-    // output databases
     const static int databasesOutput = 2;
 
-    // web service formats
     const static int webservicesCount = 1;
     QString **webservices;
 
-    // target projections
     QList<QPair<QString, QString> > projectionsList;
 
-    // qt
     QMenuBar *theMenu;
     QMenu *fileMenu;
     QMenu *helpMenu;
-
-    QMenu *mnuLanguage;
-    QAction *mnuEnglish;
-    QAction *mnuFrench;
-    QAction *mnuGerman;
-    QAction *mnuItalian;
-    QAction *mnuSpanish;
-    QAction *mnuChinese;
-    QAction *mnuRussian;
-    QAction *mnuArabic;
 
     QAction *mnuExit;
     QAction *mnuOgrHelp;
@@ -112,8 +94,6 @@ private:
     QAction *mnuOgrinfo;
     QAction *mnuHsrAbout;
     QAction *mnuAbout;
-
-    QStatusBar *statusbar;
 
     QProgressBar *theProgress;
 
@@ -129,7 +109,7 @@ private:
     QRadioButton *radSourceFile;
     QRadioButton *radSourceFolder;
     QRadioButton *radSourceDatabase;
-    QRadioButton *radSourceWebservice;
+    QRadioButton *radSourceWebService;
 
     QLabel *lblSourceName;
     QHBoxLayout *lytSourceName;
@@ -165,7 +145,6 @@ private:
     QComboBox *cmbTargetProj;
 
     QHBoxLayout *lytTargetOptions;
-    QButtonGroup *grpTargetOptions;
     QCheckBox *radTargetAppend;
     QCheckBox *radTargetOverwrite;
     QCheckBox *radTargetUpdate;
@@ -256,7 +235,7 @@ private slots :
     void evtRadSourceFile( void );
     void evtRadSourceFolder( void );
     void evtRadSourceDatabase( void );
-    void evtRadSourceWebservice( void );
+    void evtRadSourceWebService( void );
 
     void evtCmbSourceFormat( void );
     void evtTxtSourceName( void );
@@ -274,7 +253,6 @@ private slots :
     void evtUpdateParameters( void );
 
     void evtBtnExecute( void );
-    void evtBtnQuit( void );
 
 public:
 

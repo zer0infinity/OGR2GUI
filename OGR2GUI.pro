@@ -60,12 +60,6 @@ win32: contains(QMAKE_TARGET.arch, x86_64) {
 	LIBS += -L$$PWD/lib -lgdal_i_x64
 }
 
-static {
-    CONFIG += static
-    DEFINES += STATIC
-    win32: TARGET = $$join(TARGET,,,s)
-}
-
 CONFIG(debug, debug|release) {
     win32: TARGET = $$join(TARGET,,,d)
 }
