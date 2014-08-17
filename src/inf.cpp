@@ -141,12 +141,8 @@ void Inf::initInterface( void )
                 lblTables->setMinimumSize( 70, 20 );
                 lblTables->setMaximumSize( 70, 20 );
 
-                radAllTables = new QRadioButton();
-                radAllTables->setLayoutDirection( Qt::RightToLeft );
-
-                radNonTables = new QRadioButton();
-                radNonTables->setLayoutDirection( Qt::RightToLeft );
-                radNonTables->setChecked( true );
+                radAllTables = new QPushButton();
+                radNonTables = new QPushButton();
 
                 lytTables->addWidget( lblTables );
                 lytTables->addWidget( radAllTables );
@@ -202,8 +198,8 @@ void Inf::translateInterface( void )
 
     lblTables->setText( tr( "Tables" ) );
 
-    radAllTables->setText( tr( "all" ) );
-    radNonTables->setText( tr( "none" ) );
+    radAllTables->setText( tr( "Select All" ) );
+    radNonTables->setText( tr( "Reset" ) );
 
     btnAccept->setText( tr( "Accept" ) );
     btnCancel->setText( tr( "Cancel" ) );

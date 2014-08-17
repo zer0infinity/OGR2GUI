@@ -35,7 +35,7 @@
 App::App(QWidget *widget) : QMainWindow(widget)
 {
     inf = new Inf(this);
-    wfs = new WFSConnect(this);
+    wfs = new WebServiceConnect(this);
     initData();
     initInterface();
     translateInterface();
@@ -288,7 +288,6 @@ void App::initLayout( void )
 
                 lytTarget->addLayout( lytTargetOutput, 0, 1 );
 
-
                 lblTargetFormat = new QLabel();
                 lblTargetFormat->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
                 lblTargetFormat->setMinimumWidth( 70 );
@@ -385,11 +384,7 @@ void App::initLayout( void )
             btnExecute->setMinimumWidth( 200 );
             btnExecute->setEnabled( false );
 
-            btnExit = new QPushButton();
-            btnExit->setMinimumWidth( 200 );
-
             lytExecute->addWidget( btnExecute );
-            lytExecute->addWidget( btnExit );
         }
 
         theLayout->addWidget( txtOutput );
@@ -439,7 +434,6 @@ void App::initSlots( void )
     QObject::connect( radTargetUpdate, SIGNAL( toggled( bool ) ), this, SLOT( evtUpdateParameters( void ) ) );
 
     QObject::connect( btnExecute, SIGNAL( clicked( void ) ), this, SLOT( evtBtnExecute( void ) ) );
-    QObject::connect( btnExit, SIGNAL( clicked( void ) ), this, SLOT( evtBtnQuit( void ) ) );
 
     QMetaObject::connectSlotsByName( this );
 }
@@ -501,7 +495,6 @@ void App::translateInterface( void )
     grpOptions->setTitle(tr("Options (optional)"));
 
     btnExecute->setText( tr( "Execute" ) );
-    btnExit->setText( tr( "Exit" ) );
 }
 
 void App::updateParameters(void) {
@@ -782,9 +775,6 @@ void App::evtRadTargetFile( void )
     }
 
     txtTargetName->clear();
-    txtTargetProj->clear();
-
-    cmbTargetProj->setCurrentIndex( 0 );
 }
 
 void App::evtRadTargetFolder( void )

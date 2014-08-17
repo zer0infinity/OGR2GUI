@@ -34,7 +34,7 @@ HEADERS += \
     include/ogr.h \
     include/inf.h \
     include/utils.h \
-    include/wfsConnect.h \
+    include/webServiceConnect.h \
     include/ogr2ogrThread.h
 
 SOURCES += \
@@ -44,7 +44,7 @@ SOURCES += \
     src/main.cpp \
     src/utils/ogr2ogr.cpp \
     src/utils/commonutils.cpp \
-    src/wfsConnect.cpp \
+    src/webServiceConnect.cpp \
     src/ogr2ogrThread.cpp
 
 CONFIG += c++11

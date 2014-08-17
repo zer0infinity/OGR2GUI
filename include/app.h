@@ -52,7 +52,7 @@
 
 #include "ogr.h"
 #include "inf.h"
-#include "wfsConnect.h"
+#include "webServiceConnect.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -65,7 +65,7 @@ private:
 
     Inf *inf;
 
-    WFSConnect *wfs;
+    WebServiceConnect *wfs;
 
     // ogr2ogr parameters
     QString parameters;
@@ -178,7 +178,6 @@ private:
 
     QHBoxLayout *lytExecute;
     QPushButton *btnExecute;
-    QPushButton *btnExit;
 
     /**
          *	\fn void InitData( void );

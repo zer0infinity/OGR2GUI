@@ -37,7 +37,7 @@
 
 QT_BEGIN_NAMESPACE
 
-class WFSConnect : public QDialog
+class WebServiceConnect : public QDialog
 {
     Q_OBJECT
 
@@ -60,8 +60,8 @@ private:
 
     QVBoxLayout *lytTables;
     QLabel *lblTables;
-    QRadioButton *radAllTables;
-    QRadioButton *radNonTables;
+    QPushButton *radAllTables;
+    QPushButton *radNonTables;
 
     QListWidget *lstTables;
 
@@ -100,13 +100,13 @@ public:
          *	\fn WFSConnect( QWidget * = 0 );
          *	\brief Constructor
          */
-    WFSConnect( QWidget * = 0 );
+    WebServiceConnect( QWidget * = 0 );
 
     /**
          *	\fn ~WFSConnect
          *	\brief Destructor
          */
-    ~WFSConnect( void );
+    ~WebServiceConnect( void );
 
     /**
          *	\fn void setConnectionType( QString )

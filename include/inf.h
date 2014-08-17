@@ -74,8 +74,8 @@ private:
 
     QVBoxLayout *lytTables;
     QLabel *lblTables;
-    QRadioButton *radAllTables;
-    QRadioButton *radNonTables;
+    QPushButton *radAllTables;
+    QPushButton *radNonTables;
 
     QListWidget *lstTables;
 

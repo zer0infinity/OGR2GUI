@@ -29,9 +29,9 @@
  *	\date 13/06/14
  */
 
-#include "wfsConnect.h"
+#include "webServiceConnect.h"
 
-WFSConnect::WFSConnect( QWidget *parent ) : QDialog( parent )
+WebServiceConnect::WebServiceConnect( QWidget *parent ) : QDialog( parent )
 {
     initInterface();
     initSlots();
@@ -41,12 +41,12 @@ WFSConnect::WFSConnect( QWidget *parent ) : QDialog( parent )
     this->setMinimumWidth( 380 );
 }
 
-WFSConnect::~WFSConnect( void )
+WebServiceConnect::~WebServiceConnect( void )
 {
 
 }
 
-void WFSConnect::initInterface( void )
+void WebServiceConnect::initInterface( void )
 {
     theLayout = new QVBoxLayout( this );
     {
@@ -77,12 +77,8 @@ void WFSConnect::initInterface( void )
                 lblTables->setMinimumSize( 70, 20 );
                 lblTables->setMaximumSize( 70, 20 );
 
-                radAllTables = new QRadioButton();
-                radAllTables->setLayoutDirection( Qt::RightToLeft );
-
-                radNonTables = new QRadioButton();
-                radNonTables->setLayoutDirection( Qt::RightToLeft );
-                radNonTables->setChecked( true );
+                radAllTables = new QPushButton();
+                radNonTables = new QPushButton();
 
                 lytTables->addWidget( lblTables );
                 lytTables->addWidget( radAllTables );
@@ -114,7 +110,7 @@ void WFSConnect::initInterface( void )
     this->setLayout( theLayout );
 }
 
-void WFSConnect::initSlots( void )
+void WebServiceConnect::initSlots( void )
 {
     QObject::connect( btnConnect, SIGNAL( clicked() ), this, SLOT( evtBtnConnect( void ) ) );
     QObject::connect( radAllTables, SIGNAL( clicked() ), this, SLOT( evtRadAllLayers( void ) ) );
@@ -123,9 +119,9 @@ void WFSConnect::initSlots( void )
     QObject::connect( btnAccept, SIGNAL( clicked() ), this, SLOT( evtBtnAccept( void ) ) );
 }
 
-void WFSConnect::translateInterface( void )
+void WebServiceConnect::translateInterface( void )
 {
-    this->setWindowTitle( tr( "Web Feature Service" ) );
+    this->setWindowTitle( tr( "Web Service" ) );
 
     lblHost->setText( tr( "URI" ) );
 
@@ -133,14 +129,14 @@ void WFSConnect::translateInterface( void )
 
     lblTables->setText( tr( "Layers" ) );
 
-    radAllTables->setText( tr( "all" ) );
-    radNonTables->setText( tr( "none" ) );
+    radAllTables->setText( tr( "Select All" ) );
+    radNonTables->setText( tr( "Reset" ) );
 
     btnAccept->setText( tr( "Accept" ) );
     btnCancel->setText( tr( "Cancel" ) );
 }
 
-void WFSConnect::evtBtnConnect( void )
+void WebServiceConnect::evtBtnConnect( void )
 {
     lstTables->clear();
     QMessageBox msg;
@@ -162,19 +158,19 @@ void WFSConnect::evtBtnConnect( void )
     }
 }
 
-void WFSConnect::evtRadAllLayers( void ) {
+void WebServiceConnect::evtRadAllLayers( void ) {
     for(int i = 0; i < lstTables->count(); ++i) {
         lstTables->item( i )->setCheckState( Qt::Checked );
     }
 }
 
-void WFSConnect::evtRadNonLayers( void ) {
+void WebServiceConnect::evtRadNonLayers( void ) {
     for(int i = 0; i < lstTables->count(); ++i) {
         lstTables->item( i )->setCheckState( Qt::Unchecked );
     }
 }
 
-void WFSConnect::evtBtnAccept( void )
+void WebServiceConnect::evtBtnAccept( void )
 {
     connectionString = txtHost->text();
     selectedLayers.clear();
@@ -189,34 +185,32 @@ void WFSConnect::evtBtnAccept( void )
 
     lstTables->clear();
     btnAccept->setEnabled( false );
-    radNonTables->setChecked( true );
     this->accept();
 }
 
-void WFSConnect::evtBtnCancel( void )
+void WebServiceConnect::evtBtnCancel( void )
 {
     lstTables->clear();
     btnAccept->setEnabled( false );
-    radNonTables->setChecked( true );
     this->reject();
 }
 
-void WFSConnect::setConnectionType( QString type )
+void WebServiceConnect::setConnectionType( QString type )
 {
     connectionType = type;
 }
 
-QString WFSConnect::getConnectionString( void ) const
+QString WebServiceConnect::getConnectionString( void ) const
 {
     return connectionString;
 }
 
-QString WFSConnect::getSelectedLayers( void ) const
+QString WebServiceConnect::getSelectedLayers( void ) const
 {
     return selectedLayers;
 }
 
-QStringList WFSConnect::getSelectedLayersAsList( void ) const
+QStringList WebServiceConnect::getSelectedLayersAsList( void ) const
 {
     return selectedLayersList;
 }
