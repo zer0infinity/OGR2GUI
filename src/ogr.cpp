@@ -70,14 +70,12 @@ bool Ogr::openOgr2ogr(QString command, QPushButton *btnExecute) {
         resVal = ogr2ogr->isRunning();
     } else if(checkOS() == WOW64) {
         QString logPath = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + "ogr2ogr.log");
-        btnExecute->setEnabled(false);
         process = new QProcess();
         process->setProcessChannelMode(QProcess::MergedChannels);
         process->setStandardOutputFile(logPath);
         process->start(command);
         process->waitForStarted();
         resVal = process->waitForFinished();
-        btnExecute->setEnabled(true);
     } else if(checkOS() == Win_32){
         std::string cmd = command.toStdString();
         std::wstring widestring = std::wstring(cmd.begin(), cmd.end());

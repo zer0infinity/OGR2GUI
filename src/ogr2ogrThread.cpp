@@ -40,6 +40,7 @@ Ogr2ogrThread::~Ogr2ogrThread(void) {
 void Ogr2ogrThread::run() {
     QString logPath = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + "ogr2ogr.log");
     btnExecute->setEnabled(false);
+    btnExecute->setText(tr("Please wait..."));
     process = new QProcess();
     process->setProcessChannelMode(QProcess::MergedChannels);
     process->setStandardOutputFile(logPath);
@@ -47,4 +48,5 @@ void Ogr2ogrThread::run() {
     process->waitForStarted();
     process->waitForFinished();
     btnExecute->setEnabled(true);
+    btnExecute->setText(tr("Execute"));
 }

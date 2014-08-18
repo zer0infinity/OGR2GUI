@@ -86,8 +86,8 @@ private:
     QMenu *helpMenu;
 
     QAction *mnuExit;
-    QAction *mnuOgrHelp;
-    QAction *mnuGuiHelp;
+    QAction *mnuOgr;
+    QAction *mnuDoc;
     QAction *mnuAbout;
 
     QProgressBar *theProgress;

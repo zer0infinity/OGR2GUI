@@ -154,14 +154,14 @@ void App::initMenu( void )
 
         helpMenu = new QMenu( theMenu );
         {
-            mnuOgrHelp = new QAction( this );
-            mnuOgrHelp->setShortcuts(QKeySequence::HelpContents);
-            mnuGuiHelp = new QAction( this );
-            mnuGuiHelp->setShortcuts(QKeySequence::WhatsThis);
+            mnuOgr = new QAction( this );
+            mnuOgr->setShortcuts(QKeySequence::HelpContents);
+            mnuDoc = new QAction( this );
+            mnuDoc->setShortcuts(QKeySequence::WhatsThis);
             mnuAbout = new QAction( this );
 
-            helpMenu->addAction( mnuOgrHelp );
-            helpMenu->addAction( mnuGuiHelp );
+            helpMenu->addAction( mnuOgr );
+            helpMenu->addAction( mnuDoc );
             helpMenu->addSeparator();
             helpMenu->addAction( mnuAbout );
         }
@@ -398,8 +398,8 @@ void App::initLayout( void )
 void App::initSlots( void )
 {
     QObject::connect( mnuExit, SIGNAL( triggered() ), this, SLOT( close( void ) ) );
-    QObject::connect( mnuOgrHelp, SIGNAL( triggered() ), this, SLOT( evtMnuOgrHelp( void ) ) );
-    QObject::connect( mnuGuiHelp, SIGNAL( triggered() ), this, SLOT( evtMnuGuiHelp( void ) ) );
+    QObject::connect( mnuOgr, SIGNAL( triggered() ), this, SLOT( evtMnuOgrHelp( void ) ) );
+    QObject::connect( mnuDoc, SIGNAL( triggered() ), this, SLOT( evtMnuGuiHelp( void ) ) );
     QObject::connect( mnuAbout, SIGNAL( triggered() ), this, SLOT( evtMnuOgrAbout( void ) ) );
 
     QObject::connect( radSourceFile, SIGNAL( toggled( bool ) ), this, SLOT( evtRadSourceFile( void ) ) );
@@ -444,8 +444,8 @@ void App::translateInterface( void )
 
     helpMenu->setTitle( tr( "Help" ) );
     {
-        mnuOgrHelp->setText( tr( "Command-Line Options" ) );
-        mnuGuiHelp->setText( tr( "Documentation" ) );
+        mnuOgr->setText( tr( "Command-Line Options" ) );
+        mnuDoc->setText( tr( "Documentation" ) );
         mnuAbout->setText( tr( "About OGR2GUI" ) );
     }
 
@@ -503,12 +503,11 @@ void App::updateParameters(void) {
 QString App::currentParameters(void) {
     QString parameters = tr(" -f ") + tr("\"") + cmbTargetFormat->currentText() + tr("\" ");
     parameters += tr("\"") + txtTargetName->text()+ tr("\" ");
-    if(radSourceWebService->isChecked() && !cmbSourceFormat->currentText().isEmpty())
+    if(radSourceWebService->isChecked() && !txtSourceName->text().isEmpty())
         parameters += webservices[cmbSourceFormat->currentIndex()][1];
     parameters += tr("\"") + txtSourceName->text().trimmed() + tr("\"");
     if(!cmbTargetProj->currentText().isEmpty()) {
-        parameters += tr(" ") + tr("-t_srs");
-        parameters += tr(" EPSG:") + projectionsList.at(cmbTargetProj->currentIndex()).first;
+        parameters += tr(" -t_srs EPSG:") + projectionsList.at(cmbTargetProj->currentIndex()).first;
     }
     if(!txtSourceQuery->text().isEmpty())
         parameters += tr(" -sql ") + tr("\"") + txtSourceQuery->text() + tr("\"");
@@ -528,8 +527,8 @@ void App::evtMnuOgrHelp( void )
 
 void App::evtMnuGuiHelp( void )
 {
-    QString docPath = tr("file:///") + QCoreApplication::applicationDirPath() + tr("/doc/html/index.html");
-    QDesktopServices::openUrl(QUrl(docPath));
+    QString doc = tr("file:///") + QCoreApplication::applicationDirPath() + tr("/doc/html/index.html");
+    QDesktopServices::openUrl(QUrl(doc));
 }
 
 void App::evtMnuOgrAbout( void )
@@ -867,6 +866,7 @@ void App::evtBtnExecute( void )
 
     if(txtTargetName->text().isEmpty()) {
         txtOutput->append(tr("\n * unable to open target !\n"));
+        btnExecute->setEnabled(false);
         return;
     }
     bool resVal = true;
@@ -887,6 +887,7 @@ void App::evtBtnExecute( void )
             if(!txtSourceQuery->text().isEmpty()) {
                 if(!ogr->testExecuteSQL(txtSourceQuery->text().toStdString())) {
                     txtOutput->append(tr("\n * unable to execute sql query !\n"));
+                    btnExecute->setEnabled(false);
                     return;
                 }
             }
@@ -900,7 +901,7 @@ void App::evtBtnExecute( void )
             theProgress->setMinimum(0);
             theProgress->setMaximum(0);
 
-            txtOutput->append(tr("\n") + sourcename + tr(" > ") + targetname + tr(" ... "));
+            txtOutput->append(tr("\n") + sourcename + tr(" > ") + targetname + tr(" ... ") + tr("\n"));
             QString parameters = currentParameters();
             QString command = QDir::toNativeSeparators(QCoreApplication::applicationFilePath());
             if(radSourceWebService->isChecked())
@@ -913,13 +914,16 @@ void App::evtBtnExecute( void )
                 theProgress->setMaximum(100);
             } else {
                 txtOutput->append(tr("\n * unable to open ogr2ogr !\n"));
+                btnExecute->setEnabled(false);
                 theProgress->setValue(0);
                 theProgress->setMaximum(0);
             }
         } else {
             txtOutput->append(tr("\n * unable to open driver !\n"));
+            btnExecute->setEnabled(false);
         }
     } else {
         txtOutput->append(tr("\n * unable to open source !\n"));
+        btnExecute->setEnabled(false);
     }
 }
