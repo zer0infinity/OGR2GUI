@@ -31,22 +31,22 @@ HEADERS += \
     include/app.h \
     include/dta.h \
     include/ogr.h \
-    include/inf.h \
+    include/dbConnect.h \
     include/utils.h \
-    include/wfsConnect.h \
+    include/webServiceConnect.h \
     include/ogr2ogrThread.h \
-    include/tests/testInf.h \
+    include/tests/testDBConnect.h \
     include/tests/testOgr.h
 
 SOURCES += \
     src/ogr.cpp \
-    src/inf.cpp \
+    src/dbConnect.cpp \
     src/app.cpp \
     src/utils/ogr2ogr.cpp \
     src/utils/commonutils.cpp \
-    src/wfsConnect.cpp \
+    src/webServiceConnect.cpp \
     src/ogr2ogrThread.cpp \
-    src/tests/testInf.cpp \
+    src/tests/testDBConnect.cpp \
     src/tests/testMain.cpp \
     src/tests/testOgr.cpp
 SOURCES -= src/main.cpp

@@ -23,8 +23,8 @@
  *****************************************************************************/
 
 /**
- *	\file Inf.h
- *	\brief Database Informations
+ *	\file dbConnect.h
+ *	\brief Database Connect
  *	\author Olivier Pilotte [ Inventis ], David Tran [ HSR ]
  *	\version 0.7
  *	\date 13/06/14
@@ -38,7 +38,7 @@
 
 QT_BEGIN_NAMESPACE
 
-class Inf : public QDialog
+class DBConnect : public QDialog
 {
     Q_OBJECT
 
@@ -114,13 +114,13 @@ public:
          *	\fn Inf( const QWidget & );
          *	\brief Constructor
          */
-    Inf( QWidget * = 0 );
+    DBConnect( QWidget * = 0 );
 
     /**
          *	\fn ~Inf
          *	\brief Destructor
          */
-    ~Inf( void );
+    ~DBConnect( void );
 
     /**
          * \fn void showTables(bool enable)

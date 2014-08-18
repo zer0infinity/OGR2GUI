@@ -51,7 +51,7 @@
 #define APP
 
 #include "ogr.h"
-#include "inf.h"
+#include "dbConnect.h"
 #include "webServiceConnect.h"
 
 QT_BEGIN_NAMESPACE
@@ -63,9 +63,9 @@ class App : public QMainWindow
 private:
     Ogr *ogr;
 
-    Inf *inf;
+    DBConnect *dbConnect;
 
-    WebServiceConnect *wfs;
+    WebServiceConnect *wsConnect;
 
     QString parameters;
 
@@ -91,8 +91,6 @@ private:
     QAction *mnuExit;
     QAction *mnuOgrHelp;
     QAction *mnuGuiHelp;
-    QAction *mnuOgrinfo;
-    QAction *mnuHsrAbout;
     QAction *mnuAbout;
 
     QProgressBar *theProgress;

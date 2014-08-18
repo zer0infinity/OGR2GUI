@@ -22,24 +22,24 @@
  *****************************************************************************/
 
 /*!
- *	\file TestInf.cpp
- *	\brief Qt Test Inf
+ *	\file TestdbConnect.cpp
+ *	\brief Qt Test dbConnect
  *	\author David Tran [ HSR ]
  *	\version 0.1
  *	\date 13/06/14
  */
 
-#include "testInf.h"
+#include "testDBConnect.h"
 
-TestInf::TestInf() {
-    inf = new Inf();
+TestDBConnect::TestDBConnect() {
+    dbConnect = new DBConnect();
 }
 
-void TestInf::testConnection() {
-    inf->setConnectionType("");
-    QCOMPARE(inf->getConnectionString(), QString(""));
+void TestDBConnect::testConnection() {
+    dbConnect->setConnectionType("");
+    QCOMPARE(dbConnect->getConnectionString(), QString(""));
 }
 
-void TestInf::testSelectedTables() {
-    QCOMPARE(inf->getSelectedTables(), QStringList());
+void TestDBConnect::testSelectedTables() {
+    QCOMPARE(dbConnect->getSelectedTables(), QStringList());
 }

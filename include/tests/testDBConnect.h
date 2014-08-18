@@ -33,14 +33,14 @@
 #define TESTINF_H
 
 #include <QtTest/QtTest>
-#include "inf.h"
+#include "dbConnect.h"
 
-class TestInf: public QObject
+class TestDBConnect: public QObject
 {
     Q_OBJECT
 public:
-    TestInf();
-    Inf *inf;
+    TestDBConnect();
+    DBConnect *dbConnect;
 private slots:
     void testConnection();
     void testSelectedTables();

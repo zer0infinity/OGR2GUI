@@ -29,7 +29,7 @@
  *	\date 13/06/14
  */
 
-#include "testInf.h"
+#include "testDBConnect.h"
 #include "testOgr.h"
 #include "cpl_conv.h"
 
@@ -37,7 +37,7 @@ int main(int argc, char **argv) {
     QApplication app(argc, argv);
 	string dataPath = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + "data").toStdString();
     CPLSetConfigOption("GDAL_DATA", dataPath.c_str());
-    QTest::qExec(&TestInf());
+    QTest::qExec(&TestDBConnect());
     QTest::qExec(&TestOgr());
     return app.exec();
 }

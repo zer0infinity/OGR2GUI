@@ -34,8 +34,8 @@
 
 App::App(QWidget *widget) : QMainWindow(widget)
 {
-    inf = new Inf(this);
-    wfs = new WebServiceConnect(this);
+    dbConnect = new DBConnect(this);
+    wsConnect = new WebServiceConnect(this);
     initData();
     initInterface();
     translateInterface();
@@ -145,11 +145,9 @@ void App::initMenu( void )
     {
         fileMenu = new QMenu( theMenu );
         {
-            mnuOgrinfo = new QAction(this);
             mnuExit = new QAction( this );
             mnuExit->setShortcuts(QKeySequence::Quit);
 
-            fileMenu->addAction(mnuOgrinfo);
             fileMenu->addSeparator();
             fileMenu->addAction( mnuExit );
         }
@@ -160,12 +158,10 @@ void App::initMenu( void )
             mnuOgrHelp->setShortcuts(QKeySequence::HelpContents);
             mnuGuiHelp = new QAction( this );
             mnuGuiHelp->setShortcuts(QKeySequence::WhatsThis);
-            mnuHsrAbout = new QAction( this );
             mnuAbout = new QAction( this );
 
             helpMenu->addAction( mnuOgrHelp );
             helpMenu->addAction( mnuGuiHelp );
-            helpMenu->addAction(mnuHsrAbout);
             helpMenu->addSeparator();
             helpMenu->addAction( mnuAbout );
         }
@@ -404,9 +400,7 @@ void App::initSlots( void )
     QObject::connect( mnuExit, SIGNAL( triggered() ), this, SLOT( close( void ) ) );
     QObject::connect( mnuOgrHelp, SIGNAL( triggered() ), this, SLOT( evtMnuOgrHelp( void ) ) );
     QObject::connect( mnuGuiHelp, SIGNAL( triggered() ), this, SLOT( evtMnuGuiHelp( void ) ) );
-    QObject::connect(mnuOgrinfo, SIGNAL(triggered()), this, SLOT(evtMnuOgrinfo(void)));
     QObject::connect( mnuAbout, SIGNAL( triggered() ), this, SLOT( evtMnuOgrAbout( void ) ) );
-    QObject::connect(mnuHsrAbout, SIGNAL(triggered()), this, SLOT(evtMnuHsrAbout(void)));
 
     QObject::connect( radSourceFile, SIGNAL( toggled( bool ) ), this, SLOT( evtRadSourceFile( void ) ) );
     QObject::connect( radSourceFolder, SIGNAL( toggled( bool ) ), this, SLOT( evtRadSourceFolder( void ) ) );
@@ -445,7 +439,6 @@ void App::translateInterface( void )
 
     fileMenu->setTitle( tr( "File" ) );
     {
-        mnuOgrinfo->setText(tr("Ogrinfo Documentation"));
         mnuExit->setText( tr( "Exit" ) );
     }
 
@@ -453,7 +446,6 @@ void App::translateInterface( void )
     {
         mnuOgrHelp->setText( tr( "Command-Line Options" ) );
         mnuGuiHelp->setText( tr( "Documentation" ) );
-        mnuHsrAbout->setText((tr("About HSR")));
         mnuAbout->setText( tr( "About OGR2GUI" ) );
     }
 
@@ -501,7 +493,7 @@ void App::updateParameters(void) {
     parameters = tr("ogr2ogr");
     parameters += currentParameters();
     if(radSourceWebService->isChecked())
-        parameters += tr(" ") + wfs->getSelectedLayers();
+        parameters += tr(" ") + wsConnect->getSelectedLayers();
     if(!txtInput->toPlainText().isEmpty())
         parameters += tr(" ") + txtInput->toPlainText().simplified();
     txtOutput->setText(parameters);
@@ -732,16 +724,16 @@ void App::evtBtnSourceName( void )
     }
     else if( radSourceDatabase->isChecked() )
     {
-        inf->setConnectionType(databases[idx][1]);
-        inf->showTables(true);
-        if( inf->exec() == QDialog::Accepted )
+        dbConnect->setConnectionType(databases[idx][1]);
+        dbConnect->showTables(true);
+        if( dbConnect->exec() == QDialog::Accepted )
         {
-            txtSourceName->setText( inf->getConnectionString() );
+            txtSourceName->setText( dbConnect->getConnectionString() );
         }
 
         QStringList fileList;
 
-        QStringList tables = inf->getSelectedTables();
+        QStringList tables = dbConnect->getSelectedTables();
 
         QString connectionString = txtSourceName->text();
         connectionString.truncate( connectionString.lastIndexOf( tr( "tables=" ) ) );
@@ -756,9 +748,9 @@ void App::evtBtnSourceName( void )
             txtSourceQuery->setEnabled( false );
         }
     } else if(radSourceWebService->isChecked()) {
-        wfs->setConnectionType(webservices[idx][1]);
-        if(wfs->exec() == QDialog::Accepted) {
-            txtSourceName->setText(wfs->getConnectionString());
+        wsConnect->setConnectionType(webservices[idx][1]);
+        if(wsConnect->exec() == QDialog::Accepted) {
+            txtSourceName->setText(wsConnect->getConnectionString());
         }
     }
     updateParameters();
@@ -824,11 +816,11 @@ void App::evtBtnTargetName( void )
             updateParameters();
             return;
         }
-        inf->showTables(false);
-        inf->setConnectionType( databases[ cmbTargetFormat->currentIndex() ][ 1 ] );
-        if( inf->exec() == QDialog::Accepted )
+        dbConnect->showTables(false);
+        dbConnect->setConnectionType( databases[ cmbTargetFormat->currentIndex() ][ 1 ] );
+        if( dbConnect->exec() == QDialog::Accepted )
         {
-            txtTargetName->setText( inf->getConnectionString() );
+            txtTargetName->setText( dbConnect->getConnectionString() );
         }
     }
     else if( radTargetFolder->isChecked() )
@@ -888,7 +880,7 @@ void App::evtBtnExecute( void )
     }
     bool resVal = true;
     if(radSourceWebService->isChecked()) {
-        QStringList fileList = wfs->getSelectedLayersAsList();
+        QStringList fileList = wsConnect->getSelectedLayersAsList();
         sourcename = webservices[cmbSourceFormat->currentIndex()][1] + sourcename;
         for(int i=0;i<fileList.size();++i) {
             if(!ogr->openSource(sourcename.toStdString(), fileList.at(i).toStdString(), epsg, query, error)) {
@@ -921,7 +913,7 @@ void App::evtBtnExecute( void )
             QString parameters = currentParameters();
             QString command = QDir::toNativeSeparators(QCoreApplication::applicationFilePath());
             if(radSourceWebService->isChecked())
-                parameters += tr(" ") + wfs->getSelectedLayers();
+                parameters += tr(" ") + wsConnect->getSelectedLayers();
             if(!txtInput->toPlainText().isEmpty())
                 parameters += tr(" ") + txtInput->toPlainText();
             command += parameters;

@@ -32,14 +32,14 @@ HEADERS += \
     include/app.h \
     include/dta.h \
     include/ogr.h \
-    include/inf.h \
+    include/dbConnect.h \
     include/utils.h \
     include/webServiceConnect.h \
     include/ogr2ogrThread.h
 
 SOURCES += \
     src/ogr.cpp \
-    src/inf.cpp \
+    src/dbConnect.cpp \
     src/app.cpp \
     src/main.cpp \
     src/utils/ogr2ogr.cpp \

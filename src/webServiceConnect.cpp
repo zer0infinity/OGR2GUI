@@ -22,8 +22,8 @@
  *****************************************************************************/
 
 /*!
- *	\file wfsConnect.cpp
- *	\brief WFS Connection
+ *	\file webServiceConnect.cpp
+ *	\brief Web Service Connect
  *	\author David Tran [ HSR ]
  *	\version 0.7
  *	\date 13/06/14

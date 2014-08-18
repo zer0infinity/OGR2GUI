@@ -23,16 +23,16 @@
  *****************************************************************************/
 
 /*!
- *	\file Inf.cpp
- *	\brief Database Informations
+ *	\file dbConnect.cpp
+ *	\brief Database Connect
  *	\author Olivier Pilotte [ Inventis ], David Tran [ HSR ]
  *	\version 0.7
  *	\date 13/06/14
  */
 
-#include "inf.h"
+#include "dbConnect.h"
 
-Inf::Inf( QWidget *parent ) : QDialog( parent )
+DBConnect::DBConnect( QWidget *parent ) : QDialog( parent )
 {
     initInterface();
     initSlots();
@@ -42,12 +42,12 @@ Inf::Inf( QWidget *parent ) : QDialog( parent )
     this->setMinimumWidth( 380 );
 }
 
-Inf::~Inf( void )
+DBConnect::~DBConnect( void )
 {
 
 }
 
-void Inf::showTables(bool enable)
+void DBConnect::showTables(bool enable)
 {
     if(enable) {
         lblTables->show();
@@ -62,7 +62,7 @@ void Inf::showTables(bool enable)
     }
 }
 
-void Inf::initInterface( void )
+void DBConnect::initInterface( void )
 {
     theLayout = new QVBoxLayout( this );
     {
@@ -175,7 +175,7 @@ void Inf::initInterface( void )
     this->setLayout( theLayout );
 }
 
-void Inf::initSlots( void )
+void DBConnect::initSlots( void )
 {
     QObject::connect( btnConnect, SIGNAL( clicked() ), this, SLOT( evtBtnConnect( void ) ) );
     QObject::connect( radAllTables, SIGNAL( clicked() ), this, SLOT( evtRadAllTables( void ) ) );
@@ -184,7 +184,7 @@ void Inf::initSlots( void )
     QObject::connect( btnAccept, SIGNAL( clicked() ), this, SLOT( evtBtnAccept( void ) ) );
 }
 
-void Inf::translateInterface( void )
+void DBConnect::translateInterface( void )
 {
     this->setWindowTitle( tr( "Database" ) );
 
@@ -205,7 +205,7 @@ void Inf::translateInterface( void )
     btnCancel->setText( tr( "Cancel" ) );
 }
 
-void Inf::evtBtnConnect( void )
+void DBConnect::evtBtnConnect( void )
 {
     QMessageBox msg;
 
@@ -252,19 +252,19 @@ void Inf::evtBtnConnect( void )
     base.close();
 }
 
-void Inf::evtRadAllTables(void) {
+void DBConnect::evtRadAllTables(void) {
     for(int i = 0; i < lstTables->count(); ++i) {
         lstTables->item(i)->setCheckState(Qt::Checked);
     }
 }
 
-void Inf::evtRadNonTables(void) {
+void DBConnect::evtRadNonTables(void) {
     for(int i = 0; i < lstTables->count(); ++i) {
         lstTables->item(i)->setCheckState(Qt::Unchecked);
     }
 }
 
-void Inf::evtBtnAccept( void )
+void DBConnect::evtBtnAccept( void )
 {
     int nb = 0;
 
@@ -336,12 +336,12 @@ void Inf::evtBtnAccept( void )
     this->accept();
 }
 
-void Inf::evtBtnCancel( void )
+void DBConnect::evtBtnCancel( void )
 {
     this->reject();
 }
 
-void Inf::setConnectionType(QString type) {
+void DBConnect::setConnectionType(QString type) {
     if(connectionType.compare(type) != 0) {
         txtHost->clear();
         txtPort->clear();
@@ -380,12 +380,12 @@ void Inf::setConnectionType(QString type) {
     }
 }
 
-QString Inf::getConnectionString( void ) const
+QString DBConnect::getConnectionString( void ) const
 {
     return connectionString;
 }
 
-QStringList Inf::getSelectedTables( void ) const
+QStringList DBConnect::getSelectedTables( void ) const
 {
     return selectedTables;
 }
