@@ -62,8 +62,8 @@ void App::initData(void) {
     for(int i = 0; i < databasesCount; ++i) {
         databases[i] = new QString[2];
     }
-    webservices = new QString*[webservicesCount];
-    for(int i = 0; i < webservicesCount; ++i) {
+    webservices = new QString*[webServicesCount];
+    for(int i = 0; i < webServicesCount; ++i) {
         webservices[i] = new QString[2];
     }
 
@@ -532,15 +532,6 @@ void App::evtMnuGuiHelp( void )
     QDesktopServices::openUrl(QUrl(docPath));
 }
 
-void App::evtMnuOgrinfo(void) {
-    QDesktopServices::openUrl(QUrl(tr("http://gdal.org/ogrinfo.html")));
-}
-
-void App::evtMnuHsrAbout( void )
-{
-    QDesktopServices::openUrl( QUrl( tr( "http://www.hsr.ch/" ) ) );
-}
-
 void App::evtMnuOgrAbout( void )
 {
     QDesktopServices::openUrl( QUrl( tr( "http://www.ogr2gui.ca/" ) ) );
@@ -630,7 +621,7 @@ void App::evtRadSourceWebService( void )
 
     cmbSourceFormat->clear();
 
-    for( int i = 0; i < webservicesCount; i ++ )
+    for( int i = 0; i < webServicesCount; i ++ )
     {
         cmbSourceFormat->addItem( webservices[ i ][ 0 ] );
     }

@@ -22,7 +22,7 @@
  *****************************************************************************/
 
 /**
- *	\file webServiceConnect..h
+ *	\file webServiceConnect.h
  *	\brief Web Service Connect
  *	\author David Tran [ HSR ]
  *	\version 0.7
@@ -97,13 +97,13 @@ public slots:
 public:
 
     /**
-         *	\fn WFSConnect( QWidget * = 0 );
+         *	\fn WebServiceConnect( QWidget * = 0 );
          *	\brief Constructor
          */
     WebServiceConnect( QWidget * = 0 );
 
     /**
-         *	\fn ~WFSConnect
+         *	\fn ~WebServiceConnect
          *	\brief Destructor
          */
     ~WebServiceConnect( void );

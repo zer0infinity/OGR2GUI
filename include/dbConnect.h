@@ -30,8 +30,8 @@
  *	\date 13/06/14
  */
 
-#ifndef INF
-#define INF
+#ifndef DBCONNECT_H
+#define DBCONNECT_H
 
 #include <QtWidgets>
 #include <QtSql>

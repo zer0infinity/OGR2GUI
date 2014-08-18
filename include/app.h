@@ -64,22 +64,19 @@ private:
     Ogr *ogr;
 
     DBConnect *dbConnect;
-
     WebServiceConnect *wsConnect;
 
     QString parameters;
 
     const static int formatsCount = 47;
     QString **formats;
-
     const static int formatsOutput = 28;
 
     const static int databasesCount = 4;
     QString **databases;
-
     const static int databasesOutput = 2;
 
-    const static int webservicesCount = 1;
+    const static int webServicesCount = 1;
     QString **webservices;
 
     QList<QPair<QString, QString> > projectionsList;
@@ -226,8 +223,6 @@ private:
 private slots :
     void evtMnuOgrHelp( void );
     void evtMnuGuiHelp( void );
-    void evtMnuOgrinfo(void);
-    void evtMnuHsrAbout( void );
     void evtMnuOgrAbout( void );
 
     void evtRadSourceFile( void );
