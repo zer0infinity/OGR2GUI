@@ -245,7 +245,7 @@ void DBConnect::evtBtnConnect( void )
             ++it;
         }
         btnAccept->setEnabled(true);
-    } else {
+    } else if(connectionType.compare("QSQLITE") != 0) {
         msg.setText("* Can't connect to database !");
         msg.exec();
     }

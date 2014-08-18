@@ -40,8 +40,8 @@
  */
 
 /**
- *	\file App.h
- *	\brief Qt Application
+ *	\file app.h
+ *	\brief ogr2ogr GUI
  *	\author Olivier Pilotte [ Inventis ], Mohamed Hedi Lassoued [ Inventis ], David Tran [ HSR ]
  *	\version 0.7
  *	\date 13/06/14

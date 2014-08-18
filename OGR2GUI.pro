@@ -24,9 +24,11 @@
 
 TEMPLATE = app
 INCLUDEPATH += $$PWD/include $$PWD/include/ogr
-RESOURCES += $$PWD/res/gdalicon.qrc
-RC_FILE = $$PWD/res/gdalicon.rc
 #DESTDIR += $$PWD/bin
+
+RC_FILE = res/gdalicon.rc
+
+RESOURCES += res/gdalicon.qrc
 
 HEADERS += \
     include/app.h \

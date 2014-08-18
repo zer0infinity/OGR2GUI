@@ -23,7 +23,7 @@
  *****************************************************************************/
 
 /*!
- *	\file Ogr.cpp
+ *	\file ogr.cpp
  *	\brief OGR C API
  *	\author Olivier Pilotte [ Inventis ], David Tran [ HSR ]
  *	\version 0.7

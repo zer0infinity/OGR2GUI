@@ -23,7 +23,7 @@
  *****************************************************************************/
 
 /*!
- *	\file Dta.h
+ *	\file dta.h
  *	\brief Formats & Projections
  *	\author Olivier Pilotte [ Inventis ], David Tran [ HSR ]
  *	\version 0.7

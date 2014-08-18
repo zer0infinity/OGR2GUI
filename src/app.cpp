@@ -23,8 +23,8 @@
  *****************************************************************************/
 
 /*!
- *	\file App.cpp
- *	\brief Qt Application
+ *	\file app.cpp
+ *	\brief ogr2ogr GUI
  *	\author Olivier Pilotte [ Inventis ], Mohamed Hedi Lassoued [ Inventis ], David Tran [ HSR ]
  *	\version 0.7
  *	\date 13/06/14
@@ -34,6 +34,7 @@
 
 App::App(QWidget *widget) : QMainWindow(widget)
 {
+    ogr = new Ogr();
     dbConnect = new DBConnect(this);
     wsConnect = new WebServiceConnect(this);
     initData();
@@ -52,8 +53,6 @@ App::~App( void )
 }
 
 void App::initData(void) {
-    ogr = new Ogr();
-
     formats = new QString*[formatsCount];
     for(int i = 0; i < formatsCount; ++i) {
         formats[i] = new QString[2];
@@ -680,6 +679,7 @@ void App::evtTxtSourceName( void ) {
         }
     }
     updateParameters();
+    btnExecute->setEnabled(true);
 }
 
 void App::evtBtnSourceName( void )
@@ -887,7 +887,6 @@ void App::evtBtnExecute( void )
             if(!txtSourceQuery->text().isEmpty()) {
                 if(!ogr->testExecuteSQL(txtSourceQuery->text().toStdString())) {
                     txtOutput->append(tr("\n * unable to execute sql query !\n"));
-                    btnExecute->setEnabled(false);
                     return;
                 }
             }
