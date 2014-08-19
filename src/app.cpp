@@ -32,8 +32,7 @@
 
 #include "app.h"
 
-App::App(QWidget *widget) : QMainWindow(widget)
-{
+App::App(QWidget *widget) : QMainWindow(widget) {
     ogr = new Ogr();
     dbConnect = new DBConnect(this);
     wsConnect = new WebServiceConnect(this);
@@ -45,8 +44,7 @@ App::App(QWidget *widget) : QMainWindow(widget)
     this->show();
 }
 
-App::~App(void)
-{
+App::~App(void) {
     delete[] *formats;
     delete[] *databases;
     delete[] *webservices;
@@ -122,8 +120,7 @@ void App::addProjections() {
     }
 }
 
-void App::initInterface(void)
-{
+void App::initInterface(void) {
     thePanel = new QWidget();
 
     initMenu();
@@ -138,8 +135,7 @@ void App::initInterface(void)
     this->setCentralWidget(thePanel);
 }
 
-void App::initMenu(void)
-{
+void App::initMenu(void) {
     theMenu = new QMenuBar(this);
     {
         fileMenu = new QMenu(theMenu);
@@ -171,8 +167,7 @@ void App::initMenu(void)
     this->setMenuBar(theMenu);
 }
 
-void App::initLayout(void)
-{
+void App::initLayout(void) {
     theLayout = new QVBoxLayout(thePanel);
     {
         theLayout->setMargin(7);
@@ -394,8 +389,7 @@ void App::initLayout(void)
     thePanel->setLayout(theLayout);
 }
 
-void App::initSlots(void)
-{
+void App::initSlots(void) {
     QObject::connect(mnuExit, SIGNAL(triggered()), this, SLOT(close(void)));
     QObject::connect(mnuOgr, SIGNAL(triggered()), this, SLOT(evtMnuOgrHelp(void)));
     QObject::connect(mnuDoc, SIGNAL(triggered()), this, SLOT(evtMnuGuiHelp(void)));
@@ -431,8 +425,7 @@ void App::initSlots(void)
     QMetaObject::connectSlotsByName(this);
 }
 
-void App::translateInterface(void)
-{
+void App::translateInterface(void) {
     this->setWindowTitle(tr("OGR2GUI"));
     this->setWindowIcon(QIcon(":/icons/gdalicon.png"));
 
@@ -518,24 +511,20 @@ QString App::currentParameters(void) const {
     return parameters;
 }
 
-void App::evtMnuOgrHelp(void)
-{
+void App::evtMnuOgrHelp(void) {
     QDesktopServices::openUrl(QUrl(tr("http://www.gdal.org/ogr2ogr.html")));
 }
 
-void App::evtMnuGuiHelp(void)
-{
+void App::evtMnuGuiHelp(void) {
     const QString doc = tr("file:///") + QCoreApplication::applicationDirPath() + tr("/doc/html/index.html");
     QDesktopServices::openUrl(QUrl(doc));
 }
 
-void App::evtMnuOgrAbout(void)
-{
+void App::evtMnuOgrAbout(void) {
     QDesktopServices::openUrl(QUrl(tr("http://www.ogr2gui.ca/")));
 }
 
-void App::evtRadSourceFile(void)
-{
+void App::evtRadSourceFile(void) {
     btnSourceName->setText(tr("Open"));
 
     cmbSourceFormat->clear();
@@ -560,8 +549,7 @@ void App::evtRadSourceFile(void)
     txtSourceQuery->setEnabled(true);
 }
 
-void App::evtRadSourceFolder(void)
-{
+void App::evtRadSourceFolder(void) {
     btnSourceName->setText(tr("Browse"));
 
     cmbSourceFormat->clear();
@@ -586,8 +574,7 @@ void App::evtRadSourceFolder(void)
     txtSourceQuery->setEnabled(true);
 }
 
-void App::evtRadSourceDatabase(void)
-{
+void App::evtRadSourceDatabase(void) {
     btnSourceName->setText(tr("Connect"));
 
     cmbSourceFormat->clear();
@@ -609,8 +596,7 @@ void App::evtRadSourceDatabase(void)
     txtSourceQuery->setEnabled(true);
 }
 
-void App::evtRadSourceWebService(void)
-{
+void App::evtRadSourceWebService(void) {
     btnSourceName->setText(tr("Connect"));
 
     cmbSourceFormat->clear();
@@ -631,8 +617,7 @@ void App::evtRadSourceWebService(void)
     txtSourceQuery->setEnabled(true);
 }
 
-void App::evtCmbSourceFormat(void)
-{
+void App::evtCmbSourceFormat(void) {
     txtSourceName->clear();
     txtSourceProj->clear();
     txtSourceQuery->clear();
@@ -674,24 +659,21 @@ void App::evtTxtSourceName(void) {
         }
     }
     updateParameters();
-    btnExecute->setEnabled(true);
+    if(txtSourceName->text().isEmpty() || txtTargetName->text().isEmpty())
+        btnExecute->setEnabled(false);
+    else
+        btnExecute->setEnabled(true);
 }
 
-void App::evtBtnSourceName(void)
-{
+void App::evtBtnSourceName(void) {
     txtSourceName->selectAll();
     txtSourceName->setFocus();
     int idx = cmbSourceFormat->currentIndex();
-
     QString type;
-
-    if(radSourceFile->isChecked())
-    {
+    if(radSourceFile->isChecked()) {
         type = tr("\"") + formats[idx][0] + tr(" (*.") + formats[idx][1] + tr(")\"");
         txtSourceName->setText(QDir::toNativeSeparators(QFileDialog::getOpenFileName(this, tr("Source File"), tr(""), type)));
-    }
-    else if(radSourceFolder->isChecked())
-    {
+    } else if(radSourceFolder->isChecked()) {
         QStringList types;
         type = tr("*.") + formats[cmbSourceFormat->currentIndex()][1];
 
@@ -701,24 +683,18 @@ void App::evtBtnSourceName(void)
         types.append(type);
         QStringList list = dir.entryList(types);
 
-        if(list.size() > 1)
-        {
+        if(list.size() > 1) {
             txtSourceProj->setEnabled(false);
             txtSourceQuery->setEnabled(false);
         }
-    }
-    else if(radSourceDatabase->isChecked())
-    {
+    } else if(radSourceDatabase->isChecked()) {
         dbConnect->setConnectionType(databases[idx][1]);
         dbConnect->showTables(true);
         if(dbConnect->exec() == QDialog::Accepted) {
             txtSourceName->setText(dbConnect->getConnectionString());
         }
-
         QStringList fileList;
-
         QStringList tables = dbConnect->getSelectedTables();
-
         QString connectionString = txtSourceName->text();
         connectionString.truncate(connectionString.lastIndexOf(tr("tables=")));
 
@@ -738,8 +714,7 @@ void App::evtBtnSourceName(void)
     updateParameters();
 }
 
-void App::evtRadTargetFile(void)
-{
+void App::evtRadTargetFile(void) {
     btnTargetName->setText(tr("Save"));
 
     cmbTargetFormat->clear();
@@ -750,8 +725,7 @@ void App::evtRadTargetFile(void)
     txtTargetName->clear();
 }
 
-void App::evtRadTargetFolder(void)
-{
+void App::evtRadTargetFolder(void) {
     btnTargetName->setText(tr("Browse"));
 
     cmbTargetFormat->clear();
@@ -760,8 +734,7 @@ void App::evtRadTargetFolder(void)
     }
 }
 
-void App::evtRadTargetDatabase(void)
-{
+void App::evtRadTargetDatabase(void) {
     btnTargetName->setText(tr("Connect"));
 
     cmbTargetFormat->clear();
@@ -770,25 +743,22 @@ void App::evtRadTargetDatabase(void)
     }
 }
 
-void App::evtCmbTargetFormat(void)
-{
+void App::evtCmbTargetFormat(void) {
     txtTargetName->clear();
     updateParameters();
 }
 
-void App::evtTxtTargetName(void)
-{
-    btnExecute->setEnabled(true);
+void App::evtTxtTargetName(void) {
+    if(txtSourceName->text().isEmpty() || txtTargetName->text().isEmpty())
+        btnExecute->setEnabled(false);
+    else
+        btnExecute->setEnabled(true);
 }
 
-void App::evtBtnTargetName(void)
-{
+void App::evtBtnTargetName(void) {
     QString type;
-
     int index = cmbTargetFormat->currentIndex();
-
-    if(radTargetDatabase->isChecked())
-    {
+    if(radTargetDatabase->isChecked()) {
         if(databases[index][0] == "SQLite") {
             type = tr("\"") + databases[index][0] + tr(" (*") + tr(".sqlite") + tr(")\"");
             txtTargetName->setText(QDir::toNativeSeparators(QFileDialog::getSaveFileName(this, tr("Save File"), tr(""), type)));
@@ -797,32 +767,26 @@ void App::evtBtnTargetName(void)
         }
         dbConnect->showTables(false);
         dbConnect->setConnectionType(databases[cmbTargetFormat->currentIndex()][1]);
-        if(dbConnect->exec() == QDialog::Accepted)
-        {
+        if(dbConnect->exec() == QDialog::Accepted) {
             txtTargetName->setText(dbConnect->getConnectionString());
         }
-    }
-    else if(radTargetFolder->isChecked())
-    {
-        if(radSourceFile->isChecked())
-        {
+    } else if(radTargetFolder->isChecked()) {
+        if(radSourceFile->isChecked()) {
             type = tr("\"") + formats[index][0] + tr(" (*.") + formats[index][1] + tr(") | *.") + formats[index][1];
 
             txtTargetName->setText(QDir::toNativeSeparators(QFileDialog::getSaveFileName(this, tr("Save File"), tr(""), type)));
-        }
-        else if(radTargetFolder->isChecked())
-        {
+        } else if(radTargetFolder->isChecked()) {
             txtTargetName->setText(QDir::toNativeSeparators(QFileDialog::getExistingDirectory(this, tr("Target Folder"), tr(""), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks)));
         }
-    }
-    else
-    {
+    } else {
         type = tr("\"") + formats[index][0] + tr(" (*.") + formats[index][1] + tr(")\"");
-
         txtTargetName->setText(QDir::toNativeSeparators(QFileDialog::getSaveFileName(this, tr("Target File"), tr(""), type)));
     }
 
-    btnExecute->setEnabled(true);
+    if(txtSourceName->text().isEmpty() || txtTargetName->text().isEmpty())
+        btnExecute->setEnabled(false);
+    else
+        btnExecute->setEnabled(true);
     updateParameters();
 }
 
@@ -845,8 +809,7 @@ void App::evtUpdateParameters(void) {
     updateParameters();
 }
 
-void App::evtBtnExecute(void)
-{
+void App::evtBtnExecute(void) {
     updateParameters();
 
     QString sourcename = txtSourceName->text().trimmed();
