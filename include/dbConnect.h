@@ -25,7 +25,7 @@
 /**
  *	\file dbConnect.h
  *	\brief Database Connect
- *	\author Olivier Pilotte [ Inventis ], David Tran [ HSR ]
+ *	\author Olivier Pilotte [Inventis], David Tran [HSR]
  *	\version 0.7
  *	\date 13/06/14
  */
@@ -84,68 +84,68 @@ private:
     QPushButton *btnCancel;
 
     /**
-         *	\fn void InitInterface( void );
+         *	\fn void InitInterface(void);
          *	\brief Inits Interface
          */
-    void initInterface( void );
+    void initInterface(void);
 
     /**
-         *	\fn void InitSlots( void );
+         *	\fn void InitSlots(void);
          *	\brief Inits Slots
          */
-    void initSlots( void );
+    void initSlots(void);
 
     /**
-         *	\fn void TranslateInterface( void );
+         *	\fn void TranslateInterface(void);
          *	\brief Translates Interface
          */
-    void translateInterface( void );
+    void translateInterface(void);
 
 public slots:
-    void evtBtnConnect( void );
-    void evtRadAllTables( void );
-    void evtRadNonTables( void );
-    void evtBtnAccept( void );
-    void evtBtnCancel( void );
+    void evtBtnConnect(void);
+    void evtRadAllTables(void);
+    void evtRadNonTables(void);
+    void evtBtnAccept(void);
+    void evtBtnCancel(void);
 
 public:
 
     /**
-         *	\fn Inf( const QWidget & );
+         *	\fn Inf(const QWidget &);
          *	\brief Constructor
          */
-    DBConnect( QWidget * = 0 );
+    DBConnect(QWidget * = 0);
 
     /**
          *	\fn ~Inf
          *	\brief Destructor
          */
-    ~DBConnect( void );
+    ~DBConnect(void);
 
     /**
          * \fn void showTables(bool enable)
          * \brief show tables
          * \param enable : show tables
          */
-    void showTables(bool enable);
+    void showTables(const bool enable) const;
 
     /**
-         *	\fn void setConnectionType( QString )
+         *	\fn void setConnectionType(QString type)
          *	\brief Sets connection type
          */
-    void setConnectionType( QString );
+    void setConnectionType(const QString type);
 
     /**
-         *	\fn QString getConnectionString( void )
+         *	\fn QString getConnectionString(void)
          *	\brief returns connection string
          */
-    QString getConnectionString( void ) const;
+    QString getConnectionString(void) const;
 
     /**
-         *	\fn QSringList getSelectedTables( void )
+         *	\fn QSringList getSelectedTables(void)
          *	\brief returns selected tables
          */
-    QStringList getSelectedTables( void ) const;
+    QStringList getSelectedTables(void) const;
 };
 
 QT_END_NAMESPACE

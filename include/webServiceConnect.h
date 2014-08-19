@@ -24,7 +24,7 @@
 /**
  *	\file webServiceConnect.h
  *	\brief Web Service Connect
- *	\author David Tran [ HSR ]
+ *	\author David Tran [HSR]
  *	\version 0.7
  *	\date 13/06/14
  */
@@ -70,68 +70,68 @@ private:
     QPushButton *btnCancel;
 
     /**
-         *	\fn void InitInterface( void );
+         *	\fn void InitInterface(void);
          *	\brief Inits Interface
          */
-    void initInterface( void );
+    void initInterface(void);
 
     /**
-         *	\fn void InitSlots( void );
+         *	\fn void InitSlots(void);
          *	\brief Inits Slots
          */
-    void initSlots( void );
+    void initSlots(void);
 
     /**
-         *	\fn void TranslateInterface( void );
+         *	\fn void TranslateInterface(void);
          *	\brief Translates Interface
          */
-    void translateInterface( void );
+    void translateInterface(void);
 
 public slots:
-    void evtBtnConnect( void );
-    void evtRadAllLayers( void );
-    void evtRadNonLayers( void );
-    void evtBtnAccept( void );
-    void evtBtnCancel( void );
+    void evtBtnConnect(void);
+    void evtRadAllLayers(void);
+    void evtRadNonLayers(void);
+    void evtBtnAccept(void);
+    void evtBtnCancel(void);
 
 public:
 
     /**
-         *	\fn WebServiceConnect( QWidget * = 0 );
+         *	\fn WebServiceConnect(QWidget * = 0);
          *	\brief Constructor
          */
-    WebServiceConnect( QWidget * = 0 );
+    WebServiceConnect(QWidget * = 0);
 
     /**
          *	\fn ~WebServiceConnect
          *	\brief Destructor
          */
-    ~WebServiceConnect( void );
+    ~WebServiceConnect(void);
 
     /**
-         *	\fn void setConnectionType( QString )
+         *	\fn void setConnectionType(QString)
          *	\brief Sets connection type
          *  \param QString : connection type
          */
-    void setConnectionType( QString );
+    void setConnectionType(const QString);
 
     /**
-         *	\fn QString getConnectionString( void )
+         *	\fn QString getConnectionString(void)
          *	\brief returns connection string
          */
-    QString getConnectionString( void ) const;
+    QString getConnectionString(void) const;
 
     /**
-         *	\fn QSring getSelectedTables( void )
+         *	\fn QSring getSelectedTables(void)
          *	\brief returns selected layers
          */
-    QString getSelectedLayers( void ) const;
+    QString getSelectedLayers(void) const;
 
     /**
-         *	\fn QSringList getSelectedTables( void )
+         *	\fn QSringList getSelectedTables(void)
          *	\brief returns selected layers
          */
-    QStringList getSelectedLayersAsList( void ) const;
+    QStringList getSelectedLayersAsList(void) const;
 };
 
 QT_END_NAMESPACE

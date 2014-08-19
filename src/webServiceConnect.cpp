@@ -24,119 +24,119 @@
 /*!
  *	\file webServiceConnect.cpp
  *	\brief Web Service Connect
- *	\author David Tran [ HSR ]
+ *	\author David Tran [HSR]
  *	\version 0.7
  *	\date 13/06/14
  */
 
 #include "webServiceConnect.h"
 
-WebServiceConnect::WebServiceConnect( QWidget *parent ) : QDialog( parent )
+WebServiceConnect::WebServiceConnect(QWidget *parent) : QDialog(parent)
 {
     initInterface();
     initSlots();
     translateInterface();
 
-    this->setWindowModality( Qt::ApplicationModal );
-    this->setMinimumWidth( 380 );
+    this->setWindowModality(Qt::ApplicationModal);
+    this->setMinimumWidth(380);
 }
 
-WebServiceConnect::~WebServiceConnect( void )
+WebServiceConnect::~WebServiceConnect(void)
 {
 
 }
 
-void WebServiceConnect::initInterface( void )
+void WebServiceConnect::initInterface(void)
 {
-    theLayout = new QVBoxLayout( this );
+    theLayout = new QVBoxLayout(this);
     {
         lytInfo = new QGridLayout();
         {
             lblHost = new QLabel();
-            lblHost->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-            lblHost->setMinimumSize( 70, 20 );
-            lblHost->setMaximumSize( 70, 20 );
+            lblHost->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+            lblHost->setMinimumSize(70, 20);
+            lblHost->setMaximumSize(70, 20);
 
             lytHost = new QHBoxLayout();
             {
                 txtHost = new QLineEdit();
-                lytHost->addWidget( txtHost );
+                lytHost->addWidget(txtHost);
             }
 
-            lytInfo->addWidget( lblHost, 0, 0 );
-            lytInfo->addLayout( lytHost, 0, 1 );
+            lytInfo->addWidget(lblHost, 0, 0);
+            lytInfo->addLayout(lytHost, 0, 1);
 
             btnConnect = new QPushButton();
 
-            lytInfo->addWidget( btnConnect, 4, 1 );
+            lytInfo->addWidget(btnConnect, 4, 1);
 
             lytTables = new QVBoxLayout();
             {
                 lblTables = new QLabel();
-                lblTables->setAlignment( Qt::AlignRight );
-                lblTables->setMinimumSize( 70, 20 );
-                lblTables->setMaximumSize( 70, 20 );
+                lblTables->setAlignment(Qt::AlignRight);
+                lblTables->setMinimumSize(70, 20);
+                lblTables->setMaximumSize(70, 20);
 
                 radAllTables = new QPushButton();
                 radNonTables = new QPushButton();
 
-                lytTables->addWidget( lblTables );
-                lytTables->addWidget( radAllTables );
-                lytTables->addWidget( radNonTables );
+                lytTables->addWidget(lblTables);
+                lytTables->addWidget(radAllTables);
+                lytTables->addWidget(radNonTables);
             }
 
             lstTables = new QListWidget();
 
-            lytInfo->addLayout( lytTables, 6, 0 );
-            lytInfo->addWidget( lstTables, 6, 1 );
+            lytInfo->addLayout(lytTables, 6, 0);
+            lytInfo->addWidget(lstTables, 6, 1);
         }
 
-        theLayout->addLayout( lytInfo );
+        theLayout->addLayout(lytInfo);
 
         lytDialog = new QHBoxLayout();
         {
             btnAccept = new QPushButton();
-            btnAccept->setEnabled( false );
+            btnAccept->setEnabled(false);
 
             btnCancel = new QPushButton();
 
-            lytDialog->addWidget( btnAccept );
-            lytDialog->addWidget( btnCancel );
+            lytDialog->addWidget(btnAccept);
+            lytDialog->addWidget(btnCancel);
         }
 
-        theLayout->addLayout( lytDialog );
+        theLayout->addLayout(lytDialog);
     }
 
-    this->setLayout( theLayout );
+    this->setLayout(theLayout);
 }
 
-void WebServiceConnect::initSlots( void )
+void WebServiceConnect::initSlots(void)
 {
-    QObject::connect( btnConnect, SIGNAL( clicked() ), this, SLOT( evtBtnConnect( void ) ) );
-    QObject::connect( radAllTables, SIGNAL( clicked() ), this, SLOT( evtRadAllLayers( void ) ) );
-    QObject::connect( radNonTables, SIGNAL( clicked() ), this, SLOT( evtRadNonLayers( void ) ) );
-    QObject::connect( btnCancel, SIGNAL( clicked() ), this, SLOT( evtBtnCancel( void ) ) );
-    QObject::connect( btnAccept, SIGNAL( clicked() ), this, SLOT( evtBtnAccept( void ) ) );
+    QObject::connect(btnConnect, SIGNAL(clicked()), this, SLOT(evtBtnConnect(void)));
+    QObject::connect(radAllTables, SIGNAL(clicked()), this, SLOT(evtRadAllLayers(void)));
+    QObject::connect(radNonTables, SIGNAL(clicked()), this, SLOT(evtRadNonLayers(void)));
+    QObject::connect(btnCancel, SIGNAL(clicked()), this, SLOT(evtBtnCancel(void)));
+    QObject::connect(btnAccept, SIGNAL(clicked()), this, SLOT(evtBtnAccept(void)));
 }
 
-void WebServiceConnect::translateInterface( void )
+void WebServiceConnect::translateInterface(void)
 {
-    this->setWindowTitle( tr( "Web Service" ) );
+    this->setWindowTitle(tr("Web Service"));
 
-    lblHost->setText( tr( "URI" ) );
+    lblHost->setText(tr("URI"));
 
-    btnConnect->setText( tr( "Connect" ) );
+    btnConnect->setText(tr("Connect"));
 
-    lblTables->setText( tr( "Layers" ) );
+    lblTables->setText(tr("Layers"));
 
-    radAllTables->setText( tr( "Select All" ) );
-    radNonTables->setText( tr( "Reset" ) );
+    radAllTables->setText(tr("Select All"));
+    radNonTables->setText(tr("Reset"));
 
-    btnAccept->setText( tr( "Accept" ) );
-    btnCancel->setText( tr( "Cancel" ) );
+    btnAccept->setText(tr("Accept"));
+    btnCancel->setText(tr("Cancel"));
 }
 
-void WebServiceConnect::evtBtnConnect( void )
+void WebServiceConnect::evtBtnConnect(void)
 {
     lstTables->clear();
     QMessageBox msg;
@@ -147,30 +147,30 @@ void WebServiceConnect::evtBtnConnect( void )
         QStringList::Iterator it = fileList.begin();
         while(it != fileList.end()) {
             QListWidgetItem *item = new QListWidgetItem(*it);
-            item->setCheckState( Qt::Unchecked );
-            lstTables->addItem( item );
+            item->setCheckState(Qt::Unchecked);
+            lstTables->addItem(item);
             ++it;
         }
-        btnAccept->setEnabled( true );
+        btnAccept->setEnabled(true);
     } else {
-        msg.setText( "* Can't connect to web service !" );
+        msg.setText("* Can't connect to web service !");
         msg.exec();
     }
 }
 
-void WebServiceConnect::evtRadAllLayers( void ) {
+void WebServiceConnect::evtRadAllLayers(void) {
     for(int i = 0; i < lstTables->count(); ++i) {
-        lstTables->item( i )->setCheckState( Qt::Checked );
+        lstTables->item(i)->setCheckState(Qt::Checked);
     }
 }
 
-void WebServiceConnect::evtRadNonLayers( void ) {
+void WebServiceConnect::evtRadNonLayers(void) {
     for(int i = 0; i < lstTables->count(); ++i) {
-        lstTables->item( i )->setCheckState( Qt::Unchecked );
+        lstTables->item(i)->setCheckState(Qt::Unchecked);
     }
 }
 
-void WebServiceConnect::evtBtnAccept( void )
+void WebServiceConnect::evtBtnAccept(void)
 {
     connectionString = txtHost->text();
     selectedLayers.clear();
@@ -184,33 +184,33 @@ void WebServiceConnect::evtBtnAccept( void )
     selectedLayersList = selectedLayers.split(" ");
 
     lstTables->clear();
-    btnAccept->setEnabled( false );
+    btnAccept->setEnabled(false);
     this->accept();
 }
 
-void WebServiceConnect::evtBtnCancel( void )
+void WebServiceConnect::evtBtnCancel(void)
 {
     lstTables->clear();
-    btnAccept->setEnabled( false );
+    btnAccept->setEnabled(false);
     this->reject();
 }
 
-void WebServiceConnect::setConnectionType( QString type )
+void WebServiceConnect::setConnectionType(const QString type)
 {
     connectionType = type;
 }
 
-QString WebServiceConnect::getConnectionString( void ) const
+QString WebServiceConnect::getConnectionString(void) const
 {
     return connectionString;
 }
 
-QString WebServiceConnect::getSelectedLayers( void ) const
+QString WebServiceConnect::getSelectedLayers(void) const
 {
     return selectedLayers;
 }
 
-QStringList WebServiceConnect::getSelectedLayersAsList( void ) const
+QStringList WebServiceConnect::getSelectedLayersAsList(void) const
 {
     return selectedLayersList;
 }

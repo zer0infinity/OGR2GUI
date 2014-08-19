@@ -25,7 +25,7 @@
 /*!
  *	\file app.cpp
  *	\brief ogr2ogr GUI
- *	\author Olivier Pilotte [ Inventis ], Mohamed Hedi Lassoued [ Inventis ], David Tran [ HSR ]
+ *	\author Olivier Pilotte[Inventis], Mohamed Hedi Lassoued[Inventis], David Tran[HSR]
  *	\version 0.7
  *	\date 13/06/14
  */
@@ -45,11 +45,11 @@ App::App(QWidget *widget) : QMainWindow(widget)
     this->show();
 }
 
-App::~App( void )
+App::~App(void)
 {
-    delete [] *formats;
-    delete [] *databases;
-    delete [] *webservices;
+    delete[] *formats;
+    delete[] *databases;
+    delete[] *webservices;
 }
 
 void App::initData(void) {
@@ -69,17 +69,17 @@ void App::initData(void) {
 #include "dta.h"
 }
 
-void App::initProjections( void ) {
-    QString file_gcs = tr("gcs.csv");
-    QString file_pcs = tr("pcs.csv");
+void App::initProjections(void) {
+    const QString file_gcs = tr("gcs.csv");
+    const QString file_pcs = tr("pcs.csv");
     readProjections(file_gcs);
     readProjections(file_pcs);
     addProjections();
 }
 
-void App::readProjections(QString filename) {
-    QString folder = tr("data");
-    QString filepath = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + folder + QDir::separator() + filename);
+void App::readProjections(const QString filename) {
+    const QString folder = tr("data");
+    const QString filepath = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + folder + QDir::separator() + filename);
     QFile file(filepath);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QMessageBox msg;
@@ -122,7 +122,7 @@ void App::addProjections() {
     }
 }
 
-void App::initInterface( void )
+void App::initInterface(void)
 {
     thePanel = new QWidget();
 
@@ -138,54 +138,54 @@ void App::initInterface( void )
     this->setCentralWidget(thePanel);
 }
 
-void App::initMenu( void )
+void App::initMenu(void)
 {
-    theMenu = new QMenuBar( this );
+    theMenu = new QMenuBar(this);
     {
-        fileMenu = new QMenu( theMenu );
+        fileMenu = new QMenu(theMenu);
         {
-            mnuExit = new QAction( this );
+            mnuExit = new QAction(this);
             mnuExit->setShortcuts(QKeySequence::Quit);
 
             fileMenu->addSeparator();
-            fileMenu->addAction( mnuExit );
+            fileMenu->addAction(mnuExit);
         }
 
-        helpMenu = new QMenu( theMenu );
+        helpMenu = new QMenu(theMenu);
         {
-            mnuOgr = new QAction( this );
+            mnuOgr = new QAction(this);
             mnuOgr->setShortcuts(QKeySequence::HelpContents);
-            mnuDoc = new QAction( this );
+            mnuDoc = new QAction(this);
             mnuDoc->setShortcuts(QKeySequence::WhatsThis);
-            mnuAbout = new QAction( this );
+            mnuAbout = new QAction(this);
 
-            helpMenu->addAction( mnuOgr );
-            helpMenu->addAction( mnuDoc );
+            helpMenu->addAction(mnuOgr);
+            helpMenu->addAction(mnuDoc);
             helpMenu->addSeparator();
-            helpMenu->addAction( mnuAbout );
+            helpMenu->addAction(mnuAbout);
         }
-        theMenu->addAction( fileMenu->menuAction() );
-        theMenu->addAction( helpMenu->menuAction() );
+        theMenu->addAction(fileMenu->menuAction());
+        theMenu->addAction(helpMenu->menuAction());
     }
 
-    this->setMenuBar( theMenu );
+    this->setMenuBar(theMenu);
 }
 
-void App::initLayout( void )
+void App::initLayout(void)
 {
-    theLayout = new QVBoxLayout( thePanel );
+    theLayout = new QVBoxLayout(thePanel);
     {
-        theLayout->setMargin( 7 );
-        theLayout->setSpacing( 7 );
+        theLayout->setMargin(7);
+        theLayout->setSpacing(7);
 
-        grpSource = new QGroupBox( thePanel );
+        grpSource = new QGroupBox(thePanel);
         {
-            grpSource->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
+            grpSource->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
             lytSource = new QGridLayout();
             {
-                lytSource->setMargin( 7 );
-                lytSource->setSpacing( 7 );
+                lytSource->setMargin(7);
+                lytSource->setSpacing(7);
 
                 lytSourceInput = new QHBoxLayout();
                 {
@@ -194,28 +194,28 @@ void App::initLayout( void )
                     radSourceDatabase = new QRadioButton();
                     radSourceWebService = new QRadioButton();
 
-                    lytSourceInput->addWidget( radSourceFile );
-                    lytSourceInput->addWidget( radSourceFolder );
-                    lytSourceInput->addWidget( radSourceDatabase );
-                    lytSourceInput->addWidget( radSourceWebService);
+                    lytSourceInput->addWidget(radSourceFile);
+                    lytSourceInput->addWidget(radSourceFolder);
+                    lytSourceInput->addWidget(radSourceDatabase);
+                    lytSourceInput->addWidget(radSourceWebService);
                 }
 
-                lytSource->addLayout( lytSourceInput, 0, 1 );
+                lytSource->addLayout(lytSourceInput, 0, 1);
 
                 lblSourceFormat = new QLabel();
-                lblSourceFormat->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-                lblSourceFormat->setMinimumWidth( 70 );
-                lblSourceFormat->setMaximumWidth( 70 );
+                lblSourceFormat->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+                lblSourceFormat->setMinimumWidth(70);
+                lblSourceFormat->setMaximumWidth(70);
 
                 cmbSourceFormat = new QComboBox();
 
-                lytSource->addWidget( lblSourceFormat, 1, 0 );
-                lytSource->addWidget( cmbSourceFormat, 1, 1 );
+                lytSource->addWidget(lblSourceFormat, 1, 0);
+                lytSource->addWidget(cmbSourceFormat, 1, 1);
 
                 lblSourceName = new QLabel();
-                lblSourceName->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-                lblSourceName->setMinimumWidth( 70 );
-                lblSourceName->setMaximumWidth( 70 );
+                lblSourceName->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+                lblSourceName->setMinimumWidth(70);
+                lblSourceName->setMaximumWidth(70);
 
                 lytSourceName = new QHBoxLayout();
                 {
@@ -223,43 +223,43 @@ void App::initLayout( void )
 
                     btnSourceName = new QPushButton();
 
-                    lytSourceName->addWidget( txtSourceName );
-                    lytSourceName->addWidget( btnSourceName );
+                    lytSourceName->addWidget(txtSourceName);
+                    lytSourceName->addWidget(btnSourceName);
                 }
 
-                lytSource->addWidget( lblSourceName, 2, 0 );
-                lytSource->addLayout( lytSourceName, 2, 1 );
+                lytSource->addWidget(lblSourceName, 2, 0);
+                lytSource->addLayout(lytSourceName, 2, 1);
 
                 lblSourceProj = new QLabel();
-                lblSourceProj->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-                lblSourceProj->setMinimumWidth( 70 );
-                lblSourceProj->setMaximumWidth( 70 );
+                lblSourceProj->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+                lblSourceProj->setMinimumWidth(70);
+                lblSourceProj->setMaximumWidth(70);
 
                 txtSourceProj = new QLineEdit();
-                txtSourceProj->setReadOnly( true );
+                txtSourceProj->setReadOnly(true);
 
-                lytSource->addWidget( lblSourceProj, 3, 0 );
-                lytSource->addWidget( txtSourceProj, 3, 1 );
+                lytSource->addWidget(lblSourceProj, 3, 0);
+                lytSource->addWidget(txtSourceProj, 3, 1);
 
                 lblSourceQuery = new QLabel();
-                lblSourceQuery->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-                lblSourceQuery->setMinimumWidth( 70 );
-                lblSourceQuery->setMaximumWidth( 70 );
+                lblSourceQuery->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+                lblSourceQuery->setMinimumWidth(70);
+                lblSourceQuery->setMaximumWidth(70);
 
                 txtSourceQuery = new QLineEdit();
 
-                lytSource->addWidget( lblSourceQuery );
-                lytSource->addWidget( txtSourceQuery );
+                lytSource->addWidget(lblSourceQuery);
+                lytSource->addWidget(txtSourceQuery);
             }
 
-            grpSource->setLayout( lytSource );
+            grpSource->setLayout(lytSource);
         }
 
-        theLayout->addWidget( grpSource );
+        theLayout->addWidget(grpSource);
 
-        grpTarget = new QGroupBox( thePanel );
+        grpTarget = new QGroupBox(thePanel);
         {
-            grpTarget->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
+            grpTarget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
             lytTarget = new QGridLayout();
             {
@@ -271,33 +271,33 @@ void App::initLayout( void )
                         radTargetFolder = new QRadioButton();
                         radTargetDatabase = new QRadioButton();
 
-                        grpTargetOutput->addButton( radTargetFile );
-                        grpTargetOutput->addButton( radTargetFolder );
-                        grpTargetOutput->addButton( radTargetDatabase );
+                        grpTargetOutput->addButton(radTargetFile);
+                        grpTargetOutput->addButton(radTargetFolder);
+                        grpTargetOutput->addButton(radTargetDatabase);
 
-                        lytTargetOutput->addWidget( radTargetFile );
-                        lytTargetOutput->addWidget( radTargetFolder );
-                        lytTargetOutput->addWidget( radTargetDatabase );
+                        lytTargetOutput->addWidget(radTargetFile);
+                        lytTargetOutput->addWidget(radTargetFolder);
+                        lytTargetOutput->addWidget(radTargetDatabase);
                     }
                 }
 
-                lytTarget->addLayout( lytTargetOutput, 0, 1 );
+                lytTarget->addLayout(lytTargetOutput, 0, 1);
 
                 lblTargetFormat = new QLabel();
-                lblTargetFormat->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-                lblTargetFormat->setMinimumWidth( 70 );
-                lblTargetFormat->setMaximumWidth( 70 );
+                lblTargetFormat->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+                lblTargetFormat->setMinimumWidth(70);
+                lblTargetFormat->setMaximumWidth(70);
 
                 cmbTargetFormat = new QComboBox();
 
-                lytTarget->addWidget( lblTargetFormat, 1, 0 );
-                lytTarget->addWidget( cmbTargetFormat, 1, 1 );
+                lytTarget->addWidget(lblTargetFormat, 1, 0);
+                lytTarget->addWidget(cmbTargetFormat, 1, 1);
 
 
                 lblTargetName = new QLabel();
-                lblTargetName->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-                lblTargetName->setMinimumWidth( 70 );
-                lblTargetName->setMaximumWidth( 70 );
+                lblTargetName->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+                lblTargetName->setMinimumWidth(70);
+                lblTargetName->setMaximumWidth(70);
 
                 lytTargetName = new QHBoxLayout();
                 {
@@ -306,37 +306,37 @@ void App::initLayout( void )
 
                     btnTargetName = new QPushButton();
 
-                    lytTargetName->addWidget( txtTargetName );
-                    lytTargetName->addWidget( btnTargetName );
+                    lytTargetName->addWidget(txtTargetName);
+                    lytTargetName->addWidget(btnTargetName);
                 }
 
-                lytTarget->addWidget( lblTargetName, 2, 0 );
-                lytTarget->addLayout( lytTargetName, 2, 1 );
+                lytTarget->addWidget(lblTargetName, 2, 0);
+                lytTarget->addLayout(lytTargetName, 2, 1);
 
 
                 lblTargetProj = new QLabel();
-                lblTargetProj->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-                lblTargetProj->setMinimumWidth( 70 );
-                lblTargetProj->setMaximumWidth( 70 );
+                lblTargetProj->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+                lblTargetProj->setMinimumWidth(70);
+                lblTargetProj->setMaximumWidth(70);
 
                 lytTargetProj = new QHBoxLayout();
                 {
                     txtTargetProj = new QLineEdit();
-                    txtTargetProj->setMaxLength( 5 );
-                    txtTargetProj->setMinimumWidth( 50 );
-                    txtTargetProj->setMaximumWidth( 50 );
+                    txtTargetProj->setMaxLength(5);
+                    txtTargetProj->setMinimumWidth(50);
+                    txtTargetProj->setMaximumWidth(50);
                     QValidator *validator = new QIntValidator(0, 99999, this);
                     txtTargetProj->setValidator(validator);
 
                     cmbTargetProj = new QComboBox();
-                    cmbTargetProj->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
+                    cmbTargetProj->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
-                    lytTargetProj->addWidget( txtTargetProj );
-                    lytTargetProj->addWidget( cmbTargetProj );
+                    lytTargetProj->addWidget(txtTargetProj);
+                    lytTargetProj->addWidget(cmbTargetProj);
                 }
 
-                lytTarget->addWidget( lblTargetProj, 3, 0 );
-                lytTarget->addLayout( lytTargetProj, 3, 1 );
+                lytTarget->addWidget(lblTargetProj, 3, 0);
+                lytTarget->addLayout(lytTargetProj, 3, 1);
 
                 lytTargetOptions = new QHBoxLayout();
                 {
@@ -344,20 +344,20 @@ void App::initLayout( void )
                     radTargetAppend = new QCheckBox();
                     radTargetUpdate = new QCheckBox();
 
-                    lytTargetOptions->addWidget( radTargetOverwrite );
-                    lytTargetOptions->addWidget( radTargetAppend );
-                    lytTargetOptions->addWidget( radTargetUpdate );
+                    lytTargetOptions->addWidget(radTargetOverwrite);
+                    lytTargetOptions->addWidget(radTargetAppend);
+                    lytTargetOptions->addWidget(radTargetUpdate);
                 }
-                lytTarget->addLayout( lytTargetOptions, 4, 1 );
+                lytTarget->addLayout(lytTargetOptions, 4, 1);
             }
-            grpTarget->setLayout( lytTarget );
+            grpTarget->setLayout(lytTarget);
         }
 
-        theLayout->addWidget( grpTarget );
+        theLayout->addWidget(grpTarget);
 
-        grpOptions = new QGroupBox( thePanel );
+        grpOptions = new QGroupBox(thePanel);
         {
-            grpOptions->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
+            grpOptions->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
             lytOptions = new QGridLayout();
             {
@@ -376,116 +376,116 @@ void App::initLayout( void )
         lytExecute = new QHBoxLayout();
         {
             btnExecute = new QPushButton();
-            btnExecute->setMinimumWidth( 200 );
-            btnExecute->setEnabled( false );
+            btnExecute->setMinimumWidth(200);
+            btnExecute->setEnabled(false);
 
-            lytExecute->addWidget( btnExecute );
+            lytExecute->addWidget(btnExecute);
         }
 
-        theLayout->addWidget( txtOutput );
-        theLayout->addLayout( lytExecute );
+        theLayout->addWidget(txtOutput);
+        theLayout->addLayout(lytExecute);
 
         theProgress = new QProgressBar();
         theProgress->setValue(0);
 
-        theLayout->addWidget( theProgress );
+        theLayout->addWidget(theProgress);
     }
 
-    thePanel->setLayout( theLayout );
+    thePanel->setLayout(theLayout);
 }
 
-void App::initSlots( void )
+void App::initSlots(void)
 {
-    QObject::connect( mnuExit, SIGNAL( triggered() ), this, SLOT( close( void ) ) );
-    QObject::connect( mnuOgr, SIGNAL( triggered() ), this, SLOT( evtMnuOgrHelp( void ) ) );
-    QObject::connect( mnuDoc, SIGNAL( triggered() ), this, SLOT( evtMnuGuiHelp( void ) ) );
-    QObject::connect( mnuAbout, SIGNAL( triggered() ), this, SLOT( evtMnuOgrAbout( void ) ) );
+    QObject::connect(mnuExit, SIGNAL(triggered()), this, SLOT(close(void)));
+    QObject::connect(mnuOgr, SIGNAL(triggered()), this, SLOT(evtMnuOgrHelp(void)));
+    QObject::connect(mnuDoc, SIGNAL(triggered()), this, SLOT(evtMnuGuiHelp(void)));
+    QObject::connect(mnuAbout, SIGNAL(triggered()), this, SLOT(evtMnuOgrAbout(void)));
 
-    QObject::connect( radSourceFile, SIGNAL( toggled( bool ) ), this, SLOT( evtRadSourceFile( void ) ) );
-    QObject::connect( radSourceFolder, SIGNAL( toggled( bool ) ), this, SLOT( evtRadSourceFolder( void ) ) );
-    QObject::connect( radSourceDatabase, SIGNAL( toggled( bool ) ), this, SLOT( evtRadSourceDatabase( void ) ) );
-    QObject::connect( radSourceWebService, SIGNAL( toggled( bool ) ), this, SLOT( evtRadSourceWebService( void ) ) );
+    QObject::connect(radSourceFile, SIGNAL(toggled(bool)), this, SLOT(evtRadSourceFile(void)));
+    QObject::connect(radSourceFolder, SIGNAL(toggled(bool)), this, SLOT(evtRadSourceFolder(void)));
+    QObject::connect(radSourceDatabase, SIGNAL(toggled(bool)), this, SLOT(evtRadSourceDatabase(void)));
+    QObject::connect(radSourceWebService, SIGNAL(toggled(bool)), this, SLOT(evtRadSourceWebService(void)));
 
-    QObject::connect( cmbSourceFormat, SIGNAL( currentIndexChanged( int ) ), this, SLOT( evtCmbSourceFormat( void ) ) );
-    QObject::connect( txtSourceName, SIGNAL( textChanged( QString ) ), this, SLOT( evtTxtSourceName( void ) ) );
-    QObject::connect( btnSourceName, SIGNAL( clicked( void ) ), this, SLOT( evtBtnSourceName( void ) ) );
-    QObject::connect( txtSourceQuery, SIGNAL( textChanged( QString ) ), this, SLOT( evtUpdateParameters( void ) ) );
-    QObject::connect( txtInput, SIGNAL( textChanged() ), this, SLOT( evtUpdateParameters( void ) ) );
+    QObject::connect(cmbSourceFormat, SIGNAL(currentIndexChanged(int)), this, SLOT(evtCmbSourceFormat(void)));
+    QObject::connect(txtSourceName, SIGNAL(textChanged(QString)), this, SLOT(evtTxtSourceName(void)));
+    QObject::connect(btnSourceName, SIGNAL(clicked(void)), this, SLOT(evtBtnSourceName(void)));
+    QObject::connect(txtSourceQuery, SIGNAL(textChanged(QString)), this, SLOT(evtUpdateParameters(void)));
+    QObject::connect(txtInput, SIGNAL(textChanged()), this, SLOT(evtUpdateParameters(void)));
 
-    QObject::connect( radTargetFile, SIGNAL( toggled( bool ) ), this, SLOT( evtRadTargetFile( void ) ) );
-    QObject::connect( radTargetFolder, SIGNAL( toggled( bool ) ), this, SLOT( evtRadTargetFolder( void ) ) );
-    QObject::connect( radTargetDatabase, SIGNAL( toggled( bool ) ), this, SLOT( evtRadTargetDatabase( void ) ) );
+    QObject::connect(radTargetFile, SIGNAL(toggled(bool)), this, SLOT(evtRadTargetFile(void)));
+    QObject::connect(radTargetFolder, SIGNAL(toggled(bool)), this, SLOT(evtRadTargetFolder(void)));
+    QObject::connect(radTargetDatabase, SIGNAL(toggled(bool)), this, SLOT(evtRadTargetDatabase(void)));
 
-    QObject::connect( cmbTargetFormat, SIGNAL( currentIndexChanged( int ) ), this, SLOT( evtCmbTargetFormat( void ) ) );
-    QObject::connect( txtTargetName, SIGNAL( textChanged( QString ) ), this, SLOT( evtTxtTargetName( void ) ) );
-    QObject::connect( btnTargetName, SIGNAL( clicked() ), this, SLOT( evtBtnTargetName( void ) ) );
-    QObject::connect( txtTargetProj, SIGNAL( textChanged( QString ) ), this, SLOT( evtTxtTargetProj( void ) ) );
-    QObject::connect( cmbTargetProj, SIGNAL( currentIndexChanged( int ) ), this, SLOT( evtUpdateParameters( void ) ) );
+    QObject::connect(cmbTargetFormat, SIGNAL(currentIndexChanged(int)), this, SLOT(evtCmbTargetFormat(void)));
+    QObject::connect(txtTargetName, SIGNAL(textChanged(QString)), this, SLOT(evtTxtTargetName(void)));
+    QObject::connect(btnTargetName, SIGNAL(clicked()), this, SLOT(evtBtnTargetName(void)));
+    QObject::connect(txtTargetProj, SIGNAL(textChanged(QString)), this, SLOT(evtTxtTargetProj(void)));
+    QObject::connect(cmbTargetProj, SIGNAL(currentIndexChanged(int)), this, SLOT(evtUpdateParameters(void)));
 
-    QObject::connect( radTargetOverwrite, SIGNAL( toggled( bool ) ), this, SLOT( evtUpdateParameters( void ) ) );
-    QObject::connect( radTargetAppend, SIGNAL( toggled( bool ) ), this, SLOT( evtUpdateParameters( void ) ) );
-    QObject::connect( radTargetUpdate, SIGNAL( toggled( bool ) ), this, SLOT( evtUpdateParameters( void ) ) );
+    QObject::connect(radTargetOverwrite, SIGNAL(toggled(bool)), this, SLOT(evtUpdateParameters(void)));
+    QObject::connect(radTargetAppend, SIGNAL(toggled(bool)), this, SLOT(evtUpdateParameters(void)));
+    QObject::connect(radTargetUpdate, SIGNAL(toggled(bool)), this, SLOT(evtUpdateParameters(void)));
 
-    QObject::connect( btnExecute, SIGNAL( clicked( void ) ), this, SLOT( evtBtnExecute( void ) ) );
+    QObject::connect(btnExecute, SIGNAL(clicked(void)), this, SLOT(evtBtnExecute(void)));
 
-    QMetaObject::connectSlotsByName( this );
+    QMetaObject::connectSlotsByName(this);
 }
 
-void App::translateInterface( void )
+void App::translateInterface(void)
 {
-    this->setWindowTitle( tr( "OGR2GUI" ) );
+    this->setWindowTitle(tr("OGR2GUI"));
     this->setWindowIcon(QIcon(":/icons/gdalicon.png"));
 
-    fileMenu->setTitle( tr( "File" ) );
+    fileMenu->setTitle(tr("File"));
     {
-        mnuExit->setText( tr( "Exit" ) );
+        mnuExit->setText(tr("Exit"));
     }
 
-    helpMenu->setTitle( tr( "Help" ) );
+    helpMenu->setTitle(tr("Help"));
     {
-        mnuOgr->setText( tr( "Command-Line Options" ) );
-        mnuDoc->setText( tr( "Documentation" ) );
-        mnuAbout->setText( tr( "About OGR2GUI" ) );
+        mnuOgr->setText(tr("Command-Line Options"));
+        mnuDoc->setText(tr("Documentation"));
+        mnuAbout->setText(tr("About OGR2GUI"));
     }
 
-    grpSource->setTitle( tr( "Source" ) );
+    grpSource->setTitle(tr("Source"));
     {
-        radSourceFile->setText( tr( "File" ) );
-        radSourceFolder->setText( tr( "Folder" ) );
-        radSourceDatabase->setText( tr( "Database" ) );
-        radSourceWebService->setText( tr( "Web Service" ) );
+        radSourceFile->setText(tr("File"));
+        radSourceFolder->setText(tr("Folder"));
+        radSourceDatabase->setText(tr("Database"));
+        radSourceWebService->setText(tr("Web Service"));
 
-        lblSourceFormat->setText( tr( "Format" ) );
+        lblSourceFormat->setText(tr("Format"));
 
-        lblSourceName->setText( tr( "Name" ) );
-        btnSourceName->setText( tr( "Open" ) );
+        lblSourceName->setText(tr("Name"));
+        btnSourceName->setText(tr("Open"));
 
-        lblSourceProj->setText( tr( "Projection" ) );
+        lblSourceProj->setText(tr("Projection"));
 
-        lblSourceQuery->setText( tr( "Query" ) );
+        lblSourceQuery->setText(tr("Query"));
     }
 
-    grpTarget->setTitle( tr( "Target" ) );
+    grpTarget->setTitle(tr("Target"));
     {
-        radTargetFile->setText( tr( "File" ) );
-        radTargetFolder->setText( tr( "Folder" ) );
-        radTargetDatabase->setText( tr( "Database" ) );
+        radTargetFile->setText(tr("File"));
+        radTargetFolder->setText(tr("Folder"));
+        radTargetDatabase->setText(tr("Database"));
 
-        lblTargetFormat->setText( tr( "Format" ) );
+        lblTargetFormat->setText(tr("Format"));
 
-        lblTargetName->setText( tr( "Name" ) );
-        btnTargetName->setText( tr( "Save" ) );
+        lblTargetName->setText(tr("Name"));
+        btnTargetName->setText(tr("Save"));
 
-        lblTargetProj->setText( tr( "Projection" ) );
+        lblTargetProj->setText(tr("Projection"));
 
-        radTargetOverwrite->setText( tr( "overwrite" ) );
-        radTargetAppend->setText( tr( "append" ) );
-        radTargetUpdate->setText( tr( "update" ) );
+        radTargetOverwrite->setText(tr("overwrite"));
+        radTargetAppend->setText(tr("append"));
+        radTargetUpdate->setText(tr("update"));
     }
 
     grpOptions->setTitle(tr("Options (optional)"));
 
-    btnExecute->setText( tr( "Execute" ) );
+    btnExecute->setText(tr("Execute"));
 }
 
 void App::updateParameters(void) {
@@ -499,15 +499,14 @@ void App::updateParameters(void) {
     theProgress->setValue(0);
 }
 
-QString App::currentParameters(void) {
+QString App::currentParameters(void) const {
     QString parameters = tr(" -f ") + tr("\"") + cmbTargetFormat->currentText() + tr("\" ");
     parameters += tr("\"") + txtTargetName->text()+ tr("\" ");
     if(radSourceWebService->isChecked() && !txtSourceName->text().isEmpty())
         parameters += webservices[cmbSourceFormat->currentIndex()][1];
     parameters += tr("\"") + txtSourceName->text().trimmed() + tr("\"");
-    if(!cmbTargetProj->currentText().isEmpty()) {
+    if(!cmbTargetProj->currentText().isEmpty())
         parameters += tr(" -t_srs EPSG:") + projectionsList.at(cmbTargetProj->currentIndex()).first;
-    }
     if(!txtSourceQuery->text().isEmpty())
         parameters += tr(" -sql ") + tr("\"") + txtSourceQuery->text() + tr("\"");
     if(radTargetOverwrite->isChecked())
@@ -519,121 +518,117 @@ QString App::currentParameters(void) {
     return parameters;
 }
 
-void App::evtMnuOgrHelp( void )
+void App::evtMnuOgrHelp(void)
 {
-    QDesktopServices::openUrl( QUrl( tr( "http://www.gdal.org/ogr2ogr.html" ) ) );
+    QDesktopServices::openUrl(QUrl(tr("http://www.gdal.org/ogr2ogr.html")));
 }
 
-void App::evtMnuGuiHelp( void )
+void App::evtMnuGuiHelp(void)
 {
-    QString doc = tr("file:///") + QCoreApplication::applicationDirPath() + tr("/doc/html/index.html");
+    const QString doc = tr("file:///") + QCoreApplication::applicationDirPath() + tr("/doc/html/index.html");
     QDesktopServices::openUrl(QUrl(doc));
 }
 
-void App::evtMnuOgrAbout( void )
+void App::evtMnuOgrAbout(void)
 {
-    QDesktopServices::openUrl( QUrl( tr( "http://www.ogr2gui.ca/" ) ) );
+    QDesktopServices::openUrl(QUrl(tr("http://www.ogr2gui.ca/")));
 }
 
-void App::evtRadSourceFile( void )
+void App::evtRadSourceFile(void)
 {
-    btnSourceName->setText( tr( "Open" ) );
+    btnSourceName->setText(tr("Open"));
 
     cmbSourceFormat->clear();
 
-    for( int i = 0; i < formatsCount; i ++ )
-    {
-        cmbSourceFormat->addItem( formats[ i ][ 0 ] );
+    for(int i = 0; i < formatsCount; ++i) {
+        cmbSourceFormat->addItem(formats[i][0]);
     }
 
-    radTargetFile->setEnabled( true );
-    radTargetFolder->setEnabled( false );
-    radTargetDatabase->setEnabled( true );
+    radTargetFile->setEnabled(true);
+    radTargetFolder->setEnabled(false);
+    radTargetDatabase->setEnabled(true);
 
     if(radTargetFolder->isChecked())
-        radTargetFile->setChecked( true );
+        radTargetFile->setChecked(true);
 
     lblSourceName->setText(tr("Name"));
     txtSourceName->clear();
     txtSourceProj->clear();
     txtSourceQuery->clear();
 
-    txtSourceProj->setEnabled( true );
-    txtSourceQuery->setEnabled( true );
+    txtSourceProj->setEnabled(true);
+    txtSourceQuery->setEnabled(true);
 }
 
-void App::evtRadSourceFolder( void )
+void App::evtRadSourceFolder(void)
 {
-    btnSourceName->setText( tr( "Browse" ) );
+    btnSourceName->setText(tr("Browse"));
 
     cmbSourceFormat->clear();
 
-    for( int i = 0; i < formatsCount; i ++ )
-    {
-        cmbSourceFormat->addItem( formats[ i ][ 0 ] );
+    for(int i = 0; i < formatsCount; ++i) {
+        cmbSourceFormat->addItem(formats[i][0]);
     }
 
-    radTargetFile->setEnabled( false );
-    radTargetFolder->setEnabled( true );
-    radTargetDatabase->setEnabled( true );
+    radTargetFile->setEnabled(false);
+    radTargetFolder->setEnabled(true);
+    radTargetDatabase->setEnabled(true);
 
     if(radTargetFile->isChecked())
-        radTargetFolder->setChecked( true );
+        radTargetFolder->setChecked(true);
 
     lblSourceName->setText(tr("Name"));
     txtSourceName->clear();
     txtSourceProj->clear();
     txtSourceQuery->clear();
 
-    txtSourceProj->setEnabled( true );
-    txtSourceQuery->setEnabled( true );
+    txtSourceProj->setEnabled(true);
+    txtSourceQuery->setEnabled(true);
 }
 
-void App::evtRadSourceDatabase( void )
+void App::evtRadSourceDatabase(void)
 {
-    btnSourceName->setText( tr( "Connect" ) );
+    btnSourceName->setText(tr("Connect"));
 
     cmbSourceFormat->clear();
 
-    for( int i = 0; i < databasesCount; i ++ )
-    {
-        cmbSourceFormat->addItem( databases[ i ][ 0 ] );
+    for(int i = 0; i < databasesCount; ++i) {
+        cmbSourceFormat->addItem(databases[i][0]);
     }
 
-    radTargetFile->setEnabled( true );
-    radTargetFolder->setEnabled( true );
-    radTargetDatabase->setEnabled( true );
+    radTargetFile->setEnabled(true);
+    radTargetFolder->setEnabled(true);
+    radTargetDatabase->setEnabled(true);
 
     lblSourceName->setText(tr("Name"));
     txtSourceName->clear();
     txtSourceProj->clear();
     txtSourceQuery->clear();
 
-    txtSourceProj->setEnabled( true );
-    txtSourceQuery->setEnabled( true );
+    txtSourceProj->setEnabled(true);
+    txtSourceQuery->setEnabled(true);
 }
 
-void App::evtRadSourceWebService( void )
+void App::evtRadSourceWebService(void)
 {
-    btnSourceName->setText( tr( "Connect" ) );
+    btnSourceName->setText(tr("Connect"));
 
     cmbSourceFormat->clear();
 
-    for( int i = 0; i < webServicesCount; i ++ )
-    {
-        cmbSourceFormat->addItem( webservices[ i ][ 0 ] );
+    for(int i = 0; i < webServicesCount; ++i) {
+        cmbSourceFormat->addItem(webservices[i][0]);
     }
 
-    radTargetFile->setEnabled( true );
-    radTargetFolder->setEnabled( true );
-    radTargetDatabase->setEnabled( true );
+    radTargetFile->setEnabled(true);
+    radTargetFolder->setEnabled(true);
+    radTargetDatabase->setEnabled(true);
 
     lblSourceName->setText(tr("URI"));
     txtSourceProj->clear();
     txtSourceQuery->clear();
 
-    txtSourceProj->setEnabled( true );
-    txtSourceQuery->setEnabled( true );
+    txtSourceProj->setEnabled(true);
+    txtSourceQuery->setEnabled(true);
 }
 
 void App::evtCmbSourceFormat(void)
@@ -643,9 +638,9 @@ void App::evtCmbSourceFormat(void)
     txtSourceQuery->clear();
 }
 
-void App::evtTxtSourceName( void ) {
-    if( txtSourceName->text().startsWith(tr("file://"))) {
-        txtSourceName->setText( QUrl( txtSourceName->text() ).authority().trimmed() );
+void App::evtTxtSourceName(void) {
+    if(txtSourceName->text().startsWith(tr("file://"))) {
+        txtSourceName->setText(QUrl(txtSourceName->text()).authority().trimmed());
     }
     string name = txtSourceName->text().trimmed().toStdString();
     string epsg;
@@ -658,23 +653,23 @@ void App::evtTxtSourceName( void ) {
     txtSourceProj->clear();
     if(ogr->openSource(name, epsg, query, error)) {
         for(int i = 0; i < projectionsList.size(); i++) {
-            if( strcmp(epsg.c_str(), projectionsList.at(i).first.toStdString().c_str()) == 0) {
+            if(strcmp(epsg.c_str(), projectionsList.at(i).first.toStdString().c_str()) == 0) {
                 if(i > 1) {
-                    txtSourceProj->setText(projectionsList.at(i).first + tr( " : " ) + projectionsList.at(i).second);
+                    txtSourceProj->setText(projectionsList.at(i).first + tr(" : ") + projectionsList.at(i).second);
                 }
                 break;
             }
         }
         ogr->closeSource();
-        if( radSourceFile->isChecked()) {
-            txtSourceQuery->setText( query.c_str() );
+        if(radSourceFile->isChecked()) {
+            txtSourceQuery->setText(query.c_str());
         } else if(radSourceWebService->isChecked()) {
             btnSourceName->setText(tr("Connected"));
         }
     } else {
         txtSourceProj->clear();
         txtSourceQuery->clear();
-        if( radSourceWebService->isChecked() ) {
+        if(radSourceWebService->isChecked()) {
             btnSourceName->setText(tr("Connect"));
         }
     }
@@ -682,7 +677,7 @@ void App::evtTxtSourceName( void ) {
     btnExecute->setEnabled(true);
 }
 
-void App::evtBtnSourceName( void )
+void App::evtBtnSourceName(void)
 {
     txtSourceName->selectAll();
     txtSourceName->setFocus();
@@ -690,35 +685,34 @@ void App::evtBtnSourceName( void )
 
     QString type;
 
-    if( radSourceFile->isChecked() )
+    if(radSourceFile->isChecked())
     {
-        type = tr( "\"" ) + formats[ idx ][ 0 ] + tr( " (*." ) + formats[ idx ][ 1 ] + tr(")\"");
-        txtSourceName->setText( QDir::toNativeSeparators(QFileDialog::getOpenFileName( this, tr( "Source File" ), tr( "" ), type ) ));
+        type = tr("\"") + formats[idx][0] + tr(" (*.") + formats[idx][1] + tr(")\"");
+        txtSourceName->setText(QDir::toNativeSeparators(QFileDialog::getOpenFileName(this, tr("Source File"), tr(""), type)));
     }
-    else if( radSourceFolder->isChecked() )
+    else if(radSourceFolder->isChecked())
     {
         QStringList types;
-        type = tr( "*." ) + formats[ cmbSourceFormat->currentIndex() ][ 1 ];
+        type = tr("*.") + formats[cmbSourceFormat->currentIndex()][1];
 
-        txtSourceName->setText( QDir::toNativeSeparators(QFileDialog::getExistingDirectory( this, tr( "Source Folder" ), tr( "" ), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks ) ));
-        QDir dir( txtSourceName->text() );
+        txtSourceName->setText(QDir::toNativeSeparators(QFileDialog::getExistingDirectory(this, tr("Source Folder"), tr(""), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks)));
+        QDir dir(txtSourceName->text());
 
-        types.append( type );
-        QStringList list = dir.entryList( types );
+        types.append(type);
+        QStringList list = dir.entryList(types);
 
-        if( list.size() > 1 )
+        if(list.size() > 1)
         {
-            txtSourceProj->setEnabled( false );
-            txtSourceQuery->setEnabled( false );
+            txtSourceProj->setEnabled(false);
+            txtSourceQuery->setEnabled(false);
         }
     }
-    else if( radSourceDatabase->isChecked() )
+    else if(radSourceDatabase->isChecked())
     {
         dbConnect->setConnectionType(databases[idx][1]);
         dbConnect->showTables(true);
-        if( dbConnect->exec() == QDialog::Accepted )
-        {
-            txtSourceName->setText( dbConnect->getConnectionString() );
+        if(dbConnect->exec() == QDialog::Accepted) {
+            txtSourceName->setText(dbConnect->getConnectionString());
         }
 
         QStringList fileList;
@@ -726,16 +720,14 @@ void App::evtBtnSourceName( void )
         QStringList tables = dbConnect->getSelectedTables();
 
         QString connectionString = txtSourceName->text();
-        connectionString.truncate( connectionString.lastIndexOf( tr( "tables=" ) ) );
+        connectionString.truncate(connectionString.lastIndexOf(tr("tables=")));
 
-        for( int i = 0; i < tables.size(); ++i)
-        {
-            fileList.append( connectionString + tr( "tables=" ) + tables.at( i ) );
+        for(int i = 0; i < tables.size(); ++i) {
+            fileList.append(connectionString + tr("tables=") + tables.at(i));
         }
-        if( fileList.size() > 1 )
-        {
-            txtSourceProj->setEnabled( false );
-            txtSourceQuery->setEnabled( false );
+        if(fileList.size() > 1) {
+            txtSourceProj->setEnabled(false);
+            txtSourceQuery->setEnabled(false);
         }
     } else if(radSourceWebService->isChecked()) {
         wsConnect->setConnectionType(webservices[idx][1]);
@@ -746,115 +738,114 @@ void App::evtBtnSourceName( void )
     updateParameters();
 }
 
-void App::evtRadTargetFile( void )
+void App::evtRadTargetFile(void)
 {
-    btnTargetName->setText( tr( "Save" ) );
+    btnTargetName->setText(tr("Save"));
 
     cmbTargetFormat->clear();
-    for( int i = 0; i < formatsOutput; ++i )
-    {
-        cmbTargetFormat->addItem( formats[ i ][ 0 ] );
+    for(int i = 0; i < formatsOutput; ++i) {
+        cmbTargetFormat->addItem(formats[i][0]);
     }
 
     txtTargetName->clear();
 }
 
-void App::evtRadTargetFolder( void )
+void App::evtRadTargetFolder(void)
 {
-    btnTargetName->setText( tr( "Browse" ) );
+    btnTargetName->setText(tr("Browse"));
 
     cmbTargetFormat->clear();
-    for( int i = 0; i < formatsOutput; ++i )
-    {
-        cmbTargetFormat->addItem( formats[ i ][ 0 ] );
+    for(int i = 0; i < formatsOutput; ++i) {
+        cmbTargetFormat->addItem(formats[i][0]);
     }
 }
 
-void App::evtRadTargetDatabase( void )
+void App::evtRadTargetDatabase(void)
 {
-    btnTargetName->setText( tr( "Connect" ) );
+    btnTargetName->setText(tr("Connect"));
 
     cmbTargetFormat->clear();
-    for( int i = 0; i < databasesOutput; ++i )
-    {
-        cmbTargetFormat->addItem( databases[ i ][ 0 ] );
+    for(int i = 0; i < databasesOutput; ++i) {
+        cmbTargetFormat->addItem(databases[i][0]);
     }
 }
 
-void App::evtCmbTargetFormat( void )
+void App::evtCmbTargetFormat(void)
 {
     txtTargetName->clear();
     updateParameters();
 }
 
-void App::evtTxtTargetName( void )
+void App::evtTxtTargetName(void)
 {
-    btnExecute->setEnabled( true );
+    btnExecute->setEnabled(true);
 }
 
-void App::evtBtnTargetName( void )
+void App::evtBtnTargetName(void)
 {
     QString type;
 
-    int idx = cmbTargetFormat->currentIndex();
+    int index = cmbTargetFormat->currentIndex();
 
-    if( radTargetDatabase->isChecked() )
+    if(radTargetDatabase->isChecked())
     {
-        if(databases[idx][0] == "SQLite") {
-            type = tr("\"") + databases[idx][0] + tr(" (*") + tr(".sqlite") + tr(")\"");
-            txtTargetName->setText(QDir::toNativeSeparators(QFileDialog::getSaveFileName(this, tr("Save File"), tr(""), type )));
+        if(databases[index][0] == "SQLite") {
+            type = tr("\"") + databases[index][0] + tr(" (*") + tr(".sqlite") + tr(")\"");
+            txtTargetName->setText(QDir::toNativeSeparators(QFileDialog::getSaveFileName(this, tr("Save File"), tr(""), type)));
             updateParameters();
             return;
         }
         dbConnect->showTables(false);
-        dbConnect->setConnectionType( databases[ cmbTargetFormat->currentIndex() ][ 1 ] );
-        if( dbConnect->exec() == QDialog::Accepted )
+        dbConnect->setConnectionType(databases[cmbTargetFormat->currentIndex()][1]);
+        if(dbConnect->exec() == QDialog::Accepted)
         {
-            txtTargetName->setText( dbConnect->getConnectionString() );
+            txtTargetName->setText(dbConnect->getConnectionString());
         }
     }
-    else if( radTargetFolder->isChecked() )
+    else if(radTargetFolder->isChecked())
     {
-        if( radSourceFile->isChecked() )
+        if(radSourceFile->isChecked())
         {
-            type = tr( "\"" ) + formats[ idx ][ 0 ] + tr( " (*." ) + formats[ idx ][ 1 ] + tr( ") | *." ) + formats[ idx ][ 1 ];
+            type = tr("\"") + formats[index][0] + tr(" (*.") + formats[index][1] + tr(") | *.") + formats[index][1];
 
-            txtTargetName->setText( QDir::toNativeSeparators(QFileDialog::getSaveFileName( this, tr( "Save File" ), tr( "" ), type ) ));
+            txtTargetName->setText(QDir::toNativeSeparators(QFileDialog::getSaveFileName(this, tr("Save File"), tr(""), type)));
         }
-        else if( radTargetFolder->isChecked() )
+        else if(radTargetFolder->isChecked())
         {
-            txtTargetName->setText( QDir::toNativeSeparators(QFileDialog::getExistingDirectory( this, tr( "Target Folder" ), tr( "" ), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks ) ));
+            txtTargetName->setText(QDir::toNativeSeparators(QFileDialog::getExistingDirectory(this, tr("Target Folder"), tr(""), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks)));
         }
     }
     else
     {
-        type = tr( "\"" ) + formats[ idx ][ 0 ] + tr( " (*." ) + formats[ idx ][ 1 ] + tr(")\"");
+        type = tr("\"") + formats[index][0] + tr(" (*.") + formats[index][1] + tr(")\"");
 
-        txtTargetName->setText( QDir::toNativeSeparators(QFileDialog::getSaveFileName( this, tr( "Target File" ), tr( "" ), type ) ));
+        txtTargetName->setText(QDir::toNativeSeparators(QFileDialog::getSaveFileName(this, tr("Target File"), tr(""), type)));
     }
 
-    btnExecute->setEnabled( true );
+    btnExecute->setEnabled(true);
     updateParameters();
 }
 
-void App::evtTxtTargetProj( void )
-{
-    QString projection = txtTargetProj->text();
-    for( int i = 0; i < projectionsList.size(); ++i) {
-        if(projectionsList.at(i).first.startsWith(projection)) {
-            cmbTargetProj->setCurrentIndex(i);
-            break;
+void App::evtTxtTargetProj(void) {
+    const QString projection = txtTargetProj->text();
+    if(projection.isEmpty()) {
+        cmbTargetProj->setCurrentIndex(0);
+    } else {
+        for(int i = 0; i < projectionsList.size(); ++i) {
+            if(projectionsList.at(i).first.startsWith(projection)) {
+                cmbTargetProj->setCurrentIndex(i);
+                break;
+            }
         }
     }
     updateParameters();
 }
 
-void App::evtUpdateParameters( void )
-{
+void App::evtUpdateParameters(void) {
     updateParameters();
 }
 
-void App::evtBtnExecute( void )
+void App::evtBtnExecute(void)
 {
     updateParameters();
 

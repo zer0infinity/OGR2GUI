@@ -24,7 +24,7 @@
 /**
  *	\file ogr2ogrThread.h
  *	\brief ogr2ogr Thread
- *	\author David Tran [ HSR ]
+ *	\author David Tran [HSR]
  *	\version 0.7
  *	\date 13/06/14
  */

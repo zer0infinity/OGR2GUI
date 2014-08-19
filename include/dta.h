@@ -25,21 +25,21 @@
 /*!
  *	\file dta.h
  *	\brief Formats & Projections
- *	\author Olivier Pilotte [ Inventis ], David Tran [ HSR ]
+ *	\author Olivier Pilotte [Inventis], David Tran [HSR]
  *	\version 0.7
  *	\date 13/06/14
  */
 //read/write
-formats[0 ][0] = "ESRI Shapefile";      formats[0 ][1] = "shp";
-formats[1 ][0] = "MapInfo File";        formats[1 ][1] = "tab";
-formats[2 ][0] = "TIGER";               formats[2 ][1] = "tiger";
-formats[3 ][0] = "DGN";                 formats[3 ][1] = "dgn";
-formats[4 ][0] = "Memory";              formats[4 ][1] = "memory";
-formats[5 ][0] = "BNA";                 formats[5 ][1] = "bna";
-formats[6 ][0] = "CSV";                 formats[6 ][1] = "csv";
-formats[7 ][0] = "GML";                 formats[7 ][1] = "gml";
-formats[8 ][0] = "GPX";                 formats[8 ][1] = "gpx";
-formats[9 ][0] = "LIBKML";              formats[9 ][1] = "kmz";
+formats[0][0] = "ESRI Shapefile";      formats[0][1] = "shp";
+formats[1][0] = "MapInfo File";        formats[1][1] = "tab";
+formats[2][0] = "TIGER";               formats[2][1] = "tiger";
+formats[3][0] = "DGN";                 formats[3][1] = "dgn";
+formats[4][0] = "Memory";              formats[4][1] = "memory";
+formats[5][0] = "BNA";                 formats[5][1] = "bna";
+formats[6][0] = "CSV";                 formats[6][1] = "csv";
+formats[7][0] = "GML";                 formats[7][1] = "gml";
+formats[8][0] = "GPX";                 formats[8][1] = "gpx";
+formats[9][0] = "LIBKML";              formats[9][1] = "kmz";
 formats[10][0] = "KML";                 formats[10][1] = "kml";
 formats[11][0] = "GeoJSON";             formats[11][1] = "geojson";
 formats[12][0] = "Interlis 1";          formats[12][1] = "itf";

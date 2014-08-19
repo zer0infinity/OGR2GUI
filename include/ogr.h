@@ -24,8 +24,8 @@
 
 /**
  *	\file ogr.h
- *	\brief OGR C API
- *	\author Olivier Pilotte [ Inventis ], David Tran [ HSR ]
+ *	\brief OGR API
+ *	\author Olivier Pilotte [Inventis], David Tran [HSR]
  *	\version 0.7
  *	\date 13/06/14
  */
@@ -79,27 +79,27 @@ private :
     string error;
 
     /**
-         *	\fn bool Error( OGRErr e, string &s );
+         *	\fn bool Error(OGRErr e, string &s);
          *	\brief OGR errors
          *	\param e : OGR error
          *	\param &s : error text
          *	\returns true if error
          */
-    bool Error( OGRErr e, string &s );
+    bool Error(OGRErr e, string &s);
 
 public:
 
     /**
-         *	\fn Ogr( void );
+         *	\fn Ogr(void);
          *	\brief Constructor
          */
-    Ogr( void );
+    Ogr(void);
 
     /**
-         *	\fn ~Ogr( void );
+         *	\fn ~Ogr(void);
          *	\brief Destructor
          */
-    ~Ogr( void );
+    ~Ogr(void);
 
     /**
      * \fn bool OpenOgr2ogr(QString command, QPushButton *btnExecute)
@@ -117,7 +117,7 @@ public:
          * \param &fileList : layer list
          * \return true on success
          */
-    bool openWFS(QString uri, QStringList &fileList);
+    bool openWFS(const QString uri, QStringList &fileList);
 
     /**
          * \fn OpenSource(string filename, string layername, string &epsg, string &query, string &error);
@@ -129,10 +129,10 @@ public:
          * \param &error : error text
          * \return true on success
          */
-    bool openSource(string filename, string layername, string &epsg, string &query, string &Error);
+    bool openSource(const string filename, const string layername, string &epsg, string &query, string &Error);
 
     /**
-         *	\fn bool OpenSource( string filename, string &epsg = 0, string &query = 0, string &error = 0 );
+         *	\fn bool OpenSource(string filename, string &epsg = 0, string &query = 0, string &error = 0);
          *	\brief Opens source data
          *	\param filename : source filename
          *	\param &epsg : epsg code
@@ -140,22 +140,22 @@ public:
          *	\param &error : error text
          *	\returns true on success
          */
-    bool openSource(string filename, string &epsg, string &query, string &Error);
+    bool openSource(const string filename, string &epsg, string &query, string &Error);
 
     /**
-         *	\fn bool CloseSource( void );
+         *	\fn bool CloseSource(void);
          *	\brief Closes source data
          *	\returns true on success
          */
-    bool closeSource( void );
+    bool closeSource(void) const;
 
     /**
-         *	\fn bool OpenDriver( string drivername, string error = 0 );
+         *	\fn bool OpenDriver(string drivername, string error = 0);
          *	\brief Opens target driver
          *	\param drivername : selected driver
          *	\returns true on success
          */
-    bool openDriver( string drivername);
+    bool openDriver(const string drivername);
 
     /**
      *	\fn bool Process(void);
@@ -169,7 +169,7 @@ public:
      * \param projection : projection
      * \return true on success
      */
-    bool testSpatialReference(int projection);
+    bool testSpatialReference(const int projection);
 
     /**
      * \fn bool TestSQL(string query)
@@ -177,7 +177,7 @@ public:
      * \param query : sql query
      * \return true on success
      */
-    bool testExecuteSQL(string query);
+    bool testExecuteSQL(const string query) const;
 };
 
 #endif

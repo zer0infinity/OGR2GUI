@@ -24,7 +24,7 @@
 /**
  *	\file utils.h
  *	\brief Utilities
- *	\author David Tran [ HSR ]
+ *	\author David Tran [HSR]
  *	\version 0.7
  *	\date 13/06/14
  */
@@ -33,11 +33,11 @@
 #define UTIL_H
 
     /**
-     *	\fn int ogr2ogr( int nArgc, char ** papszArgv )
+     *	\fn int ogr2ogr(int nArgc, char ** papszArgv)
      *	\brief ogr2ogr command line
      *  \param nArgc : arguments count
      *  \param  papszArgv : arguments
      */
-int ogr2ogr( int nArgc, char ** papszArgv );
+int ogr2ogr(int nArgc, char ** papszArgv);
 
 #endif

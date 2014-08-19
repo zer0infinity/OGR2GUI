@@ -24,8 +24,8 @@
 
 /*!
  *	\file ogr.cpp
- *	\brief OGR C API
- *	\author Olivier Pilotte [ Inventis ], David Tran [ HSR ]
+ *	\brief OGR API
+ *	\author Olivier Pilotte [Inventis], David Tran [HSR]
  *	\version 0.7
  *	\date 13/06/14
  */
@@ -93,7 +93,7 @@ bool Ogr::openOgr2ogr(QString command, QPushButton *btnExecute) {
     return resVal;
 }
 
-bool Ogr::openWFS(QString uri, QStringList &fileList) {
+bool Ogr::openWFS(const QString uri, QStringList &fileList) {
     sourceName = uri.toStdString();
     OGRDataSourceH sourceData = OGROpen(sourceName.c_str(), 0, NULL);
     if(sourceData != NULL) {
@@ -109,12 +109,12 @@ bool Ogr::openWFS(QString uri, QStringList &fileList) {
     return false;
 }
 
-bool Ogr::openSource(string filename, string layername, string &epsg, string &query, string &error) {
+bool Ogr::openSource(const string filename, const string layername, string &epsg, string &query, string &error) {
     layerName = layername;
     return openSource(filename, epsg, query, error);
 }
 
-bool Ogr::openSource(string filename, string &epsg, string &query, string &error) {
+bool Ogr::openSource(const string filename, string &epsg, string &query, string &error) {
     sourceSRS = NULL;
     sourceName = filename;
     sourceData = OGROpen(sourceName.c_str(), 0, NULL);
@@ -125,11 +125,11 @@ bool Ogr::openSource(string filename, string &epsg, string &query, string &error
             sourceLayer = OGR_DS_GetLayer(sourceData, 0);
         OGR_L_ResetReading(sourceLayer);
         if(sourceLayer != NULL) {
-            sourceLayerDefn = OGR_L_GetLayerDefn( sourceLayer );
-            sourceLayerName = OGR_FD_GetName( sourceLayerDefn );
-            sourceLayerGeom = OGR_FD_GetGeomType( sourceLayerDefn );
-            sourceGeom = OGR_L_GetSpatialFilter( sourceLayer );
-            sourceSRS = OGR_L_GetSpatialRef( sourceLayer );
+            sourceLayerDefn = OGR_L_GetLayerDefn(sourceLayer);
+            sourceLayerName = OGR_FD_GetName(sourceLayerDefn);
+            sourceLayerGeom = OGR_FD_GetGeomType(sourceLayerDefn);
+            sourceGeom = OGR_L_GetSpatialFilter(sourceLayer);
+            sourceSRS = OGR_L_GetSpatialRef(sourceLayer);
             if(sourceSRS != NULL && ! Error(OSRAutoIdentifyEPSG(sourceSRS), error)) {
                 epsg = OSRGetAttrValue(sourceSRS, "AUTHORITY", 1);
             } else {
@@ -144,8 +144,7 @@ bool Ogr::openSource(string filename, string &epsg, string &query, string &error
     return true;
 }
 
-bool Ogr::closeSource( void )
-{
+bool Ogr::closeSource(void) const {
     if(sourceData != NULL) {
         OGR_DS_Destroy(sourceData);
         return true;
@@ -153,17 +152,16 @@ bool Ogr::closeSource( void )
     return false;
 }
 
-bool Ogr::openDriver(string drivername)
-{
-    formatDriver = OGRGetDriverByName( drivername.c_str() );
+bool Ogr::openDriver(const string drivername) {
+    formatDriver = OGRGetDriverByName(drivername.c_str());
     return formatDriver != NULL;
 }
 
-bool Ogr::testSpatialReference(int projection) {
+bool Ogr::testSpatialReference(const int projection) {
     targetSRS = NULL;
     if(projection > 0) {
-        targetSRS = OSRNewSpatialReference( NULL );
-        if(Error(OSRImportFromEPSG( targetSRS, projection ), error)) {
+        targetSRS = OSRNewSpatialReference(NULL);
+        if(Error(OSRImportFromEPSG(targetSRS, projection), error)) {
             return false;
         }
     }
@@ -184,14 +182,14 @@ bool Ogr::testFeatureProjection(void) {
     return true;
 }
 
-bool Ogr::testExecuteSQL(string query) {
+bool Ogr::testExecuteSQL(const string query) const {
     OGRLayerH squeryLayer = OGR_DS_ExecuteSQL(sourceData, query.c_str(), NULL, "");
     return squeryLayer != NULL;
 }
 
-bool Ogr::Error( OGRErr code, string &type )
+bool Ogr::Error(OGRErr code, string &type)
 {
-    switch( code )
+    switch(code)
     {
     case OGRERR_NONE :
     {

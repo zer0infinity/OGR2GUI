@@ -38,7 +38,7 @@ Ogr2ogrThread::~Ogr2ogrThread(void) {
 }
 
 void Ogr2ogrThread::run() {
-    QString logPath = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + "ogr2ogr.log");
+    const QString logPath = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + "ogr2ogr.log");
     btnExecute->setEnabled(false);
     btnExecute->setText(tr("Please wait..."));
     process = new QProcess();

@@ -42,7 +42,7 @@
 /**
  *	\file app.h
  *	\brief ogr2ogr GUI
- *	\author Olivier Pilotte [ Inventis ], Mohamed Hedi Lassoued [ Inventis ], David Tran [ HSR ]
+ *	\author Olivier Pilotte [Inventis], Mohamed Hedi Lassoued [Inventis], David Tran [HSR]
  *	\version 0.7
  *	\date 13/06/14
  */
@@ -154,22 +154,22 @@ private:
     QPushButton *btnExecute;
 
     /**
-         *	\fn void InitData( void );
+         *	\fn void InitData(void);
          *	\brief Inits data
          */
-    void initData( void );
+    void initData(void);
 
     /**
-         *	\fn void void InitProjections( void );
+         *	\fn void void InitProjections(void);
          *	\brief Inits projections
          */
-    void initProjections( void );
+    void initProjections(void);
 
     /**
         * \fn void ReadProjections(QString filename);
         * \brief Read projections
         */
-    void readProjections(QString filename);
+    void readProjections(const QString filename);
 
     /**
         * \fn addProjections();
@@ -178,88 +178,88 @@ private:
     void addProjections();
 
     /**
-         *	\fn void InitInterface( void );
+         *	\fn void InitInterface(void);
          *	\brief Inits Interface
          */
-    void initInterface( void );
+    void initInterface(void);
 
     /**
-         *	\fn void InitMenu( void );
+         *	\fn void InitMenu(void);
          *	\brief Inits Menu
          */
-    void initMenu( void );
+    void initMenu(void);
 
     /**
-         *	\fn void InitLayout( void );
+         *	\fn void InitLayout(void);
          *	\brief Inits Layout
          */
-    void initLayout( void );
+    void initLayout(void);
 
     /**
-         *	\fn void InitSlots( void );
+         *	\fn void InitSlots(void);
          *	\brief Inits Slots
          */
-    void initSlots( void );
+    void initSlots(void);
 
     /**
-         *	\fn void TranslateInterface( void );
+         *	\fn void TranslateInterface(void);
          *	\brief Translates Interface
          */
-    void translateInterface( void );
+    void translateInterface(void);
 
     /**
-         *	\fn void UpdateParameters( void );
+         *	\fn void UpdateParameters(void);
          *	\brief Updates parameters
          */
-    void updateParameters( void );
+    void updateParameters(void);
 
     /**
          * \brief QString currentParameters(void);
          * \return QString with parameters
          */
-    QString currentParameters(void);
+    QString currentParameters(void) const;
 
 
 private slots :
-    void evtMnuOgrHelp( void );
-    void evtMnuGuiHelp( void );
-    void evtMnuOgrAbout( void );
+    void evtMnuOgrHelp(void);
+    void evtMnuGuiHelp(void);
+    void evtMnuOgrAbout(void);
 
-    void evtRadSourceFile( void );
-    void evtRadSourceFolder( void );
-    void evtRadSourceDatabase( void );
-    void evtRadSourceWebService( void );
+    void evtRadSourceFile(void);
+    void evtRadSourceFolder(void);
+    void evtRadSourceDatabase(void);
+    void evtRadSourceWebService(void);
 
-    void evtCmbSourceFormat( void );
-    void evtTxtSourceName( void );
-    void evtBtnSourceName( void );
+    void evtCmbSourceFormat(void);
+    void evtTxtSourceName(void);
+    void evtBtnSourceName(void);
 
-    void evtRadTargetFile( void );
-    void evtRadTargetFolder( void );
-    void evtRadTargetDatabase( void );
+    void evtRadTargetFile(void);
+    void evtRadTargetFolder(void);
+    void evtRadTargetDatabase(void);
 
-    void evtCmbTargetFormat( void );
-    void evtTxtTargetName( void );
-    void evtBtnTargetName( void );
-    void evtTxtTargetProj( void );
+    void evtCmbTargetFormat(void);
+    void evtTxtTargetName(void);
+    void evtBtnTargetName(void);
+    void evtTxtTargetProj(void);
 
-    void evtUpdateParameters( void );
+    void evtUpdateParameters(void);
 
-    void evtBtnExecute( void );
+    void evtBtnExecute(void);
 
 public:
 
     /**
-         *	\fn App( QWidget * = 0 );
+         *	\fn App(QWidget * = 0);
          *	\brief Constructor
          */
-    App( QWidget * = 0 );
+    App(QWidget * = 0);
 
     /**
          *	\fn ~App
          *	\brief Destructor
          */
-    ~App( void );
+    ~App(void);
 };
 
 QT_END_NAMESPACE

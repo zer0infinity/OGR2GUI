@@ -25,29 +25,29 @@
 /*!
  *	\file dbConnect.cpp
  *	\brief Database Connect
- *	\author Olivier Pilotte [ Inventis ], David Tran [ HSR ]
+ *	\author Olivier Pilotte [Inventis], David Tran [HSR]
  *	\version 0.7
  *	\date 13/06/14
  */
 
 #include "dbConnect.h"
 
-DBConnect::DBConnect( QWidget *parent ) : QDialog( parent )
+DBConnect::DBConnect(QWidget *parent) : QDialog(parent)
 {
     initInterface();
     initSlots();
     translateInterface();
 
-    this->setWindowModality( Qt::ApplicationModal );
-    this->setMinimumWidth( 380 );
+    this->setWindowModality(Qt::ApplicationModal);
+    this->setMinimumWidth(380);
 }
 
-DBConnect::~DBConnect( void )
+DBConnect::~DBConnect(void)
 {
 
 }
 
-void DBConnect::showTables(bool enable)
+void DBConnect::showTables(const bool enable) const
 {
     if(enable) {
         lblTables->show();
@@ -62,150 +62,150 @@ void DBConnect::showTables(bool enable)
     }
 }
 
-void DBConnect::initInterface( void )
+void DBConnect::initInterface(void)
 {
-    theLayout = new QVBoxLayout( this );
+    theLayout = new QVBoxLayout(this);
     {
         lytInfo = new QGridLayout();
         {
             lblHost = new QLabel();
-            lblHost->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-            lblHost->setMinimumSize( 70, 20 );
-            lblHost->setMaximumSize( 70, 20 );
+            lblHost->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+            lblHost->setMinimumSize(70, 20);
+            lblHost->setMaximumSize(70, 20);
 
             lytHost = new QHBoxLayout();
             {
                 txtHost = new QLineEdit();
 
-                lytHost->addWidget( txtHost );
+                lytHost->addWidget(txtHost);
 
                 lblPort = new QLabel();
-                lblPort->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-                lblPort->setMinimumSize( 30, 20 );
-                lblPort->setMaximumSize( 30, 20 );
+                lblPort->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+                lblPort->setMinimumSize(30, 20);
+                lblPort->setMaximumSize(30, 20);
 
                 txtPort = new QLineEdit();
                 QValidator *validator = new QIntValidator(0, 65535, this);
                 txtPort->setValidator(validator);
-                txtPort->setMaxLength( 5 );
-                txtPort->setMinimumSize( 50, 20 );
-                txtPort->setMaximumSize( 50, 20 );
+                txtPort->setMaxLength(5);
+                txtPort->setMinimumSize(50, 20);
+                txtPort->setMaximumSize(50, 20);
 
 
-                lytHost->addWidget( lblPort );
-                lytHost->addWidget( txtPort );
+                lytHost->addWidget(lblPort);
+                lytHost->addWidget(txtPort);
             }
 
-            lytInfo->addWidget( lblHost, 0, 0 );
-            lytInfo->addLayout( lytHost, 0, 1 );
+            lytInfo->addWidget(lblHost, 0, 0);
+            lytInfo->addLayout(lytHost, 0, 1);
 
             lblName = new QLabel();
-            lblName->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-            lblName->setMinimumSize( 70, 20 );
-            lblName->setMaximumSize( 70, 20 );
+            lblName->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+            lblName->setMinimumSize(70, 20);
+            lblName->setMaximumSize(70, 20);
 
             txtName = new QLineEdit();
 
-            lytInfo->addWidget( lblName, 1, 0 );
-            lytInfo->addWidget( txtName, 1, 1 );
+            lytInfo->addWidget(lblName, 1, 0);
+            lytInfo->addWidget(txtName, 1, 1);
 
             lblUser = new QLabel();
-            lblUser->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-            lblUser->setMinimumSize( 70, 20 );
-            lblUser->setMaximumSize( 70, 20 );
+            lblUser->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+            lblUser->setMinimumSize(70, 20);
+            lblUser->setMaximumSize(70, 20);
 
             txtUser = new QLineEdit();
 
-            lytInfo->addWidget( lblUser, 2, 0 );
-            lytInfo->addWidget( txtUser, 2, 1 );
+            lytInfo->addWidget(lblUser, 2, 0);
+            lytInfo->addWidget(txtUser, 2, 1);
 
             lblPass = new QLabel();
-            lblPass->setAlignment( Qt::AlignRight | Qt::AlignVCenter );
-            lblPass->setMinimumSize( 70, 20 );
-            lblPass->setMaximumSize( 70, 20 );
+            lblPass->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+            lblPass->setMinimumSize(70, 20);
+            lblPass->setMaximumSize(70, 20);
 
             txtPass = new QLineEdit();
-            txtPass->setEchoMode( QLineEdit::Password );
+            txtPass->setEchoMode(QLineEdit::Password);
 
-            lytInfo->addWidget( lblPass, 3, 0 );
-            lytInfo->addWidget( txtPass, 3, 1 );
+            lytInfo->addWidget(lblPass, 3, 0);
+            lytInfo->addWidget(txtPass, 3, 1);
 
             btnConnect = new QPushButton();
 
-            lytInfo->addWidget( btnConnect, 4, 1 );
+            lytInfo->addWidget(btnConnect, 4, 1);
 
             lytTables = new QVBoxLayout();
             {
                 lblTables = new QLabel();
-                lblTables->setAlignment( Qt::AlignRight );
-                lblTables->setMinimumSize( 70, 20 );
-                lblTables->setMaximumSize( 70, 20 );
+                lblTables->setAlignment(Qt::AlignRight);
+                lblTables->setMinimumSize(70, 20);
+                lblTables->setMaximumSize(70, 20);
 
                 radAllTables = new QPushButton();
                 radNonTables = new QPushButton();
 
-                lytTables->addWidget( lblTables );
-                lytTables->addWidget( radAllTables );
-                lytTables->addWidget( radNonTables );
+                lytTables->addWidget(lblTables);
+                lytTables->addWidget(radAllTables);
+                lytTables->addWidget(radNonTables);
             }
 
             lstTables = new QListWidget();
 
-            lytInfo->addLayout( lytTables, 6, 0 );
-            lytInfo->addWidget( lstTables, 6, 1 );
+            lytInfo->addLayout(lytTables, 6, 0);
+            lytInfo->addWidget(lstTables, 6, 1);
         }
 
-        theLayout->addLayout( lytInfo );
+        theLayout->addLayout(lytInfo);
 
 
         lytDialog = new QHBoxLayout();
         {
             btnAccept = new QPushButton();
-            btnAccept->setEnabled( false );
+            btnAccept->setEnabled(false);
 
             btnCancel = new QPushButton();
 
-            lytDialog->addWidget( btnAccept );
-            lytDialog->addWidget( btnCancel );
+            lytDialog->addWidget(btnAccept);
+            lytDialog->addWidget(btnCancel);
         }
 
-        theLayout->addLayout( lytDialog );
+        theLayout->addLayout(lytDialog);
     }
 
-    this->setLayout( theLayout );
+    this->setLayout(theLayout);
 }
 
-void DBConnect::initSlots( void )
+void DBConnect::initSlots(void)
 {
-    QObject::connect( btnConnect, SIGNAL( clicked() ), this, SLOT( evtBtnConnect( void ) ) );
-    QObject::connect( radAllTables, SIGNAL( clicked() ), this, SLOT( evtRadAllTables( void ) ) );
-    QObject::connect( radNonTables, SIGNAL( clicked() ), this, SLOT( evtRadNonTables( void ) ) );
-    QObject::connect( btnCancel, SIGNAL( clicked() ), this, SLOT( evtBtnCancel( void ) ) );
-    QObject::connect( btnAccept, SIGNAL( clicked() ), this, SLOT( evtBtnAccept( void ) ) );
+    QObject::connect(btnConnect, SIGNAL(clicked()), this, SLOT(evtBtnConnect(void)));
+    QObject::connect(radAllTables, SIGNAL(clicked()), this, SLOT(evtRadAllTables(void)));
+    QObject::connect(radNonTables, SIGNAL(clicked()), this, SLOT(evtRadNonTables(void)));
+    QObject::connect(btnCancel, SIGNAL(clicked()), this, SLOT(evtBtnCancel(void)));
+    QObject::connect(btnAccept, SIGNAL(clicked()), this, SLOT(evtBtnAccept(void)));
 }
 
-void DBConnect::translateInterface( void )
+void DBConnect::translateInterface(void)
 {
-    this->setWindowTitle( tr( "Database" ) );
+    this->setWindowTitle(tr("Database"));
 
-    lblHost->setText( tr( "Hostname" ) );
-    lblPort->setText( tr( "Port" ) );
-    lblName->setText( tr( "Database" ) );
-    lblUser->setText( tr( "Username" ) );
-    lblPass->setText( tr( "Password" ) );
+    lblHost->setText(tr("Hostname"));
+    lblPort->setText(tr("Port"));
+    lblName->setText(tr("Database"));
+    lblUser->setText(tr("Username"));
+    lblPass->setText(tr("Password"));
 
     btnConnect->setText(tr("Connect"));
 
-    lblTables->setText( tr( "Tables" ) );
+    lblTables->setText(tr("Tables"));
 
-    radAllTables->setText( tr( "Select All" ) );
-    radNonTables->setText( tr( "Reset" ) );
+    radAllTables->setText(tr("Select All"));
+    radNonTables->setText(tr("Reset"));
 
-    btnAccept->setText( tr( "Accept" ) );
-    btnCancel->setText( tr( "Cancel" ) );
+    btnAccept->setText(tr("Accept"));
+    btnCancel->setText(tr("Cancel"));
 }
 
-void DBConnect::evtBtnConnect( void )
+void DBConnect::evtBtnConnect(void)
 {
     QMessageBox msg;
 
@@ -215,7 +215,7 @@ void DBConnect::evtBtnConnect( void )
     user = txtUser->text();
     pass = txtPass->text();
 
-    QSqlDatabase base = QSqlDatabase::addDatabase( connectionType );
+    QSqlDatabase base = QSqlDatabase::addDatabase(connectionType);
     if(connectionType.compare("QSQLITE") == 0) {
         QString type = tr("\" SQLite/SpatiaLite (*.sqlite)\"");
         name = QDir::toNativeSeparators(QFileDialog::getOpenFileName(this, tr("SQLite/SpatiaLite File"), tr(""), type));
@@ -235,7 +235,7 @@ void DBConnect::evtBtnConnect( void )
         QStringList::Iterator it = list.begin();
         while(it != list.end()) {
             table = (char *)(*it).toStdString().c_str();
-            if((strcmp(table, "geometry_columns") != 0 ) && (strcmp( table, "spatial_ref_sys") != 0)) {
+            if((strcmp(table, "geometry_columns") != 0) && (strcmp(table, "spatial_ref_sys") != 0)) {
                 QListWidgetItem *item = new QListWidgetItem(*it);
                 lstTables->addItem(item);
                 if(connectionType.compare("QSQLITE") != 0) {
@@ -264,7 +264,7 @@ void DBConnect::evtRadNonTables(void) {
     }
 }
 
-void DBConnect::evtBtnAccept( void )
+void DBConnect::evtBtnAccept(void)
 {
     int nb = 0;
 
@@ -277,37 +277,37 @@ void DBConnect::evtBtnAccept( void )
     user = txtUser->text();
     pass = txtPass->text();
 
-    if( connectionType.compare( "QPSQL" ) == 0 )
+    if(connectionType.compare("QPSQL") == 0)
     {
         separator = " ";
 
-        connectionString = tr( "PG:" );
+        connectionString = tr("PG:");
 
-        if( name.size() > 0 )	connectionString += tr( "dbname=" ) + name;
-        if( host.size() > 0 )	connectionString += tr( " host=" ) + host;
-        if( port.size() > 0 )	connectionString += tr( " port=" ) + port;
-        if( user.size() > 0 )	connectionString += tr( " user=" ) + user;
-        if( pass.size() > 0 )	connectionString += tr( " password=" ) + pass;
+        if(name.size() > 0)	connectionString += tr("dbname=") + name;
+        if(host.size() > 0)	connectionString += tr(" host=") + host;
+        if(port.size() > 0)	connectionString += tr(" port=") + port;
+        if(user.size() > 0)	connectionString += tr(" user=") + user;
+        if(pass.size() > 0)	connectionString += tr(" password=") + pass;
     }
-    else if( connectionType.compare( "QMYSQL" ) == 0 )
+    else if(connectionType.compare("QMYSQL") == 0)
     {
         separator = ",";
 
-        if( name.size() > 0 )	connectionString = tr( "MySQL:" ) + name;
-        if( host.size() > 0 )	connectionString += ",host=" + host;
-        if( port.size() > 0 )	connectionString += ",port=" + port;
-        if( user.size() > 0 )	connectionString += ",user=" + user;
-        if( pass.size() > 0 )	connectionString += ",password=" + pass;
+        if(name.size() > 0)	connectionString = tr("MySQL:") + name;
+        if(host.size() > 0)	connectionString += ",host=" + host;
+        if(port.size() > 0)	connectionString += ",port=" + port;
+        if(user.size() > 0)	connectionString += ",user=" + user;
+        if(pass.size() > 0)	connectionString += ",password=" + pass;
     }
-    else if( connectionType.compare( "QODBC" ) == 0 )
+    else if(connectionType.compare("QODBC") == 0)
     {
         separator = "";
 
-        if( user.size() > 0 )	connectionString = "ODBC:" + user;
-        if( pass.size() > 0 )	connectionString += "/" + pass;
-        if( host.size() > 0 )	connectionString += "@" + host;
+        if(user.size() > 0)	connectionString = "ODBC:" + user;
+        if(pass.size() > 0)	connectionString += "/" + pass;
+        if(host.size() > 0)	connectionString += "@" + host;
     }
-    else if( connectionType.compare( "QSQLITE" ) == 0 )
+    else if(connectionType.compare("QSQLITE") == 0)
     {
         separator = "";
     }
@@ -315,12 +315,12 @@ void DBConnect::evtBtnAccept( void )
     selectedTables.clear();
 
     for(int i = 0; i < lstTables->count(); ++i) {
-        if( lstTables->item( i )->checkState() == Qt::Checked ) {
-            if( nb > 0 ) {
+        if(lstTables->item(i)->checkState() == Qt::Checked) {
+            if(nb > 0) {
                 tables += ",";
             }
-            tables += lstTables->item( i )->text();
-            selectedTables.append( lstTables->item( i )->text() );
+            tables += lstTables->item(i)->text();
+            selectedTables.append(lstTables->item(i)->text());
             ++nb;
         }
     }
@@ -336,12 +336,12 @@ void DBConnect::evtBtnAccept( void )
     this->accept();
 }
 
-void DBConnect::evtBtnCancel( void )
+void DBConnect::evtBtnCancel(void)
 {
     this->reject();
 }
 
-void DBConnect::setConnectionType(QString type) {
+void DBConnect::setConnectionType(const QString type) {
     if(connectionType.compare(type) != 0) {
         txtHost->clear();
         txtPort->clear();
@@ -364,7 +364,7 @@ void DBConnect::setConnectionType(QString type) {
 
     if(connectionType.compare(tr("QPSQL")) == 0) {
         txtPort->setText(tr("5432"));
-    } else if( connectionType.compare(tr("QMYSQL")) == 0) {
+    } else if(connectionType.compare(tr("QMYSQL")) == 0) {
         txtPort->setText(tr("3306"));
     } else if(connectionType.compare(tr("QODBC")) == 0) {
         txtPort->setText(tr("1433"));
@@ -380,12 +380,12 @@ void DBConnect::setConnectionType(QString type) {
     }
 }
 
-QString DBConnect::getConnectionString( void ) const
+QString DBConnect::getConnectionString(void) const
 {
     return connectionString;
 }
 
-QStringList DBConnect::getSelectedTables( void ) const
+QStringList DBConnect::getSelectedTables(void) const
 {
     return selectedTables;
 }
