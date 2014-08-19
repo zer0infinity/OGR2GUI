@@ -22,9 +22,9 @@
  *****************************************************************************/
 
 /*!
- *	\file TestOgr.h
- *	\brief Qt Test Ogr
- *	\author David Tran [ HSR ]
+ *	\file testOgr.h
+ *	\brief Test Ogr API
+ *	\author David Tran [HSR]
  *	\version 0.1
  *	\date 13/06/14
  */

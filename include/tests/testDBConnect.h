@@ -22,9 +22,9 @@
  *****************************************************************************/
 
 /*!
- *	\file TestInf.h
- *	\brief Qt Test Inf
- *	\author David Tran [ HSR ]
+ *	\file testDBConnect.h
+ *	\brief Test Database Connect
+ *	\author David Tran [HSR]
  *	\version 0.1
  *	\date 13/06/14
  */

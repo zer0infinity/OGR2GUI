@@ -22,9 +22,9 @@
  *****************************************************************************/
 
 /*!
- *	\file TestdbConnect.cpp
- *	\brief Qt Test dbConnect
- *	\author David Tran [ HSR ]
+ *	\file testDBConnect.cpp
+ *	\brief Test Database Connect
+ *	\author David Tran [HSR]
  *	\version 0.1
  *	\date 13/06/14
  */

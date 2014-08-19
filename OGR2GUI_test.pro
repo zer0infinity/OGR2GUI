@@ -25,7 +25,7 @@ TEMPLATE = app
 TARGET = OGR2GUI_test
 INCLUDEPATH += $$PWD/include $$PWD/include/ogr $$PWD/include/tests
 LIBS += -L$$PWD/lib -lgdal_i
-DESTDIR += $$PWD/bin
+#DESTDIR += $$PWD/bin
 
 HEADERS += \
     include/app.h \
@@ -42,10 +42,10 @@ SOURCES += \
     src/ogr.cpp \
     src/dbConnect.cpp \
     src/app.cpp \
-    src/utils/ogr2ogr.cpp \
-    src/utils/commonutils.cpp \
     src/webServiceConnect.cpp \
     src/ogr2ogrThread.cpp \
+    src/utils/ogr2ogr.cpp \
+    src/utils/commonutils.cpp \
     src/tests/testDBConnect.cpp \
     src/tests/testMain.cpp \
     src/tests/testOgr.cpp

@@ -23,8 +23,8 @@
 
 /*!
  *	\file testMain.cpp
- *	\brief Qt Test Main
- *	\author David Tran [ HSR ]
+ *	\brief Test Main
+ *	\author David Tran [HSR]
  *	\version 0.1
  *	\date 13/06/14
  */
