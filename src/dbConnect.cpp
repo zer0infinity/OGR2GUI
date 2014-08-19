@@ -207,8 +207,6 @@ void DBConnect::translateInterface(void)
 
 void DBConnect::evtBtnConnect(void)
 {
-    QMessageBox msg;
-
     host = txtHost->text();
     port = txtPort->text();
     name = txtName->text();
@@ -228,9 +226,10 @@ void DBConnect::evtBtnConnect(void)
     }
     base.setDatabaseName(name);
 
+    QMessageBox msg;
     char *table;
+    lstTables->clear();
     if(base.open()) {
-        lstTables->clear();
         QStringList list = base.tables();
         QStringList::Iterator it = list.begin();
         while(it != list.end()) {
@@ -244,9 +243,14 @@ void DBConnect::evtBtnConnect(void)
             }
             ++it;
         }
-        btnAccept->setEnabled(true);
-    } else if(connectionType.compare("QSQLITE") != 0) {
+        if(lstTables->count() > 0)
+            btnAccept->setEnabled(true);
+    } else if(!txtName->text().isEmpty()) {
         msg.setText("* Can't connect to database !");
+        msg.exec();
+    }
+    if(lstTables->count() <=0 && base.isOpen()) {
+        msg.setText("* Can't find any tables in database !");
         msg.exec();
     }
     base.close();
@@ -355,6 +359,7 @@ void DBConnect::setConnectionType(const QString type) {
     txtHost->setEnabled(true);
     txtHost->setFocus();
     txtPort->setEnabled(true);
+    txtName->setReadOnly(false);
     txtUser->setEnabled(true);
     txtPass->setEnabled(true);
     radAllTables->setEnabled(true);
@@ -371,7 +376,7 @@ void DBConnect::setConnectionType(const QString type) {
     } else if(connectionType.compare(tr("QSQLITE")) == 0) {
         txtHost->setEnabled(false);
         txtPort->setEnabled(false);
-        txtName->setFocus();
+        txtName->setReadOnly(true);
         txtUser->setEnabled(false);
         txtPass->setEnabled(false);
         radAllTables->setEnabled(false);

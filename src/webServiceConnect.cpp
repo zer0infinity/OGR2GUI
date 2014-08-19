@@ -139,7 +139,6 @@ void WebServiceConnect::translateInterface(void)
 void WebServiceConnect::evtBtnConnect(void)
 {
     lstTables->clear();
-    QMessageBox msg;
     Ogr ogr;
     QStringList fileList;
     QString filename = connectionType + txtHost->text();
@@ -153,6 +152,7 @@ void WebServiceConnect::evtBtnConnect(void)
         }
         btnAccept->setEnabled(true);
     } else {
+        QMessageBox msg;
         msg.setText("* Can't connect to web service !");
         msg.exec();
     }
