@@ -90,7 +90,7 @@ private:
     QAction *mnuDoc;
     QAction *mnuAbout;
 
-    QProgressBar *theProgress;
+    QProgressBar *progress;
 
     QWidget *thePanel;
     QVBoxLayout *theLayout;

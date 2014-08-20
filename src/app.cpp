@@ -380,10 +380,12 @@ void App::initLayout(void) {
         theLayout->addWidget(txtOutput);
         theLayout->addLayout(lytExecute);
 
-        theProgress = new QProgressBar();
-        theProgress->setValue(0);
+        progress = new QProgressBar();
+        progress->setValue(0);
+        progress->setMinimum(0);
+        progress->setMaximum(100);
 
-        theLayout->addWidget(theProgress);
+        theLayout->addWidget(progress);
     }
 
     thePanel->setLayout(theLayout);
@@ -489,7 +491,7 @@ void App::updateParameters(void) {
     if(!txtInput->toPlainText().isEmpty())
         parameters += tr(" ") + txtInput->toPlainText().simplified();
     txtOutput->setText(parameters);
-    theProgress->setValue(0);
+    progress->setValue(0);
 }
 
 QString App::currentParameters(void) const {
@@ -575,7 +577,7 @@ void App::evtRadSourceFolder(void) {
 }
 
 void App::evtRadSourceDatabase(void) {
-    btnSourceName->setText(tr("Connect"));
+    btnSourceName->setText(tr("Open"));
 
     cmbSourceFormat->clear();
 
@@ -597,7 +599,7 @@ void App::evtRadSourceDatabase(void) {
 }
 
 void App::evtRadSourceWebService(void) {
-    btnSourceName->setText(tr("Connect"));
+    btnSourceName->setText(tr("Open"));
 
     cmbSourceFormat->clear();
 
@@ -649,7 +651,7 @@ void App::evtTxtSourceName(void) {
     } else {
         txtSourceQuery->clear();
         if(radSourceWebService->isChecked())
-            btnSourceName->setText(tr("Connect"));
+            btnSourceName->setText(tr("Open"));
     }
     updateParameters();
     if(txtSourceName->text().isEmpty() || txtTargetName->text().isEmpty() || !isOpen)
@@ -728,7 +730,7 @@ void App::evtRadTargetFolder(void) {
 }
 
 void App::evtRadTargetDatabase(void) {
-    btnTargetName->setText(tr("Connect"));
+    btnTargetName->setText(tr("Open"));
 
     cmbTargetFormat->clear();
     for(int i = 0; i < databasesOutput; ++i) {
@@ -812,9 +814,12 @@ void App::evtBtnExecute(void) {
     string query;
     string error;
 
-    if(txtTargetName->text().isEmpty()) {
-        txtOutput->append(tr("\n * unable to open target !\n"));
+    int progressSteps = 8;
+    int maxValue = 100;
+    if(!ogr->openDriver(cmbTargetFormat->currentText().toStdString())) {
+        txtOutput->append(tr("\n * unable to open driver !\n"));
         btnExecute->setEnabled(false);
+        progress->setValue(maxValue/progressSteps);
         return;
     }
     bool resVal = true;
@@ -830,47 +835,48 @@ void App::evtBtnExecute(void) {
     } else {
         resVal = ogr->openSource(sourcename.toStdString(), epsg, query, error);
     }
-    if(resVal) {
-        if(ogr->openDriver(cmbTargetFormat->currentText().toStdString())) {
-            if(!txtSourceQuery->text().isEmpty()) {
-                if(!ogr->testExecuteSQL(txtSourceQuery->text().toStdString())) {
-                    txtOutput->append(tr("\n * unable to execute sql query !\n"));
-                    return;
-                }
-            }
-            if(!ogr->testSpatialReference((projectionsList.at(cmbTargetProj->currentIndex()).first).toInt()))
-                txtOutput->append(tr("\n * unable to create spatial reference !\n"));
-            if(!radSourceDatabase->isChecked() && !radSourceWebService->isChecked())
-                if(!ogr->testFeatureProjection())
-                    txtOutput->append(tr("\n * unable to transform feature with projection !\n"));
-
-            theProgress->setValue(0);
-            theProgress->setMinimum(0);
-            theProgress->setMaximum(0);
-
-            txtOutput->append(tr("\n") + sourcename + tr(" > ") + targetname + tr(" ... ") + tr("\n"));
-            QString parameters = currentParameters();
-            QString command = QDir::toNativeSeparators(QCoreApplication::applicationFilePath());
-            if(radSourceWebService->isChecked())
-                parameters += tr(" ") + wsConnect->getSelectedLayers();
-            if(!txtInput->toPlainText().isEmpty())
-                parameters += tr(" ") + txtInput->toPlainText();
-            command += parameters;
-            if(ogr->openOgr2ogr(command, btnExecute)) {
-                theProgress->setValue(100);
-                theProgress->setMaximum(100);
-            } else {
-                txtOutput->append(tr("\n * unable to open ogr2ogr !\n"));
-                btnExecute->setEnabled(false);
-                theProgress->setValue(0);
-                theProgress->setMaximum(0);
-            }
-        } else {
-            txtOutput->append(tr("\n * unable to open driver !\n"));
-            btnExecute->setEnabled(false);
-        }
-    } else {
+    if(!resVal) {
         txtOutput->append(tr("\n * unable to open source !\n"));
         btnExecute->setEnabled(false);
+        progress->setValue(maxValue/progressSteps*2);
+        return;
+    }
+    if(!txtSourceQuery->text().isEmpty()) {
+        if(!ogr->testExecuteSQL(txtSourceQuery->text().toStdString())) {
+            txtOutput->append(tr("\n * unable to execute sql query !\n"));
+            progress->setValue(maxValue/progressSteps*3);
+            return;
+        }
+    }
+    if(txtTargetName->text().isEmpty()) {
+        txtOutput->append(tr("\n * unable to open target !\n"));
+        btnExecute->setEnabled(false);
+        progress->setValue(maxValue/progressSteps*4);
+        return;
+    }
+    if(!ogr->testSpatialReference((projectionsList.at(cmbTargetProj->currentIndex()).first).toInt())) {
+        txtOutput->append(tr("\n * unable to create spatial reference !\n"));
+        progress->setValue(maxValue/progressSteps*5);
+    }
+    if(!radSourceDatabase->isChecked() && !radSourceWebService->isChecked()) {
+        if(!ogr->testFeatureProjection()) {
+            txtOutput->append(tr("\n * unable to transform feature with projection !\n"));
+            progress->setValue(maxValue/progressSteps*6);
+        }
+    }
+    txtOutput->append(tr("\n") + sourcename + tr(" > ") + targetname + tr(" ... ") + tr("\n"));
+    QString parameters = currentParameters();
+    QString command = QDir::toNativeSeparators(QCoreApplication::applicationFilePath());
+    if(radSourceWebService->isChecked())
+        parameters += tr(" ") + wsConnect->getSelectedLayers();
+    if(!txtInput->toPlainText().isEmpty())
+        parameters += tr(" ") + txtInput->toPlainText();
+    command += parameters;
+    if(ogr->openOgr2ogr(command, btnExecute)) {
+        progress->setValue(maxValue);
+    } else {
+        txtOutput->append(tr("\n * unable to open ogr2ogr !\n"));
+        btnExecute->setEnabled(false);
+        progress->setValue(maxValue/progressSteps*7);
     }
 }

@@ -69,7 +69,7 @@ bool Ogr::openOgr2ogr(QString command, QPushButton *btnExecute) {
         ogr2ogr->start();
         resVal = ogr2ogr->isRunning();
     } else if(checkOS() == WOW64) {
-        QString logPath = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + "ogr2ogr.log");
+        const QString logPath = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + "ogr2ogr.log");
         btnExecute->setEnabled(false);
         btnExecute->setText("Please wait...");
         process = new QProcess();
