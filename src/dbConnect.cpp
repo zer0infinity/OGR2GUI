@@ -32,8 +32,7 @@
 
 #include "dbConnect.h"
 
-DBConnect::DBConnect(QWidget *parent) : QDialog(parent)
-{
+DBConnect::DBConnect(QWidget *parent) : QDialog(parent) {
     initInterface();
     initSlots();
     translateInterface();
@@ -42,13 +41,10 @@ DBConnect::DBConnect(QWidget *parent) : QDialog(parent)
     this->setMinimumWidth(380);
 }
 
-DBConnect::~DBConnect(void)
-{
-
+DBConnect::~DBConnect(void) {
 }
 
-void DBConnect::showTables(const bool enable) const
-{
+void DBConnect::showTables(const bool enable) const {
     if(enable) {
         lblTables->show();
         lstTables->show();
@@ -62,8 +58,7 @@ void DBConnect::showTables(const bool enable) const
     }
 }
 
-void DBConnect::initInterface(void)
-{
+void DBConnect::initInterface(void) {
     theLayout = new QVBoxLayout(this);
     {
         lytInfo = new QGridLayout();
@@ -175,8 +170,7 @@ void DBConnect::initInterface(void)
     this->setLayout(theLayout);
 }
 
-void DBConnect::initSlots(void)
-{
+void DBConnect::initSlots(void) {
     QObject::connect(btnConnect, SIGNAL(clicked()), this, SLOT(evtBtnConnect(void)));
     QObject::connect(radAllTables, SIGNAL(clicked()), this, SLOT(evtRadAllTables(void)));
     QObject::connect(radNonTables, SIGNAL(clicked()), this, SLOT(evtRadNonTables(void)));
@@ -184,8 +178,7 @@ void DBConnect::initSlots(void)
     QObject::connect(btnAccept, SIGNAL(clicked()), this, SLOT(evtBtnAccept(void)));
 }
 
-void DBConnect::translateInterface(void)
-{
+void DBConnect::translateInterface(void) {
     this->setWindowTitle(tr("Database"));
 
     lblHost->setText(tr("Hostname"));
@@ -205,8 +198,7 @@ void DBConnect::translateInterface(void)
     btnCancel->setText(tr("Cancel"));
 }
 
-void DBConnect::evtBtnConnect(void)
-{
+void DBConnect::evtBtnConnect(void) {
     host = txtHost->text();
     port = txtPort->text();
     name = txtName->text();
@@ -214,6 +206,7 @@ void DBConnect::evtBtnConnect(void)
     pass = txtPass->text();
 
     QSqlDatabase base = QSqlDatabase::addDatabase(connectionType);
+    btnAccept->setEnabled(false);
     if(connectionType.compare("QSQLITE") == 0) {
         QString type = tr("\" SQLite/SpatiaLite (*.sqlite)\"");
         name = QDir::toNativeSeparators(QFileDialog::getOpenFileName(this, tr("SQLite/SpatiaLite File"), tr(""), type));
@@ -268,8 +261,7 @@ void DBConnect::evtRadNonTables(void) {
     }
 }
 
-void DBConnect::evtBtnAccept(void)
-{
+void DBConnect::evtBtnAccept(void) {
     int nb = 0;
 
     QString tables;
@@ -281,43 +273,30 @@ void DBConnect::evtBtnAccept(void)
     user = txtUser->text();
     pass = txtPass->text();
 
-    if(connectionType.compare("QPSQL") == 0)
-    {
+    if(connectionType.compare("QPSQL") == 0) {
         separator = " ";
-
         connectionString = tr("PG:");
-
         if(name.size() > 0)	connectionString += tr("dbname=") + name;
         if(host.size() > 0)	connectionString += tr(" host=") + host;
         if(port.size() > 0)	connectionString += tr(" port=") + port;
         if(user.size() > 0)	connectionString += tr(" user=") + user;
         if(pass.size() > 0)	connectionString += tr(" password=") + pass;
-    }
-    else if(connectionType.compare("QMYSQL") == 0)
-    {
+    } else if(connectionType.compare("QMYSQL") == 0) {
         separator = ",";
-
         if(name.size() > 0)	connectionString = tr("MySQL:") + name;
         if(host.size() > 0)	connectionString += ",host=" + host;
         if(port.size() > 0)	connectionString += ",port=" + port;
         if(user.size() > 0)	connectionString += ",user=" + user;
         if(pass.size() > 0)	connectionString += ",password=" + pass;
-    }
-    else if(connectionType.compare("QODBC") == 0)
-    {
+     } else if(connectionType.compare("QODBC") == 0) {
         separator = "";
-
         if(user.size() > 0)	connectionString = "ODBC:" + user;
         if(pass.size() > 0)	connectionString += "/" + pass;
         if(host.size() > 0)	connectionString += "@" + host;
-    }
-    else if(connectionType.compare("QSQLITE") == 0)
-    {
+    } else if(connectionType.compare("QSQLITE") == 0) {
         separator = "";
     }
-
     selectedTables.clear();
-
     for(int i = 0; i < lstTables->count(); ++i) {
         if(lstTables->item(i)->checkState() == Qt::Checked) {
             if(nb > 0) {
@@ -340,8 +319,7 @@ void DBConnect::evtBtnAccept(void)
     this->accept();
 }
 
-void DBConnect::evtBtnCancel(void)
-{
+void DBConnect::evtBtnCancel(void) {
     this->reject();
 }
 
@@ -385,12 +363,10 @@ void DBConnect::setConnectionType(const QString type) {
     }
 }
 
-QString DBConnect::getConnectionString(void) const
-{
+QString DBConnect::getConnectionString(void) const {
     return connectionString;
 }
 
-QStringList DBConnect::getSelectedTables(void) const
-{
+QStringList DBConnect::getSelectedTables(void) const {
     return selectedTables;
 }

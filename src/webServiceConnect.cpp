@@ -31,8 +31,7 @@
 
 #include "webServiceConnect.h"
 
-WebServiceConnect::WebServiceConnect(QWidget *parent) : QDialog(parent)
-{
+WebServiceConnect::WebServiceConnect(QWidget *parent) : QDialog(parent) {
     initInterface();
     initSlots();
     translateInterface();
@@ -41,13 +40,10 @@ WebServiceConnect::WebServiceConnect(QWidget *parent) : QDialog(parent)
     this->setMinimumWidth(380);
 }
 
-WebServiceConnect::~WebServiceConnect(void)
-{
-
+WebServiceConnect::~WebServiceConnect(void) {
 }
 
-void WebServiceConnect::initInterface(void)
-{
+void WebServiceConnect::initInterface(void) {
     theLayout = new QVBoxLayout(this);
     {
         lytInfo = new QGridLayout();
@@ -110,8 +106,7 @@ void WebServiceConnect::initInterface(void)
     this->setLayout(theLayout);
 }
 
-void WebServiceConnect::initSlots(void)
-{
+void WebServiceConnect::initSlots(void) {
     QObject::connect(btnConnect, SIGNAL(clicked()), this, SLOT(evtBtnConnect(void)));
     QObject::connect(radAllTables, SIGNAL(clicked()), this, SLOT(evtRadAllLayers(void)));
     QObject::connect(radNonTables, SIGNAL(clicked()), this, SLOT(evtRadNonLayers(void)));
@@ -119,8 +114,7 @@ void WebServiceConnect::initSlots(void)
     QObject::connect(btnAccept, SIGNAL(clicked()), this, SLOT(evtBtnAccept(void)));
 }
 
-void WebServiceConnect::translateInterface(void)
-{
+void WebServiceConnect::translateInterface(void) {
     this->setWindowTitle(tr("Web Service"));
 
     lblHost->setText(tr("URI"));
@@ -136,8 +130,7 @@ void WebServiceConnect::translateInterface(void)
     btnCancel->setText(tr("Cancel"));
 }
 
-void WebServiceConnect::evtBtnConnect(void)
-{
+void WebServiceConnect::evtBtnConnect(void) {
     lstTables->clear();
     Ogr ogr;
     QStringList fileList;
@@ -170,8 +163,7 @@ void WebServiceConnect::evtRadNonLayers(void) {
     }
 }
 
-void WebServiceConnect::evtBtnAccept(void)
-{
+void WebServiceConnect::evtBtnAccept(void) {
     connectionString = txtHost->text();
     selectedLayers.clear();
     selectedLayersList.clear();
@@ -188,29 +180,24 @@ void WebServiceConnect::evtBtnAccept(void)
     this->accept();
 }
 
-void WebServiceConnect::evtBtnCancel(void)
-{
+void WebServiceConnect::evtBtnCancel(void) {
     lstTables->clear();
     btnAccept->setEnabled(false);
     this->reject();
 }
 
-void WebServiceConnect::setConnectionType(const QString type)
-{
+void WebServiceConnect::setConnectionType(const QString type) {
     connectionType = type;
 }
 
-QString WebServiceConnect::getConnectionString(void) const
-{
+QString WebServiceConnect::getConnectionString(void) const {
     return connectionString;
 }
 
-QString WebServiceConnect::getSelectedLayers(void) const
-{
+QString WebServiceConnect::getSelectedLayers(void) const {
     return selectedLayers;
 }
 
-QStringList WebServiceConnect::getSelectedLayersAsList(void) const
-{
+QStringList WebServiceConnect::getSelectedLayersAsList(void) const {
     return selectedLayersList;
 }

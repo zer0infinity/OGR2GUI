@@ -624,42 +624,35 @@ void App::evtCmbSourceFormat(void) {
 }
 
 void App::evtTxtSourceName(void) {
-    if(txtSourceName->text().startsWith(tr("file://"))) {
+    if(txtSourceName->text().startsWith(tr("file://")))
         txtSourceName->setText(QUrl(txtSourceName->text()).authority().trimmed());
-    }
     string name = txtSourceName->text().trimmed().toStdString();
-    string epsg;
-    string query;
-    string error;
+    string epsg, query, error;
 
-    if(radSourceWebService->isChecked()) {
+    if(radSourceWebService->isChecked())
         name = webservices[0][1].toStdString() + name;
-    }
     txtSourceProj->clear();
-    if(ogr->openSource(name, epsg, query, error)) {
-        for(int i = 0; i < projectionsList.size(); i++) {
+    bool isOpen = ogr->openSource(name, epsg, query, error);
+    if(isOpen) {
+        for(int i = 0; i < projectionsList.size(); ++i) {
             if(strcmp(epsg.c_str(), projectionsList.at(i).first.toStdString().c_str()) == 0) {
-                if(i > 1) {
+                if(i > 1)
                     txtSourceProj->setText(projectionsList.at(i).first + tr(" : ") + projectionsList.at(i).second);
-                }
                 break;
             }
         }
         ogr->closeSource();
-        if(radSourceFile->isChecked()) {
+        if(radSourceFile->isChecked())
             txtSourceQuery->setText(query.c_str());
-        } else if(radSourceWebService->isChecked()) {
+        else if(radSourceWebService->isChecked())
             btnSourceName->setText(tr("Connected"));
-        }
     } else {
-        txtSourceProj->clear();
         txtSourceQuery->clear();
-        if(radSourceWebService->isChecked()) {
+        if(radSourceWebService->isChecked())
             btnSourceName->setText(tr("Connect"));
-        }
     }
     updateParameters();
-    if(txtSourceName->text().isEmpty() || txtTargetName->text().isEmpty())
+    if(txtSourceName->text().isEmpty() || txtTargetName->text().isEmpty() || !isOpen)
         btnExecute->setEnabled(false);
     else
         btnExecute->setEnabled(true);
@@ -767,13 +760,11 @@ void App::evtBtnTargetName(void) {
         }
         dbConnect->showTables(false);
         dbConnect->setConnectionType(databases[cmbTargetFormat->currentIndex()][1]);
-        if(dbConnect->exec() == QDialog::Accepted) {
+        if(dbConnect->exec() == QDialog::Accepted)
             txtTargetName->setText(dbConnect->getConnectionString());
-        }
     } else if(radTargetFolder->isChecked()) {
         if(radSourceFile->isChecked()) {
             type = tr("\"") + formats[index][0] + tr(" (*.") + formats[index][1] + tr(") | *.") + formats[index][1];
-
             txtTargetName->setText(QDir::toNativeSeparators(QFileDialog::getSaveFileName(this, tr("Save File"), tr(""), type)));
         } else if(radTargetFolder->isChecked()) {
             txtTargetName->setText(QDir::toNativeSeparators(QFileDialog::getExistingDirectory(this, tr("Target Folder"), tr(""), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks)));
@@ -782,8 +773,11 @@ void App::evtBtnTargetName(void) {
         type = tr("\"") + formats[index][0] + tr(" (*.") + formats[index][1] + tr(")\"");
         txtTargetName->setText(QDir::toNativeSeparators(QFileDialog::getSaveFileName(this, tr("Target File"), tr(""), type)));
     }
-
-    if(txtSourceName->text().isEmpty() || txtTargetName->text().isEmpty())
+    string name = txtSourceName->text().trimmed().toStdString();
+    string epsg, query, error;
+    if(radSourceWebService->isChecked())
+        name = webservices[0][1].toStdString() + name;
+    if(txtSourceName->text().isEmpty() || txtTargetName->text().isEmpty() || !ogr->openSource(name, epsg, query, error))
         btnExecute->setEnabled(false);
     else
         btnExecute->setEnabled(true);
