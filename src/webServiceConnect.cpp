@@ -164,6 +164,16 @@ void WebServiceConnect::evtRadNonLayers(void) {
 }
 
 void WebServiceConnect::evtBtnAccept(void) {
+    Ogr ogr;
+    if(!ogr.openWFS(connectionType + txtHost->text(), QStringList())) {
+        btnAccept->setEnabled(false);
+        lstTables->clear();
+        QMessageBox msg;
+        msg.setText("* Can't connect to web service !");
+        msg.exec();
+        return;
+    }
+
     connectionString = txtHost->text();
     selectedLayers.clear();
     selectedLayersList.clear();

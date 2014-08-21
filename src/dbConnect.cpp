@@ -207,7 +207,7 @@ void DBConnect::evtBtnConnect(void) {
 
     QSqlDatabase base = QSqlDatabase::addDatabase(connectionType);
     btnAccept->setEnabled(false);
-    if(connectionType.compare("QSQLITE") == 0) {
+    if(connectionType.compare(tr("QSQLITE")) == 0) {
         QString type = tr("\" SQLite/SpatiaLite (*.sqlite)\"");
         name = QDir::toNativeSeparators(QFileDialog::getOpenFileName(this, tr("SQLite/SpatiaLite File"), tr(""), type));
         txtName->setText(name);
@@ -262,17 +262,33 @@ void DBConnect::evtRadNonTables(void) {
 }
 
 void DBConnect::evtBtnAccept(void) {
-    int nb = 0;
-
-    QString tables;
-    QString separator;
-
     host = txtHost->text();
     port = txtPort->text();
     name = txtName->text();
     user = txtUser->text();
     pass = txtPass->text();
 
+    QSqlDatabase base = QSqlDatabase::addDatabase(connectionType);
+    if(connectionType.compare(tr("QSQLITE")) != 0) {
+        base.setHostName(host);
+        base.setPort(port.toInt());
+        base.setUserName(user);
+        base.setPassword(pass);
+        base.setDatabaseName(name);
+        base.open();
+        if(base.isOpenError()) {
+            btnAccept->setEnabled(false);
+            lstTables->clear();
+            QMessageBox msg;
+            msg.setText("* Can't connect to database !");
+            msg.exec();
+            base.close();
+            return;
+        }
+    }
+
+    QString tables;
+    QString separator;
     if(connectionType.compare("QPSQL") == 0) {
         separator = " ";
         connectionString = tr("PG:");
@@ -296,6 +312,7 @@ void DBConnect::evtBtnAccept(void) {
     } else if(connectionType.compare("QSQLITE") == 0) {
         separator = "";
     }
+    int nb = 0;
     selectedTables.clear();
     for(int i = 0; i < lstTables->count(); ++i) {
         if(lstTables->item(i)->checkState() == Qt::Checked) {
