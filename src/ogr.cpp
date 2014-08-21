@@ -76,8 +76,8 @@ bool Ogr::openOgr2ogr(QString command, QPushButton *btnExecute) {
         process->setProcessChannelMode(QProcess::MergedChannels);
         process->setStandardOutputFile(logPath);
         process->start(command);
-        process->waitForStarted();
-        resVal = process->waitForFinished();
+        process->waitForStarted(-1);
+        resVal = process->waitForFinished(-1);
         btnExecute->setEnabled(true);
         btnExecute->setText("Execute");
     } else if(checkOS() == Win_32){

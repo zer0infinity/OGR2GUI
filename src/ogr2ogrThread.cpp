@@ -45,8 +45,8 @@ void Ogr2ogrThread::run() {
     process->setProcessChannelMode(QProcess::MergedChannels);
     process->setStandardOutputFile(logPath);
     process->start(command);
-    process->waitForStarted();
-    process->waitForFinished();
+    process->waitForStarted(-1);
+    process->waitForFinished(-1);
     btnExecute->setEnabled(true);
     btnExecute->setText(tr("Execute"));
 }

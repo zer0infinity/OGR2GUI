@@ -55,7 +55,7 @@ void App::initData(void) {
     for(int i = 0; i < formatsCount; ++i) {
         formats[i] = new QString[2];
     }
-    databases = new QString *[databasesCount];
+    databases = new QString*[databasesCount];
     for(int i = 0; i < databasesCount; ++i) {
         databases[i] = new QString[2];
     }
