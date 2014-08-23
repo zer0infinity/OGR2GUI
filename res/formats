@@ -1,0 +1,49 @@
+#read/write
+ESRI Shapefile,shp
+MapInfo File,tab
+TIGER,tiger
+DGN,dgn
+Memory,memory
+BNA,bna
+CSV,csv
+GML,gml
+GPX,gpx
+LIBKML,kmz
+KML,kml
+GeoJSON,geojson
+Interlis 1,itf
+Interlis 2,xml
+GMT,gmt
+GPKG,gpkg
+PCIDSK,pix
+DXF,dxf
+Geoconcept,gxt
+GeoRSS,georss
+GPSTrackMaker,gtm
+PGDump,sql
+GPSBabel,gpsbabel
+GFT,gft
+GME,gme
+ODS,ods
+XLSX,xlsx
+PDF,pdf
+#readonly
+UK .NTF,ntf
+SDTS,sdts
+VRT,vrt
+REC,rec
+NAS,nas
+PGeo,pgeo
+OpenFileGDB,gdb
+XPlane,dat
+AVCBin,avcbin
+AVCE00,avce00
+OSM,osm
+OpenAir,openair
+PDS,pds
+HTF,htf
+Geomedia,mdb
+EDIGEO,edigeo
+SVG,svg
+Idrisi,idrisi
+ARCGEN,arcgen

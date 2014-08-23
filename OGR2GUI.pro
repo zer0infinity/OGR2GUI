@@ -28,11 +28,12 @@ INCLUDEPATH += $$PWD/include $$PWD/include/ogr
 
 RC_FILE = res/gdalicon.rc
 
-RESOURCES += res/gdalicon.qrc
+RESOURCES += \
+    res/gdalicon.qrc \
+    res/resources.qrc
 
 HEADERS += \
     include/app.h \
-    include/dta.h \
     include/ogr.h \
     include/dbConnect.h \
     include/utils.h \

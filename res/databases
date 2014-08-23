@@ -1,0 +1,6 @@
+#read/write
+PostgreSQL,QPSQL
+SQLite,QSQLITE
+#readonly
+MySQL,QMYSQL
+ODBC,QODBC

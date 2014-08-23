@@ -62,23 +62,16 @@ class App : public QMainWindow
 
 private:
     Ogr *ogr;
-
     DBConnect *dbConnect;
     WebServiceConnect *wsConnect;
 
     QString parameters;
 
-    const static int formatsCount = 47;
-    QString **formats;
-    const static int formatsOutput = 28;
-
-    const static int databasesCount = 4;
-    QString **databases;
-    const static int databasesOutput = 2;
-
-    const static int webServicesCount = 1;
-    QString **webservices;
-
+    QList<QPair<QString, QString> > formatsListReadWrite;
+    QList<QPair<QString, QString> > formatsListReadOnly;
+    QList<QPair<QString, QString> > databaseListReadWrite;
+    QList<QPair<QString, QString> > databaseListReadOnly;
+    QList<QPair<QString, QString> > webserviceList;
     QList<QPair<QString, QString> > projectionsList;
 
     QMenuBar *theMenu;
@@ -158,6 +151,15 @@ private:
          *	\brief Inits data
          */
     void initData(void);
+
+    /**
+     * \fn void readResources(const QFile file, QList<QPair<QString, QString> > &readonlyList, QList<QPair<QString, QString> > &readwriteList);
+     * \brief Read Resources
+     * \param file : resource file
+     * \param readonlyList : read file into readonly list
+     * \param readwriteList : read file into readwrite list
+     */
+    void readResources(QFile &file, QList<QPair<QString, QString> > &readonlyList, QList<QPair<QString, QString> > &readwriteList = QList<QPair<QString, QString> >());
 
     /**
          *	\fn void void InitProjections(void);

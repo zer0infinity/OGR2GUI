@@ -45,26 +45,41 @@ App::App(QWidget *widget) : QMainWindow(widget) {
 }
 
 App::~App(void) {
-    delete[] *formats;
-    delete[] *databases;
-    delete[] *webservices;
 }
 
 void App::initData(void) {
-    formats = new QString*[formatsCount];
-    for(int i = 0; i < formatsCount; ++i) {
-        formats[i] = new QString[2];
-    }
-    databases = new QString*[databasesCount];
-    for(int i = 0; i < databasesCount; ++i) {
-        databases[i] = new QString[2];
-    }
-    webservices = new QString*[webServicesCount];
-    for(int i = 0; i < webServicesCount; ++i) {
-        webservices[i] = new QString[2];
-    }
+    QFile resFormats(":/formats");
+    QFile resDatabases(":/databases");
+    QFile resWebServices(":/webservices");
+    readResources(resFormats, formatsListReadOnly, formatsListReadWrite);
+    readResources(resDatabases, databaseListReadOnly, databaseListReadWrite);
+    readResources(resWebServices, webserviceList);
+}
 
-#include "dta.h"
+void App::readResources(QFile &file, QList<QPair<QString, QString> > &readonlyList, QList<QPair<QString, QString> > &readwriteList) {
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return;
+    QTextStream in(&file);
+    QString line;
+    QPair<QString, QString> pair;
+    boolean readwrite = true;
+    while(!(line = in.readLine()).isNull()) {
+        QStringList t = line.split(",");
+        if(line.compare(tr("#readonly")) == 0)
+            readwrite = false;
+        if(t.size() <= 1)
+            continue;
+        if(!t.at(0).isNull())
+            pair.first = t.at(0);
+        if(!t.at(1).isNull())
+            pair.second = t.at(1);
+        readonlyList << pair;
+        if(readwrite)
+            readwriteList << pair;
+    }
+    file.close();
+    qSort(readwriteList.begin(), readwriteList.end());
+    qSort(readonlyList.begin(), readonlyList.end());
 }
 
 void App::initProjections(void) {
@@ -498,7 +513,7 @@ QString App::currentParameters(void) const {
     QString parameters = tr(" -f ") + tr("\"") + cmbTargetFormat->currentText() + tr("\" ");
     parameters += tr("\"") + txtTargetName->text()+ tr("\" ");
     if(radSourceWebService->isChecked() && !txtSourceName->text().isEmpty())
-        parameters += webservices[cmbSourceFormat->currentIndex()][1];
+        parameters += webserviceList.at(cmbSourceFormat->currentIndex()).second;
     parameters += tr("\"") + txtSourceName->text().trimmed() + tr("\"");
     if(!cmbTargetProj->currentText().isEmpty())
         parameters += tr(" -t_srs EPSG:") + projectionsList.at(cmbTargetProj->currentIndex()).first;
@@ -531,8 +546,8 @@ void App::evtRadSourceFile(void) {
 
     cmbSourceFormat->clear();
 
-    for(int i = 0; i < formatsCount; ++i) {
-        cmbSourceFormat->addItem(formats[i][0]);
+    for(int i = 0; i < formatsListReadOnly.size(); ++i) {
+        cmbSourceFormat->addItem(formatsListReadOnly.at(i).first);
     }
 
     radTargetFile->setEnabled(true);
@@ -556,8 +571,8 @@ void App::evtRadSourceFolder(void) {
 
     cmbSourceFormat->clear();
 
-    for(int i = 0; i < formatsCount; ++i) {
-        cmbSourceFormat->addItem(formats[i][0]);
+    for(int i = 0; i < formatsListReadOnly.size(); ++i) {
+        cmbSourceFormat->addItem(formatsListReadOnly.at(i).first);
     }
 
     radTargetFile->setEnabled(false);
@@ -581,8 +596,8 @@ void App::evtRadSourceDatabase(void) {
 
     cmbSourceFormat->clear();
 
-    for(int i = 0; i < databasesCount; ++i) {
-        cmbSourceFormat->addItem(databases[i][0]);
+    for(int i = 0; i < databaseListReadOnly.size(); ++i) {
+        cmbSourceFormat->addItem(databaseListReadOnly.at(i).first);
     }
 
     radTargetFile->setEnabled(true);
@@ -603,8 +618,8 @@ void App::evtRadSourceWebService(void) {
 
     cmbSourceFormat->clear();
 
-    for(int i = 0; i < webServicesCount; ++i) {
-        cmbSourceFormat->addItem(webservices[i][0]);
+    for(int i = 0; i < webserviceList.size(); ++i) {
+        cmbSourceFormat->addItem(webserviceList.at(i).first);
     }
 
     radTargetFile->setEnabled(true);
@@ -632,7 +647,7 @@ void App::evtTxtSourceName(void) {
     string epsg, query, error;
 
     if(radSourceWebService->isChecked())
-        name = webservices[0][1].toStdString() + name;
+        name = webserviceList.at(0).first.toStdString() + name;
     txtSourceProj->clear();
     bool isOpen = ogr->openSource(name, epsg, query, error);
     if(isOpen) {
@@ -666,11 +681,11 @@ void App::evtBtnSourceName(void) {
     int idx = cmbSourceFormat->currentIndex();
     QString type;
     if(radSourceFile->isChecked()) {
-        type = tr("\"") + formats[idx][0] + tr(" (*.") + formats[idx][1] + tr(")\"");
+        type = tr("\"") + formatsListReadOnly.at(idx).first + tr(" (*.") + formatsListReadOnly.at(idx).second + tr(")\"");
         txtSourceName->setText(QDir::toNativeSeparators(QFileDialog::getOpenFileName(this, tr("Source File"), tr(""), type)));
     } else if(radSourceFolder->isChecked()) {
         QStringList types;
-        type = tr("*.") + formats[cmbSourceFormat->currentIndex()][1];
+        type = tr("*.") + formatsListReadOnly.at(cmbSourceFormat->currentIndex()).second;
 
         txtSourceName->setText(QDir::toNativeSeparators(QFileDialog::getExistingDirectory(this, tr("Source Folder"), tr(""), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks)));
         QDir dir(txtSourceName->text());
@@ -683,7 +698,7 @@ void App::evtBtnSourceName(void) {
             txtSourceQuery->setEnabled(false);
         }
     } else if(radSourceDatabase->isChecked()) {
-        dbConnect->setConnectionType(databases[idx][1]);
+        dbConnect->setConnectionType(databaseListReadOnly.at(idx).second);
         dbConnect->showTables(true);
         if(dbConnect->exec() == QDialog::Accepted) {
             txtSourceName->setText(dbConnect->getConnectionString());
@@ -701,7 +716,7 @@ void App::evtBtnSourceName(void) {
             txtSourceQuery->setEnabled(false);
         }
     } else if(radSourceWebService->isChecked()) {
-        wsConnect->setConnectionType(webservices[idx][1]);
+        wsConnect->setConnectionType(webserviceList.at(idx).second);
         if(wsConnect->exec() == QDialog::Accepted) {
             txtSourceName->setText(wsConnect->getConnectionString());
         }
@@ -713,8 +728,8 @@ void App::evtRadTargetFile(void) {
     btnTargetName->setText(tr("Save"));
 
     cmbTargetFormat->clear();
-    for(int i = 0; i < formatsOutput; ++i) {
-        cmbTargetFormat->addItem(formats[i][0]);
+    for(int i = 0; i < formatsListReadWrite.size(); ++i) {
+        cmbTargetFormat->addItem(formatsListReadWrite.at(i).first);
     }
 
     txtTargetName->clear();
@@ -724,8 +739,8 @@ void App::evtRadTargetFolder(void) {
     btnTargetName->setText(tr("Browse"));
 
     cmbTargetFormat->clear();
-    for(int i = 0; i < formatsOutput; ++i) {
-        cmbTargetFormat->addItem(formats[i][0]);
+    for(int i = 0; i < formatsListReadWrite.size(); ++i) {
+        cmbTargetFormat->addItem(formatsListReadWrite.at(i).first);
     }
 }
 
@@ -733,8 +748,8 @@ void App::evtRadTargetDatabase(void) {
     btnTargetName->setText(tr("Open"));
 
     cmbTargetFormat->clear();
-    for(int i = 0; i < databasesOutput; ++i) {
-        cmbTargetFormat->addItem(databases[i][0]);
+    for(int i = 0; i < databaseListReadWrite.size(); ++i) {
+        cmbTargetFormat->addItem(databaseListReadWrite.at(i).first);
     }
 }
 
@@ -754,31 +769,31 @@ void App::evtBtnTargetName(void) {
     QString type;
     int index = cmbTargetFormat->currentIndex();
     if(radTargetDatabase->isChecked()) {
-        if(databases[index][0] == "SQLite") {
-            type = tr("\"") + databases[index][0] + tr(" (*") + tr(".sqlite") + tr(")\"");
+        if(databaseListReadWrite.at(index).first == "SQLite") {
+            type = tr("\"") + databaseListReadWrite.at(index).first + tr(" (*") + tr(".sqlite") + tr(")\"");
             txtTargetName->setText(QDir::toNativeSeparators(QFileDialog::getSaveFileName(this, tr("Save File"), tr(""), type)));
             updateParameters();
             return;
         }
         dbConnect->showTables(false);
-        dbConnect->setConnectionType(databases[cmbTargetFormat->currentIndex()][1]);
+        dbConnect->setConnectionType(databaseListReadWrite.at(cmbTargetFormat->currentIndex()).second);
         if(dbConnect->exec() == QDialog::Accepted)
             txtTargetName->setText(dbConnect->getConnectionString());
     } else if(radTargetFolder->isChecked()) {
         if(radSourceFile->isChecked()) {
-            type = tr("\"") + formats[index][0] + tr(" (*.") + formats[index][1] + tr(") | *.") + formats[index][1];
+            type = tr("\"") + formatsListReadWrite.at(index).first + tr(" (*.") + formatsListReadWrite.at(index).second + tr(") | *.") + formatsListReadWrite.at(index).second;
             txtTargetName->setText(QDir::toNativeSeparators(QFileDialog::getSaveFileName(this, tr("Save File"), tr(""), type)));
         } else if(radTargetFolder->isChecked()) {
             txtTargetName->setText(QDir::toNativeSeparators(QFileDialog::getExistingDirectory(this, tr("Target Folder"), tr(""), QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks)));
         }
     } else {
-        type = tr("\"") + formats[index][0] + tr(" (*.") + formats[index][1] + tr(")\"");
+        type = tr("\"") + formatsListReadWrite.at(index).first + tr(" (*.") + formatsListReadWrite.at(index).second + tr(")\"");
         txtTargetName->setText(QDir::toNativeSeparators(QFileDialog::getSaveFileName(this, tr("Target File"), tr(""), type)));
     }
     string name = txtSourceName->text().trimmed().toStdString();
     string epsg, query, error;
     if(radSourceWebService->isChecked())
-        name = webservices[0][1].toStdString() + name;
+        name = webserviceList.at(0).second.toStdString() + name;
     if(txtSourceName->text().isEmpty() || txtTargetName->text().isEmpty() || !ogr->openSource(name, epsg, query, error))
         btnExecute->setEnabled(false);
     else
@@ -825,7 +840,7 @@ void App::evtBtnExecute(void) {
     bool resVal = true;
     if(radSourceWebService->isChecked()) {
         QStringList fileList = wsConnect->getSelectedLayersAsList();
-        sourcename = webservices[cmbSourceFormat->currentIndex()][1] + sourcename;
+        sourcename = webserviceList.at(cmbSourceFormat->currentIndex()).second + sourcename;
         for(int i=0;i<fileList.size();++i) {
             if(!ogr->openSource(sourcename.toStdString(), fileList.at(i).toStdString(), epsg, query, error)) {
                 resVal = false;
