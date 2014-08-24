@@ -145,7 +145,6 @@ void App::initInterface(void) {
     radSourceFile->setChecked(true);
     radTargetFile->setChecked(true);
     radTargetOverwrite->setChecked(true);
-    btnExecute->setEnabled(false);
 
     this->setCentralWidget(thePanel);
 }
@@ -387,7 +386,6 @@ void App::initLayout(void) {
         {
             btnExecute = new QPushButton();
             btnExecute->setMinimumWidth(200);
-            btnExecute->setEnabled(false);
 
             lytExecute->addWidget(btnExecute);
         }
@@ -669,19 +667,15 @@ void App::evtTxtSourceName(void) {
             btnSourceName->setText(tr("Open"));
     }
     updateParameters();
-    if(txtSourceName->text().isEmpty() || txtTargetName->text().isEmpty() || !isOpen)
-        btnExecute->setEnabled(false);
-    else
-        btnExecute->setEnabled(true);
 }
 
 void App::evtBtnSourceName(void) {
     txtSourceName->selectAll();
     txtSourceName->setFocus();
-    int idx = cmbSourceFormat->currentIndex();
+    int index = cmbSourceFormat->currentIndex();
     QString type;
     if(radSourceFile->isChecked()) {
-        type = tr("\"") + formatsListReadOnly.at(idx).first + tr(" (*.") + formatsListReadOnly.at(idx).second + tr(")\"");
+        type = tr("\"") + formatsListReadOnly.at(index).first + tr(" (*.") + formatsListReadOnly.at(index).second + tr(")\"");
         txtSourceName->setText(QDir::toNativeSeparators(QFileDialog::getOpenFileName(this, tr("Source File"), tr(""), type)));
     } else if(radSourceFolder->isChecked()) {
         QStringList types;
@@ -698,7 +692,7 @@ void App::evtBtnSourceName(void) {
             txtSourceQuery->setEnabled(false);
         }
     } else if(radSourceDatabase->isChecked()) {
-        dbConnect->setConnectionType(databaseListReadOnly.at(idx).second);
+        dbConnect->setConnectionType(databaseListReadOnly.at(index).second);
         dbConnect->showTables(true);
         if(dbConnect->exec() == QDialog::Accepted) {
             txtSourceName->setText(dbConnect->getConnectionString());
@@ -716,7 +710,7 @@ void App::evtBtnSourceName(void) {
             txtSourceQuery->setEnabled(false);
         }
     } else if(radSourceWebService->isChecked()) {
-        wsConnect->setConnectionType(webserviceList.at(idx).second);
+        wsConnect->setConnectionType(webserviceList.at(index).second);
         if(wsConnect->exec() == QDialog::Accepted) {
             txtSourceName->setText(wsConnect->getConnectionString());
         }
@@ -759,10 +753,7 @@ void App::evtCmbTargetFormat(void) {
 }
 
 void App::evtTxtTargetName(void) {
-    if(txtSourceName->text().isEmpty() || txtTargetName->text().isEmpty())
-        btnExecute->setEnabled(false);
-    else
-        btnExecute->setEnabled(true);
+    updateParameters();
 }
 
 void App::evtBtnTargetName(void) {
@@ -790,14 +781,6 @@ void App::evtBtnTargetName(void) {
         type = tr("\"") + formatsListReadWrite.at(index).first + tr(" (*.") + formatsListReadWrite.at(index).second + tr(")\"");
         txtTargetName->setText(QDir::toNativeSeparators(QFileDialog::getSaveFileName(this, tr("Target File"), tr(""), type)));
     }
-    string name = txtSourceName->text().trimmed().toStdString();
-    string epsg, query, error;
-    if(radSourceWebService->isChecked())
-        name = webserviceList.at(0).second.toStdString() + name;
-    if(txtSourceName->text().isEmpty() || txtTargetName->text().isEmpty() || !ogr->openSource(name, epsg, query, error))
-        btnExecute->setEnabled(false);
-    else
-        btnExecute->setEnabled(true);
     updateParameters();
 }
 
@@ -829,11 +812,10 @@ void App::evtBtnExecute(void) {
     string query;
     string error;
 
-    int progressSteps = 8;
+    int progressSteps = 6;
     int maxValue = 100;
     if(!ogr->openDriver(cmbTargetFormat->currentText().toStdString())) {
         txtOutput->append(tr("\n * unable to open driver !\n"));
-        btnExecute->setEnabled(false);
         progress->setValue(maxValue/progressSteps);
         return;
     }
@@ -852,7 +834,6 @@ void App::evtBtnExecute(void) {
     }
     if(!resVal) {
         txtOutput->append(tr("\n * unable to open source !\n"));
-        btnExecute->setEnabled(false);
         progress->setValue(maxValue/progressSteps*2);
         return;
     }
@@ -865,20 +846,14 @@ void App::evtBtnExecute(void) {
     }
     if(txtTargetName->text().isEmpty()) {
         txtOutput->append(tr("\n * unable to open target !\n"));
-        btnExecute->setEnabled(false);
         progress->setValue(maxValue/progressSteps*4);
         return;
     }
-    if(!ogr->testSpatialReference((projectionsList.at(cmbTargetProj->currentIndex()).first).toInt())) {
+    if(!ogr->testSpatialReference((projectionsList.at(cmbTargetProj->currentIndex()).first).toInt()))
         txtOutput->append(tr("\n * unable to create spatial reference !\n"));
-        progress->setValue(maxValue/progressSteps*5);
-    }
-    if(!radSourceDatabase->isChecked() && !radSourceWebService->isChecked()) {
-        if(!ogr->testFeatureProjection()) {
+    if(!radSourceDatabase->isChecked() && !radSourceWebService->isChecked())
+        if(!ogr->testFeatureProjection())
             txtOutput->append(tr("\n * unable to transform feature with projection !\n"));
-            progress->setValue(maxValue/progressSteps*6);
-        }
-    }
     txtOutput->append(tr("\n") + sourcename + tr(" > ") + targetname + tr(" ... ") + tr("\n"));
     QString parameters = currentParameters();
     QString command = QDir::toNativeSeparators(QCoreApplication::applicationFilePath());
@@ -891,7 +866,6 @@ void App::evtBtnExecute(void) {
         progress->setValue(maxValue);
     } else {
         txtOutput->append(tr("\n * unable to open ogr2ogr !\n"));
-        btnExecute->setEnabled(false);
-        progress->setValue(maxValue/progressSteps*7);
+        progress->setValue(maxValue/progressSteps*5);
     }
 }
