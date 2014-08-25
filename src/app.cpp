@@ -144,13 +144,13 @@ void App::initInterface(void) {
 
     radSourceFile->setChecked(true);
     radTargetFile->setChecked(true);
-    radTargetOverwrite->setChecked(true);
 
     this->setCentralWidget(thePanel);
 }
 
 void App::initMenu(void) {
     theMenu = new QMenuBar(this);
+
     {
         fileMenu = new QMenu(theMenu);
         {
@@ -397,6 +397,7 @@ void App::initLayout(void) {
         progress->setValue(0);
         progress->setMinimum(0);
         progress->setMaximum(100);
+        progress->setTextVisible(false);
 
         theLayout->addWidget(progress);
     }
@@ -444,12 +445,12 @@ void App::translateInterface(void) {
     this->setWindowTitle(tr("OGR2GUI"));
     this->setWindowIcon(QIcon(":/icons/gdalicon.png"));
 
-    fileMenu->setTitle(tr("File"));
+    fileMenu->setTitle(tr("&File"));
     {
-        mnuExit->setText(tr("Exit"));
+        mnuExit->setText(tr("E&xit"));
     }
 
-    helpMenu->setTitle(tr("Help"));
+    helpMenu->setTitle(tr("&Help"));
     {
         mnuOgr->setText(tr("Command-Line Options"));
         mnuDoc->setText(tr("Documentation"));
@@ -639,14 +640,12 @@ void App::evtCmbSourceFormat(void) {
 }
 
 void App::evtTxtSourceName(void) {
-    if(txtSourceName->text().startsWith(tr("file://")))
-        txtSourceName->setText(QUrl(txtSourceName->text()).authority().trimmed());
     string name = txtSourceName->text().trimmed().toStdString();
     string epsg, query, error;
 
-    if(radSourceWebService->isChecked())
-        name = webserviceList.at(0).first.toStdString() + name;
     txtSourceProj->clear();
+    if(radSourceWebService->isChecked())
+        name = webserviceList.at(0).second.toStdString() + name;
     bool isOpen = ogr->openSource(name, epsg, query, error);
     if(isOpen) {
         for(int i = 0; i < projectionsList.size(); ++i) {
@@ -823,15 +822,16 @@ void App::evtBtnExecute(void) {
     if(radSourceWebService->isChecked()) {
         QStringList fileList = wsConnect->getSelectedLayersAsList();
         sourcename = webserviceList.at(cmbSourceFormat->currentIndex()).second + sourcename;
-        for(int i=0;i<fileList.size();++i) {
-            if(!ogr->openSource(sourcename.toStdString(), fileList.at(i).toStdString(), epsg, query, error)) {
-                resVal = false;
-                break;
+        if(fileList.size() >= 0) {
+            for(int i=0; i<fileList.size(); ++i) {
+                if(!ogr->openSource(sourcename.toStdString(), fileList.at(i).toStdString(), epsg, query, error)) {
+                    resVal = false;
+                    break;
+                }
             }
         }
-    } else {
-        resVal = ogr->openSource(sourcename.toStdString(), epsg, query, error);
     }
+    resVal = ogr->openSource(sourcename.toStdString(), epsg, query, error);
     if(!resVal) {
         txtOutput->append(tr("\n * unable to open source !\n"));
         progress->setValue(maxValue/progressSteps*2);
@@ -868,4 +868,5 @@ void App::evtBtnExecute(void) {
         txtOutput->append(tr("\n * unable to open ogr2ogr !\n"));
         progress->setValue(maxValue/progressSteps*5);
     }
+    ogr->closeSource();
 }
