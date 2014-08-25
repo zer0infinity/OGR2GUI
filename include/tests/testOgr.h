@@ -23,7 +23,7 @@
 
 /*!
  *	\file testOgr.h
- *	\brief Test Ogr API
+ *	\brief Test OGR API
  *	\author David Tran [HSR]
  *	\version 0.1
  *	\date 13/06/14

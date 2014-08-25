@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>formats</file>
-		<file>databases</file>
-		<file>webservices</file>
+        <file>databases</file>
+        <file>webservices</file>
     </qresource>
 </RCC>

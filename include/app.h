@@ -71,7 +71,7 @@ private:
     QList<QPair<QString, QString> > formatsListReadOnly;
     QList<QPair<QString, QString> > databaseListReadWrite;
     QList<QPair<QString, QString> > databaseListReadOnly;
-    QList<QPair<QString, QString> > webserviceList;
+    QList<QPair<QString, QString> > webServiceList;
     QList<QPair<QString, QString> > projectionsList;
 
     QMenuBar *theMenu;

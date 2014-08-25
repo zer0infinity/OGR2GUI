@@ -53,7 +53,7 @@ void App::initData(void) {
     QFile resWebServices(":/webservices");
     readResources(resFormats, formatsListReadOnly, formatsListReadWrite);
     readResources(resDatabases, databaseListReadOnly, databaseListReadWrite);
-    readResources(resWebServices, webserviceList);
+    readResources(resWebServices, webServiceList);
 }
 
 void App::readResources(QFile &file, QList<QPair<QString, QString> > &readonlyList, QList<QPair<QString, QString> > &readwriteList) {
@@ -512,7 +512,7 @@ QString App::currentParameters(void) const {
     QString parameters = tr(" -f ") + tr("\"") + cmbTargetFormat->currentText() + tr("\" ");
     parameters += tr("\"") + txtTargetName->text()+ tr("\" ");
     if(radSourceWebService->isChecked() && !txtSourceName->text().isEmpty())
-        parameters += webserviceList.at(cmbSourceFormat->currentIndex()).second;
+        parameters += webServiceList.at(cmbSourceFormat->currentIndex()).second;
     parameters += tr("\"") + txtSourceName->text().trimmed() + tr("\"");
     if(!cmbTargetProj->currentText().isEmpty())
         parameters += tr(" -t_srs EPSG:") + projectionsList.at(cmbTargetProj->currentIndex()).first;
@@ -617,8 +617,8 @@ void App::evtRadSourceWebService(void) {
 
     cmbSourceFormat->clear();
 
-    for(int i = 0; i < webserviceList.size(); ++i) {
-        cmbSourceFormat->addItem(webserviceList.at(i).first);
+    for(int i = 0; i < webServiceList.size(); ++i) {
+        cmbSourceFormat->addItem(webServiceList.at(i).first);
     }
 
     radTargetFile->setEnabled(true);
@@ -645,7 +645,7 @@ void App::evtTxtSourceName(void) {
 
     txtSourceProj->clear();
     if(radSourceWebService->isChecked())
-        name = webserviceList.at(0).second.toStdString() + name;
+        name = webServiceList.at(0).second.toStdString() + name;
     bool isOpen = ogr->openSource(name, epsg, query, error);
     if(isOpen) {
         for(int i = 0; i < projectionsList.size(); ++i) {
@@ -709,7 +709,7 @@ void App::evtBtnSourceName(void) {
             txtSourceQuery->setEnabled(false);
         }
     } else if(radSourceWebService->isChecked()) {
-        wsConnect->setConnectionType(webserviceList.at(index).second);
+        wsConnect->setConnectionType(webServiceList.at(index).second);
         if(wsConnect->exec() == QDialog::Accepted) {
             txtSourceName->setText(wsConnect->getConnectionString());
         }
@@ -819,19 +819,21 @@ void App::evtBtnExecute(void) {
         return;
     }
     bool resVal = true;
+    QStringList fileList;
     if(radSourceWebService->isChecked()) {
-        QStringList fileList = wsConnect->getSelectedLayersAsList();
-        sourcename = webserviceList.at(cmbSourceFormat->currentIndex()).second + sourcename;
-        if(fileList.size() >= 0) {
-            for(int i=0; i<fileList.size(); ++i) {
-                if(!ogr->openSource(sourcename.toStdString(), fileList.at(i).toStdString(), epsg, query, error)) {
-                    resVal = false;
-                    break;
-                }
+        fileList = wsConnect->getSelectedLayersAsList();
+        sourcename = webServiceList.at(cmbSourceFormat->currentIndex()).second + sourcename;
+    }
+    if(fileList.size() > 0) {
+        for(int i=0; i<fileList.size(); ++i) {
+            if(!ogr->openSource(sourcename.toStdString(), fileList.at(i).toStdString(), epsg, query, error)) {
+                resVal = false;
+                break;
             }
         }
+    } else {
+        resVal = ogr->openSource(sourcename.toStdString(), epsg, query, error);
     }
-    resVal = ogr->openSource(sourcename.toStdString(), epsg, query, error);
     if(!resVal) {
         txtOutput->append(tr("\n * unable to open source !\n"));
         progress->setValue(maxValue/progressSteps*2);
