@@ -24,7 +24,7 @@
 
 TEMPLATE = app
 INCLUDEPATH += $$PWD/include $$PWD/include/ogr
-#DESTDIR += $$PWD/bin
+DESTDIR += $$PWD/bin
 
 RC_FILE = res/gdalicon.rc
 
