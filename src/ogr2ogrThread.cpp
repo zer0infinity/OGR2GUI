@@ -24,14 +24,14 @@
 /*!
  *	\file ogr2ogrThread.cpp
  *	\brief ogr2ogr Thread
- *	\author David Tran [ HSR ]
+ *	\author David Tran [HSR]
  *	\version 0.7
  *	\date 13/06/14
  */
 
 #include "ogr2ogrThread.h"
 
-Ogr2ogrThread::Ogr2ogrThread(QString &command, QPushButton *btnExecute) : command(command), btnExecute(btnExecute) {
+Ogr2ogrThread::Ogr2ogrThread(QString &command, QPushButton *btnExecute) : command(command), btnConvert(btnExecute) {
 }
 
 Ogr2ogrThread::~Ogr2ogrThread(void) {
@@ -39,13 +39,13 @@ Ogr2ogrThread::~Ogr2ogrThread(void) {
 
 void Ogr2ogrThread::run() {
     const QString logPath = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + "ogr2ogr.log");
-    btnExecute->setEnabled(false);
-    btnExecute->setText(tr("Please wait..."));
+    btnConvert->setEnabled(false);
+    btnConvert->setText(tr("Please wait..."));
     process = new QProcess();
     process->setProcessChannelMode(QProcess::MergedChannels);
     process->setStandardOutputFile(logPath);
     process->start(command);
     process->waitForFinished(-1);
-    btnExecute->setEnabled(true);
-    btnExecute->setText(tr("Execute"));
+    btnConvert->setEnabled(true);
+    btnConvert->setText(tr("Convert"));
 }

@@ -21,33 +21,39 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *****************************************************************************/
 
-/*!
- *	\file main.cpp
- *	\brief main
+/**
+ *	\file i18n.cpp
+ *	\brief I18N
  *	\author David Tran [HSR]
  *	\version 0.7
  *	\date 13/06/14
  */
 
-//#pragma comment(linker, "/SUBSYSTEM:CONSOLE")
-#include "App.h"
-#include "cpl_conv.h"
 #include "i18n.h"
-#include <iostream>
 
-int main(int argc, char **argv) {
-    QApplication app(argc, argv);
-    string dataPath = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + "data").toStdString();
-    CPLSetConfigOption("GDAL_DATA", dataPath.c_str());
-    if(1 < argc) {
-        for(int i=0;i<argc;++i)
-            std::cout << argv[i] << " ";
-        std::cout << std::endl;
-        return ogr2ogr(argc, argv);
+bool I18N::instanceExists;
+I18N* I18N::instance;
+
+I18N::I18N() {
+    path = ":/lang";
+}
+
+I18N::~I18N() {
+}
+
+void I18N::translate(QString lang) {
+    apTranslator.load(lang, path);
+    qtTranslator.load("qt_" + lang, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    QCoreApplication::installTranslator(&apTranslator);
+    QCoreApplication::installTranslator(&qtTranslator);
+}
+
+I18N* I18N::getInstance() {
+    if(!instanceExists) {
+        instance = new I18N();
+        instanceExists = true;
+        return instance;
     } else {
-        I18N *i18n = I18N::getInstance();
-        i18n->translate();
-        new App();
+        return instance;
     }
-    return app.exec();
 }

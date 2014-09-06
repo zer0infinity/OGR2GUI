@@ -146,7 +146,7 @@ void WebServiceConnect::evtBtnConnect(void) {
         btnAccept->setEnabled(true);
     } else {
         QMessageBox msg;
-        msg.setText("* Can't connect to web service !");
+        msg.setText(tr("* Can't connect to web service !"));
         msg.exec();
     }
 }
@@ -169,7 +169,7 @@ void WebServiceConnect::evtBtnAccept(void) {
         btnAccept->setEnabled(false);
         lstTables->clear();
         QMessageBox msg;
-        msg.setText("* Can't connect to web service !");
+        msg.setText(tr("* Can't connect to web service !"));
         msg.exec();
         return;
     }
@@ -179,7 +179,7 @@ void WebServiceConnect::evtBtnAccept(void) {
     selectedLayersList.clear();
     for(int i = 0; i < lstTables->count(); ++i) {
         if(lstTables->item(i)->checkState() == Qt::Checked) {
-            selectedLayers += lstTables->item(i)->text() + tr(" ");
+            selectedLayers += lstTables->item(i)->text() + " ";
         }
     }
     selectedLayers = selectedLayers.simplified();

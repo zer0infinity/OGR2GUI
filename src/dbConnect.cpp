@@ -181,7 +181,7 @@ void DBConnect::initSlots(void) {
 void DBConnect::translateInterface(void) {
     this->setWindowTitle(tr("Database"));
 
-    lblHost->setText(tr("Hostname"));
+    lblHost->setText(tr("Host name"));
     lblPort->setText(tr("Port"));
     lblName->setText(tr("Database"));
     lblUser->setText(tr("Username"));
@@ -207,9 +207,9 @@ void DBConnect::evtBtnConnect(void) {
 
     QSqlDatabase base = QSqlDatabase::addDatabase(connectionType);
     btnAccept->setEnabled(false);
-    if(connectionType.compare(tr("QSQLITE")) == 0) {
-        QString type = tr("\" SQLite/SpatiaLite (*.sqlite)\"");
-        name = QDir::toNativeSeparators(QFileDialog::getOpenFileName(this, tr("SQLite/SpatiaLite File"), tr(""), type));
+    if(connectionType.compare("QSQLITE") == 0) {
+        QString type = "\" SQLite/SpatiaLite (*.sqlite)\"";
+        name = QDir::toNativeSeparators(QFileDialog::getOpenFileName(this, "SQLite/SpatiaLite File", QString(), type));
         txtName->setText(name);
     } else {
         base.setHostName(host);
@@ -239,11 +239,11 @@ void DBConnect::evtBtnConnect(void) {
         if(lstTables->count() > 0)
             btnAccept->setEnabled(true);
     } else if(!txtName->text().isEmpty()) {
-        msg.setText("* Can't connect to database !");
+        msg.setText(tr("* Can't connect to database !"));
         msg.exec();
     }
     if(lstTables->count() <=0 && base.isOpen()) {
-        msg.setText("* Can't find any tables in database !");
+        msg.setText(tr("* Can't find any tables in database !"));
         msg.exec();
     }
     base.close();
@@ -269,7 +269,7 @@ void DBConnect::evtBtnAccept(void) {
     pass = txtPass->text();
 
     QSqlDatabase base = QSqlDatabase::addDatabase(connectionType);
-    if(connectionType.compare(tr("QSQLITE")) != 0) {
+    if(connectionType.compare("QSQLITE") != 0) {
         base.setHostName(host);
         base.setPort(port.toInt());
         base.setUserName(user);
@@ -280,7 +280,7 @@ void DBConnect::evtBtnAccept(void) {
             btnAccept->setEnabled(false);
             lstTables->clear();
             QMessageBox msg;
-            msg.setText("* Can't connect to database !");
+            msg.setText(tr("* Can't connect to database !"));
             msg.exec();
             base.close();
             return;
@@ -291,26 +291,26 @@ void DBConnect::evtBtnAccept(void) {
     QString separator;
     if(connectionType.compare("QPSQL") == 0) {
         separator = " ";
-        connectionString = tr("PG:");
-        if(name.size() > 0)	connectionString += tr("dbname=") + name;
-        if(host.size() > 0)	connectionString += tr(" host=") + host;
-        if(port.size() > 0)	connectionString += tr(" port=") + port;
-        if(user.size() > 0)	connectionString += tr(" user=") + user;
-        if(pass.size() > 0)	connectionString += tr(" password=") + pass;
+        connectionString = "PG:";
+        if(name.size() > 0)	connectionString += "dbname=" + name;
+        if(host.size() > 0)	connectionString += " host=" + host;
+        if(port.size() > 0)	connectionString += " port=" + port;
+        if(user.size() > 0)	connectionString += " user=" + user;
+        if(pass.size() > 0)	connectionString += " password=" + pass;
     } else if(connectionType.compare("QMYSQL") == 0) {
         separator = ",";
-        if(name.size() > 0)	connectionString = tr("MySQL:") + name;
+        if(name.size() > 0)	connectionString = "MySQL:" + name;
         if(host.size() > 0)	connectionString += ",host=" + host;
         if(port.size() > 0)	connectionString += ",port=" + port;
         if(user.size() > 0)	connectionString += ",user=" + user;
         if(pass.size() > 0)	connectionString += ",password=" + pass;
      } else if(connectionType.compare("QODBC") == 0) {
-        separator = "";
+        separator = QString();
         if(user.size() > 0)	connectionString = "ODBC:" + user;
         if(pass.size() > 0)	connectionString += "/" + pass;
         if(host.size() > 0)	connectionString += "@" + host;
     } else if(connectionType.compare("QSQLITE") == 0) {
-        separator = "";
+        separator = QString();
     }
     int nb = 0;
     selectedTables.clear();
@@ -324,7 +324,7 @@ void DBConnect::evtBtnAccept(void) {
             ++nb;
         }
     }
-    if(connectionType.compare(tr("QSQLITE")) != 0) {
+    if(connectionType.compare("QSQLITE") != 0) {
         if(nb > 0) {
             connectionString += separator;
             connectionString += "tables=";
@@ -362,13 +362,13 @@ void DBConnect::setConnectionType(const QString type) {
     btnConnect->setText(tr("Connect"));
     lstTables->setSelectionMode(QAbstractItemView::NoSelection);
 
-    if(connectionType.compare(tr("QPSQL")) == 0) {
-        txtPort->setText(tr("5432"));
-    } else if(connectionType.compare(tr("QMYSQL")) == 0) {
-        txtPort->setText(tr("3306"));
-    } else if(connectionType.compare(tr("QODBC")) == 0) {
-        txtPort->setText(tr("1433"));
-    } else if(connectionType.compare(tr("QSQLITE")) == 0) {
+    if(connectionType.compare("QPSQL") == 0) {
+        txtPort->setText("5432");
+    } else if(connectionType.compare("QMYSQL") == 0) {
+        txtPort->setText("3306");
+    } else if(connectionType.compare("QODBC") == 0) {
+        txtPort->setText("1433");
+    } else if(connectionType.compare("QSQLITE") == 0) {
         txtHost->setEnabled(false);
         txtPort->setEnabled(false);
         txtName->setReadOnly(true);

@@ -56,7 +56,7 @@ protected:
 private:
     QString &command;
     QProcess *process;
-    QPushButton *btnExecute;
+    QPushButton *btnConvert;
 };
 
 #endif

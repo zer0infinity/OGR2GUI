@@ -78,6 +78,7 @@ private:
     QMenu *fileMenu;
     QMenu *helpMenu;
 
+    QAction *mnuLanguage;
     QAction *mnuExit;
     QAction *mnuOgr;
     QAction *mnuDoc;
@@ -144,7 +145,7 @@ private:
     QTextEdit *txtInput;
 
     QHBoxLayout *lytExecute;
-    QPushButton *btnExecute;
+    QPushButton *btnConvert;
 
     /**
          *	\fn void InitData(void);

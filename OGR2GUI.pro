@@ -24,13 +24,18 @@
 
 TEMPLATE = app
 INCLUDEPATH += $$PWD/include $$PWD/include/ogr
-DESTDIR += $$PWD/bin
+#DESTDIR += $$PWD/bin
 
-RC_FILE = res/gdalicon.rc
+TRANSLATIONS += \
+    res/lang/en_GB.ts \
+    res/lang/de_CH.ts
+
+RC_FILE += res/gdalicon.rc
 
 RESOURCES += \
     res/gdalicon.qrc \
-    res/resources.qrc
+    res/resources.qrc \
+    res/lang/i18n.qrc
 
 HEADERS += \
     include/app.h \
@@ -38,7 +43,8 @@ HEADERS += \
     include/dbConnect.h \
     include/utils.h \
     include/webServiceConnect.h \
-    include/ogr2ogrThread.h
+    include/ogr2ogrThread.h \
+    include/i18n.h
 
 SOURCES += \
     src/ogr.cpp \
@@ -48,19 +54,20 @@ SOURCES += \
     src/utils/ogr2ogr.cpp \
     src/utils/commonutils.cpp \
     src/webServiceConnect.cpp \
-    src/ogr2ogrThread.cpp
+    src/ogr2ogrThread.cpp \
+    src/i18n.cpp
 
 CONFIG += c++11
 QT += sql widgets
 
 win32: contains(QMAKE_TARGET.arch, x86) {
-        TARGET = OGR2GUI
-	LIBS += -L$$PWD/lib -lgdal_i
+    TARGET = OGR2GUI
+    LIBS += -L$$PWD/lib -lgdal_i
 }
 
 win32: contains(QMAKE_TARGET.arch, x86_64) {
-        TARGET = OGR2GUI64
-	LIBS += -L$$PWD/lib -lgdal_i_x64
+    TARGET = OGR2GUI64
+    LIBS += -L$$PWD/lib -lgdal_i_x64
 }
 
 CONFIG(debug, debug|release) {
