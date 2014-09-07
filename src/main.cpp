@@ -30,10 +30,11 @@
  */
 
 //#pragma comment(linker, "/SUBSYSTEM:CONSOLE")
-#include "App.h"
+#include "app.h"
 #include "cpl_conv.h"
 #include "i18n.h"
 #include <iostream>
+#include <QSettings>
 
 int main(int argc, char **argv) {
     QApplication app(argc, argv);
@@ -45,8 +46,14 @@ int main(int argc, char **argv) {
         std::cout << std::endl;
         return ogr2ogr(argc, argv);
     } else {
+        QSettings settings("ogr2gui.ini", QSettings::IniFormat);
+        QVariant language = settings.value("language");
+        if(language.isNull() || !language.isValid()) {
+            settings.setValue("language", "en_GB");
+            language = "en_GB";
+        }
         I18N *i18n = I18N::getInstance();
-        i18n->translate();
+        i18n->translate(language.toString());
         new App();
     }
     return app.exec();

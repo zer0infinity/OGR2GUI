@@ -34,26 +34,26 @@
 bool I18N::instanceExists;
 I18N* I18N::instance;
 
-I18N::I18N() {
+I18N::I18N(void) {
     path = ":/lang";
 }
 
-I18N::~I18N() {
+I18N::~I18N(void) {
 }
 
-void I18N::translate(QString lang) {
+void I18N::translate(const QString lang) {
     apTranslator.load(lang, path);
     qtTranslator.load("qt_" + lang, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
     QCoreApplication::installTranslator(&apTranslator);
     QCoreApplication::installTranslator(&qtTranslator);
 }
 
-I18N* I18N::getInstance() {
-    if(!instanceExists) {
-        instance = new I18N();
-        instanceExists = true;
+I18N* I18N::getInstance(void) {
+    if(instanceExists) {
         return instance;
     } else {
+        instance = new I18N();
+        instanceExists = true;
         return instance;
     }
 }

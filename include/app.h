@@ -106,7 +106,9 @@ private:
     QPushButton *btnSourceName;
 
     QLabel *lblSourceProj;
+    QHBoxLayout *lytSourceProj;
     QLineEdit *txtSourceProj;
+    QComboBox *cmbSourceProj;
 
     QLabel *lblSourceQuery;
     QLineEdit *txtSourceQuery;
@@ -224,6 +226,7 @@ private:
 
 
 private slots :
+    void evtMnuLanguage(void);
     void evtMnuOgrHelp(void);
     void evtMnuGuiHelp(void);
     void evtMnuOgrAbout(void);
@@ -236,6 +239,7 @@ private slots :
     void evtCmbSourceFormat(void);
     void evtTxtSourceName(void);
     void evtBtnSourceName(void);
+    void evtTxtSourceProj(void);
 
     void evtRadTargetFile(void);
     void evtRadTargetFolder(void);

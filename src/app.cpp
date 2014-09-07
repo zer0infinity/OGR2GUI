@@ -97,7 +97,7 @@ void App::readProjections(const QString filename) {
     QFile file(filepath);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QMessageBox msg;
-        msg.setText("No " + filename + " file found in folder " + folder);
+        msg.setText(tr("No ") + filename + tr(" file found in folder ") + folder);
         msg.exec();
         return;
     }
@@ -109,7 +109,7 @@ void App::readProjections(const QString filename) {
         QStringList t = line.split(",");
         if(t.size() <= 1) {
             QMessageBox msg;
-            msg.setText("Wrong " + filename + " file found in folder " + folder);
+            msg.setText(tr("Wrong ") + filename + tr(" file found in folder ") + folder);
             msg.exec();
             break;
         }
@@ -129,9 +129,11 @@ void App::addProjections() {
     qSort(projectionsList.begin(), projectionsList.end(), sortCOORD_REF_SYS_CODE);
     QPair<QString, QString> pair;
     projectionsList.insert(0, pair);
+    cmbSourceProj->addItem(QString());
     cmbTargetProj->addItem(QString());
     for(int i=1;i<projectionsList.size();++i) {
         QPair<QString, QString> pair = projectionsList.at(i);
+        cmbSourceProj->addItem(pair.first + " : " + pair.second);
         cmbTargetProj->addItem(pair.first + " : " + pair.second);
     }
 }
@@ -151,7 +153,6 @@ void App::initInterface(void) {
 
 void App::initMenu(void) {
     theMenu = new QMenuBar(this);
-
     {
         fileMenu = new QMenu(theMenu);
         {
@@ -247,11 +248,24 @@ void App::initLayout(void) {
                 lblSourceProj->setMinimumWidth(70);
                 lblSourceProj->setMaximumWidth(70);
 
-                txtSourceProj = new QLineEdit();
-                txtSourceProj->setReadOnly(true);
+                lytSourceProj = new QHBoxLayout();
+                {
+                    txtSourceProj = new QLineEdit();
+                    txtSourceProj->setMaxLength(5);
+                    txtSourceProj->setMinimumWidth(50);
+                    txtSourceProj->setMaximumWidth(50);
+                    QValidator *validator = new QIntValidator(0, 99999, this);
+                    txtSourceProj->setValidator(validator);
+
+                    cmbSourceProj = new QComboBox();
+                    cmbSourceProj->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+
+                    lytSourceProj->addWidget(txtSourceProj);
+                    lytSourceProj->addWidget(cmbSourceProj);
+                }
 
                 lytSource->addWidget(lblSourceProj, 3, 0);
-                lytSource->addWidget(txtSourceProj, 3, 1);
+                lytSource->addLayout(lytSourceProj, 3, 1);
 
                 lblSourceQuery = new QLabel();
                 lblSourceQuery->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
@@ -409,6 +423,7 @@ void App::initLayout(void) {
 }
 
 void App::initSlots(void) {
+    QObject::connect(mnuLanguage, SIGNAL(triggered()), this, SLOT(evtMnuLanguage(void)));
     QObject::connect(mnuExit, SIGNAL(triggered()), this, SLOT(close(void)));
     QObject::connect(mnuOgr, SIGNAL(triggered()), this, SLOT(evtMnuOgrHelp(void)));
     QObject::connect(mnuDoc, SIGNAL(triggered()), this, SLOT(evtMnuGuiHelp(void)));
@@ -424,6 +439,8 @@ void App::initSlots(void) {
     QObject::connect(btnSourceName, SIGNAL(clicked(void)), this, SLOT(evtBtnSourceName(void)));
     QObject::connect(txtSourceQuery, SIGNAL(textChanged(QString)), this, SLOT(evtUpdateParameters(void)));
     QObject::connect(txtInput, SIGNAL(textChanged()), this, SLOT(evtUpdateParameters(void)));
+    QObject::connect(txtSourceProj, SIGNAL(textChanged(QString)), this, SLOT(evtTxtSourceProj(void)));
+    QObject::connect(cmbSourceProj, SIGNAL(currentIndexChanged(int)), this, SLOT(evtUpdateParameters(void)));
 
     QObject::connect(radTargetFile, SIGNAL(toggled(bool)), this, SLOT(evtRadTargetFile(void)));
     QObject::connect(radTargetFolder, SIGNAL(toggled(bool)), this, SLOT(evtRadTargetFolder(void)));
@@ -518,6 +535,9 @@ QString App::currentParameters(void) const {
     if(radSourceWebService->isChecked() && !txtSourceName->text().isEmpty())
         parameters += webServiceList.at(cmbSourceFormat->currentIndex()).second;
     parameters += "\"" + txtSourceName->text().trimmed() + "\"";
+    if(!txtSourceProj->text().isEmpty()) {
+        parameters += " -s_srs EPSG:" + projectionsList.at(cmbSourceProj->currentIndex()).first;
+    }
     if(!cmbTargetProj->currentText().isEmpty())
         parameters += " -t_srs EPSG:" + projectionsList.at(cmbTargetProj->currentIndex()).first;
     if(!txtSourceQuery->text().isEmpty())
@@ -529,6 +549,10 @@ QString App::currentParameters(void) const {
     if(radTargetUpdate->isChecked())
         parameters += " -update";
     return parameters;
+}
+
+void App::evtMnuLanguage(void) {
+    QDesktopServices::openUrl(QUrl("http://www.gdal.org/ogr2ogr.html"));
 }
 
 void App::evtMnuOgrHelp(void) {
@@ -653,9 +677,8 @@ void App::evtTxtSourceName(void) {
     bool isOpen = ogr->openSource(name, epsg, query, error);
     if(isOpen) {
         for(int i = 0; i < projectionsList.size(); ++i) {
-            if(strcmp(epsg.c_str(), projectionsList.at(i).first.toStdString().c_str()) == 0) {
-                if(i > 1)
-                    txtSourceProj->setText(projectionsList.at(i).first + " : " + projectionsList.at(i).second);
+            if(projectionsList.at(i).first.startsWith(QString::fromStdString(epsg))) {
+                cmbSourceProj->setCurrentIndex(i);
                 break;
             }
         }
@@ -665,6 +688,7 @@ void App::evtTxtSourceName(void) {
         else if(radSourceWebService->isChecked())
             btnSourceName->setText(tr("Connected"));
     } else {
+        cmbSourceProj->setCurrentIndex(0);
         txtSourceQuery->clear();
         if(radSourceWebService->isChecked())
             btnSourceName->setText(tr("Open"));
@@ -716,6 +740,21 @@ void App::evtBtnSourceName(void) {
         wsConnect->setConnectionType(webServiceList.at(index).second);
         if(wsConnect->exec() == QDialog::Accepted) {
             txtSourceName->setText(wsConnect->getConnectionString());
+        }
+    }
+    updateParameters();
+}
+
+void App::evtTxtSourceProj(void) {
+    const QString projection = txtSourceProj->text();
+    if(projection.isEmpty()) {
+        cmbSourceProj->setCurrentIndex(0);
+    } else {
+        for(int i = 0; i < projectionsList.size(); ++i) {
+            if(projectionsList.at(i).first.startsWith(projection)) {
+                cmbSourceProj->setCurrentIndex(i);
+                break;
+            }
         }
     }
     updateParameters();

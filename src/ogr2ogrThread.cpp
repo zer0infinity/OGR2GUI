@@ -40,12 +40,10 @@ Ogr2ogrThread::~Ogr2ogrThread(void) {
 void Ogr2ogrThread::run() {
     const QString logPath = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + "ogr2ogr.log");
     btnConvert->setEnabled(false);
-    btnConvert->setText(tr("Please wait..."));
     process = new QProcess();
     process->setProcessChannelMode(QProcess::MergedChannels);
     process->setStandardOutputFile(logPath);
     process->start(command);
     process->waitForFinished(-1);
     btnConvert->setEnabled(true);
-    btnConvert->setText(tr("Convert"));
 }

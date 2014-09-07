@@ -103,7 +103,7 @@ public:
     WebServiceConnect(QWidget * = 0);
 
     /**
-         *	\fn ~WebServiceConnect
+         *	\fn ~WebServiceConnect(void);
          *	\brief Destructor
          */
     ~WebServiceConnect(void);

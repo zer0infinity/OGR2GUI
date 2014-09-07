@@ -194,7 +194,7 @@ void DBConnect::translateInterface(void) {
     radAllTables->setText(tr("Select All"));
     radNonTables->setText(tr("Reset"));
 
-    btnAccept->setText(tr("Accept"));
+    btnAccept->setText(tr("OK"));
     btnCancel->setText(tr("Cancel"));
 }
 

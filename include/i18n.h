@@ -38,17 +38,45 @@
 
 class I18N {
 public:
-    static I18N* getInstance();
-    ~I18N();
-    void translate(QString lang = "en_GB");
+    /**
+         *	\fn void getInstance(void);
+         *	\brief Get I18N instance
+         */
+    static I18N* getInstance(void);
+
+    /**
+         *	\fn ~I18N(void);
+         *	\brief Destructor
+         */
+    ~I18N(void);
+
+    /**
+         *	\fn void translate(QString);
+         *	\brief translate user interface
+         *  \param QString : language file
+         */
+    void translate(const QString lang);
 private:
-    QString lang, path;
-    QTranslator apTranslator, qtTranslator;
-    I18N();
-    I18N(const I18N&);
-    I18N& operator=(const I18N&);
     static bool instanceExists;
     static I18N* instance;
+    QString lang, path;
+    QTranslator apTranslator, qtTranslator;
+
+    /**
+         *	\fn I18N(void);
+         *	\brief Constructor
+         */
+    I18N(void);
+    /**
+         *	\fn I18N(const I18N&);
+         *	\brief Copy constructor
+         */
+    I18N(const I18N&);
+    /**
+         *	\fn I18N& operator=(const I18N&);
+         *	\brief overwrite equal operator
+         */
+    I18N& operator=(const I18N&);
 };
 
 #endif // _I18N_H

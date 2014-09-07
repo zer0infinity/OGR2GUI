@@ -47,10 +47,10 @@ public:
     Ogr2ogrThread(QString&, QPushButton*);
 
     /**
-         *	\fn ~Ogr2ogrThread
+         *	\fn ~Ogr2ogrThread(void);
          *	\brief Destructor
          */
-    ~Ogr2ogrThread();
+    ~Ogr2ogrThread(void);
 protected:
     void run();
 private:
