@@ -44,7 +44,8 @@ HEADERS += \
     include/utils.h \
     include/webServiceConnect.h \
     include/ogr2ogrThread.h \
-    include/i18n.h
+    include/i18n.h \
+    include/langSettings.h
 
 SOURCES += \
     src/ogr.cpp \
@@ -55,7 +56,8 @@ SOURCES += \
     src/utils/commonutils.cpp \
     src/webServiceConnect.cpp \
     src/ogr2ogrThread.cpp \
-    src/i18n.cpp
+    src/i18n.cpp \
+    src/langSettings.cpp
 
 CONFIG += c++11
 QT += sql widgets

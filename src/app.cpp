@@ -27,7 +27,6 @@
  *	\brief ogr2ogr GUI
  *	\author Olivier Pilotte[Inventis], Mohamed Hedi Lassoued[Inventis], David Tran[HSR]
  *	\version 0.7
- *	\date 13/06/14
  */
 
 #include "app.h"
@@ -36,6 +35,7 @@ App::App(QWidget *widget) : QMainWindow(widget) {
     ogr = new Ogr();
     dbConnect = new DBConnect(this);
     wsConnect = new WebServiceConnect(this);
+    langSettings = new LangSettings(this);
 
     initData();
     initInterface();
@@ -119,6 +119,7 @@ void App::readProjections(const QString filename) {
             pair.second = t.at(1);
         projectionsList << pair;
     }
+    file.close();
 }
 
 bool sortCOORD_REF_SYS_CODE(const QPair<QString, QString> &s1, const QPair<QString, QString> &s2) {
@@ -248,6 +249,14 @@ void App::initLayout(void) {
                 lblSourceProj->setMinimumWidth(70);
                 lblSourceProj->setMaximumWidth(70);
 
+                lblSourceEPSG = new QLabel();
+                lblSourceEPSG->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+                lblSourceEPSG->setMinimumWidth(70);
+                lblSourceEPSG->setMaximumWidth(70);
+
+                txtSourceProjInit = new QLineEdit();
+                txtSourceProjInit->setReadOnly(true);
+
                 lytSourceProj = new QHBoxLayout();
                 {
                     txtSourceProj = new QLineEdit();
@@ -265,7 +274,9 @@ void App::initLayout(void) {
                 }
 
                 lytSource->addWidget(lblSourceProj, 3, 0);
-                lytSource->addLayout(lytSourceProj, 3, 1);
+                lytSource->addWidget(txtSourceProjInit, 3, 1);
+                lytSource->addWidget(lblSourceEPSG, 4, 0);
+                lytSource->addLayout(lytSourceProj, 4, 1);
 
                 lblSourceQuery = new QLabel();
                 lblSourceQuery->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
@@ -387,17 +398,17 @@ void App::initLayout(void) {
 
             lytOptions = new QGridLayout();
             {
-                txtInput = new QTextEdit();
-                txtInput->setMaximumHeight(80);
+                txtOption = new QTextEdit();
+                txtOption->setMaximumHeight(80);
             }
-            lytOptions->addWidget(txtInput, 1, 0);
+            lytOptions->addWidget(txtOption, 1, 0);
             grpOptions->setLayout(lytOptions);
         }
 
         theLayout->addWidget(grpOptions);
 
-        txtOutput = new QTextEdit();
-        txtOutput->setReadOnly(true);
+        txtOptionOutput = new QTextEdit();
+        txtOptionOutput->setReadOnly(true);
 
         lytExecute = new QHBoxLayout();
         {
@@ -407,7 +418,7 @@ void App::initLayout(void) {
             lytExecute->addWidget(btnConvert);
         }
 
-        theLayout->addWidget(txtOutput);
+        theLayout->addWidget(txtOptionOutput);
         theLayout->addLayout(lytExecute);
 
         progress = new QProgressBar();
@@ -438,9 +449,8 @@ void App::initSlots(void) {
     QObject::connect(txtSourceName, SIGNAL(textChanged(QString)), this, SLOT(evtTxtSourceName(void)));
     QObject::connect(btnSourceName, SIGNAL(clicked(void)), this, SLOT(evtBtnSourceName(void)));
     QObject::connect(txtSourceQuery, SIGNAL(textChanged(QString)), this, SLOT(evtUpdateParameters(void)));
-    QObject::connect(txtInput, SIGNAL(textChanged()), this, SLOT(evtUpdateParameters(void)));
     QObject::connect(txtSourceProj, SIGNAL(textChanged(QString)), this, SLOT(evtTxtSourceProj(void)));
-    QObject::connect(cmbSourceProj, SIGNAL(currentIndexChanged(int)), this, SLOT(evtUpdateParameters(void)));
+    QObject::connect(cmbSourceProj, SIGNAL(currentIndexChanged(int)), this, SLOT(evtCmbSourceProj(void)));
 
     QObject::connect(radTargetFile, SIGNAL(toggled(bool)), this, SLOT(evtRadTargetFile(void)));
     QObject::connect(radTargetFolder, SIGNAL(toggled(bool)), this, SLOT(evtRadTargetFolder(void)));
@@ -456,6 +466,7 @@ void App::initSlots(void) {
     QObject::connect(radTargetAppend, SIGNAL(toggled(bool)), this, SLOT(evtUpdateParameters(void)));
     QObject::connect(radTargetUpdate, SIGNAL(toggled(bool)), this, SLOT(evtUpdateParameters(void)));
 
+    QObject::connect(txtOption, SIGNAL(textChanged()), this, SLOT(evtUpdateParameters(void)));
     QObject::connect(btnConvert, SIGNAL(clicked(void)), this, SLOT(evtBtnExecute(void)));
 
     QMetaObject::connectSlotsByName(this);
@@ -467,7 +478,7 @@ void App::translateInterface(void) {
 
     fileMenu->setTitle(tr("&File"));
     {
-        mnuLanguage->setText("&Languages...");
+        mnuLanguage->setText(tr("&Languages..."));
         mnuExit->setText(tr("E&xit"));
     }
 
@@ -487,10 +498,11 @@ void App::translateInterface(void) {
 
         lblSourceFormat->setText(tr("Format"));
 
-        lblSourceName->setText(tr("Name"));
+        lblSourceName->setText("Name");
         btnSourceName->setText(tr("Open"));
 
         lblSourceProj->setText(tr("Projection"));
+        lblSourceEPSG->setText("EPSG");
 
         lblSourceQuery->setText(tr("SQL Query"));
     }
@@ -503,7 +515,7 @@ void App::translateInterface(void) {
 
         lblTargetFormat->setText(tr("Format"));
 
-        lblTargetName->setText(tr("Name"));
+        lblTargetName->setText("Name");
         btnTargetName->setText(tr("Save"));
 
         lblTargetProj->setText(tr("Projection"));
@@ -523,9 +535,9 @@ void App::updateParameters(void) {
     parameters += currentParameters();
     if(radSourceWebService->isChecked())
         parameters += " " + wsConnect->getSelectedLayers();
-    if(!txtInput->toPlainText().isEmpty())
-        parameters += " " + txtInput->toPlainText().simplified();
-    txtOutput->setText(parameters);
+    if(!txtOption->toPlainText().isEmpty())
+        parameters += " " + txtOption->toPlainText().simplified();
+    txtOptionOutput->setText(parameters);
     progress->setValue(0);
 }
 
@@ -535,9 +547,8 @@ QString App::currentParameters(void) const {
     if(radSourceWebService->isChecked() && !txtSourceName->text().isEmpty())
         parameters += webServiceList.at(cmbSourceFormat->currentIndex()).second;
     parameters += "\"" + txtSourceName->text().trimmed() + "\"";
-    if(!txtSourceProj->text().isEmpty()) {
+    if(!cmbSourceProj->currentText().isEmpty())
         parameters += " -s_srs EPSG:" + projectionsList.at(cmbSourceProj->currentIndex()).first;
-    }
     if(!cmbTargetProj->currentText().isEmpty())
         parameters += " -t_srs EPSG:" + projectionsList.at(cmbTargetProj->currentIndex()).first;
     if(!txtSourceQuery->text().isEmpty())
@@ -552,7 +563,30 @@ QString App::currentParameters(void) const {
 }
 
 void App::evtMnuLanguage(void) {
-    QDesktopServices::openUrl(QUrl("http://www.gdal.org/ogr2ogr.html"));
+    if(langSettings->exec() == QDialog::Accepted) {
+        QMessageBox msgBox;
+        msgBox.setWindowTitle(tr("The language has been modified."));
+        msgBox.setText(tr("Do you want to restart OGR2GUI?"));
+        msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+        msgBox.setDefaultButton(QMessageBox::Ok);
+        int resVal = msgBox.exec();
+        switch (resVal) {
+        case QMessageBox::Ok:
+        {
+            QString command = QDir::toNativeSeparators(QCoreApplication::applicationFilePath());
+            QProcess process;
+            bool resVal = process.startDetached(command);
+            if(resVal)
+                close();
+        }
+            break;
+        case QMessageBox::Cancel:
+            break;
+        default:
+            break;
+        }
+
+    }
 }
 
 void App::evtMnuOgrHelp(void) {
@@ -672,13 +706,15 @@ void App::evtTxtSourceName(void) {
     string epsg, query, error;
 
     txtSourceProj->clear();
+    cmbSourceProj->setCurrentIndex(0);
     if(radSourceWebService->isChecked())
         name = webServiceList.at(0).second.toStdString() + name;
     bool isOpen = ogr->openSource(name, epsg, query, error);
     if(isOpen) {
         for(int i = 0; i < projectionsList.size(); ++i) {
-            if(projectionsList.at(i).first.startsWith(QString::fromStdString(epsg))) {
-                cmbSourceProj->setCurrentIndex(i);
+            if(projectionsList.at(i).first.compare(QString::fromStdString(epsg)) == 0) {
+                if(i>0)
+                    txtSourceProjInit->setText(projectionsList.at(i).first + " : " + projectionsList.at(i).second);
                 break;
             }
         }
@@ -719,6 +755,7 @@ void App::evtBtnSourceName(void) {
             txtSourceQuery->setEnabled(false);
         }
     } else if(radSourceDatabase->isChecked()) {
+        txtSourceName->clear();
         dbConnect->setConnectionType(databaseListReadOnly.at(index).second);
         dbConnect->showTables(true);
         if(dbConnect->exec() == QDialog::Accepted) {
@@ -737,6 +774,7 @@ void App::evtBtnSourceName(void) {
             txtSourceQuery->setEnabled(false);
         }
     } else if(radSourceWebService->isChecked()) {
+        txtSourceName->clear();
         wsConnect->setConnectionType(webServiceList.at(index).second);
         if(wsConnect->exec() == QDialog::Accepted) {
             txtSourceName->setText(wsConnect->getConnectionString());
@@ -751,12 +789,21 @@ void App::evtTxtSourceProj(void) {
         cmbSourceProj->setCurrentIndex(0);
     } else {
         for(int i = 0; i < projectionsList.size(); ++i) {
-            if(projectionsList.at(i).first.startsWith(projection)) {
+            if(projectionsList.at(i).first.compare(projection) == 0) {
                 cmbSourceProj->setCurrentIndex(i);
                 break;
             }
         }
     }
+    updateParameters();
+}
+
+void App::evtCmbSourceProj(void) {
+    txtSourceProjInit->clear();
+    if(cmbSourceProj->currentIndex() > 0)
+        txtSourceProjInit->setText(projectionsList.at(cmbSourceProj->currentIndex()).first + " : " + projectionsList.at(cmbSourceProj->currentIndex()).second);
+    else
+        cmbSourceProj->setCurrentIndex(0);
     updateParameters();
 }
 
@@ -832,7 +879,7 @@ void App::evtTxtTargetProj(void) {
         cmbTargetProj->setCurrentIndex(0);
     } else {
         for(int i = 0; i < projectionsList.size(); ++i) {
-            if(projectionsList.at(i).first.startsWith(projection)) {
+            if(projectionsList.at(i).first.compare(projection)) {
                 cmbTargetProj->setCurrentIndex(i);
                 break;
             }
@@ -854,11 +901,11 @@ void App::evtBtnExecute(void) {
     string query;
     string error;
 
-    int count = 1;
+    int count = 2;
     int progressSteps = 6;
     int maxValue = 100;
     if(!ogr->openDriver(cmbTargetFormat->currentText().toStdString())) {
-        txtOutput->append("\n" + tr(" * unable to open driver !") + "\n");
+        txtOptionOutput->append("\n" + tr(" * unable to open driver !") + "\n");
         progress->setValue(maxValue/progressSteps);
         return;
     }
@@ -879,39 +926,39 @@ void App::evtBtnExecute(void) {
         resVal = ogr->openSource(sourcename.toStdString(), epsg, query, error);
     }
     if(!resVal) {
-        txtOutput->append("\n" + tr(" * unable to open source !") + "\n");
-        progress->setValue(maxValue/progressSteps*++count);
+        txtOptionOutput->append("\n" + tr(" * unable to open source !") + "\n");
+        progress->setValue(maxValue/progressSteps*count);
         return;
     }
     if(!txtSourceQuery->text().isEmpty()) {
         if(!ogr->testExecuteSQL(txtSourceQuery->text().toStdString())) {
-            txtOutput->append("\n" + tr(" * unable to execute sql query !") + "\n");
+            txtOptionOutput->append("\n" + tr(" * unable to execute sql query !") + "\n");
             progress->setValue(maxValue/progressSteps*++count);
             return;
         }
     }
     if(txtTargetName->text().isEmpty()) {
-        txtOutput->append("\n" + tr("* unable to open target !") + "\n");
+        txtOptionOutput->append("\n" + tr("* unable to open target !") + "\n");
         progress->setValue(maxValue/progressSteps*++count);
         return;
     }
     if(!ogr->testSpatialReference((projectionsList.at(cmbTargetProj->currentIndex()).first).toInt()))
-        txtOutput->append("\n" + tr(" * unable to create spatial reference !") + "\n");
+        txtOptionOutput->append("\n" + tr(" * unable to create spatial reference !") + "\n");
     if(!radSourceDatabase->isChecked() && !radSourceWebService->isChecked())
         if(!ogr->testFeatureProjection())
-            txtOutput->append("\n" + tr(" * unable to transform feature with projection !")+ "\n");
-    txtOutput->append("\n" + sourcename + " > " + targetname + " ... \n");
+            txtOptionOutput->append("\n" + tr(" * unable to transform feature with projection !")+ "\n");
+    txtOptionOutput->append("\n" + sourcename + " > " + targetname + " ... \n");
     QString parameters = currentParameters();
     QString command = QDir::toNativeSeparators(QCoreApplication::applicationFilePath());
     if(radSourceWebService->isChecked())
         parameters += " " + wsConnect->getSelectedLayers();
-    if(!txtInput->toPlainText().isEmpty())
-        parameters += " " + txtInput->toPlainText();
+    if(!txtOption->toPlainText().isEmpty())
+        parameters += " " + txtOption->toPlainText();
     command += parameters;
     if(ogr->openOgr2ogr(command, btnConvert)) {
         progress->setValue(maxValue);
     } else {
-        txtOutput->append("\n" + tr(" * unable to open ogr2ogr !") + "\n");
+        txtOptionOutput->append("\n" + tr(" * unable to open ogr2ogr !") + "\n");
         progress->setValue(maxValue/progressSteps*++count);
     }
     ogr->closeSource();

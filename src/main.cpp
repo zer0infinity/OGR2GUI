@@ -26,7 +26,6 @@
  *	\brief main
  *	\author David Tran [HSR]
  *	\version 0.7
- *	\date 13/06/14
  */
 
 //#pragma comment(linker, "/SUBSYSTEM:CONSOLE")

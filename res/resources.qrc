@@ -3,5 +3,6 @@
         <file>formats</file>
         <file>databases</file>
         <file>webservices</file>
+		<file>languages</file>
     </qresource>
 </RCC>

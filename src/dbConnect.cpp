@@ -27,7 +27,6 @@
  *	\brief Database Connect
  *	\author Olivier Pilotte [Inventis], David Tran [HSR]
  *	\version 0.7
- *	\date 13/06/14
  */
 
 #include "dbConnect.h"
@@ -155,12 +154,12 @@ void DBConnect::initInterface(void) {
 
         lytDialog = new QHBoxLayout();
         {
-            btnAccept = new QPushButton();
-            btnAccept->setEnabled(false);
+            btnOK = new QPushButton();
+            btnOK->setEnabled(false);
 
             btnCancel = new QPushButton();
 
-            lytDialog->addWidget(btnAccept);
+            lytDialog->addWidget(btnOK);
             lytDialog->addWidget(btnCancel);
         }
 
@@ -175,7 +174,7 @@ void DBConnect::initSlots(void) {
     QObject::connect(radAllTables, SIGNAL(clicked()), this, SLOT(evtRadAllTables(void)));
     QObject::connect(radNonTables, SIGNAL(clicked()), this, SLOT(evtRadNonTables(void)));
     QObject::connect(btnCancel, SIGNAL(clicked()), this, SLOT(evtBtnCancel(void)));
-    QObject::connect(btnAccept, SIGNAL(clicked()), this, SLOT(evtBtnAccept(void)));
+    QObject::connect(btnOK, SIGNAL(clicked()), this, SLOT(evtBtnOK(void)));
 }
 
 void DBConnect::translateInterface(void) {
@@ -194,7 +193,7 @@ void DBConnect::translateInterface(void) {
     radAllTables->setText(tr("Select All"));
     radNonTables->setText(tr("Reset"));
 
-    btnAccept->setText(tr("OK"));
+    btnOK->setText("OK");
     btnCancel->setText(tr("Cancel"));
 }
 
@@ -206,7 +205,7 @@ void DBConnect::evtBtnConnect(void) {
     pass = txtPass->text();
 
     QSqlDatabase base = QSqlDatabase::addDatabase(connectionType);
-    btnAccept->setEnabled(false);
+    btnOK->setEnabled(false);
     if(connectionType.compare("QSQLITE") == 0) {
         QString type = "\" SQLite/SpatiaLite (*.sqlite)\"";
         name = QDir::toNativeSeparators(QFileDialog::getOpenFileName(this, "SQLite/SpatiaLite File", QString(), type));
@@ -237,7 +236,7 @@ void DBConnect::evtBtnConnect(void) {
             ++it;
         }
         if(lstTables->count() > 0)
-            btnAccept->setEnabled(true);
+            btnOK->setEnabled(true);
     } else if(!txtName->text().isEmpty()) {
         msg.setText(tr("* Can't connect to database !"));
         msg.exec();
@@ -261,7 +260,7 @@ void DBConnect::evtRadNonTables(void) {
     }
 }
 
-void DBConnect::evtBtnAccept(void) {
+void DBConnect::evtBtnOK(void) {
     host = txtHost->text();
     port = txtPort->text();
     name = txtName->text();
@@ -277,7 +276,7 @@ void DBConnect::evtBtnAccept(void) {
         base.setDatabaseName(name);
         base.open();
         if(base.isOpenError()) {
-            btnAccept->setEnabled(false);
+            btnOK->setEnabled(false);
             lstTables->clear();
             QMessageBox msg;
             msg.setText(tr("* Can't connect to database !"));
@@ -348,7 +347,7 @@ void DBConnect::setConnectionType(const QString type) {
         txtUser->clear();
         txtPass->clear();
         lstTables->clear();
-        btnAccept->setEnabled(false);
+        btnOK->setEnabled(false);
         connectionType = type;
     }
     txtHost->setEnabled(true);

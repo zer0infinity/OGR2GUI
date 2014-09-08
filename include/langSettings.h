@@ -22,51 +22,40 @@
  *****************************************************************************/
 
 /**
- *	\file webServiceConnect.h
- *	\brief Web Service Connect
+ *	\file langSettings.h
+ *	\brief Language settings
  *	\author David Tran [HSR]
  *	\version 0.7
  */
 
-#ifndef WFSCONNECT_H
-#define WFSCONNECT_H
+#ifndef _LANGSETTINGS_H
+#define _LANGSETTINGS_H
 
 #include <QtWidgets>
-#include "ogr.h"
+#include "i18n.h"
 
 QT_BEGIN_NAMESPACE
 
-class WebServiceConnect : public QDialog
-{
+class LangSettings : public QDialog {
     Q_OBJECT
-
 private:
-
-    QString connectionType;
-
-    QString connectionString;
-
-    QString selectedLayers;
-    QStringList selectedLayersList;
+    QString language;
 
     QVBoxLayout *theLayout;
-    QGridLayout *lytInfo;
-    QLabel *lblHost;
-    QHBoxLayout *lytHost;
-    QLineEdit *txtHost;
-
-    QPushButton *btnConnect;
-
-    QVBoxLayout *lytTables;
-    QLabel *lblTables;
-    QPushButton *radAllTables;
-    QPushButton *radNonTables;
-
-    QListWidget *lstTables;
-
     QHBoxLayout *lytDialog;
     QPushButton *btnOK;
     QPushButton *btnCancel;
+    QComboBox *cmbLang;
+    QLabel *lblLang;
+    QGridLayout *lytLang;
+
+    QList<QPair<QString, QString> > languageList;
+
+    /**
+         *	\fn void initLanguage(void);
+         *	\brief Inits Language
+         */
+    void initLanguage(void);
 
     /**
          *	\fn void InitInterface(void);
@@ -85,54 +74,23 @@ private:
          *	\brief Translates Interface
          */
     void translateInterface(void);
-
 public slots:
-    void evtBtnConnect(void);
-    void evtRadAllLayers(void);
-    void evtRadNonLayers(void);
     void evtBtnOK(void);
     void evtBtnCancel(void);
-
 public:
-
     /**
-         *	\fn WebServiceConnect(QWidget * = 0);
+         *	\fn LangSettings(QWidget * = 0);
          *	\brief Constructor
          */
-    WebServiceConnect(QWidget * = 0);
+    LangSettings(QWidget * = 0);
 
     /**
-         *	\fn ~WebServiceConnect(void);
+         *	\fn ~LangSettings(void);
          *	\brief Destructor
          */
-    ~WebServiceConnect(void);
-
-    /**
-         *	\fn void setConnectionType(QString)
-         *	\brief Sets connection type
-         *  \param QString : connection type
-         */
-    void setConnectionType(const QString);
-
-    /**
-         *	\fn QString getConnectionString(void)
-         *	\brief returns connection string
-         */
-    QString getConnectionString(void) const;
-
-    /**
-         *	\fn QSring getSelectedTables(void)
-         *	\brief returns selected layers
-         */
-    QString getSelectedLayers(void) const;
-
-    /**
-         *	\fn QSringList getSelectedTables(void)
-         *	\brief returns selected layers
-         */
-    QStringList getSelectedLayersAsList(void) const;
+    ~LangSettings(void);
 };
 
 QT_END_NAMESPACE
 
-#endif // WFSCONNECT_H
+#endif

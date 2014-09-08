@@ -27,7 +27,6 @@
  *	\brief Database Connect
  *	\author Olivier Pilotte [Inventis], David Tran [HSR]
  *	\version 0.7
- *	\date 13/06/14
  */
 
 #ifndef DBCONNECT_H
@@ -80,7 +79,7 @@ private:
     QListWidget *lstTables;
 
     QHBoxLayout *lytDialog;
-    QPushButton *btnAccept;
+    QPushButton *btnOK;
     QPushButton *btnCancel;
 
     /**
@@ -105,19 +104,19 @@ public slots:
     void evtBtnConnect(void);
     void evtRadAllTables(void);
     void evtRadNonTables(void);
-    void evtBtnAccept(void);
+    void evtBtnOK(void);
     void evtBtnCancel(void);
 
 public:
 
     /**
-         *	\fn Inf(const QWidget &);
+         *	\fn DBConnect(const QWidget &);
          *	\brief Constructor
          */
     DBConnect(QWidget * = 0);
 
     /**
-         *	\fn ~Inf
+         *	\fn ~DBConnect
          *	\brief Destructor
          */
     ~DBConnect(void);

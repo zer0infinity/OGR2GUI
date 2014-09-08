@@ -26,7 +26,6 @@
  *	\brief I18N
  *	\author David Tran [HSR]
  *	\version 0.7
- *	\date 13/06/14
  */
 
 #include "i18n.h"

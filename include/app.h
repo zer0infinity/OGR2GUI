@@ -44,7 +44,6 @@
  *	\brief ogr2ogr GUI
  *	\author Olivier Pilotte [Inventis], Mohamed Hedi Lassoued [Inventis], David Tran [HSR]
  *	\version 0.7
- *	\date 13/06/14
  */
 
 #ifndef APP
@@ -53,6 +52,7 @@
 #include "ogr.h"
 #include "dbConnect.h"
 #include "webServiceConnect.h"
+#include "langSettings.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -64,6 +64,7 @@ private:
     Ogr *ogr;
     DBConnect *dbConnect;
     WebServiceConnect *wsConnect;
+    LangSettings *langSettings;
 
     QString parameters;
 
@@ -106,8 +107,10 @@ private:
     QPushButton *btnSourceName;
 
     QLabel *lblSourceProj;
+    QLabel *lblSourceEPSG;
     QHBoxLayout *lytSourceProj;
     QLineEdit *txtSourceProj;
+    QLineEdit *txtSourceProjInit;
     QComboBox *cmbSourceProj;
 
     QLabel *lblSourceQuery;
@@ -143,8 +146,8 @@ private:
     QGroupBox *grpOptions;
     QGridLayout *lytOptions;
 
-    QTextEdit *txtOutput;
-    QTextEdit *txtInput;
+    QTextEdit *txtOptionOutput;
+    QTextEdit *txtOption;
 
     QHBoxLayout *lytExecute;
     QPushButton *btnConvert;
@@ -240,6 +243,7 @@ private slots :
     void evtTxtSourceName(void);
     void evtBtnSourceName(void);
     void evtTxtSourceProj(void);
+    void evtCmbSourceProj(void);
 
     void evtRadTargetFile(void);
     void evtRadTargetFolder(void);

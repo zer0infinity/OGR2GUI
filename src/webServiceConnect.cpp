@@ -26,7 +26,6 @@
  *	\brief Web Service Connect
  *	\author David Tran [HSR]
  *	\version 0.7
- *	\date 13/06/14
  */
 
 #include "webServiceConnect.h"
@@ -91,12 +90,12 @@ void WebServiceConnect::initInterface(void) {
 
         lytDialog = new QHBoxLayout();
         {
-            btnAccept = new QPushButton();
-            btnAccept->setEnabled(false);
+            btnOK = new QPushButton();
+            btnOK->setEnabled(false);
 
             btnCancel = new QPushButton();
 
-            lytDialog->addWidget(btnAccept);
+            lytDialog->addWidget(btnOK);
             lytDialog->addWidget(btnCancel);
         }
 
@@ -111,7 +110,7 @@ void WebServiceConnect::initSlots(void) {
     QObject::connect(radAllTables, SIGNAL(clicked()), this, SLOT(evtRadAllLayers(void)));
     QObject::connect(radNonTables, SIGNAL(clicked()), this, SLOT(evtRadNonLayers(void)));
     QObject::connect(btnCancel, SIGNAL(clicked()), this, SLOT(evtBtnCancel(void)));
-    QObject::connect(btnAccept, SIGNAL(clicked()), this, SLOT(evtBtnAccept(void)));
+    QObject::connect(btnOK, SIGNAL(clicked()), this, SLOT(evtBtnOK(void)));
 }
 
 void WebServiceConnect::translateInterface(void) {
@@ -126,7 +125,7 @@ void WebServiceConnect::translateInterface(void) {
     radAllTables->setText(tr("Select All"));
     radNonTables->setText(tr("Reset"));
 
-    btnAccept->setText(tr("OK"));
+    btnOK->setText("OK");
     btnCancel->setText(tr("Cancel"));
 }
 
@@ -143,7 +142,7 @@ void WebServiceConnect::evtBtnConnect(void) {
             lstTables->addItem(item);
             ++it;
         }
-        btnAccept->setEnabled(true);
+        btnOK->setEnabled(true);
     } else {
         QMessageBox msg;
         msg.setText(tr("* Can't connect to web service !"));
@@ -163,10 +162,10 @@ void WebServiceConnect::evtRadNonLayers(void) {
     }
 }
 
-void WebServiceConnect::evtBtnAccept(void) {
+void WebServiceConnect::evtBtnOK(void) {
     Ogr ogr;
     if(!ogr.openWFS(connectionType + txtHost->text(), QStringList())) {
-        btnAccept->setEnabled(false);
+        btnOK->setEnabled(false);
         lstTables->clear();
         QMessageBox msg;
         msg.setText(tr("* Can't connect to web service !"));
@@ -186,13 +185,13 @@ void WebServiceConnect::evtBtnAccept(void) {
     selectedLayersList = selectedLayers.split(" ");
 
     lstTables->clear();
-    btnAccept->setEnabled(false);
+    btnOK->setEnabled(false);
     this->accept();
 }
 
 void WebServiceConnect::evtBtnCancel(void) {
     lstTables->clear();
-    btnAccept->setEnabled(false);
+    btnOK->setEnabled(false);
     this->reject();
 }
 

@@ -26,7 +26,6 @@
  *	\brief ogr2ogr Thread
  *	\author David Tran [HSR]
  *	\version 0.7
- *	\date 13/06/14
  */
 
 #ifndef OGR2OGRTHREAD_H

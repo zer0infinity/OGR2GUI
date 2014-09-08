@@ -27,7 +27,6 @@
  *	\brief OGR API
  *	\author Olivier Pilotte [Inventis], David Tran [HSR]
  *	\version 0.7
- *	\date 13/06/14
  */
 
 #include "ogr.h"
