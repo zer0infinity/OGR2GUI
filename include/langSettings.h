@@ -69,11 +69,6 @@ private:
          */
     void initSlots(void);
 
-    /**
-         *	\fn void TranslateInterface(void);
-         *	\brief Translates Interface
-         */
-    void translateInterface(void);
 public slots:
     void evtBtnOK(void);
     void evtBtnCancel(void);
@@ -89,6 +84,12 @@ public:
          *	\brief Destructor
          */
     ~LangSettings(void);
+
+    /**
+         *	\fn void TranslateInterface(void);
+         *	\brief Translates Interface
+         */
+    void translateInterface(void);
 };
 
 QT_END_NAMESPACE

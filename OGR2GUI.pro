@@ -24,18 +24,18 @@
 
 TEMPLATE = app
 INCLUDEPATH += $$PWD/include $$PWD/include/ogr
-#DESTDIR += $$PWD/bin
+DESTDIR += $$PWD/bin
 
 TRANSLATIONS += \
-    res/lang/en_GB.ts \
-    res/lang/de_CH.ts
+    res/translations/en_GB.ts \
+    res/translations/de_CH.ts
 
 RC_FILE += res/gdalicon.rc
 
 RESOURCES += \
     res/gdalicon.qrc \
     res/resources.qrc \
-    res/lang/i18n.qrc
+    res/translations/i18n.qrc
 
 HEADERS += \
     include/app.h \

@@ -33,18 +33,15 @@
 bool I18N::instanceExists;
 I18N* I18N::instance;
 
-I18N::I18N(void) {
-    path = ":/lang";
+I18N::I18N(void) : path(":/translations") {
 }
 
 I18N::~I18N(void) {
 }
 
 void I18N::translate(const QString lang) {
-    apTranslator.load(lang, path);
-    qtTranslator.load("qt_" + lang, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-    QCoreApplication::installTranslator(&apTranslator);
-    QCoreApplication::installTranslator(&qtTranslator);
+    translator.load(lang, path);
+    QCoreApplication::installTranslator(&translator);
 }
 
 I18N* I18N::getInstance(void) {

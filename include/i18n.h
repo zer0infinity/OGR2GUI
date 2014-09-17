@@ -59,7 +59,7 @@ private:
     static bool instanceExists;
     static I18N* instance;
     QString lang, path;
-    QTranslator apTranslator, qtTranslator;
+    QTranslator translator, qtTranslator;
 
     /**
          *	\fn I18N(void);

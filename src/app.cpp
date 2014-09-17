@@ -564,28 +564,10 @@ QString App::currentParameters(void) const {
 
 void App::evtMnuLanguage(void) {
     if(langSettings->exec() == QDialog::Accepted) {
-        QMessageBox msgBox;
-        msgBox.setWindowTitle(tr("The language has been modified."));
-        msgBox.setText(tr("Do you want to restart OGR2GUI?"));
-        msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
-        msgBox.setDefaultButton(QMessageBox::Ok);
-        int resVal = msgBox.exec();
-        switch (resVal) {
-        case QMessageBox::Ok:
-        {
-            QString command = QDir::toNativeSeparators(QCoreApplication::applicationFilePath());
-            QProcess process;
-            bool resVal = process.startDetached(command);
-            if(resVal)
-                close();
-        }
-            break;
-        case QMessageBox::Cancel:
-            break;
-        default:
-            break;
-        }
-
+        this->translateInterface();
+        dbConnect->translateInterface();
+        langSettings->translateInterface();
+        wsConnect->translateInterface();
     }
 }
 
@@ -789,7 +771,7 @@ void App::evtTxtSourceProj(void) {
         cmbSourceProj->setCurrentIndex(0);
     } else {
         for(int i = 0; i < projectionsList.size(); ++i) {
-            if(projectionsList.at(i).first.compare(projection) == 0) {
+            if(projectionsList.at(i).first.startsWith(projection)) {
                 cmbSourceProj->setCurrentIndex(i);
                 break;
             }
@@ -879,7 +861,7 @@ void App::evtTxtTargetProj(void) {
         cmbTargetProj->setCurrentIndex(0);
     } else {
         for(int i = 0; i < projectionsList.size(); ++i) {
-            if(projectionsList.at(i).first.compare(projection)) {
+            if(projectionsList.at(i).first.startsWith(projection)) {
                 cmbTargetProj->setCurrentIndex(i);
                 break;
             }

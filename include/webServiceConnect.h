@@ -80,12 +80,6 @@ private:
          */
     void initSlots(void);
 
-    /**
-         *	\fn void TranslateInterface(void);
-         *	\brief Translates Interface
-         */
-    void translateInterface(void);
-
 public slots:
     void evtBtnConnect(void);
     void evtRadAllLayers(void);
@@ -106,6 +100,12 @@ public:
          *	\brief Destructor
          */
     ~WebServiceConnect(void);
+
+    /**
+         *	\fn void TranslateInterface(void);
+         *	\brief Translates Interface
+         */
+    void translateInterface(void);
 
     /**
          *	\fn void setConnectionType(QString)

@@ -94,12 +94,6 @@ private:
          */
     void initSlots(void);
 
-    /**
-         *	\fn void TranslateInterface(void);
-         *	\brief Translates Interface
-         */
-    void translateInterface(void);
-
 public slots:
     void evtBtnConnect(void);
     void evtRadAllTables(void);
@@ -120,6 +114,12 @@ public:
          *	\brief Destructor
          */
     ~DBConnect(void);
+
+    /**
+         *	\fn void TranslateInterface(void);
+         *	\brief Translates Interface
+         */
+    void translateInterface(void);
 
     /**
          * \fn void showTables(bool enable)

@@ -1,8 +1,0 @@
-<RCC>
-    <qresource prefix="/lang">
-        <file>de_CH.qm</file>
-        <file>de_CH.ts</file>
-        <file>en_GB.qm</file>
-        <file>en_GB.ts</file>
-    </qresource>
-</RCC>
