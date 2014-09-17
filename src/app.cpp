@@ -603,6 +603,7 @@ void App::evtRadSourceFile(void) {
     lblSourceName->setText(tr("Name"));
     txtSourceName->clear();
     txtSourceProj->clear();
+    txtSourceProjInit->clear();
     txtSourceQuery->clear();
 
     txtSourceProj->setEnabled(true);
@@ -628,6 +629,7 @@ void App::evtRadSourceFolder(void) {
     lblSourceName->setText(tr("Name"));
     txtSourceName->clear();
     txtSourceProj->clear();
+    txtSourceProjInit->clear();
     txtSourceQuery->clear();
 
     txtSourceProj->setEnabled(true);
@@ -650,6 +652,7 @@ void App::evtRadSourceDatabase(void) {
     lblSourceName->setText(tr("Name"));
     txtSourceName->clear();
     txtSourceProj->clear();
+    txtSourceProjInit->clear();
     txtSourceQuery->clear();
 
     txtSourceProj->setEnabled(true);
@@ -671,6 +674,7 @@ void App::evtRadSourceWebService(void) {
 
     lblSourceName->setText(tr("URI"));
     txtSourceProj->clear();
+    txtSourceProjInit->clear();
     txtSourceQuery->clear();
 
     txtSourceProj->setEnabled(true);
@@ -680,6 +684,7 @@ void App::evtRadSourceWebService(void) {
 void App::evtCmbSourceFormat(void) {
     txtSourceName->clear();
     txtSourceProj->clear();
+    txtSourceProjInit->clear();
     txtSourceQuery->clear();
 }
 
