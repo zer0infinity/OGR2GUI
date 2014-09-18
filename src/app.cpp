@@ -693,6 +693,7 @@ void App::evtTxtSourceName(void) {
     string epsg, query, error;
 
     txtSourceProj->clear();
+    txtSourceProjInit->clear();
     cmbSourceProj->setCurrentIndex(0);
     if(radSourceWebService->isChecked())
         name = webServiceList.at(0).second.toStdString() + name;
@@ -889,10 +890,10 @@ void App::evtBtnExecute(void) {
     string error;
 
     int count = 2;
-    int progressSteps = 6;
+    int progressSteps = 7;
     int maxValue = 100;
     if(!ogr->openDriver(cmbTargetFormat->currentText().toStdString())) {
-        txtOptionOutput->append("\n" + tr(" * unable to open driver !") + "\n");
+        txtOptionOutput->append("\n" + tr("FAILURE: unable to open driver !") + "\n");
         progress->setValue(maxValue/progressSteps);
         return;
     }
@@ -913,27 +914,34 @@ void App::evtBtnExecute(void) {
         resVal = ogr->openSource(sourcename.toStdString(), epsg, query, error);
     }
     if(!resVal) {
-        txtOptionOutput->append("\n" + tr(" * unable to open source !") + "\n");
+        txtOptionOutput->append("\n" + tr("FAILURE: unable to open source !") + "\n");
         progress->setValue(maxValue/progressSteps*count);
         return;
     }
     if(!txtSourceQuery->text().isEmpty()) {
         if(!ogr->testExecuteSQL(txtSourceQuery->text().toStdString())) {
-            txtOptionOutput->append("\n" + tr(" * unable to execute sql query !") + "\n");
+            txtOptionOutput->append("\n" + tr("FAILURE: unable to execute sql query !") + "\n");
             progress->setValue(maxValue/progressSteps*++count);
             return;
         }
     }
     if(txtTargetName->text().isEmpty()) {
-        txtOptionOutput->append("\n" + tr("* unable to open target !") + "\n");
+        txtOptionOutput->append("\n" + tr("FAILURE: unable to open target !") + "\n");
         progress->setValue(maxValue/progressSteps*++count);
         return;
     }
+    if(!cmbSourceProj->currentText().isEmpty()) {
+        if(cmbTargetProj->currentText().isEmpty()) {
+            txtOptionOutput->append("\n" + tr("FAILURE: if -s_srs is specified, -t_srs must also be specified !") + "\n");
+            progress->setValue(maxValue/progressSteps*++count);
+            return;
+        }
+    }
     if(!ogr->testSpatialReference((projectionsList.at(cmbTargetProj->currentIndex()).first).toInt()))
-        txtOptionOutput->append("\n" + tr(" * unable to create spatial reference !") + "\n");
+        txtOptionOutput->append("\n" + tr("FAILURE: unable to create spatial reference !") + "\n");
     if(!radSourceDatabase->isChecked() && !radSourceWebService->isChecked())
         if(!ogr->testFeatureProjection())
-            txtOptionOutput->append("\n" + tr(" * unable to transform feature with projection !")+ "\n");
+            txtOptionOutput->append("\n" + tr("FAILURE: unable to transform feature with projection !")+ "\n");
     txtOptionOutput->append("\n" + sourcename + " > " + targetname + " ... \n");
     QString parameters = currentParameters();
     QString command = QDir::toNativeSeparators(QCoreApplication::applicationFilePath());
@@ -945,7 +953,7 @@ void App::evtBtnExecute(void) {
     if(ogr->openOgr2ogr(command, btnConvert)) {
         progress->setValue(maxValue);
     } else {
-        txtOptionOutput->append("\n" + tr(" * unable to open ogr2ogr !") + "\n");
+        txtOptionOutput->append("\n" + tr("FAILURE: unable to open ogr2ogr !") + "\n");
         progress->setValue(maxValue/progressSteps*++count);
     }
     ogr->closeSource();

@@ -68,23 +68,59 @@
         <translation type="unfinished">Format</translation>
     </message>
     <message>
-        <source>Do you want to restart OGR2GUI?</source>
-        <translation type="obsolete">Soll OGR2GUI jetzt neugestartet werden?</translation>
+        <location filename="../../src/app.cpp" line="896"/>
+        <source>FAILURE: unable to open driver !</source>
+        <translation type="unfinished">FEHLER: Treiber kann nicht geöffnet werden !</translation>
+    </message>
+    <message>
+        <location filename="../../src/app.cpp" line="917"/>
+        <source>FAILURE: unable to open source !</source>
+        <translation type="unfinished">FEHLER: Quelle kann nicht geöffnet werden !</translation>
+    </message>
+    <message>
+        <location filename="../../src/app.cpp" line="923"/>
+        <source>FAILURE: unable to execute sql query !</source>
+        <translation type="unfinished">FEHLER: SQL Query kann nicht ausgeführt werden !</translation>
+    </message>
+    <message>
+        <location filename="../../src/app.cpp" line="929"/>
+        <source>FAILURE: unable to open target !</source>
+        <translation type="unfinished">FEHLER: Ziel kann nicht geöffnet werden !</translation>
+    </message>
+    <message>
+        <location filename="../../src/app.cpp" line="935"/>
+        <source>FAILURE: if -s_srs is specified, -t_srs must also be specified !</source>
+        <translation type="unfinished">FEHLER: Wenn -s_srs ausgewählt ist, muss -t_srs auch ausgewählt werden !</translation>
+    </message>
+    <message>
+        <location filename="../../src/app.cpp" line="939"/>
+        <source>FAILURE: unable to create spatial reference !</source>
+        <translation type="unfinished">FEHLER: Spatial Reference kann nicht erzeugt werden !</translation>
+    </message>
+    <message>
+        <location filename="../../src/app.cpp" line="942"/>
+        <source>FAILURE: unable to transform feature with projection !</source>
+        <translation type="unfinished">FEHLER: Feature mit die Projektion kann nicht transformieren !</translation>
+    </message>
+    <message>
+        <location filename="../../src/app.cpp" line="954"/>
+        <source>FAILURE: unable to open ogr2ogr !</source>
+        <translation type="unfinished">FEHLER: Ogr2gor konnte nicht geöffnet werden !</translation>
     </message>
     <message>
         <location filename="../../src/app.cpp" line="603"/>
-        <location filename="../../src/app.cpp" line="628"/>
-        <location filename="../../src/app.cpp" line="650"/>
+        <location filename="../../src/app.cpp" line="629"/>
+        <location filename="../../src/app.cpp" line="652"/>
         <source>Name</source>
         <translation type="unfinished">Name</translation>
     </message>
     <message>
         <location filename="../../src/app.cpp" line="502"/>
         <location filename="../../src/app.cpp" line="588"/>
-        <location filename="../../src/app.cpp" line="638"/>
-        <location filename="../../src/app.cpp" line="660"/>
-        <location filename="../../src/app.cpp" line="712"/>
-        <location filename="../../src/app.cpp" line="813"/>
+        <location filename="../../src/app.cpp" line="640"/>
+        <location filename="../../src/app.cpp" line="663"/>
+        <location filename="../../src/app.cpp" line="718"/>
+        <location filename="../../src/app.cpp" line="819"/>
         <source>Open</source>
         <translation type="unfinished">Öffnen</translation>
     </message>
@@ -127,7 +163,7 @@
     </message>
     <message>
         <location filename="../../src/app.cpp" line="519"/>
-        <location filename="../../src/app.cpp" line="793"/>
+        <location filename="../../src/app.cpp" line="799"/>
         <source>Save</source>
         <translation type="unfinished">Speichern</translation>
     </message>
@@ -157,85 +193,46 @@
         <translation type="unfinished">Konvertieren</translation>
     </message>
     <message>
-        <source>The language has been modified.</source>
-        <translation type="obsolete">Die Sprache wurde geändert.</translation>
-    </message>
-    <message>
-        <location filename="../../src/app.cpp" line="613"/>
-        <location filename="../../src/app.cpp" line="804"/>
+        <location filename="../../src/app.cpp" line="614"/>
+        <location filename="../../src/app.cpp" line="810"/>
         <source>Browse</source>
         <translation type="unfinished">Durchsuchen</translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="672"/>
+        <location filename="../../src/app.cpp" line="675"/>
         <source>URI</source>
         <translation type="unfinished">URI</translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="707"/>
+        <location filename="../../src/app.cpp" line="713"/>
         <source>Connected</source>
         <translation type="unfinished">Verbunden</translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="724"/>
+        <location filename="../../src/app.cpp" line="730"/>
         <source>Source File</source>
         <translation type="unfinished">Quelldatei</translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="729"/>
+        <location filename="../../src/app.cpp" line="735"/>
         <source>Source Folder</source>
         <translation type="unfinished">Quellverzeichnis</translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="836"/>
-        <location filename="../../src/app.cpp" line="847"/>
+        <location filename="../../src/app.cpp" line="842"/>
+        <location filename="../../src/app.cpp" line="853"/>
         <source>Save File</source>
         <translation type="unfinished">Datei speichern</translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="849"/>
+        <location filename="../../src/app.cpp" line="855"/>
         <source>Target Folder</source>
         <translation type="unfinished">Zielverzeichnis</translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="853"/>
+        <location filename="../../src/app.cpp" line="859"/>
         <source>Target File</source>
         <translation type="unfinished">Zieldatei</translation>
-    </message>
-    <message>
-        <location filename="../../src/app.cpp" line="890"/>
-        <source> * unable to open driver !</source>
-        <translation type="unfinished"> * Treiber kann nicht geöffnet werden !</translation>
-    </message>
-    <message>
-        <location filename="../../src/app.cpp" line="911"/>
-        <source> * unable to open source !</source>
-        <translation type="unfinished"> * Quelle kann nicht geöffnet werden !</translation>
-    </message>
-    <message>
-        <location filename="../../src/app.cpp" line="917"/>
-        <source> * unable to execute sql query !</source>
-        <translation type="unfinished"> * SQL Query kann nicht ausgeführt werden !</translation>
-    </message>
-    <message>
-        <location filename="../../src/app.cpp" line="923"/>
-        <source>* unable to open target !</source>
-        <translation type="unfinished"> * Ziel kann nicht geöffnet werden !</translation>
-    </message>
-    <message>
-        <location filename="../../src/app.cpp" line="928"/>
-        <source> * unable to create spatial reference !</source>
-        <translation type="unfinished"> * Spatial Reference kann nicht erzeugt werden !</translation>
-    </message>
-    <message>
-        <location filename="../../src/app.cpp" line="931"/>
-        <source> * unable to transform feature with projection !</source>
-        <translation type="unfinished"> * Feature mit die Projektion kann nicht transformieren !</translation>
-    </message>
-    <message>
-        <location filename="../../src/app.cpp" line="943"/>
-        <source> * unable to open ogr2ogr !</source>
-        <translation type="unfinished"> * Ogr2gor konnte nicht geöffnet werden !</translation>
     </message>
 </context>
 <context>
@@ -295,13 +292,13 @@
     <message>
         <location filename="../../src/dbConnect.cpp" line="241"/>
         <location filename="../../src/dbConnect.cpp" line="282"/>
-        <source>* Can&apos;t connect to database !</source>
-        <translation type="unfinished"> * Datenbankverbindung kann nicht geöffnet werden !</translation>
+        <source>Can&apos;t connect to database !</source>
+        <translation type="unfinished">Datenbankverbindung kann nicht geöffnet werden !</translation>
     </message>
     <message>
         <location filename="../../src/dbConnect.cpp" line="245"/>
-        <source>* Can&apos;t find any tables in database !</source>
-        <translation type="unfinished"> * Keine Tabellen in der Datenbank gefunden !</translation>
+        <source>Can&apos;t find any tables in database !</source>
+        <translation type="unfinished">Keine Tabellen in der Datenbank gefunden !</translation>
     </message>
     <message>
         <location filename="../../src/dbConnect.cpp" line="378"/>
@@ -372,8 +369,8 @@
     <message>
         <location filename="../../src/webServiceConnect.cpp" line="148"/>
         <location filename="../../src/webServiceConnect.cpp" line="171"/>
-        <source>* Can&apos;t connect to web service !</source>
-        <translation type="unfinished"> * Kann nicht zum Webservice verbinden !</translation>
+        <source>Can&apos;t connect to web service !</source>
+        <translation type="unfinished">Kann nicht zum Webservice verbinden !</translation>
     </message>
 </context>
 </TS>

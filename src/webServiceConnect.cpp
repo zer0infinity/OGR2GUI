@@ -145,7 +145,7 @@ void WebServiceConnect::evtBtnConnect(void) {
         btnOK->setEnabled(true);
     } else {
         QMessageBox msg;
-        msg.setText(tr("* Can't connect to web service !"));
+        msg.setText(tr("Can't connect to web service !"));
         msg.exec();
     }
 }
@@ -168,7 +168,7 @@ void WebServiceConnect::evtBtnOK(void) {
         btnOK->setEnabled(false);
         lstTables->clear();
         QMessageBox msg;
-        msg.setText(tr("* Can't connect to web service !"));
+        msg.setText(tr("Can't connect to web service !"));
         msg.exec();
         return;
     }

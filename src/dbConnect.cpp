@@ -238,11 +238,11 @@ void DBConnect::evtBtnConnect(void) {
         if(lstTables->count() > 0)
             btnOK->setEnabled(true);
     } else if(!txtName->text().isEmpty()) {
-        msg.setText(tr("* Can't connect to database !"));
+        msg.setText(tr("Can't connect to database !"));
         msg.exec();
     }
     if(lstTables->count() <=0 && base.isOpen()) {
-        msg.setText(tr("* Can't find any tables in database !"));
+        msg.setText(tr("Can't find any tables in database !"));
         msg.exec();
     }
     base.close();
@@ -279,7 +279,7 @@ void DBConnect::evtBtnOK(void) {
             btnOK->setEnabled(false);
             lstTables->clear();
             QMessageBox msg;
-            msg.setText(tr("* Can't connect to database !"));
+            msg.setText(tr("Can't connect to database !"));
             msg.exec();
             base.close();
             return;
