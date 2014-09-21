@@ -68,19 +68,19 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="603"/>
-        <location filename="../../src/app.cpp" line="629"/>
-        <location filename="../../src/app.cpp" line="652"/>
+        <location filename="../../src/app.cpp" line="604"/>
+        <location filename="../../src/app.cpp" line="630"/>
+        <location filename="../../src/app.cpp" line="653"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/app.cpp" line="502"/>
-        <location filename="../../src/app.cpp" line="588"/>
-        <location filename="../../src/app.cpp" line="640"/>
-        <location filename="../../src/app.cpp" line="663"/>
-        <location filename="../../src/app.cpp" line="718"/>
-        <location filename="../../src/app.cpp" line="819"/>
+        <location filename="../../src/app.cpp" line="589"/>
+        <location filename="../../src/app.cpp" line="641"/>
+        <location filename="../../src/app.cpp" line="664"/>
+        <location filename="../../src/app.cpp" line="719"/>
+        <location filename="../../src/app.cpp" line="820"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
@@ -123,7 +123,7 @@
     </message>
     <message>
         <location filename="../../src/app.cpp" line="519"/>
-        <location filename="../../src/app.cpp" line="799"/>
+        <location filename="../../src/app.cpp" line="800"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
@@ -153,84 +153,84 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="614"/>
-        <location filename="../../src/app.cpp" line="810"/>
+        <location filename="../../src/app.cpp" line="615"/>
+        <location filename="../../src/app.cpp" line="811"/>
         <source>Browse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="675"/>
+        <location filename="../../src/app.cpp" line="676"/>
         <source>URI</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="713"/>
+        <location filename="../../src/app.cpp" line="714"/>
         <source>Connected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="730"/>
+        <location filename="../../src/app.cpp" line="731"/>
         <source>Source File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="735"/>
+        <location filename="../../src/app.cpp" line="736"/>
         <source>Source Folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="842"/>
-        <location filename="../../src/app.cpp" line="853"/>
+        <location filename="../../src/app.cpp" line="843"/>
+        <location filename="../../src/app.cpp" line="854"/>
         <source>Save File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="855"/>
+        <location filename="../../src/app.cpp" line="856"/>
         <source>Target Folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="859"/>
+        <location filename="../../src/app.cpp" line="860"/>
         <source>Target File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="896"/>
+        <location filename="../../src/app.cpp" line="897"/>
         <source>FAILURE: unable to open driver !</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="917"/>
+        <location filename="../../src/app.cpp" line="918"/>
         <source>FAILURE: unable to open source !</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="923"/>
+        <location filename="../../src/app.cpp" line="924"/>
         <source>FAILURE: unable to execute sql query !</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="929"/>
+        <location filename="../../src/app.cpp" line="930"/>
         <source>FAILURE: unable to open target !</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="935"/>
+        <location filename="../../src/app.cpp" line="936"/>
         <source>FAILURE: if -s_srs is specified, -t_srs must also be specified !</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="939"/>
+        <location filename="../../src/app.cpp" line="942"/>
         <source>FAILURE: unable to create spatial reference !</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="942"/>
+        <location filename="../../src/app.cpp" line="945"/>
         <source>FAILURE: unable to transform feature with projection !</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="954"/>
+        <location filename="../../src/app.cpp" line="957"/>
         <source>FAILURE: unable to open ogr2ogr !</source>
         <translation type="unfinished"></translation>
     </message>

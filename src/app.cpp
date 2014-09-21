@@ -568,6 +568,7 @@ void App::evtMnuLanguage(void) {
         dbConnect->translateInterface();
         langSettings->translateInterface();
         wsConnect->translateInterface();
+        updateParameters();
     }
 }
 
