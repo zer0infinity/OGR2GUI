@@ -195,43 +195,43 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="897"/>
-        <source>FAILURE: unable to open driver !</source>
+        <location filename="../../src/app.cpp" line="934"/>
+        <source>FAILURE: unable to open driver!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="918"/>
-        <source>FAILURE: unable to open source !</source>
+        <location filename="../../src/app.cpp" line="915"/>
+        <source>FAILURE: unable to open source!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="924"/>
-        <source>FAILURE: unable to execute sql query !</source>
+        <location filename="../../src/app.cpp" line="921"/>
+        <source>FAILURE: if -s_srs is specified, -t_srs must also be specified!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="930"/>
-        <source>FAILURE: unable to open target !</source>
+        <location filename="../../src/app.cpp" line="928"/>
+        <source>FAILURE: unable to execute sql query!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="936"/>
-        <source>FAILURE: if -s_srs is specified, -t_srs must also be specified !</source>
+        <location filename="../../src/app.cpp" line="939"/>
+        <source>FAILURE: unable to open target!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="942"/>
-        <source>FAILURE: unable to create spatial reference !</source>
+        <location filename="../../src/app.cpp" line="948"/>
+        <source>FAILURE: unable to create spatial reference!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="945"/>
-        <source>FAILURE: unable to transform feature with projection !</source>
+        <location filename="../../src/app.cpp" line="951"/>
+        <source>FAILURE: unable to transform feature with projection!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="957"/>
-        <source>FAILURE: unable to open ogr2ogr !</source>
+        <location filename="../../src/app.cpp" line="963"/>
+        <source>FAILURE: unable to open ogr2ogr!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

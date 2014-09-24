@@ -68,46 +68,6 @@
         <translation type="unfinished">Format</translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="897"/>
-        <source>FAILURE: unable to open driver !</source>
-        <translation type="unfinished">FEHLER: Treiber kann nicht geöffnet werden !</translation>
-    </message>
-    <message>
-        <location filename="../../src/app.cpp" line="918"/>
-        <source>FAILURE: unable to open source !</source>
-        <translation type="unfinished">FEHLER: Quelle kann nicht geöffnet werden !</translation>
-    </message>
-    <message>
-        <location filename="../../src/app.cpp" line="924"/>
-        <source>FAILURE: unable to execute sql query !</source>
-        <translation type="unfinished">FEHLER: SQL Query kann nicht ausgeführt werden !</translation>
-    </message>
-    <message>
-        <location filename="../../src/app.cpp" line="930"/>
-        <source>FAILURE: unable to open target !</source>
-        <translation type="unfinished">FEHLER: Ziel kann nicht geöffnet werden !</translation>
-    </message>
-    <message>
-        <location filename="../../src/app.cpp" line="936"/>
-        <source>FAILURE: if -s_srs is specified, -t_srs must also be specified !</source>
-        <translation type="unfinished">FEHLER: Wenn -s_srs ausgewählt ist, muss -t_srs auch ausgewählt werden !</translation>
-    </message>
-    <message>
-        <location filename="../../src/app.cpp" line="942"/>
-        <source>FAILURE: unable to create spatial reference !</source>
-        <translation type="unfinished">FEHLER: Spatial Reference kann nicht erzeugt werden !</translation>
-    </message>
-    <message>
-        <location filename="../../src/app.cpp" line="945"/>
-        <source>FAILURE: unable to transform feature with projection !</source>
-        <translation type="unfinished">FEHLER: Feature mit die Projektion kann nicht transformieren !</translation>
-    </message>
-    <message>
-        <location filename="../../src/app.cpp" line="957"/>
-        <source>FAILURE: unable to open ogr2ogr !</source>
-        <translation type="unfinished">FEHLER: Ogr2gor konnte nicht geöffnet werden !</translation>
-    </message>
-    <message>
         <location filename="../../src/app.cpp" line="604"/>
         <location filename="../../src/app.cpp" line="630"/>
         <location filename="../../src/app.cpp" line="653"/>
@@ -233,6 +193,46 @@
         <location filename="../../src/app.cpp" line="860"/>
         <source>Target File</source>
         <translation type="unfinished">Zieldatei</translation>
+    </message>
+    <message>
+        <location filename="../../src/app.cpp" line="934"/>
+        <source>FAILURE: unable to open driver!</source>
+        <translation type="unfinished">FEHLER: Treiber kann nicht geöffnet werden!</translation>
+    </message>
+    <message>
+        <location filename="../../src/app.cpp" line="915"/>
+        <source>FAILURE: unable to open source!</source>
+        <translation type="unfinished">FEHLER: Quelle kann nicht geöffnet werden!</translation>
+    </message>
+    <message>
+        <location filename="../../src/app.cpp" line="921"/>
+        <source>FAILURE: if -s_srs is specified, -t_srs must also be specified!</source>
+        <translation type="unfinished">FEHLER: Wenn -s_srs ausgewählt ist, muss -t_srs auch ausgewählt werden!</translation>
+    </message>
+    <message>
+        <location filename="../../src/app.cpp" line="928"/>
+        <source>FAILURE: unable to execute sql query!</source>
+        <translation type="unfinished">FEHLER: SQL Query kann nicht ausgeführt werden!</translation>
+    </message>
+    <message>
+        <location filename="../../src/app.cpp" line="939"/>
+        <source>FAILURE: unable to open target!</source>
+        <translation type="unfinished">FEHLER: Ziel kann nicht geöffnet werden!</translation>
+    </message>
+    <message>
+        <location filename="../../src/app.cpp" line="948"/>
+        <source>FAILURE: unable to create spatial reference!</source>
+        <translation type="unfinished">FEHLER: Spatial Reference kann nicht erzeugt werden!</translation>
+    </message>
+    <message>
+        <location filename="../../src/app.cpp" line="951"/>
+        <source>FAILURE: unable to transform feature with projection!</source>
+        <translation type="unfinished">FEHLER: Feature mit die Projektion kann nicht transformieren!</translation>
+    </message>
+    <message>
+        <location filename="../../src/app.cpp" line="963"/>
+        <source>FAILURE: unable to open ogr2ogr!</source>
+        <translation type="unfinished">FEHLER: Ogr2gor konnte nicht geöffnet werden!</translation>
     </message>
 </context>
 <context>
