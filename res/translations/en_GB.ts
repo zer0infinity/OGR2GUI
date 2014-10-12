@@ -68,18 +68,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="604"/>
-        <location filename="../../src/app.cpp" line="630"/>
-        <location filename="../../src/app.cpp" line="653"/>
+        <location filename="../../src/app.cpp" line="603"/>
+        <location filename="../../src/app.cpp" line="628"/>
+        <location filename="../../src/app.cpp" line="650"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/app.cpp" line="502"/>
         <location filename="../../src/app.cpp" line="589"/>
-        <location filename="../../src/app.cpp" line="641"/>
-        <location filename="../../src/app.cpp" line="664"/>
-        <location filename="../../src/app.cpp" line="719"/>
+        <location filename="../../src/app.cpp" line="639"/>
+        <location filename="../../src/app.cpp" line="661"/>
+        <location filename="../../src/app.cpp" line="716"/>
         <location filename="../../src/app.cpp" line="820"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
@@ -153,28 +153,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="615"/>
+        <location filename="../../src/app.cpp" line="614"/>
         <location filename="../../src/app.cpp" line="811"/>
         <source>Browse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="676"/>
+        <location filename="../../src/app.cpp" line="672"/>
         <source>URI</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="714"/>
+        <location filename="../../src/app.cpp" line="712"/>
         <source>Connected</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="731"/>
+        <location filename="../../src/app.cpp" line="728"/>
         <source>Source File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="736"/>
+        <location filename="../../src/app.cpp" line="733"/>
         <source>Source Folder</source>
         <translation type="unfinished"></translation>
     </message>

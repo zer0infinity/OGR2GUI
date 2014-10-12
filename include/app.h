@@ -67,6 +67,7 @@ private:
     LangSettings *langSettings;
 
     QString parameters;
+    QString sourceProjInit;
 
     QList<QPair<QString, QString> > formatsListReadWrite;
     QList<QPair<QString, QString> > formatsListReadOnly;

@@ -589,7 +589,6 @@ void App::evtRadSourceFile(void) {
     btnSourceName->setText(tr("Open"));
 
     cmbSourceFormat->clear();
-
     for(int i = 0; i < formatsListReadOnly.size(); ++i) {
         cmbSourceFormat->addItem(formatsListReadOnly.at(i).first);
     }
@@ -615,7 +614,6 @@ void App::evtRadSourceFolder(void) {
     btnSourceName->setText(tr("Browse"));
 
     cmbSourceFormat->clear();
-
     for(int i = 0; i < formatsListReadOnly.size(); ++i) {
         cmbSourceFormat->addItem(formatsListReadOnly.at(i).first);
     }
@@ -641,7 +639,6 @@ void App::evtRadSourceDatabase(void) {
     btnSourceName->setText(tr("Open"));
 
     cmbSourceFormat->clear();
-
     for(int i = 0; i < databaseListReadOnly.size(); ++i) {
         cmbSourceFormat->addItem(databaseListReadOnly.at(i).first);
     }
@@ -664,7 +661,6 @@ void App::evtRadSourceWebService(void) {
     btnSourceName->setText(tr("Open"));
 
     cmbSourceFormat->clear();
-
     for(int i = 0; i < webServiceList.size(); ++i) {
         cmbSourceFormat->addItem(webServiceList.at(i).first);
     }
@@ -695,6 +691,7 @@ void App::evtTxtSourceName(void) {
 
     txtSourceProj->clear();
     txtSourceProjInit->clear();
+    sourceProjInit.clear();
     cmbSourceProj->setCurrentIndex(0);
     if(radSourceWebService->isChecked())
         name = webServiceList.at(0).second.toStdString() + name;
@@ -708,12 +705,12 @@ void App::evtTxtSourceName(void) {
             }
         }
         ogr->closeSource();
+        sourceProjInit = txtSourceProjInit->text();
         if(radSourceFile->isChecked())
             txtSourceQuery->setText(query.c_str());
         else if(radSourceWebService->isChecked())
             btnSourceName->setText(tr("Connected"));
     } else {
-        cmbSourceProj->setCurrentIndex(0);
         txtSourceQuery->clear();
         if(radSourceWebService->isChecked())
             btnSourceName->setText(tr("Open"));
@@ -775,6 +772,7 @@ void App::evtBtnSourceName(void) {
 void App::evtTxtSourceProj(void) {
     const QString projection = txtSourceProj->text();
     if(projection.isEmpty()) {
+        txtSourceProjInit->setText(sourceProjInit);
         cmbSourceProj->setCurrentIndex(0);
     } else {
         for(int i = 0; i < projectionsList.size(); ++i) {
@@ -789,10 +787,12 @@ void App::evtTxtSourceProj(void) {
 
 void App::evtCmbSourceProj(void) {
     txtSourceProjInit->clear();
-    if(cmbSourceProj->currentIndex() > 0)
+    if(cmbSourceProj->currentIndex() > 0) {
         txtSourceProjInit->setText(projectionsList.at(cmbSourceProj->currentIndex()).first + " : " + projectionsList.at(cmbSourceProj->currentIndex()).second);
-    else
+    } else {
+        txtSourceProjInit->setText(sourceProjInit);
         cmbSourceProj->setCurrentIndex(0);
+    }
     updateParameters();
 }
 
