@@ -603,7 +603,6 @@ void App::evtRadSourceFile(void) {
     lblSourceName->setText(tr("Name"));
     txtSourceName->clear();
     txtSourceProj->clear();
-    txtSourceProjInit->clear();
     txtSourceQuery->clear();
 
     txtSourceProj->setEnabled(true);
@@ -628,7 +627,6 @@ void App::evtRadSourceFolder(void) {
     lblSourceName->setText(tr("Name"));
     txtSourceName->clear();
     txtSourceProj->clear();
-    txtSourceProjInit->clear();
     txtSourceQuery->clear();
 
     txtSourceProj->setEnabled(true);
@@ -650,7 +648,6 @@ void App::evtRadSourceDatabase(void) {
     lblSourceName->setText(tr("Name"));
     txtSourceName->clear();
     txtSourceProj->clear();
-    txtSourceProjInit->clear();
     txtSourceQuery->clear();
 
     txtSourceProj->setEnabled(true);
@@ -671,7 +668,6 @@ void App::evtRadSourceWebService(void) {
 
     lblSourceName->setText(tr("URI"));
     txtSourceProj->clear();
-    txtSourceProjInit->clear();
     txtSourceQuery->clear();
 
     txtSourceProj->setEnabled(true);
@@ -681,13 +677,15 @@ void App::evtRadSourceWebService(void) {
 void App::evtCmbSourceFormat(void) {
     txtSourceName->clear();
     txtSourceProj->clear();
-    txtSourceProjInit->clear();
     txtSourceQuery->clear();
 }
 
 void App::evtTxtSourceName(void) {
     string name = txtSourceName->text().trimmed().toStdString();
     string epsg, query, error;
+
+    QString sourceProjInitTemp = txtSourceProjInit->text();
+    int sourceProjIndex = cmbSourceProj->currentIndex();
 
     txtSourceProj->clear();
     txtSourceProjInit->clear();
@@ -714,6 +712,13 @@ void App::evtTxtSourceName(void) {
         txtSourceQuery->clear();
         if(radSourceWebService->isChecked())
             btnSourceName->setText(tr("Open"));
+    }
+    if(QString::fromStdString(epsg).isEmpty()) {
+        QString sourceProjTemp = projectionsList.at(sourceProjIndex).first + " : " + projectionsList.at(sourceProjIndex).second;
+        if(sourceProjTemp.compare(sourceProjInitTemp) == 0) {
+            txtSourceProjInit->setText(sourceProjInitTemp);
+            cmbSourceProj->setCurrentIndex(sourceProjIndex);
+        }
     }
     updateParameters();
 }
