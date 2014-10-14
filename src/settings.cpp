@@ -22,15 +22,15 @@
  *****************************************************************************/
 
 /**
- *	\file langSettings.cpp
- *	\brief Language settings
+ *	\file settings.cpp
+ *	\brief Settings
  *	\author David Tran [HSR]
  *	\version 0.7
  */
 
-#include "langSettings.h"
+#include "settings.h"
 
-LangSettings::LangSettings(QWidget *parent) : QDialog(parent) {
+Settings::Settings(QWidget *parent) : QDialog(parent) {
     initInterface();
     initSlots();
     translateInterface();
@@ -40,10 +40,10 @@ LangSettings::LangSettings(QWidget *parent) : QDialog(parent) {
     this->setMinimumWidth(280);
 }
 
-LangSettings::~LangSettings(void) {
+Settings::~Settings(void) {
 }
 
-void LangSettings::initLanguage(void) {
+void Settings::initLanguage(void) {
     QFile file(":/languages");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return;
@@ -61,19 +61,23 @@ void LangSettings::initLanguage(void) {
     file.close();
     qSort(languageList.begin(), languageList.end());
 
+    QSettings settings("ogr2gui.ini", QSettings::IniFormat);
+    QVariant lang = settings.value("language");
     for(int i = 0; i < languageList.size(); ++i) {
         QPair<QString, QString> language = languageList.at(i);
         cmbLang->addItem(language.first);
+        if(language.second.compare(lang.toString()) == 0)
+            cmbLang->setCurrentIndex(i);
     }
 }
 
-void LangSettings::initInterface(void) {
+void Settings::initInterface(void) {
     theLayout = new QVBoxLayout(this);
     {
         lytLang = new QGridLayout();
         {
             lblLang = new QLabel();
-            lblLang->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+            lblLang->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
             lblLang->setMinimumSize(70, 20);
             lblLang->setMaximumSize(70, 20);
 
@@ -81,6 +85,23 @@ void LangSettings::initInterface(void) {
 
             lytLang->addWidget(lblLang, 1, 0);
             lytLang->addWidget(cmbLang, 1, 1);
+        }
+
+        lytFile = new QGridLayout();
+        {
+            lblProj = new QLabel();
+            lblProj->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+            lblProj->setMinimumSize(70, 20);
+            lblProj->setMaximumSize(70, 20);
+            ckbGcsPcs = new QCheckBox;
+            ckbGcsPcs->setChecked(true);
+            ckbGcsOverride = new QCheckBox;
+            ckbPcsOverride = new QCheckBox;
+
+            lytFile->addWidget(lblProj, 1, 0);
+            lytFile->addWidget(ckbGcsPcs, 1, 1);
+            lytFile->addWidget(ckbGcsOverride, 2, 1);
+            lytFile->addWidget(ckbPcsOverride, 3, 1);
         }
 
         lytDialog = new QHBoxLayout();
@@ -93,26 +114,31 @@ void LangSettings::initInterface(void) {
         }
 
         theLayout->addLayout(lytLang);
+        theLayout->addLayout(lytFile);
         theLayout->addLayout(lytDialog);
     }
 
     this->setLayout(theLayout);
 }
 
-void LangSettings::initSlots(void) {
+void Settings::initSlots(void) {
     QObject::connect(btnCancel, SIGNAL(clicked()), this, SLOT(evtBtnCancel(void)));
     QObject::connect(btnOK, SIGNAL(clicked()), this, SLOT(evtBtnOK(void)));
 }
 
-void LangSettings::translateInterface(void) {
-    this->setWindowTitle(tr("Language Settings"));
+void Settings::translateInterface(void) {
+    this->setWindowTitle(tr("Settings"));
 
     lblLang->setText(tr("Language"));
+    lblProj->setText(tr("Projection"));
+    ckbGcsPcs->setText("gcs.csv/pcs.csv");
+    ckbGcsOverride->setText("gcs.override.csv");
+    ckbPcsOverride->setText("pcs.override.csv");
     btnOK->setText(tr("Save"));
     btnCancel->setText(tr("Cancel"));
 }
 
-void LangSettings::evtBtnOK(void) {
+void Settings::evtBtnOK(void) {
     language = languageList.at(cmbLang->currentIndex()).second;
     QSettings settings("ogr2gui.ini", QSettings::IniFormat);
     settings.setValue("language", language);
@@ -121,7 +147,45 @@ void LangSettings::evtBtnOK(void) {
     this->accept();
 }
 
-void LangSettings::evtBtnCancel(void) {
+void Settings::evtBtnCancel(void) {
     this->reject();
 }
 
+void Settings::initFiles(void) {
+    const QString gcs = "gcs.csv", pcs = "pcs.csv";
+    const QString gcsOverride = "gcs.override.csv", pcsOverride = "pcs.override.csv";
+    if(isFile(gcs) && isFile(pcs))
+        ckbGcsPcs->setEnabled(true);
+    else
+        ckbGcsPcs->setEnabled(false);
+    if(isFile(gcsOverride))
+        ckbGcsOverride->setEnabled(true);
+    else
+        ckbGcsOverride->setEnabled(false);
+    if(isFile(pcsOverride))
+        ckbPcsOverride->setEnabled(true);
+    else
+        ckbPcsOverride->setEnabled(false);
+}
+
+bool Settings::isFile(const QString filename) {
+    const QString folder = "data";
+    const QString absolutePath = QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() + folder + QDir::separator() + filename);
+    QFile file(absolutePath);
+    return file.exists();
+}
+
+QStringList Settings::getFileList(void) {
+    QStringList fileList;
+    if(ckbGcsPcs->isChecked() && ckbGcsPcs->isEnabled()) {
+        fileList << "gcs.csv";
+        fileList << "pcs.csv";
+    }
+    if(ckbGcsOverride->isChecked() && ckbGcsOverride->isEnabled()) {
+        fileList << "gcs.override.csv";
+    }
+    if(ckbPcsOverride->isChecked() && ckbPcsOverride->isEnabled()) {
+        fileList << "pcs.override.csv";
+    }
+    return fileList;
+}

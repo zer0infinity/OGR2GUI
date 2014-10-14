@@ -191,7 +191,7 @@ void DBConnect::translateInterface(void) {
     lblTables->setText(tr("Tables"));
 
     radAllTables->setText(tr("Select All"));
-    radNonTables->setText(tr("Reset"));
+    radNonTables->setText(tr("Clear"));
 
     btnOK->setText("OK");
     btnCancel->setText(tr("Cancel"));

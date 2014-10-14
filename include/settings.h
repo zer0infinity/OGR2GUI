@@ -22,21 +22,21 @@
  *****************************************************************************/
 
 /**
- *	\file langSettings.h
- *	\brief Language settings
+ *	\file settings.h
+ *	\brief Settings
  *	\author David Tran [HSR]
  *	\version 0.7
  */
 
-#ifndef _LANGSETTINGS_H
-#define _LANGSETTINGS_H
+#ifndef _SETTINGS_H
+#define _SETTINGS_H
 
 #include <QtWidgets>
 #include "i18n.h"
 
 QT_BEGIN_NAMESPACE
 
-class LangSettings : public QDialog {
+class Settings : public QDialog {
     Q_OBJECT
 private:
     QString language;
@@ -47,7 +47,12 @@ private:
     QPushButton *btnCancel;
     QComboBox *cmbLang;
     QLabel *lblLang;
+    QLabel *lblProj;
     QGridLayout *lytLang;
+    QGridLayout *lytFile;
+    QCheckBox *ckbGcsPcs;
+    QCheckBox *ckbGcsOverride;
+    QCheckBox *ckbPcsOverride;
 
     QList<QPair<QString, QString> > languageList;
 
@@ -58,7 +63,7 @@ private:
     void initLanguage(void);
 
     /**
-         *	\fn void InitInterface(void);
+         *	\fn void initInterface(void);
          *	\brief Inits Interface
          */
     void initInterface(void);
@@ -69,27 +74,45 @@ private:
          */
     void initSlots(void);
 
+    /**
+         *	\fn isFile(const QString filename);
+         *	\brief is 'filename' a file?
+         */
+    bool isFile(const QString filename);
+
 public slots:
     void evtBtnOK(void);
     void evtBtnCancel(void);
 public:
     /**
-         *	\fn LangSettings(QWidget * = 0);
+         *	\fn Settings(QWidget * = 0);
          *	\brief Constructor
          */
-    LangSettings(QWidget * = 0);
+    Settings(QWidget * = 0);
 
     /**
-         *	\fn ~LangSettings(void);
+         *	\fn ~Settings(void);
          *	\brief Destructor
          */
-    ~LangSettings(void);
+    ~Settings(void);
 
     /**
-         *	\fn void TranslateInterface(void);
+         *	\fn void translateInterface(void);
          *	\brief Translates Interface
          */
     void translateInterface(void);
+
+    /**
+         *	\fn void initFile(void);
+         *	\brief Inits File
+         */
+    void initFiles(void);
+
+    /**
+         *	\fn QStringList getFileList(void);
+         *	\brief Get list with filenames
+         */
+    QStringList getFileList(void);
 };
 
 QT_END_NAMESPACE

@@ -52,7 +52,7 @@
 #include "ogr.h"
 #include "dbConnect.h"
 #include "webServiceConnect.h"
-#include "langSettings.h"
+#include "settings.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -64,7 +64,7 @@ private:
     Ogr *ogr;
     DBConnect *dbConnect;
     WebServiceConnect *wsConnect;
-    LangSettings *langSettings;
+    Settings *settings;
 
     QString parameters;
     QString sourceProjInit;
@@ -80,7 +80,7 @@ private:
     QMenu *fileMenu;
     QMenu *helpMenu;
 
-    QAction *mnuLanguage;
+    QAction *mnuSettings;
     QAction *mnuExit;
     QAction *mnuOgr;
     QAction *mnuDoc;
@@ -230,7 +230,7 @@ private:
 
 
 private slots :
-    void evtMnuLanguage(void);
+    void evtMnuSettings(void);
     void evtMnuOgrHelp(void);
     void evtMnuGuiHelp(void);
     void evtMnuOgrAbout(void);

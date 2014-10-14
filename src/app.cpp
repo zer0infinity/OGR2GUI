@@ -35,7 +35,7 @@ App::App(QWidget *widget) : QMainWindow(widget) {
     ogr = new Ogr();
     dbConnect = new DBConnect(this);
     wsConnect = new WebServiceConnect(this);
-    langSettings = new LangSettings(this);
+    settings = new Settings(this);
 
     initData();
     initInterface();
@@ -107,6 +107,8 @@ void App::readProjections(const QString filename) {
     in.readLine();
     while(!(line = in.readLine()).isNull()) {
         QStringList t = line.split(",");
+        if(t.at(0).startsWith("#"))
+            continue;
         if(t.size() <= 1) {
             QMessageBox msg;
             msg.setText(tr("Wrong ") + filename + tr(" file found in folder ") + folder);
@@ -157,11 +159,11 @@ void App::initMenu(void) {
     {
         fileMenu = new QMenu(theMenu);
         {
-            mnuLanguage = new QAction(this);
+            mnuSettings = new QAction(this);
             mnuExit = new QAction(this);
             mnuExit->setShortcuts(QKeySequence::Quit);
 
-            fileMenu->addAction(mnuLanguage);
+            fileMenu->addAction(mnuSettings);
             fileMenu->addSeparator();
             fileMenu->addAction(mnuExit);
         }
@@ -434,7 +436,7 @@ void App::initLayout(void) {
 }
 
 void App::initSlots(void) {
-    QObject::connect(mnuLanguage, SIGNAL(triggered()), this, SLOT(evtMnuLanguage(void)));
+    QObject::connect(mnuSettings, SIGNAL(triggered()), this, SLOT(evtMnuSettings(void)));
     QObject::connect(mnuExit, SIGNAL(triggered()), this, SLOT(close(void)));
     QObject::connect(mnuOgr, SIGNAL(triggered()), this, SLOT(evtMnuOgrHelp(void)));
     QObject::connect(mnuDoc, SIGNAL(triggered()), this, SLOT(evtMnuGuiHelp(void)));
@@ -478,7 +480,7 @@ void App::translateInterface(void) {
 
     fileMenu->setTitle(tr("&File"));
     {
-        mnuLanguage->setText(tr("&Languages..."));
+        mnuSettings->setText(tr("&Settings"));
         mnuExit->setText(tr("E&xit"));
     }
 
@@ -562,12 +564,24 @@ QString App::currentParameters(void) const {
     return parameters;
 }
 
-void App::evtMnuLanguage(void) {
-    if(langSettings->exec() == QDialog::Accepted) {
+void App::evtMnuSettings(void) {
+    settings->initFiles();
+    if(settings->exec() == QDialog::Accepted) {
         this->translateInterface();
         dbConnect->translateInterface();
-        langSettings->translateInterface();
+        settings->translateInterface();
         wsConnect->translateInterface();
+
+        projectionsList.clear();
+        cmbSourceProj->clear();
+        cmbTargetProj->clear();
+        QStringList fileList = settings->getFileList();
+        if(!fileList.isEmpty()) {
+            foreach(QString file, fileList)
+                readProjections(file);
+            addProjections();
+        }
+        evtTxtSourceName();
         updateParameters();
     }
 }
