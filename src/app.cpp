@@ -130,8 +130,7 @@ bool sortCOORD_REF_SYS_CODE(const QPair<QString, QString> &s1, const QPair<QStri
 
 void App::addProjections() {
     qSort(projectionsList.begin(), projectionsList.end(), sortCOORD_REF_SYS_CODE);
-    QPair<QString, QString> pair;
-    projectionsList.insert(0, pair);
+    projectionsList.insert(0, QPair<QString, QString>());
     cmbSourceProj->addItem(QString());
     cmbTargetProj->addItem(QString());
     for(int i=1;i<projectionsList.size();++i) {
@@ -576,13 +575,11 @@ void App::evtMnuSettings(void) {
         cmbSourceProj->clear();
         cmbTargetProj->clear();
         QStringList fileList = settings->getFileList();
-        if(!fileList.isEmpty()) {
+        if(!fileList.isEmpty())
             foreach(QString file, fileList)
                 readProjections(file);
-            addProjections();
-        }
+        addProjections();
         evtTxtSourceName();
-        updateParameters();
     }
 }
 
@@ -695,7 +692,10 @@ void App::evtCmbSourceFormat(void) {
 }
 
 void App::evtTxtSourceName(void) {
-    string name = txtSourceName->text().trimmed().toStdString();
+    QString n = txtSourceName->text().trimmed();
+    if(n.isEmpty() || n.isNull())
+        return;
+    string name = n.toStdString();
     string epsg, query, error;
 
     QString sourceProjInitTemp = txtSourceProjInit->text();
@@ -727,7 +727,7 @@ void App::evtTxtSourceName(void) {
         if(radSourceWebService->isChecked())
             btnSourceName->setText(tr("Open"));
     }
-    if(QString::fromStdString(epsg).isEmpty()) {
+    if(QString::fromStdString(epsg).isEmpty() || sourceProjInit.isEmpty()) {
         QString sourceProjTemp = projectionsList.at(sourceProjIndex).first + " : " + projectionsList.at(sourceProjIndex).second;
         if(sourceProjTemp.compare(sourceProjInitTemp) == 0) {
             txtSourceProjInit->setText(sourceProjInitTemp);

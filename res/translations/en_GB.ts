@@ -4,94 +4,94 @@
 <context>
     <name>App</name>
     <message>
-        <location filename="../../src/app.cpp" line="481"/>
+        <location filename="../../src/app.cpp" line="480"/>
         <source>&amp;File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="483"/>
+        <location filename="../../src/app.cpp" line="482"/>
         <source>&amp;Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="484"/>
+        <location filename="../../src/app.cpp" line="483"/>
         <source>E&amp;xit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="487"/>
+        <location filename="../../src/app.cpp" line="486"/>
         <source>&amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="489"/>
+        <location filename="../../src/app.cpp" line="488"/>
         <source>Command-Line Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="490"/>
+        <location filename="../../src/app.cpp" line="489"/>
         <source>Documentation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="491"/>
+        <location filename="../../src/app.cpp" line="490"/>
         <source>About OGR2GUI</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="494"/>
+        <location filename="../../src/app.cpp" line="493"/>
         <source>Source</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/app.cpp" line="495"/>
+        <location filename="../../src/app.cpp" line="513"/>
+        <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/app.cpp" line="496"/>
         <location filename="../../src/app.cpp" line="514"/>
-        <source>File</source>
+        <source>Folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/app.cpp" line="497"/>
         <location filename="../../src/app.cpp" line="515"/>
-        <source>Folder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/app.cpp" line="498"/>
-        <location filename="../../src/app.cpp" line="516"/>
         <source>Database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="499"/>
+        <location filename="../../src/app.cpp" line="498"/>
         <source>Web Service</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="501"/>
-        <location filename="../../src/app.cpp" line="518"/>
+        <location filename="../../src/app.cpp" line="500"/>
+        <location filename="../../src/app.cpp" line="517"/>
         <source>Format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="617"/>
-        <location filename="../../src/app.cpp" line="641"/>
-        <location filename="../../src/app.cpp" line="662"/>
+        <location filename="../../src/app.cpp" line="614"/>
+        <location filename="../../src/app.cpp" line="638"/>
+        <location filename="../../src/app.cpp" line="659"/>
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="504"/>
-        <location filename="../../src/app.cpp" line="603"/>
-        <location filename="../../src/app.cpp" line="651"/>
-        <location filename="../../src/app.cpp" line="672"/>
+        <location filename="../../src/app.cpp" line="503"/>
+        <location filename="../../src/app.cpp" line="600"/>
+        <location filename="../../src/app.cpp" line="648"/>
+        <location filename="../../src/app.cpp" line="669"/>
         <location filename="../../src/app.cpp" line="728"/>
         <location filename="../../src/app.cpp" line="839"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="506"/>
-        <location filename="../../src/app.cpp" line="523"/>
+        <location filename="../../src/app.cpp" line="505"/>
+        <location filename="../../src/app.cpp" line="522"/>
         <source>Projection</source>
         <translation type="unfinished"></translation>
     </message>
@@ -112,54 +112,54 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="509"/>
+        <location filename="../../src/app.cpp" line="508"/>
         <source>SQL Query</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="512"/>
+        <location filename="../../src/app.cpp" line="511"/>
         <source>Target</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="521"/>
+        <location filename="../../src/app.cpp" line="520"/>
         <location filename="../../src/app.cpp" line="819"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="525"/>
+        <location filename="../../src/app.cpp" line="524"/>
         <source>overwrite</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="526"/>
+        <location filename="../../src/app.cpp" line="525"/>
         <source>append</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="527"/>
+        <location filename="../../src/app.cpp" line="526"/>
         <source>update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="530"/>
+        <location filename="../../src/app.cpp" line="529"/>
         <source>Options (optional)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="532"/>
+        <location filename="../../src/app.cpp" line="531"/>
         <source>Convert</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="627"/>
+        <location filename="../../src/app.cpp" line="624"/>
         <location filename="../../src/app.cpp" line="830"/>
         <source>Browse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/app.cpp" line="683"/>
+        <location filename="../../src/app.cpp" line="680"/>
         <source>URI</source>
         <translation type="unfinished"></translation>
     </message>
