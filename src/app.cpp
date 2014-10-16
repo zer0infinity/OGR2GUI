@@ -63,7 +63,7 @@ void App::readResources(QFile &file, QList<QPair<QString, QString> > &readonlyLi
     QTextStream in(&file);
     QString line;
     QPair<QString, QString> pair;
-    boolean readwrite = true;
+    bool readwrite = true;
     while(!(line = in.readLine()).isNull()) {
         QStringList t = line.split(",");
         if(line.compare("#readonly") == 0)
@@ -104,17 +104,12 @@ void App::readProjections(const QString filename) {
     QTextStream in(&file);
     QString line;
     QPair<QString, QString> pair;
-    in.readLine();
     while(!(line = in.readLine()).isNull()) {
         QStringList t = line.split(",");
-        if(t.at(0).startsWith("#"))
+        bool isInteger;
+        t.at(0).toInt(&isInteger);
+        if(!isInteger)
             continue;
-        if(t.size() <= 1) {
-            QMessageBox msg;
-            msg.setText(tr("Wrong ") + filename + tr(" file found in folder ") + folder);
-            msg.exec();
-            break;
-        }
         if(!t.at(0).isNull())
             pair.first = t.at(0);
         if(!t.at(1).isNull())
@@ -574,7 +569,7 @@ void App::evtMnuSettings(void) {
         projectionsList.clear();
         cmbSourceProj->clear();
         cmbTargetProj->clear();
-        QStringList fileList = settings->getFileList();
+        QStringList fileList = settings->getProjectionFileList();
         if(!fileList.isEmpty())
             foreach(QString file, fileList)
                 readProjections(file);

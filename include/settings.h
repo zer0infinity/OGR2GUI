@@ -112,7 +112,7 @@ public:
          *	\fn QStringList getFileList(void);
          *	\brief Get list with filenames
          */
-    QStringList getFileList(void);
+    QStringList getProjectionFileList(void);
 };
 
 QT_END_NAMESPACE

@@ -175,17 +175,18 @@ bool Settings::isFile(const QString filename) {
     return file.exists();
 }
 
-QStringList Settings::getFileList(void) {
+QStringList Settings::getProjectionFileList(void) {
     QStringList fileList;
-    if(ckbGcsPcs->isChecked() && ckbGcsPcs->isEnabled()) {
-        fileList << "gcs.csv";
-        fileList << "pcs.csv";
+    if(ckbGcsPcs->isChecked()) {
+        const QString gcs = "gcs.csv", pcs = "pcs.csv";
+        if(isFile(gcs))
+            fileList << gcs;
+        if(isFile(pcs))
+            fileList << pcs;
     }
-    if(ckbGcsOverride->isChecked() && ckbGcsOverride->isEnabled()) {
+    if(ckbGcsOverride->isChecked() && ckbGcsOverride->isEnabled())
         fileList << "gcs.override.csv";
-    }
-    if(ckbPcsOverride->isChecked() && ckbPcsOverride->isEnabled()) {
+    if(ckbPcsOverride->isChecked() && ckbPcsOverride->isEnabled())
         fileList << "pcs.override.csv";
-    }
     return fileList;
 }
