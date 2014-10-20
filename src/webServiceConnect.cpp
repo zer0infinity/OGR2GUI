@@ -151,15 +151,14 @@ void WebServiceConnect::evtBtnConnect(void) {
 }
 
 void WebServiceConnect::evtRadAllLayers(void) {
-    for(int i = 0; i < lstTables->count(); ++i) {
+    for(int i = 0; i < lstTables->count(); ++i)
         lstTables->item(i)->setCheckState(Qt::Checked);
-    }
 }
 
 void WebServiceConnect::evtRadNonLayers(void) {
-    for(int i = 0; i < lstTables->count(); ++i) {
+    for(int i = 0; i < lstTables->count(); ++i)
         lstTables->item(i)->setCheckState(Qt::Unchecked);
-    }
+    evtBtnConnect();
 }
 
 void WebServiceConnect::evtBtnOK(void) {
@@ -172,14 +171,12 @@ void WebServiceConnect::evtBtnOK(void) {
         msg.exec();
         return;
     }
-
     connectionString = txtHost->text();
     selectedLayers.clear();
     selectedLayersList.clear();
     for(int i = 0; i < lstTables->count(); ++i) {
-        if(lstTables->item(i)->checkState() == Qt::Checked) {
+        if(lstTables->item(i)->checkState() == Qt::Checked)
             selectedLayers += lstTables->item(i)->text() + " ";
-        }
     }
     selectedLayers = selectedLayers.simplified();
     selectedLayersList = selectedLayers.split(" ");
