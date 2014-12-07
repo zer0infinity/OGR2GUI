@@ -566,9 +566,9 @@ void App::evtMnuSettings(void) {
         settings->translateInterface();
         wsConnect->translateInterface();
 
-        projectionsList.clear();
         cmbSourceProj->clear();
         cmbTargetProj->clear();
+        projectionsList.clear();
         QStringList fileList = settings->getProjectionFileList();
         if(!fileList.isEmpty())
             foreach(QString file, fileList)
