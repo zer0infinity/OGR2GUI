@@ -6,6 +6,7 @@
 # * Copyright (c) 2014 Faculty of Computer Science,
 # * University of Applied Sciences Rapperswil (HSR),
 # * 8640 Rapperswil, Switzerland
+# * Copyright (c) 2015 David Tran, Switzerland
 # *
 # * This program is free software: you can redistribute it and/or modify
 # * it under the terms of the GNU General Public License as published by
@@ -22,7 +23,7 @@
 # *****************************************************************************/
 
 TEMPLATE = app
-TARGET = OGR2GUI_test
+TARGET = OGR2GUI64_test
 INCLUDEPATH += $$PWD/include $$PWD/include/ogr $$PWD/include/tests
 LIBS += -L$$PWD/lib -lgdal_i
 #DESTDIR += $$PWD/bin

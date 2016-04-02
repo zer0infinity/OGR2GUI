@@ -7,6 +7,7 @@
 # * Copyright (c) 2014 Faculty of Computer Science,
 # * University of Applied Sciences Rapperswil (HSR),
 # * 8640 Rapperswil, Switzerland
+# * Copyright (c) 2015 David Tran, Switzerland
 # *
 # * This program is free software: you can redistribute it and/or modify
 # * it under the terms of the GNU General Public License as published by
@@ -23,6 +24,8 @@
 # *****************************************************************************/
 
 TEMPLATE = app
+TARGET = OGR2GUI64
+LIBS += -L$$PWD/lib -lgdal_i
 INCLUDEPATH += $$PWD/include $$PWD/include/ogr
 #DESTDIR += $$PWD/bin
 
@@ -61,16 +64,6 @@ SOURCES += \
 
 CONFIG += c++11
 QT += sql widgets
-
-win32: contains(QMAKE_TARGET.arch, x86) {
-    TARGET = OGR2GUI
-    LIBS += -L$$PWD/lib -lgdal_i
-}
-
-win32: contains(QMAKE_TARGET.arch, x86_64) {
-    TARGET = OGR2GUI64
-    LIBS += -L$$PWD/lib -lgdal_i_x64
-}
 
 CONFIG(debug, debug|release) {
     win32: TARGET = $$join(TARGET,,,d)
