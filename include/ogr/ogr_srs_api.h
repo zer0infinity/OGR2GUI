@@ -1,5 +1,5 @@
 /******************************************************************************
- * $Id: ogr_srs_api.h 27109 2014-03-28 20:26:34Z kyle $
+ * $Id: ogr_srs_api.h 30440 2015-09-16 09:59:19Z rouault $
  *
  * Project:  OpenGIS Simple Features Reference Implementation
  * Purpose:  C API and constant declarations for OGR Spatial References.
@@ -136,6 +136,9 @@ typedef enum {
                                 "Lambert_Azimuthal_Equal_Area"
 #define SRS_PT_MERCATOR_1SP     "Mercator_1SP"
 #define SRS_PT_MERCATOR_2SP     "Mercator_2SP"
+// Mercator_Auxiliary_Sphere is used used by ESRI to mean EPSG:3875
+#define SRS_PT_MERCATOR_AUXILIARY_SPHERE                                 \
+                                "Mercator_Auxiliary_Sphere"
 #define SRS_PT_MILLER_CYLINDRICAL "Miller_Cylindrical"
 #define SRS_PT_MOLLWEIDE        "Mollweide"
 #define SRS_PT_NEW_ZEALAND_MAP_GRID                                     \

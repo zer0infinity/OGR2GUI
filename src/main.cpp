@@ -24,11 +24,11 @@
 /*!
  *	\file main.cpp
  *	\brief main
- *	\author David Tran [HSR]
- *	\version 0.7
+ *	\author David Tran
+ *	\version 0.8
  */
 
-//#pragma comment(linker, "/SUBSYSTEM:CONSOLE")
+#pragma comment(linker, "/SUBSYSTEM:CONSOLE")
 #include "app.h"
 #include "cpl_conv.h"
 #include "i18n.h"

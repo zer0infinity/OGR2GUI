@@ -1,6 +1,6 @@
 OGR2GUI64
 
-Copyright © 2015
+Copyright © 2016
 
 by
 
@@ -34,7 +34,7 @@ is also fully compatible with the well-known ogr2ogr options.
 - Tbd.
 
 6. Credits
-David Tran, 2015
+David Tran, 2016
 
 7. Website
 http://www.ogr2gui.ca
