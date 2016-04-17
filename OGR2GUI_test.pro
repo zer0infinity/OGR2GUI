@@ -55,5 +55,5 @@ SOURCES += \
     src/tests/testOgr.cpp
 SOURCES -= src/main.cpp
 
-CONFIG += c++11
+CONFIG += c++14
 QT += sql widgets testlib

@@ -62,7 +62,7 @@ SOURCES += \
     src/i18n.cpp \
     src/settings.cpp
 
-CONFIG += c++11
+CONFIG += c++14
 QT += sql widgets
 
 CONFIG(debug, debug|release) {

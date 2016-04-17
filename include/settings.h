@@ -40,6 +40,7 @@ class Settings : public QDialog {
     Q_OBJECT
 private:
     QString language;
+    QVariant gcs, pcs, gcsoverride, pcsoverride;
 
     QVBoxLayout *theLayout;
     QHBoxLayout *lytDialog;
@@ -50,7 +51,8 @@ private:
     QLabel *lblProj;
     QGridLayout *lytLang;
     QGridLayout *lytFile;
-    QCheckBox *ckbGcsPcs;
+    QCheckBox *ckbGcs;
+    QCheckBox *ckbPcs;
     QCheckBox *ckbGcsOverride;
     QCheckBox *ckbPcsOverride;
 
@@ -60,7 +62,7 @@ private:
          *	\fn void initLanguage(void);
          *	\brief Inits Language
          */
-    void initLanguage(void);
+    void initSettings(void);
 
     /**
          *	\fn void initInterface(void);

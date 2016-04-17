@@ -34,7 +34,7 @@ Settings::Settings(QWidget *parent) : QDialog(parent) {
     initInterface();
     initSlots();
     translateInterface();
-    initLanguage();
+    initSettings();
 
     this->setWindowModality(Qt::ApplicationModal);
     this->setMinimumWidth(280);
@@ -43,7 +43,7 @@ Settings::Settings(QWidget *parent) : QDialog(parent) {
 Settings::~Settings(void) {
 }
 
-void Settings::initLanguage(void) {
+void Settings::initSettings(void) {
     QFile file(":/languages");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return;
@@ -69,6 +69,14 @@ void Settings::initLanguage(void) {
         if(language.second.compare(lang.toString()) == 0)
             cmbLang->setCurrentIndex(i);
     }
+    gcs = settings.value("gcs");
+    pcs = settings.value("pcs");
+    gcsoverride = settings.value("gcsoverride");
+    pcsoverride = settings.value("pcsoverride");
+    ckbGcs->setChecked(gcs.toBool());
+    ckbPcs->setChecked(pcs.toBool());
+    ckbGcsOverride->setChecked(gcsoverride.toBool());
+    ckbPcsOverride->setChecked(pcsoverride.toBool());
 }
 
 void Settings::initInterface(void) {
@@ -93,15 +101,16 @@ void Settings::initInterface(void) {
             lblProj->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
             lblProj->setMinimumSize(70, 20);
             lblProj->setMaximumSize(70, 20);
-            ckbGcsPcs = new QCheckBox;
-            ckbGcsPcs->setChecked(true);
+            ckbGcs = new QCheckBox;
+            ckbPcs = new QCheckBox;
             ckbGcsOverride = new QCheckBox;
             ckbPcsOverride = new QCheckBox;
 
             lytFile->addWidget(lblProj, 1, 0);
-            lytFile->addWidget(ckbGcsPcs, 1, 1);
-            lytFile->addWidget(ckbGcsOverride, 2, 1);
-            lytFile->addWidget(ckbPcsOverride, 3, 1);
+            lytFile->addWidget(ckbGcs, 1, 1);
+            lytFile->addWidget(ckbPcs, 2, 1);
+            lytFile->addWidget(ckbGcsOverride, 3, 1);
+            lytFile->addWidget(ckbPcsOverride, 4, 1);
         }
 
         lytDialog = new QHBoxLayout();
@@ -131,7 +140,8 @@ void Settings::translateInterface(void) {
 
     lblLang->setText(tr("Language"));
     lblProj->setText(tr("Projection"));
-    ckbGcsPcs->setText("gcs.csv/pcs.csv");
+    ckbGcs->setText("gcs.csv");
+    ckbPcs->setText("pcs.csv");
     ckbGcsOverride->setText("gcs.override.csv");
     ckbPcsOverride->setText("pcs.override.csv");
     btnOK->setText(tr("Save"));
@@ -144,6 +154,10 @@ void Settings::evtBtnOK(void) {
     settings.setValue("language", language);
     I18N *i18n = I18N::getInstance();
     i18n->translate(language);
+    settings.setValue("gcs", ckbGcs->isChecked());
+    settings.setValue("pcs", ckbPcs->isChecked());
+    settings.setValue("gcsoverride", ckbGcsOverride->isChecked());
+    settings.setValue("pcsoverride", ckbPcsOverride->isChecked());
     this->accept();
 }
 
@@ -154,18 +168,10 @@ void Settings::evtBtnCancel(void) {
 void Settings::initFiles(void) {
     const QString gcs = "gcs.csv", pcs = "pcs.csv";
     const QString gcsOverride = "gcs.override.csv", pcsOverride = "pcs.override.csv";
-    if(isFile(gcs) && isFile(pcs))
-        ckbGcsPcs->setEnabled(true);
-    else
-        ckbGcsPcs->setEnabled(false);
-    if(isFile(gcsOverride))
-        ckbGcsOverride->setEnabled(true);
-    else
-        ckbGcsOverride->setEnabled(false);
-    if(isFile(pcsOverride))
-        ckbPcsOverride->setEnabled(true);
-    else
-        ckbPcsOverride->setEnabled(false);
+    ckbGcs->setEnabled(isFile(gcs));
+    ckbPcs->setEnabled(isFile(pcs));
+    ckbGcsOverride->setEnabled(isFile(gcsOverride));
+    ckbPcsOverride->setEnabled(isFile(pcsOverride));
 }
 
 bool Settings::isFile(const QString filename) {
@@ -177,16 +183,18 @@ bool Settings::isFile(const QString filename) {
 
 QStringList Settings::getProjectionFileList(void) {
     QStringList fileList;
-    if(ckbGcsPcs->isChecked()) {
-        const QString gcs = "gcs.csv", pcs = "pcs.csv";
+    const QString gcs = "gcs.csv", pcs = "pcs.csv", gcsoverride = "gcs.override.csv", pcsoverride = "gcs.override.csv";
+    if(ckbGcs->isChecked() && ckbGcs->isEnabled())
         if(isFile(gcs))
             fileList << gcs;
+    if(ckbPcs->isChecked() && ckbPcs->isEnabled())
         if(isFile(pcs))
             fileList << pcs;
-    }
     if(ckbGcsOverride->isChecked() && ckbGcsOverride->isEnabled())
-        fileList << "gcs.override.csv";
+        if(isFile(gcsoverride))
+            fileList << gcsoverride;
     if(ckbPcsOverride->isChecked() && ckbPcsOverride->isEnabled())
-        fileList << "pcs.override.csv";
+        if(isFile(pcsoverride))
+            fileList << pcsoverride;
     return fileList;
 }

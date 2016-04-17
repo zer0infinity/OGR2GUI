@@ -52,6 +52,22 @@ int main(int argc, char **argv) {
             settings.setValue("language", "en_GB");
             language = "en_GB";
         }
+        QList<QString> gcspcsList;
+        gcspcsList << "gcs" << "pcs";
+        for(int i = 0; i < gcspcsList.size(); ++i) {
+            QVariant gcspcs = settings.value(gcspcsList.at(i));
+            if(gcspcs.isNull() || !gcspcs.isValid()) {
+                settings.setValue(gcspcsList.at(i), "true");
+            }
+        }
+        QList<QString> gcspcsoverrideList;
+        gcspcsoverrideList << "gcsoverride" << "pcsoverride";
+        for(int i = 0; i < gcspcsoverrideList.size(); ++i) {
+            QVariant gcspcsoverride = settings.value(gcspcsoverrideList.at(i));
+            if(gcspcsoverride.isNull() || !gcspcsoverride.isValid()) {
+                settings.setValue(gcspcsoverrideList.at(i), "false");
+            }
+        }
         I18N *i18n = I18N::getInstance();
         i18n->translate(language.toString());
         new App();
