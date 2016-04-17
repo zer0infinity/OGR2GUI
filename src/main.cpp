@@ -6,6 +6,7 @@
  * Copyright (c) 2014 Faculty of Computer Science,
  * University of Applied Sciences Rapperswil (HSR),
  * 8640 Rapperswil, Switzerland
+ * Copyright (c) 2016 David Tran, Switzerland
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,7 +29,7 @@
  *	\version 0.8
  */
 
-#pragma comment(linker, "/SUBSYSTEM:CONSOLE")
+//#pragma comment(linker, "/SUBSYSTEM:CONSOLE")
 #include "app.h"
 #include "cpl_conv.h"
 #include "i18n.h"

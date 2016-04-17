@@ -30,16 +30,13 @@ is also fully compatible with the well-known ogr2ogr options.
 - Extract the zip file
 * Start OGR2GUI.exe
 
-5. Known issues
-- Tbd.
-
-6. Credits
+5. Credits
 David Tran, 2016
 
-7. Website
+6. Website
 http://www.ogr2gui.ca
 
-8. Licence
+7. Licence
 This file is part of OGR2GUI.
 
 OGR2GUI is free software: you can redistribute it and/or modify

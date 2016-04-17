@@ -24,7 +24,7 @@
 # *****************************************************************************/
 
 TEMPLATE = app
-TARGET = OGR2GUI64
+TARGET = OGR2GUI
 LIBS += -L$$PWD/lib -lgdal_i
 INCLUDEPATH += $$PWD/include $$PWD/include/ogr
 #DESTDIR += $$PWD/bin
