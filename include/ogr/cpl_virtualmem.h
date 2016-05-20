@@ -1,5 +1,5 @@
 /**********************************************************************
- * $Id: cpl_virtualmem.h 27044 2014-03-16 23:41:27Z rouault $
+ * $Id: cpl_virtualmem.h 33666 2016-03-07 05:21:07Z goatbar $
  *
  * Name:     cpl_virtualmem.h
  * Project:  CPL - Common Portability Library
@@ -15,21 +15,21 @@
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included
  * in all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
  * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef _CPL_VIRTUAL_MEM_INCLUDED
-#define _CPL_VIRTUAL_MEM_INCLUDED
+#ifndef CPL_VIRTUAL_MEM_INCLUDED
+#define CPL_VIRTUAL_MEM_INCLUDED
 
 #include "cpl_port.h"
 #include "cpl_vsi.h"
@@ -102,7 +102,7 @@ typedef enum
     /*! The mapping is meant at being read-only, but writes will not be prevented.
         Note that any content written will be lost. */
     VIRTUALMEM_READONLY,
-    /*! The mapping is meant at being read-only, and this will be enforced 
+    /*! The mapping is meant at being read-only, and this will be enforced
         through the operating system page protection mechanism. */
     VIRTUALMEM_READONLY_ENFORCED,
     /*! The mapping is meant at being read-write, and modified pages can be saved
@@ -115,7 +115,7 @@ typedef enum
  *
  * @return the page size.
  *
- * @since GDAL 2.0
+ * @since GDAL 1.11
  */
 size_t CPL_DLL CPLGetPageSize(void);
 
@@ -160,7 +160,7 @@ size_t CPL_DLL CPLGetPageSize(void);
  * @return a virtual memory object that must be freed by CPLVirtualMemFree(),
  *         or NULL in case of failure.
  *
- * @since GDAL 2.0
+ * @since GDAL 1.11
  */
 
 CPLVirtualMem CPL_DLL *CPLVirtualMemNew(size_t nSize,
@@ -177,7 +177,7 @@ CPLVirtualMem CPL_DLL *CPLVirtualMemNew(size_t nSize,
 /** Return if virtual memory mapping of a file is available.
  *
  * @return TRUE if virtual memory mapping of a file is available.
- * @since GDAL 2.0
+ * @since GDAL 1.11
  */
 int CPL_DLL CPLIsVirtualMemFileMapAvailable(void);
 
@@ -192,19 +192,20 @@ int CPL_DLL CPLIsVirtualMemFileMapAvailable(void);
  * On Linux AMD64 platforms, the maximum value for nLength is 128 TB.
  * On Linux x86 platforms, the maximum value for nLength is 2 GB.
  *
- * Only supported on Linux for now.
+ * Supported on Linux only in GDAL <= 2.0, and all POSIX systems supporting
+ * mmap() in GDAL >= 2.1
  *
  * @param  fp       Virtual file handle.
  * @param  nOffset  Offset in the file to start the mapping from.
  * @param  nLength  Length of the portion of the file to map into memory.
  * @param eAccessMode Permission to use for the virtual memory mapping. This must
- *                    be consistant with how the file has been opened.
+ *                    be consistent with how the file has been opened.
  * @param pfnFreeUserData callback that is called when the object is destroyed.
  * @param pCbkUserData user data passed to pfnFreeUserData.
  * @return a virtual memory object that must be freed by CPLVirtualMemFree(),
  *         or NULL in case of failure.
  *
- * @since GDAL 2.0
+ * @since GDAL 1.11
  */
 CPLVirtualMem CPL_DLL *CPLVirtualMemFileMapNew( VSILFILE* fp,
                                                 vsi_l_offset nOffset,
@@ -216,7 +217,7 @@ CPLVirtualMem CPL_DLL *CPLVirtualMemFileMapNew( VSILFILE* fp,
 /** Create a new virtual memory mapping derived from an other virtual memory
  *  mapping.
  *
- * This may be usefull in case of creating mapping for pixel interleaved data.
+ * This may be useful in case of creating mapping for pixel interleaved data.
  *
  * The new mapping takes a reference on the base mapping.
  *
@@ -230,7 +231,7 @@ CPLVirtualMem CPL_DLL *CPLVirtualMemFileMapNew( VSILFILE* fp,
  * @return a virtual memory object that must be freed by CPLVirtualMemFree(),
  *         or NULL in case of failure.
  *
- * @since GDAL 2.0
+ * @since GDAL 1.11
  */
 CPLVirtualMem CPL_DLL *CPLVirtualMemDerivedNew(CPLVirtualMem* pVMemBase,
                                                vsi_l_offset nOffset,
@@ -247,7 +248,7 @@ CPLVirtualMem CPL_DLL *CPLVirtualMemDerivedNew(CPLVirtualMem* pVMemBase,
  *
  * @param ctxt context returned by CPLVirtualMemNew().
  *
- * @since GDAL 2.0
+ * @since GDAL 1.11
  */
 void CPL_DLL CPLVirtualMemFree(CPLVirtualMem* ctxt);
 
@@ -264,7 +265,7 @@ void CPL_DLL CPLVirtualMemFree(CPLVirtualMem* ctxt);
  * @param ctxt context returned by CPLVirtualMemNew().
  * @return the pointer to the start of a virtual memory mapping.
  *
- * @since GDAL 2.0
+ * @since GDAL 1.11
  */
 void CPL_DLL *CPLVirtualMemGetAddr(CPLVirtualMem* ctxt);
 
@@ -273,16 +274,16 @@ void CPL_DLL *CPLVirtualMemGetAddr(CPLVirtualMem* ctxt);
  * @param ctxt context returned by CPLVirtualMemNew().
  * @return the size of the virtual memory mapping.
  *
- * @since GDAL 2.0
+ * @since GDAL 1.11
  */
 size_t CPL_DLL CPLVirtualMemGetSize(CPLVirtualMem* ctxt);
 
-/** Return if the virtal memory mapping is a direct file mapping.
+/** Return if the virtual memory mapping is a direct file mapping.
  *
  * @param ctxt context returned by CPLVirtualMemNew().
- * @return TRUE if the virtal memory mapping is a direct file mapping.
+ * @return TRUE if the virtual memory mapping is a direct file mapping.
  *
- * @since GDAL 2.0
+ * @since GDAL 1.11
  */
 int CPL_DLL CPLVirtualMemIsFileMapping(CPLVirtualMem* ctxt);
 
@@ -291,7 +292,7 @@ int CPL_DLL CPLVirtualMemIsFileMapping(CPLVirtualMem* ctxt);
  * @param ctxt context returned by CPLVirtualMemNew().
  * @return the access mode of the virtual memory mapping.
  *
- * @since GDAL 2.0
+ * @since GDAL 1.11
  */
 CPLVirtualMemAccessMode CPL_DLL CPLVirtualMemGetAccessMode(CPLVirtualMem* ctxt);
 
@@ -303,7 +304,7 @@ CPLVirtualMemAccessMode CPL_DLL CPLVirtualMemGetAccessMode(CPLVirtualMem* ctxt);
  * @param ctxt context returned by CPLVirtualMemNew().
  * @return the page size
  *
- * @since GDAL 2.0
+ * @since GDAL 1.11
  */
 size_t CPL_DLL CPLVirtualMemGetPageSize(CPLVirtualMem* ctxt);
 
@@ -322,7 +323,7 @@ size_t CPL_DLL CPLVirtualMemGetPageSize(CPLVirtualMem* ctxt);
  * @return TRUE if this memory mapping can be accessed safely from concurrent
  *         threads.
  *
- * @since GDAL 2.0
+ * @since GDAL 1.11
  */
 int CPL_DLL CPLVirtualMemIsAccessThreadSafe(CPLVirtualMem* ctxt);
 
@@ -336,7 +337,7 @@ int CPL_DLL CPLVirtualMemIsAccessThreadSafe(CPLVirtualMem* ctxt);
  *
  * @param ctxt context returned by CPLVirtualMemNew().
  *
- * @since GDAL 2.0
+ * @since GDAL 1.11
  */
 void CPL_DLL CPLVirtualMemDeclareThread(CPLVirtualMem* ctxt);
 
@@ -350,13 +351,13 @@ void CPL_DLL CPLVirtualMemDeclareThread(CPLVirtualMem* ctxt);
  *
  * @param ctxt context returned by CPLVirtualMemNew().
  *
- * @since GDAL 2.0
+ * @since GDAL 1.11
  */
 void CPL_DLL CPLVirtualMemUnDeclareThread(CPLVirtualMem* ctxt);
 
 /** Make sure that a region of virtual memory will be realized.
  *
- * Calling this function is not required, but might be usefull when debugging
+ * Calling this function is not required, but might be useful when debugging
  * a process with tools like gdb or valgrind that do not naturally like
  * segmentation fault signals.
  *
@@ -369,7 +370,7 @@ void CPL_DLL CPLVirtualMemUnDeclareThread(CPLVirtualMem* ctxt);
  * @param nSize the size of the memory region.
  * @param bWriteOp set to TRUE if the memory are will be accessed in write mode.
  *
- * @since GDAL 2.0
+ * @since GDAL 1.11
  */
 void CPL_DLL CPLVirtualMemPin(CPLVirtualMem* ctxt,
                               void* pAddr, size_t nSize, int bWriteOp);
@@ -386,4 +387,4 @@ void CPL_DLL CPLVirtualMemManagerTerminate(void);
 
 CPL_C_END
 
-#endif /* _CPL_VIRTUAL_MEM_INCLUDED */
+#endif /* CPL_VIRTUAL_MEM_INCLUDED */

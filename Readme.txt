@@ -1,4 +1,4 @@
-OGR2GUI64
+OGR2GUI x64
 
 Copyright © 2016
 
@@ -8,7 +8,7 @@ David Tran, Switzerland
 
 
 1. About
-OGR2GUI64 is 64-bit only and updates the last OGR2GUI x64. It is
+OGR2GUI x64 is a fork from the original ogr2gui from Inventis. It is
 an application to convert and manipulate geospatial data. The front
 end is build upon GDAL/OGR ogr2ogr command line utility therefore it
 is also fully compatible with the well-known ogr2ogr options.
@@ -24,11 +24,15 @@ is also fully compatible with the well-known ogr2ogr options.
 - ogr2ogr as command line
 
 3. System Requirements
-- Windows 10 64-bit
+- Windows 10, Windows 10 64-bit
+
+Note: OGR2GUI does not currently support WINE.
 
 4. Installation
 - Extract the zip file
 * Start OGR2GUI.exe
+or
+* Start OGR2GUI64.exe in Windows x64
 
 5. Credits
 David Tran, 2016

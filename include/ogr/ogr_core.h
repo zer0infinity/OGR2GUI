@@ -1,5 +1,5 @@
 /******************************************************************************
- * $Id: ogr_core.h 27792 2014-10-04 09:02:06Z rouault $
+ * $Id: ogr_core.h 33680 2016-03-08 09:59:03Z rouault $
  *
  * Project:  OpenGIS Simple Features Reference Implementation
  * Purpose:  Define some core portability services for cross-platform OGR code.
@@ -62,14 +62,13 @@ class CPL_DLL OGREnvelope
     double      MinY;
     double      MaxY;
 
-/* See http://trac.osgeo.org/gdal/ticket/5299 for details on this pragma */
-#if ((__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 6)) && !defined(_MSC_VER)) 
+#ifdef HAVE_GCC_DIAGNOSTIC_PUSH
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wfloat-equal"
 #endif
     int  IsInit() const { return MinX != 0 || MinY != 0 || MaxX != 0 || MaxY != 0; }
 
-#if ((__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 6)) && !defined(_MSC_VER))
+#ifdef HAVE_GCC_DIAGNOSTIC_PUSH
 #pragma GCC diagnostic pop
 #endif
 
@@ -103,7 +102,7 @@ class CPL_DLL OGREnvelope
             MinY = MaxY = dfY;
         }
     }
-    
+
     void Intersect( OGREnvelope const& sOther ) {
         if(Intersects(sOther))
         {
@@ -130,10 +129,10 @@ class CPL_DLL OGREnvelope
             MaxY = 0;
         }
     }
- 
+
     int Intersects(OGREnvelope const& other) const
     {
-        return MinX <= other.MaxX && MaxX >= other.MinX && 
+        return MinX <= other.MaxX && MaxX >= other.MinX &&
                MinY <= other.MaxY && MaxY >= other.MinY;
     }
 
@@ -158,7 +157,7 @@ typedef struct
  * Simple container for a bounding region in 3D.
  */
 
-#if defined(__cplusplus) && !defined(CPL_SUPRESS_CPLUSPLUS)
+#if defined(__cplusplus) && !defined(CPL_SURESS_CPLUSPLUS)
 class CPL_DLL OGREnvelope3D : public OGREnvelope
 {
   public:
@@ -175,7 +174,15 @@ class CPL_DLL OGREnvelope3D : public OGREnvelope
     double      MinZ;
     double      MaxZ;
 
+#ifdef HAVE_GCC_DIAGNOSTIC_PUSH
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wfloat-equal"
+#endif
     int  IsInit() const { return MinX != 0 || MinY != 0 || MaxX != 0 || MaxY != 0 || MinZ != 0 || MaxZ != 0; }
+#ifdef HAVE_GCC_DIAGNOSTIC_PUSH
+#pragma GCC diagnostic pop
+#endif
+
     void Merge( OGREnvelope3D const& sOther ) {
         if( IsInit() )
         {
@@ -282,6 +289,21 @@ void CPL_DLL *OGRRealloc( void *, size_t );
 char CPL_DLL *OGRStrdup( const char * );
 void CPL_DLL OGRFree( void * );
 
+#ifdef STRICT_OGRERR_TYPE
+typedef enum
+{
+    OGRERR_NONE,
+    OGRERR_NOT_ENOUGH_DATA,
+    OGRERR_NOT_ENOUGH_MEMORY,
+    OGRERR_UNSUPPORTED_GEOMETRY_TYPE,
+    OGRERR_UNSUPPORTED_OPERATION,
+    OGRERR_CORRUPT_DATA,
+    OGRERR_FAILURE,
+    OGRERR_UNSUPPORTED_SRS,
+    OGRERR_INVALID_HANDLE,
+    OGRERR_NON_EXISTING_FEATURE
+} OGRErr;
+#else
 typedef int OGRErr;
 
 #define OGRERR_NONE                0
@@ -293,6 +315,9 @@ typedef int OGRErr;
 #define OGRERR_FAILURE             6
 #define OGRERR_UNSUPPORTED_SRS     7
 #define OGRERR_INVALID_HANDLE      8
+#define OGRERR_NON_EXISTING_FEATURE 9   /* added in GDAL 2.0 */
+
+#endif
 
 typedef int     OGRBoolean;
 
@@ -305,9 +330,10 @@ typedef int     OGRBoolean;
  * but are also returned from OGRGeometry::getGeometryType() to identify the
  * type of a geometry object.
  */
-typedef enum 
+typedef enum
 {
     wkbUnknown = 0,         /**< unknown type, non-standard */
+
     wkbPoint = 1,           /**< 0-dimensional geometric object, standard WKB */
     wkbLineString = 2,      /**< 1-dimensional geometric object with linear
                              *   interpolation between Points, standard WKB */
@@ -319,8 +345,73 @@ typedef enum
     wkbMultiPolygon = 6,    /**< GeometryCollection of Polygons, standard WKB */
     wkbGeometryCollection = 7, /**< geometric object that is a collection of 1
                                     or more geometric objects, standard WKB */
+
+    wkbCircularString = 8,  /**< one or more circular arc segments connected end to end,
+                             *   ISO SQL/MM Part 3. GDAL &gt;= 2.0 */
+    wkbCompoundCurve = 9,   /**< sequence of contiguous curves, ISO SQL/MM Part 3. GDAL &gt;= 2.0 */
+    wkbCurvePolygon = 10,   /**< planar surface, defined by 1 exterior boundary
+                             *   and zero or more interior boundaries, that are curves.
+                             *    ISO SQL/MM Part 3. GDAL &gt;= 2.0 */
+    wkbMultiCurve = 11,     /**< GeometryCollection of Curves, ISO SQL/MM Part 3. GDAL &gt;= 2.0 */
+    wkbMultiSurface = 12,   /**< GeometryCollection of Surfaces, ISO SQL/MM Part 3. GDAL &gt;= 2.0 */
+    wkbCurve = 13,          /**< Curve (abstract type). ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbSurface = 14,        /**< Surface (abstract type). ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbPolyhedralSurface = 15,/**< a contiguous collection of polygons, which share common boundary segments,
+                               *   ISO SQL/MM Part 3. Reserved in GDAL &gt;= 2.1 but not yet implemented */
+    wkbTIN = 16,              /**< a PolyhedralSurface consisting only of Triangle patches
+                               *    ISO SQL/MM Part 3. Reserved in GDAL &gt;= 2.1 but not yet implemented */
+    wkbTriangle = 17,         /** < a Triangle. ISO SQL/MM Part 3. Reserved in GDAL &gt;= 2.1 but not yet implemented */
+
     wkbNone = 100,          /**< non-standard, for pure attribute records */
     wkbLinearRing = 101,    /**< non-standard, just for createGeometry() */
+
+    wkbCircularStringZ = 1008,  /**< wkbCircularString with Z component. ISO SQL/MM Part 3. GDAL &gt;= 2.0 */
+    wkbCompoundCurveZ = 1009,   /**< wkbCompoundCurve with Z component. ISO SQL/MM Part 3. GDAL &gt;= 2.0 */
+    wkbCurvePolygonZ = 1010,    /**< wkbCurvePolygon with Z component. ISO SQL/MM Part 3. GDAL &gt;= 2.0 */
+    wkbMultiCurveZ = 1011,      /**< wkbMultiCurve with Z component. ISO SQL/MM Part 3. GDAL &gt;= 2.0 */
+    wkbMultiSurfaceZ = 1012,    /**< wkbMultiSurface with Z component. ISO SQL/MM Part 3. GDAL &gt;= 2.0 */
+    wkbCurveZ = 1013,           /**< wkbCurve with Z component. ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbSurfaceZ = 1014,         /**< wkbSurface with Z component. ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbPolyhedralSurfaceZ = 1015,  /**< ISO SQL/MM Part 3. Reserved in GDAL &gt;= 2.1 but not yet implemented */
+    wkbTINZ = 1016,                /**< ISO SQL/MM Part 3. Reserved in GDAL &gt;= 2.1 but not yet implemented */
+    wkbTriangleZ = 1017,           /**< ISO SQL/MM Part 3. Reserved in GDAL &gt;= 2.1 but not yet implemented */
+
+    wkbPointM = 2001,              /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbLineStringM = 2002,         /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbPolygonM = 2003,            /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbMultiPointM = 2004,         /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbMultiLineStringM = 2005,    /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbMultiPolygonM = 2006,       /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbGeometryCollectionM = 2007, /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbCircularStringM = 2008,     /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbCompoundCurveM = 2009,      /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbCurvePolygonM = 2010,       /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbMultiCurveM = 2011,         /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbMultiSurfaceM = 2012,       /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbCurveM = 2013,              /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbSurfaceM = 2014,            /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbPolyhedralSurfaceM = 2015,  /**< ISO SQL/MM Part 3. Reserved in GDAL &gt;= 2.1 but not yet implemented */
+    wkbTINM = 2016,                /**< ISO SQL/MM Part 3. Reserved in GDAL &gt;= 2.1 but not yet implemented */
+    wkbTriangleM = 2017,           /**< ISO SQL/MM Part 3. Reserved in GDAL &gt;= 2.1 but not yet implemented */
+
+    wkbPointZM = 3001,              /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbLineStringZM = 3002,         /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbPolygonZM = 3003,            /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbMultiPointZM = 3004,         /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbMultiLineStringZM = 3005,    /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbMultiPolygonZM = 3006,       /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbGeometryCollectionZM = 3007, /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbCircularStringZM = 3008,     /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbCompoundCurveZM = 3009,      /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbCurvePolygonZM = 3010,       /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbMultiCurveZM = 3011,         /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbMultiSurfaceZM = 3012,       /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbCurveZM = 3013,              /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbSurfaceZM = 3014,            /**< ISO SQL/MM Part 3. GDAL &gt;= 2.1 */
+    wkbPolyhedralSurfaceZM = 3015,  /**< ISO SQL/MM Part 3. Reserved in GDAL &gt;= 2.1 but not yet implemented */
+    wkbTINZM = 3016,                /**< ISO SQL/MM Part 3. Reserved in GDAL &gt;= 2.1 but not yet implemented */
+    wkbTriangleZM = 3017,           /**< ISO SQL/MM Part 3. Reserved in GDAL &gt;= 2.1 but not yet implemented */
+
     wkbPoint25D = 0x80000001, /**< 2.5D extension as per 99-402 */
     wkbLineString25D = 0x80000002, /**< 2.5D extension as per 99-402 */
     wkbPolygon25D = 0x80000003, /**< 2.5D extension as per 99-402 */
@@ -328,31 +419,83 @@ typedef enum
     wkbMultiLineString25D = 0x80000005, /**< 2.5D extension as per 99-402 */
     wkbMultiPolygon25D = 0x80000006, /**< 2.5D extension as per 99-402 */
     wkbGeometryCollection25D = 0x80000007 /**< 2.5D extension as per 99-402 */
+
 } OGRwkbGeometryType;
 
 /**
- * Output variants of WKB we support. 
+ * Output variants of WKB we support.
+ *
  * 99-402 was a short-lived extension to SFSQL 1.1 that used a high-bit flag
- * to indicate the presence of Z coordiantes in a WKB geometry.
+ * to indicate the presence of Z coordinates in a WKB geometry.
+ *
  * SQL/MM Part 3 and SFSQL 1.2 use offsets of 1000 (Z), 2000 (M) and 3000 (ZM)
  * to indicate the present of higher dimensional coordinates in a WKB geometry.
+ * Reference: <a href="https://portal.opengeospatial.org/files/?artifact_id=320243">
+ * 09-009_Committee_Draft_ISOIEC_CD_13249-3_SQLMM_Spatial.pdf</a>,
+ * ISO/IEC JTC 1/SC 32 N 1820, ISO/IEC CD 13249-3:201x(E), Date: 2009-01-16.
+ * The codes are also found in §8.2.3 of <a href="http://portal.opengeospatial.org/files/?artifact_id=25355">
+ * OGC 06-103r4 "OpenGIS® Implementation Standard for Geographic information - Simple feature access - Part 1: Common architecture", v1.2.1</a>
  */
-typedef enum 
+typedef enum
 {
-    wkbVariantOgc, /**< Old-style 99-402 extended dimension (Z) WKB types */
-    wkbVariantIso  /**< SFSQL 1.2 and ISO SQL/MM Part 3 extended dimension (Z&M) WKB types */
+    wkbVariantOldOgc, /**< Old-style 99-402 extended dimension (Z) WKB types */
+    wkbVariantIso,  /**< SFSQL 1.2 and ISO SQL/MM Part 3 extended dimension (Z&M) WKB types */
+    wkbVariantPostGIS1 /**< PostGIS 1.X has different codes for CurvePolygon, MultiCurve and MultiSurface */
 } OGRwkbVariant;
 
+
+/** @deprecated in GDAL 2.0. Use wkbHasZ() or wkbSetZ() instead */
+#ifndef GDAL_COMPILATION
 #define wkb25DBit 0x80000000
-#define wkbFlatten(x)  ((OGRwkbGeometryType) ((x) & (~wkb25DBit)))
+#endif
+
+/** Return the 2D geometry type corresponding to the specified geometry type */
+#define wkbFlatten(x)  OGR_GT_Flatten((OGRwkbGeometryType)(x))
+
+/** Return if the geometry type is a 3D geometry type
+  * @since GDAL 2.0
+  */
+#define wkbHasZ(x)     (OGR_GT_HasZ(x) != 0)
+
+/** Return the 3D geometry type corresponding to the specified geometry type.
+  * @since GDAL 2.0
+  */
+#define wkbSetZ(x)     OGR_GT_SetZ(x)
+
+/** Return if the geometry type is a measured geometry type
+  * @since GDAL 2.1
+  */
+#define wkbHasM(x)     (OGR_GT_HasM(x) != 0)
+
+/** Return the measured geometry type corresponding to the specified geometry type.
+  * @since GDAL 2.1
+  */
+#define wkbSetM(x)     OGR_GT_SetM(x)
 
 #define ogrZMarker 0x21125711
 
 const char CPL_DLL * OGRGeometryTypeToName( OGRwkbGeometryType eType );
 OGRwkbGeometryType CPL_DLL OGRMergeGeometryTypes( OGRwkbGeometryType eMain,
                                                   OGRwkbGeometryType eExtra );
+OGRwkbGeometryType CPL_DLL OGRMergeGeometryTypesEx( OGRwkbGeometryType eMain,
+                                                    OGRwkbGeometryType eExtra,
+                                                    int bAllowPromotingToCurves );
+OGRwkbGeometryType CPL_DLL OGR_GT_Flatten( OGRwkbGeometryType eType );
+OGRwkbGeometryType CPL_DLL OGR_GT_SetZ( OGRwkbGeometryType eType );
+OGRwkbGeometryType CPL_DLL OGR_GT_SetM( OGRwkbGeometryType eType );
+OGRwkbGeometryType CPL_DLL OGR_GT_SetModifier( OGRwkbGeometryType eType, int bSetZ, int bSetM );
+int                CPL_DLL OGR_GT_HasZ( OGRwkbGeometryType eType );
+int                CPL_DLL OGR_GT_HasM( OGRwkbGeometryType eType );
+int                CPL_DLL OGR_GT_IsSubClassOf( OGRwkbGeometryType eType,
+                                                OGRwkbGeometryType eSuperType );
+int                CPL_DLL OGR_GT_IsCurve( OGRwkbGeometryType );
+int                CPL_DLL OGR_GT_IsSurface( OGRwkbGeometryType );
+int                CPL_DLL OGR_GT_IsNonLinear( OGRwkbGeometryType );
+OGRwkbGeometryType CPL_DLL OGR_GT_GetCollection( OGRwkbGeometryType eType );
+OGRwkbGeometryType CPL_DLL OGR_GT_GetCurve( OGRwkbGeometryType eType );
+OGRwkbGeometryType CPL_DLL OGR_GT_GetLinear( OGRwkbGeometryType eType );
 
-typedef enum 
+typedef enum
 {
     wkbXDR = 0,         /* MSB/Sun/Motoroloa: Most Significant Byte First   */
     wkbNDR = 1          /* LSB/Intel/Vax: Least Significant Byte First      */
@@ -363,17 +506,86 @@ typedef enum
 #endif
 
 #ifdef HACK_FOR_IBM_DB2_V72
-#  define DB2_V72_FIX_BYTE_ORDER(x) ((((x) & 0x31) == (x)) ? (OGRwkbByteOrder) ((x) & 0x1) : (x))
+#  define DB2_V72_FIX_BYTE_ORDER(x) ((((x) & 0x31) == (x)) ? ((x) & 0x1) : (x))
 #  define DB2_V72_UNFIX_BYTE_ORDER(x) ((unsigned char) (OGRGeometry::bGenerate_DB2_V72_BYTE_ORDER ? ((x) | 0x30) : (x)))
 #else
 #  define DB2_V72_FIX_BYTE_ORDER(x) (x)
 #  define DB2_V72_UNFIX_BYTE_ORDER(x) (x)
 #endif
 
+/** Alter field name.
+ * Used by OGR_L_AlterFieldDefn().
+ */
 #define ALTER_NAME_FLAG            0x1
+
+/** Alter field type.
+ * Used by OGR_L_AlterFieldDefn().
+ */
 #define ALTER_TYPE_FLAG            0x2
+
+/** Alter field width and precision.
+ * Used by OGR_L_AlterFieldDefn().
+ */
 #define ALTER_WIDTH_PRECISION_FLAG 0x4
-#define ALTER_ALL_FLAG             (ALTER_NAME_FLAG | ALTER_TYPE_FLAG | ALTER_WIDTH_PRECISION_FLAG)
+
+/** Alter field NOT NULL constraint.
+ * Used by OGR_L_AlterFieldDefn().
+ * @since GDAL 2.0
+ */
+#define ALTER_NULLABLE_FLAG        0x8
+
+/** Alter field DEFAULT value.
+ * Used by OGR_L_AlterFieldDefn().
+ * @since GDAL 2.0
+ */
+#define ALTER_DEFAULT_FLAG         0x10
+
+/** Alter all parameters of field definition.
+ * Used by OGR_L_AlterFieldDefn().
+ */
+#define ALTER_ALL_FLAG             (ALTER_NAME_FLAG | ALTER_TYPE_FLAG | ALTER_WIDTH_PRECISION_FLAG | ALTER_NULLABLE_FLAG | ALTER_DEFAULT_FLAG)
+
+
+/** Validate that fields respect not-null constraints.
+ * Used by OGR_F_Validate().
+ * @since GDAL 2.0
+ */
+#define OGR_F_VAL_NULL           0x00000001
+
+/** Validate that geometries respect geometry column type.
+ * Used by OGR_F_Validate().
+ * @since GDAL 2.0
+ */
+#define OGR_F_VAL_GEOM_TYPE      0x00000002
+
+/** Validate that (string) fields respect field width.
+ * Used by OGR_F_Validate().
+ * @since GDAL 2.0
+ */
+#define OGR_F_VAL_WIDTH          0x00000004
+
+/** Allow fields that are null when there's an associated default value.
+ * This can be used for drivers where the low-level layers will automatically set the
+ * field value to the associated default value.
+ * This flag only makes sense if OGR_F_VAL_NULL is set too.
+ * Used by OGR_F_Validate().
+ * @since GDAL 2.0
+ */
+#define OGR_F_VAL_ALLOW_NULL_WHEN_DEFAULT       0x00000008
+
+/** Allow geometry fields to have a different coordinate dimension that their
+ * geometry column type.
+ * This flag only makes sense if OGR_F_VAL_GEOM_TYPE is set too.
+ * Used by OGR_F_Validate().
+ * @since GDAL 2.1
+ */
+#define OGR_F_VAL_ALLOW_DIFFERENT_GEOM_DIM       0x00000010
+
+/** Enable all validation tests (except OGR_F_VAL_ALLOW_DIFFERENT_GEOM_DIM)
+ * Used by OGR_F_Validate().
+ * @since GDAL 2.0
+ */
+#define OGR_F_VAL_ALL            (0x7FFFFFFF & ~OGR_F_VAL_ALLOW_DIFFERENT_GEOM_DIM)
 
 /************************************************************************/
 /*                  ogr_feature.h related definitions.                  */
@@ -385,7 +597,7 @@ typedef enum
  * field types can be known.
  */
 
-typedef enum 
+typedef enum
 {
   /** Simple 32bit integer */                   OFTInteger = 0,
   /** List of 32bit integers */                 OFTIntegerList = 1,
@@ -399,14 +611,37 @@ typedef enum
   /** Date */                                   OFTDate = 9,
   /** Time */                                   OFTTime = 10,
   /** Date and Time */                          OFTDateTime = 11,
-                                                OFTMaxType = 11
+  /** Single 64bit integer */                   OFTInteger64 = 12,
+  /** List of 64bit integers */                 OFTInteger64List = 13,
+                                                OFTMaxType = 13
 } OGRFieldType;
+
+/**
+ * List of field subtypes. A subtype represents a hint, a restriction of the
+ * main type, that is not strictly necessary to consult.
+ * This list is likely to be extended in the
+ * future ... avoid coding applications based on the assumption that all
+ * field types can be known.
+ * Most subtypes only make sense for a restricted set of main types.
+ * @since GDAL 2.0
+ */
+typedef enum
+{
+    /** No subtype. This is the default value */        OFSTNone = 0,
+    /** Boolean integer. Only valid for OFTInteger and OFTIntegerList.*/
+                                                        OFSTBoolean = 1,
+    /** Signed 16-bit integer. Only valid for OFTInteger and OFTIntegerList. */
+                                                        OFSTInt16 = 2,
+    /** Single precision (32 bit) floating point. Only valid for OFTReal and OFTRealList. */
+                                                        OFSTFloat32 = 3,
+                                                        OFSTMaxSubType = 3
+} OGRFieldSubType;
 
 /**
  * Display justification for field values.
  */
 
-typedef enum 
+typedef enum
 {
     OJUndefined = 0,
     OJLeft = 1,
@@ -426,19 +661,25 @@ typedef enum
 
 typedef union {
     int         Integer;
+    GIntBig     Integer64;
     double      Real;
     char       *String;
-    
+
     struct {
         int     nCount;
         int     *paList;
     } IntegerList;
-    
+
+    struct {
+        int     nCount;
+        GIntBig *paList;
+    } Integer64List;
+
     struct {
         int     nCount;
         double  *paList;
     } RealList;
-    
+
     struct {
         int     nCount;
         char    **paList;
@@ -448,7 +689,7 @@ typedef union {
         int     nCount;
         GByte   *paData;
     } Binary;
-    
+
     struct {
         int     nMarker1;
         int     nMarker2;
@@ -460,13 +701,16 @@ typedef union {
         GByte   Day;
         GByte   Hour;
         GByte   Minute;
-        GByte   Second;
-        GByte   TZFlag; /* 0=unknown, 1=localtime(ambiguous), 
+        GByte   TZFlag; /* 0=unknown, 1=localtime(ambiguous),
                            100=GMT, 104=GMT+1, 80=GMT-5, etc */
+        GByte   Reserved; /* must be set to 0 */
+        float   Second; /* with millisecond accuracy. at the end of the structure, so as to keep it 12 bytes on 32 bit */
     } Date;
 } OGRField;
 
-int CPL_DLL OGRParseDate( const char *pszInput, OGRField *psOutput, 
+#define OGR_GET_MS(floatingpoint_sec)   (int)(((floatingpoint_sec) - (int)(floatingpoint_sec)) * 1000 + 0.5)
+
+int CPL_DLL OGRParseDate( const char *pszInput, OGRField *psOutput,
                           int nOptions );
 
 /* -------------------------------------------------------------------- */
@@ -488,14 +732,28 @@ int CPL_DLL OGRParseDate( const char *pszInput, OGRField *psOutput,
 #define OLCStringsAsUTF8       "StringsAsUTF8"
 #define OLCIgnoreFields        "IgnoreFields"
 #define OLCCreateGeomField     "CreateGeomField"
+#define OLCCurveGeometries     "CurveGeometries"
+#define OLCMeasuredGeometries  "MeasuredGeometries"
 
 #define ODsCCreateLayer        "CreateLayer"
 #define ODsCDeleteLayer        "DeleteLayer"
 #define ODsCCreateGeomFieldAfterCreateLayer   "CreateGeomFieldAfterCreateLayer"
+#define ODsCCurveGeometries    "CurveGeometries"
+#define ODsCTransactions       "Transactions"
+#define ODsCEmulatedTransactions "EmulatedTransactions"
+#define ODsCMeasuredGeometries "MeasuredGeometries"
 
 #define ODrCCreateDataSource   "CreateDataSource"
 #define ODrCDeleteDataSource   "DeleteDataSource"
 
+/* -------------------------------------------------------------------- */
+/*      Layer metadata items.                                           */
+/* -------------------------------------------------------------------- */
+/** Capability set to YES as metadata on a layer that has features with
+  * 64 bit identifiers.
+  @since GDAL 2.0
+  */
+#define OLMD_FID64             "OLMD_FID64"
 
 /************************************************************************/
 /*                  ogr_featurestyle.h related definitions.             */
@@ -532,9 +790,9 @@ typedef enum ogr_style_tool_units_id
  * List of parameters for use with OGRStylePen.
  */
 typedef enum ogr_style_tool_param_pen_id
-{  
-    OGRSTPenColor       = 0,                   
-    OGRSTPenWidth       = 1,                   
+{
+    OGRSTPenColor       = 0,
+    OGRSTPenWidth       = 1,
     OGRSTPenPattern     = 2,
     OGRSTPenId          = 3,
     OGRSTPenPerOffset   = 4,
@@ -542,24 +800,24 @@ typedef enum ogr_style_tool_param_pen_id
     OGRSTPenJoin        = 6,
     OGRSTPenPriority    = 7,
     OGRSTPenLast        = 8
-              
+
 } OGRSTPenParam;
 
 /**
  * List of parameters for use with OGRStyleBrush.
  */
 typedef enum ogr_style_tool_param_brush_id
-{  
-    OGRSTBrushFColor    = 0,                   
-    OGRSTBrushBColor    = 1,                   
+{
+    OGRSTBrushFColor    = 0,
+    OGRSTBrushBColor    = 1,
     OGRSTBrushId        = 2,
-    OGRSTBrushAngle     = 3,                   
+    OGRSTBrushAngle     = 3,
     OGRSTBrushSize      = 4,
     OGRSTBrushDx        = 5,
     OGRSTBrushDy        = 6,
     OGRSTBrushPriority  = 7,
     OGRSTBrushLast      = 8
-              
+
 } OGRSTBrushParam;
 
 
@@ -567,7 +825,7 @@ typedef enum ogr_style_tool_param_brush_id
  * List of parameters for use with OGRStyleSymbol.
  */
 typedef enum ogr_style_tool_param_symbol_id
-{  
+{
     OGRSTSymbolId       = 0,
     OGRSTSymbolAngle    = 1,
     OGRSTSymbolColor    = 2,
@@ -581,14 +839,14 @@ typedef enum ogr_style_tool_param_symbol_id
     OGRSTSymbolFontName = 10,
     OGRSTSymbolOColor   = 11,
     OGRSTSymbolLast     = 12
-              
+
 } OGRSTSymbolParam;
 
 /**
  * List of parameters for use with OGRStyleLabel.
  */
 typedef enum ogr_style_tool_param_label_id
-{  
+{
     OGRSTLabelFontName  = 0,
     OGRSTLabelSize      = 1,
     OGRSTLabelTextString = 2,
@@ -611,7 +869,7 @@ typedef enum ogr_style_tool_param_label_id
     OGRSTLabelHColor    = 19,
     OGRSTLabelOColor    = 20,
     OGRSTLabelLast      = 21
-              
+
 } OGRSTLabelParam;
 
 /* ------------------------------------------------------------------- */
@@ -630,12 +888,12 @@ const char CPL_DLL * CPL_STDCALL GDALVersionInfo( const char * );
 /** Return TRUE if GDAL library version at runtime matches nVersionMajor.nVersionMinor.
 
     The purpose of this method is to ensure that calling code will run with the GDAL
-    version it is compiled for. It is primarly intented for external plugins.
+    version it is compiled for. It is primarily indented for external plugins.
 
     @param nVersionMajor Major version to be tested against
     @param nVersionMinor Minor version to be tested against
     @param pszCallingComponentName If not NULL, in case of version mismatch, the method
-                                   will issue a failure mentionning the name of
+                                   will issue a failure mentioning the name of
                                    the calling component.
   */
 int CPL_DLL CPL_STDCALL GDALCheckVersion( int nVersionMajor, int nVersionMinor,

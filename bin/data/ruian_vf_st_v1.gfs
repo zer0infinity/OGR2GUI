@@ -60,21 +60,15 @@
     <PropertyDefn>
       <Name>IdTransakce</Name>
       <ElementPath>IdTransakce</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
-      <Type>String</Type>
-      <Width>18</Width>
+      <SubType>Integer64</SubType>
     </PropertyDefn>
     <!-- ID návrhu změny v ISUI -->
     <PropertyDefn>
       <Name>GlobalniIdNavrhuZmeny</Name>
       <ElementPath>GlobalniIdNavrhuZmeny</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
-      <Type>String</Type>
-      <Width>18</Width>
+      <SubType>Integer64</SubType>
     </PropertyDefn>
     <!-- Kód územního celku v NUTS / LAU -->
     <PropertyDefn>
@@ -82,6 +76,13 @@
       <ElementPath>NutsLau</ElementPath>
       <Type>String</Type>
       <Width>2</Width>
+    </PropertyDefn>
+    <!-- Datum vzniku -->
+    <PropertyDefn>
+      <Name>DatumVzniku</Name>
+      <ElementPath>DatumVzniku</ElementPath>
+      <Type>String</Type>
+      <Width>19</Width>
     </PropertyDefn>
   </GMLFeatureClass>
   <!-- Regiony soudržnosti -->
@@ -151,21 +152,15 @@
     <PropertyDefn>
       <Name>IdTransakce</Name>
       <ElementPath>IdTransakce</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
-      <Type>String</Type>
-      <Width>18</Width>
+      <SubType>Integer64</SubType>
     </PropertyDefn>
     <!-- ID návrhu změn v ISUI -->
     <PropertyDefn>
       <Name>GlobalniIdNavrhuZmeny</Name>
       <ElementPath>GlobalniIdNavrhuZmeny</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
-      <Type>String</Type>
-      <Width>18</Width>
+      <SubType>Integer64</SubType>
     </PropertyDefn>
     <!-- Kód územního celku v NUTS / LAU -->
     <PropertyDefn>
@@ -173,6 +168,13 @@
       <ElementPath>NutsLau</ElementPath>
       <Type>String</Type>
       <Width>4</Width>
+    </PropertyDefn>
+    <!-- Datum vzniku -->
+    <PropertyDefn>
+      <Name>DatumVzniku</Name>
+      <ElementPath>DatumVzniku</ElementPath>
+      <Type>String</Type>
+      <Width>19</Width>
     </PropertyDefn>
   </GMLFeatureClass>
   <!-- Kraje -->
@@ -242,21 +244,15 @@
     <PropertyDefn>
       <Name>IdTransakce</Name>
       <ElementPath>IdTransakce</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
-      <Type>String</Type>
-      <Width>18</Width>
+      <SubType>Integer64</SubType>
     </PropertyDefn>
     <!-- ID návrhu změn v ISUI -->
     <PropertyDefn>
       <Name>GlobalniIdNavrhuZmeny</Name>
       <ElementPath>GlobalniIdNavrhuZmeny</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
-      <Type>String</Type>
-      <Width>18</Width>
+      <SubType>Integer64</SubType>
     </PropertyDefn>
     <!-- Kód územního celku v NUTS / LAU -->
     <PropertyDefn>
@@ -264,6 +260,13 @@
       <ElementPath>NutsLau</ElementPath>
       <Type>String</Type>
       <Width>4</Width>
+    </PropertyDefn>
+    <!-- Datum vzniku -->
+    <PropertyDefn>
+      <Name>DatumVzniku</Name>
+      <ElementPath>DatumVzniku</ElementPath>
+      <Type>String</Type>
+      <Width>19</Width>
     </PropertyDefn>
   </GMLFeatureClass>
   <!-- VÚSC -->
@@ -334,21 +337,15 @@
     <PropertyDefn>
       <Name>IdTransakce</Name>
       <ElementPath>IdTransakce</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
-      <Type>String</Type>
-      <Width>18</Width>
+      <SubType>Integer64</SubType>
     </PropertyDefn>
     <!--  ID návrhu změn v ISUI -->
     <PropertyDefn>
       <Name>GlobalniIdNavrhuZmeny</Name>
       <ElementPath>GlobalniIdNavrhuZmeny</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
-      <Type>String</Type>
-      <Width>18</Width>
+      <SubType>Integer64</SubType>
     </PropertyDefn>
     <!-- Kód územního celku v NUTS / LAU -->
     <PropertyDefn>
@@ -356,6 +353,13 @@
       <ElementPath>NutsLau</ElementPath>
       <Type>String</Type>
       <Width>5</Width>
+    </PropertyDefn>
+    <!-- Datum vzniku -->
+    <PropertyDefn>
+      <Name>DatumVzniku</Name>
+      <ElementPath>DatumVzniku</ElementPath>
+      <Type>String</Type>
+      <Width>19</Width>
     </PropertyDefn>
   </GMLFeatureClass>
   <!-- Okresy -->
@@ -431,21 +435,15 @@
     <PropertyDefn>
       <Name>IdTransakce</Name>
       <ElementPath>IdTransakce</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
-      <Type>String</Type>
-      <Width>18</Width>
+      <SubType>Integer64</SubType>
     </PropertyDefn>
     <!-- ID návrhu změn v ISUI -->
     <PropertyDefn>
       <Name>GlobalniIdNavrhuZmeny</Name>
       <ElementPath>GlobalniIdNavrhuZmeny</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
-      <Type>String</Type>
-      <Width>18</Width>
+      <SubType>Integer64</SubType>
     </PropertyDefn>
     <!-- Kód územního celku v NUTS / LAU -->
     <PropertyDefn>
@@ -453,6 +451,13 @@
       <ElementPath>NutsLau</ElementPath>
       <Type>String</Type>
       <Width>6</Width>
+    </PropertyDefn>
+    <!-- Datum vzniku -->
+    <PropertyDefn>
+      <Name>DatumVzniku</Name>
+      <ElementPath>DatumVzniku</ElementPath>
+      <Type>String</Type>
+      <Width>19</Width>
     </PropertyDefn>
   </GMLFeatureClass>
   <!-- ORP -->
@@ -528,21 +533,22 @@
     <PropertyDefn>
       <Name>IdTransakce</Name>
       <ElementPath>IdTransakce</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
-      <Type>String</Type>
-      <Width>18</Width>
+      <SubType>Integer64</SubType>
     </PropertyDefn>
     <!-- ID návrhu změn v ISUI -->
     <PropertyDefn>
       <Name>GlobalniIdNavrhuZmeny</Name>
       <ElementPath>GlobalniIdNavrhuZmeny</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
+      <SubType>Integer64</SubType>
+    </PropertyDefn>
+    <!-- Datum vzniku -->
+    <PropertyDefn>
+      <Name>DatumVzniku</Name>
+      <ElementPath>DatumVzniku</ElementPath>
       <Type>String</Type>
-      <Width>18</Width>
+      <Width>19</Width>
     </PropertyDefn>
   </GMLFeatureClass>
   <!-- POU -->
@@ -620,21 +626,22 @@
     <PropertyDefn>
       <Name>IdTransakce</Name>
       <ElementPath>IdTransakce</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
-      <Type>String</Type>
-      <Width>18</Width>
+      <SubType>Integer64</SubType>
     </PropertyDefn>
     <!-- ID návrhu změn v ISUI -->
     <PropertyDefn>
       <Name>GlobalniIdNavrhuZmeny</Name>
       <ElementPath>GlobalniIdNavrhuZmeny</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
+      <SubType>Integer64</SubType>
+    </PropertyDefn>
+    <!-- Datum vzniku -->
+    <PropertyDefn>
+      <Name>DatumVzniku</Name>
+      <ElementPath>DatumVzniku</ElementPath>
       <Type>String</Type>
-      <Width>18</Width>
+      <Width>19</Width>
     </PropertyDefn>
   </GMLFeatureClass>
   <!-- Obce -->
@@ -716,21 +723,15 @@
     <PropertyDefn>
       <Name>IdTransakce</Name>
       <ElementPath>IdTransakce</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
-      <Type>String</Type>
-      <Width>18</Width>
+      <SubType>Integer64</SubType>
     </PropertyDefn>
     <!-- ID návrhu změn v ISUI -->
     <PropertyDefn>
       <Name>GlobalniIdNavrhuZmeny</Name>
       <ElementPath>GlobalniIdNavrhuZmeny</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
-      <Type>String</Type>
-      <Width>18</Width>
+      <SubType>Integer64</SubType>
     </PropertyDefn>
     <!-- Mluvnické charakteristiky 2 až 7 pád -->
     <PropertyDefn>
@@ -808,6 +809,13 @@
       <Type>String</Type>
       <Width>12</Width>
     </PropertyDefn>
+    <!-- Datum vzniku -->
+    <PropertyDefn>
+      <Name>DatumVzniku</Name>
+      <ElementPath>DatumVzniku</ElementPath>
+      <Type>String</Type>
+      <Width>19</Width>
+    </PropertyDefn>
   </GMLFeatureClass>
   <!-- Spravní obvody -->
   <GMLFeatureClass>
@@ -876,21 +884,22 @@
     <PropertyDefn>
       <Name>IdTransakce</Name>
       <ElementPath>IdTransakce</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
-      <Type>String</Type>
-      <Width>18</Width>
+      <SubType>Integer64</SubType>
     </PropertyDefn>
     <!-- ID návrhu změn v ISUI -->
     <PropertyDefn>
       <Name>GlobalniIdNavrhuZmeny</Name>
       <ElementPath>GlobalniIdNavrhuZmeny</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
+      <SubType>Integer64</SubType>
+    </PropertyDefn>
+    <!-- Datum vzniku -->
+    <PropertyDefn>
+      <Name>DatumVzniku</Name>
+      <ElementPath>DatumVzniku</ElementPath>
       <Type>String</Type>
-      <Width>18</Width>
+      <Width>19</Width>
     </PropertyDefn>
   </GMLFeatureClass>
   <!-- MOP -->
@@ -954,21 +963,22 @@
     <PropertyDefn>
       <Name>IdTransakce</Name>
       <ElementPath>IdTransakce</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
-      <Type>String</Type>
-      <Width>18</Width>
+      <SubType>Integer64</SubType>
     </PropertyDefn>
     <!-- ID návrhu změn v ISUI -->
     <PropertyDefn>
       <Name>GlobalniIdNavrhuZmeny</Name>
       <ElementPath>GlobalniIdNavrhuZmeny</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
+      <SubType>Integer64</SubType>
+    </PropertyDefn>
+    <!-- Datum vzniku -->
+    <PropertyDefn>
+      <Name>DatumVzniku</Name>
+      <ElementPath>DatumVzniku</ElementPath>
       <Type>String</Type>
-      <Width>18</Width>
+      <Width>19</Width>
     </PropertyDefn>
   </GMLFeatureClass>
   <!-- MOMC -->
@@ -1044,21 +1054,15 @@
     <PropertyDefn>
       <Name>IdTransakce</Name>
       <ElementPath>IdTransakce</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
-      <Type>String</Type>
-      <Width>18</Width>
+      <SubType>Integer64</SubType>
     </PropertyDefn>
     <!-- ID návrhu změn v ISUI -->
     <PropertyDefn>
       <Name>GlobalniIdNavrhuZmeny</Name>
       <ElementPath>GlobalniIdNavrhuZmeny</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
-      <Type>String</Type>
-      <Width>18</Width>
+      <SubType>Integer64</SubType>
     </PropertyDefn>
     <!-- Text popisující vlajku MOMC -->
     <PropertyDefn>
@@ -1117,6 +1121,13 @@
       <ElementPath>ZnakObrazek</ElementPath>
       <Type>Complex</Type> <!-- ??? -->
     </PropertyDefn>
+    <!-- Datum vzniku -->
+    <PropertyDefn>
+      <Name>DatumVzniku</Name>
+      <ElementPath>DatumVzniku</ElementPath>
+      <Type>String</Type>
+      <Width>19</Width>
+    </PropertyDefn>
   </GMLFeatureClass>
   <!-- CastiObci -->
   <GMLFeatureClass>
@@ -1173,21 +1184,15 @@
     <PropertyDefn>
       <Name>IdTransakce</Name>
       <ElementPath>IdTransakce</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
-      <Type>String</Type>
-      <Width>18</Width>
+      <SubType>Integer64</SubType>
     </PropertyDefn>
     <!-- ID návrhu změn v ISUI -->
     <PropertyDefn>
       <Name>GlobalniIdNavrhuZmeny</Name>
       <ElementPath>GlobalniIdNavrhuZmeny</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
-      <Type>String</Type>
-      <Width>18</Width>
+      <SubType>Integer64</SubType>
     </PropertyDefn>
     <!-- Mluvnické charakteristiky 2 až 7 pád -->
     <PropertyDefn>
@@ -1219,6 +1224,13 @@
       <ElementPath>MluvnickeCharakteristiky|Pad7</ElementPath>
       <Type>String</Type>
       <Width>48</Width>
+    </PropertyDefn>
+    <!-- Datum vzniku -->
+    <PropertyDefn>
+      <Name>DatumVzniku</Name>
+      <ElementPath>DatumVzniku</ElementPath>
+      <Type>String</Type>
+      <Width>19</Width>
     </PropertyDefn>
   </GMLFeatureClass>
   <!-- Katastralní území -->
@@ -1295,31 +1307,22 @@
     <PropertyDefn>
       <Name>IdTransakce</Name>
       <ElementPath>IdTransakce</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
-      <Type>String</Type>
-      <Width>18</Width>
+      <SubType>Integer64</SubType>
     </PropertyDefn>
     <!-- ID návrhu změn v ISUI -->
     <PropertyDefn>
       <Name>GlobalniIdNavrhuZmeny</Name>
       <ElementPath>GlobalniIdNavrhuZmeny</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
-      <Type>String</Type>
-      <Width>18</Width>
+      <SubType>Integer64</SubType>
     </PropertyDefn>
     <!-- ID řízení v ISKN -->
     <PropertyDefn>
       <Name>RizeniId</Name>
       <ElementPath>RizeniId</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
-      <Type>String</Type>
-      <Width>18</Width>
+      <SubType>Integer64</SubType>
     </PropertyDefn>
     <!-- Mluvnické charakteristiky 2 až 7 pád -->
     <PropertyDefn>
@@ -1351,6 +1354,13 @@
       <ElementPath>MluvnickeCharakteristiky|Pad7</ElementPath>
       <Type>String</Type>
       <Width>48</Width>
+    </PropertyDefn>
+    <!-- Datum vzniku -->
+    <PropertyDefn>
+      <Name>DatumVzniku</Name>
+      <ElementPath>DatumVzniku</ElementPath>
+      <Type>String</Type>
+      <Width>19</Width>
     </PropertyDefn>
   </GMLFeatureClass>
   <!-- ZSJ -->
@@ -1414,21 +1424,15 @@
     <PropertyDefn>
       <Name>IdTransakce</Name>
       <ElementPath>IdTransakce</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
-      <Type>String</Type>
-      <Width>18</Width>
+      <SubType>Integer64</SubType>
     </PropertyDefn>
     <!-- ID návrhu změn v ISUI -->
     <PropertyDefn>
       <Name>GlobalniIdNavrhuZmeny</Name>
       <ElementPath>GlobalniIdNavrhuZmeny</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
-      <Type>String</Type>
-      <Width>18</Width>
+      <SubType>Integer64</SubType>
     </PropertyDefn>
     <!-- Mluvnické charakteristiky 2 až 7 pád -->
     <PropertyDefn>
@@ -1465,17 +1469,21 @@
     <PropertyDefn>
       <Name>Vymera</Name>
       <ElementPath>Vymera</ElementPath>
-      <!-- OGR integers are only 32 bit wide for now, see http://trac.osgeo.org/gdal/wiki/rfc31_ogr_64
       <Type>Integer</Type>
-      -->
-      <Type>String</Type>
-      <Width>18</Width>
+      <SubType>Integer64</SubType>
     </PropertyDefn>
     <!-- Převažující charakter využití ZSJ -->
     <PropertyDefn>
       <Name>CharakterZsjKod</Name>
       <ElementPath>CharakterZsjKod</ElementPath>
       <Type>Integer</Type>
+    </PropertyDefn>
+    <!-- Datum vzniku -->
+    <PropertyDefn>
+      <Name>DatumVzniku</Name>
+      <ElementPath>DatumVzniku</ElementPath>
+      <Type>String</Type>
+      <Width>19</Width>
     </PropertyDefn>
   </GMLFeatureClass>
 </GMLFeatureClassList>

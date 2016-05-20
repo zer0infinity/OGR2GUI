@@ -24,8 +24,6 @@
 # *****************************************************************************/
 
 TEMPLATE = app
-TARGET = OGR2GUI
-LIBS += -L$$PWD/lib -lgdal_i
 INCLUDEPATH += $$PWD/include $$PWD/include/ogr
 #DESTDIR += $$PWD/bin
 
@@ -55,7 +53,7 @@ SOURCES += \
     src/dbConnect.cpp \
     src/app.cpp \
     src/main.cpp \
-    src/utils/ogr2ogr.cpp \
+    src/utils/ogr2ogr_bin.cpp \
     src/utils/commonutils.cpp \
     src/webServiceConnect.cpp \
     src/ogr2ogrThread.cpp \
@@ -64,6 +62,16 @@ SOURCES += \
 
 CONFIG += c++14
 QT += sql widgets
+
+win32: contains(QMAKE_TARGET.arch, x86) {
+    TARGET = OGR2GUI
+    LIBS += -L$$PWD/lib -lgdal_i
+}
+
+win32: contains(QMAKE_TARGET.arch, x86_64) {
+    TARGET = OGR2GUI64
+    LIBS += -L$$PWD/lib -lgdal_i_x64
+}
 
 CONFIG(debug, debug|release) {
     win32: TARGET = $$join(TARGET,,,d)
