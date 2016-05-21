@@ -7,6 +7,7 @@
  * Copyright (c) 2014 Faculty of Computer Science,
  * University of Applied Sciences Rapperswil (HSR),
  * 8640 Rapperswil, Switzerland
+ * Copyright (c) 2016 David Tran, Switzerland
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,8 +26,8 @@
 /*!
  *	\file app.cpp
  *	\brief ogr2ogr GUI
- *	\author Olivier Pilotte[Inventis], Mohamed Hedi Lassoued[Inventis], David Tran[HSR]
- *	\version 0.7
+ *	\author Olivier Pilotte[Inventis], Mohamed Hedi Lassoued[Inventis], David Tran
+ *	\version 0.8
  */
 
 #include "app.h"
@@ -154,6 +155,7 @@ void App::initMenu(void) {
         fileMenu = new QMenu(theMenu);
         {
             mnuSettings = new QAction(this);
+            mnuSettings->setShortcut(QKeySequence::Open);
             mnuExit = new QAction(this);
             mnuExit->setShortcuts(QKeySequence::Quit);
 
@@ -535,6 +537,11 @@ void App::updateParameters(void) {
         parameters += " " + txtOption->toPlainText().simplified();
     txtOptionOutput->setText(parameters);
     progress->setValue(0);
+    txtSourceName->setStyleSheet("");
+    txtTargetName->setStyleSheet("");
+    txtSourceQuery->setStyleSheet("");
+    cmbTargetProj->setStyleSheet("");
+    txtOptionOutput->setStyleSheet("");
 }
 
 QString App::currentParameters(void) const {
@@ -926,31 +933,36 @@ void App::evtBtnExecute(void) {
     bool failed = false;
     txtOptionOutput->append("\n");
     if(!resVal) {
-        txtOptionOutput->append(tr("FAILURE: unable to open source!"));
+        // FAILURE: unable to open source!
+        txtSourceName->setStyleSheet("background-color: red");
         ++progressSteps;
         failed = true;
     }
     if(!cmbSourceProj->currentText().isEmpty()) {
         if(cmbTargetProj->currentText().isEmpty()) {
-            txtOptionOutput->append(tr("FAILURE: if -s_srs is specified, -t_srs must also be specified!"));
+            // FAILURE: if -s_srs is specified, -t_srs must also be specified!
+            cmbTargetProj->setStyleSheet("background-color: red");
             ++progressSteps;
             failed = true;
         }
     }
     if(!txtSourceQuery->text().isEmpty()) {
         if(!ogr->testExecuteSQL(txtSourceQuery->text().toStdString())) {
-            txtOptionOutput->append(tr("FAILURE: unable to execute sql query!"));
+            // FAILURE: unable to execute sql query!
+            txtSourceQuery->setStyleSheet("background-color: red");
             ++progressSteps;
             failed = true;
         }
     }
     if(!ogr->openDriver(cmbTargetFormat->currentText().toStdString())) {
-        txtOptionOutput->append(tr("FAILURE: unable to open driver!"));
+        // FAILURE: unable to open driver!
+        txtOptionOutput->setStyleSheet("background-color: red");
         ++progressSteps;
         failed = true;
     }
     if(txtTargetName->text().isEmpty()) {
-        txtOptionOutput->append(tr("FAILURE: unable to open target!"));
+        // FAILURE: unable to open target!
+        txtTargetName->setStyleSheet("background-color: red");
         ++progressSteps;
         failed = true;
     }
@@ -963,7 +975,7 @@ void App::evtBtnExecute(void) {
     if(!radSourceDatabase->isChecked() &&!radSourceWebService->isChecked())
         if(!ogr->testFeatureProjection())
             txtOptionOutput->append(tr("FAILURE: unable to transform feature with projection!"));
-    txtOptionOutput->append(sourcename + " > " + targetname + " ...");
+    txtOptionOutput->append(sourcename + " as " + targetname);
     QString parameters = currentParameters();
     QString command = QDir::toNativeSeparators(QCoreApplication::applicationFilePath());
     if(radSourceWebService->isChecked())
@@ -973,8 +985,10 @@ void App::evtBtnExecute(void) {
     command += parameters;
     if(ogr->openOgr2ogr(command, btnConvert)) {
         progress->setValue(maxValue);
+        txtOptionOutput->append("\n" + QString::number(maxValue) + "% SUCCESS");
     } else {
         txtOptionOutput->append(tr("FAILURE: unable to open ogr2ogr!"));
+        txtOptionOutput->setStyleSheet("background-color: red");
         progress->setValue(maxValue/++progressSteps);
     }
     ogr->closeSource();

@@ -27,6 +27,7 @@ GME,gme
 ODS,ods
 XLSX,xlsx
 PDF,pdf
+JML,jml
 #readonly
 UK .NTF,ntf
 SDTS,sdts
