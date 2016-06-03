@@ -41,7 +41,7 @@ App::App(QWidget *widget) : QMainWindow(widget) {
     initData();
     initInterface();
     translateInterface();
-    initProjections();
+    initProjectionFiles();
     updateParameters();
     this->show();
 }
@@ -84,12 +84,12 @@ void App::readResources(QFile &file, QList<QPair<QString, QString> > &readonlyLi
     qSort(readonlyList.begin(), readonlyList.end());
 }
 
-void App::initProjections(void) {
+void App::initProjectionFiles(void) {
     const QString file_gcs = "gcs.csv";
     const QString file_pcs = "pcs.csv";
     readProjections(file_gcs);
     readProjections(file_pcs);
-    addProjections();
+    initProjection();
 }
 
 void App::readProjections(const QString filename) {
@@ -124,15 +124,15 @@ bool sortCOORD_REF_SYS_CODE(const QPair<QString, QString> &s1, const QPair<QStri
   return s1.first.toInt() < s2.first.toInt();
 }
 
-void App::addProjections() {
+void App::initProjection() {
     qSort(projectionsList.begin(), projectionsList.end(), sortCOORD_REF_SYS_CODE);
     projectionsList.insert(0, QPair<QString, QString>());
     cmbSourceProj->addItem(QString());
     cmbTargetProj->addItem(QString());
     for(int i=1;i<projectionsList.size();++i) {
         QPair<QString, QString> pair = projectionsList.at(i);
-        cmbSourceProj->addItem(pair.first + " : " + pair.second);
-        cmbTargetProj->addItem(pair.first + " : " + pair.second);
+        cmbSourceProj->addItem(pair.first + " " + pair.second);
+        cmbTargetProj->addItem(pair.first + " " + pair.second);
     }
 }
 
@@ -373,17 +373,47 @@ void App::initLayout(void) {
                 lytTarget->addWidget(lblTargetProj, 3, 0);
                 lytTarget->addLayout(lytTargetProj, 3, 1);
 
+                lblTargetSpat = new QLabel();
+                lblTargetSpat->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+                lblTargetSpat->setMinimumWidth(70);
+                lblTargetSpat->setMaximumWidth(70);
+
+                lytTargetSpat = new QHBoxLayout();
+                {
+                    tabTargetSpat = new QTableWidget();
+                    tabTargetSpat->setFixedHeight(20);
+                    tabTargetSpat->horizontalHeader()->setVisible(false);
+                    tabTargetSpat->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+                    tabTargetSpat->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+                    tabTargetSpat->verticalHeader()->setVisible(false);
+                    tabTargetSpat->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+                    tabTargetSpat->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+                    tabTargetSpat->setRowCount(1);
+                    tabTargetSpat->setColumnCount(4);
+                    tabTargetSpat->setSelectionMode(QAbstractItemView::SingleSelection);
+
+                    btnTargetSpat = new QPushButton();
+
+                    lytTargetSpat->addWidget(tabTargetSpat);
+                    lytTargetSpat->addWidget(btnTargetSpat);
+                }
+
+                lytTarget->addWidget(lblTargetSpat);
+                lytTarget->addLayout(lytTargetSpat, 4, 1);
+
                 lytTargetOptions = new QHBoxLayout();
                 {
                     radTargetOverwrite = new QCheckBox();
                     radTargetAppend = new QCheckBox();
                     radTargetUpdate = new QCheckBox();
+                    radTargetSkipfailures = new QCheckBox();
 
                     lytTargetOptions->addWidget(radTargetOverwrite);
                     lytTargetOptions->addWidget(radTargetAppend);
                     lytTargetOptions->addWidget(radTargetUpdate);
+                    lytTargetOptions->addWidget(radTargetSkipfailures);
                 }
-                lytTarget->addLayout(lytTargetOptions, 4, 1);
+                lytTarget->addLayout(lytTargetOptions, 5, 1);
             }
             grpTarget->setLayout(lytTarget);
         }
@@ -459,10 +489,13 @@ void App::initSlots(void) {
     QObject::connect(btnTargetName, SIGNAL(clicked()), this, SLOT(evtBtnTargetName(void)));
     QObject::connect(txtTargetProj, SIGNAL(textChanged(QString)), this, SLOT(evtTxtTargetProj(void)));
     QObject::connect(cmbTargetProj, SIGNAL(currentIndexChanged(int)), this, SLOT(evtUpdateParameters(void)));
+    QObject::connect(tabTargetSpat, SIGNAL(cellChanged(int,int)), this, SLOT(evtUpdateParameters(void)));
+    QObject::connect(btnTargetSpat, SIGNAL(clicked(bool)), this, SLOT(evtBtnTargetSpat(void)));
 
     QObject::connect(radTargetOverwrite, SIGNAL(toggled(bool)), this, SLOT(evtUpdateParameters(void)));
     QObject::connect(radTargetAppend, SIGNAL(toggled(bool)), this, SLOT(evtUpdateParameters(void)));
     QObject::connect(radTargetUpdate, SIGNAL(toggled(bool)), this, SLOT(evtUpdateParameters(void)));
+    QObject::connect(radTargetSkipfailures, SIGNAL(toggled(bool)), this, SLOT(evtUpdateParameters(void)));
 
     QObject::connect(txtOption, SIGNAL(textChanged()), this, SLOT(evtUpdateParameters(void)));
     QObject::connect(btnConvert, SIGNAL(clicked(void)), this, SLOT(evtBtnExecute(void)));
@@ -518,12 +551,16 @@ void App::translateInterface(void) {
 
         lblTargetProj->setText(tr("Projection"));
 
+        lblTargetSpat->setText(tr("Spat"));
+        btnTargetSpat->setText(tr("Reset"));
+
         radTargetOverwrite->setText(tr("overwrite"));
         radTargetAppend->setText(tr("append"));
         radTargetUpdate->setText(tr("update"));
+        radTargetSkipfailures->setText(tr("skipfailures"));
     }
 
-    grpOptions->setTitle(tr("Options (optional)"));
+    grpOptions->setTitle(tr("Options (advanced)"));
 
     btnConvert->setText(tr("Convert"));
 }
@@ -545,11 +582,14 @@ void App::updateParameters(void) {
 }
 
 QString App::currentParameters(void) const {
-    QString parameters = " -f \"" + cmbTargetFormat->currentText() + "\" ";
-    parameters += "\"" + txtTargetName->text()+ "\" ";
+    QString parameters;
+    parameters += " -f \"" + cmbTargetFormat->currentText() + "\" ";
+    if(!txtTargetName->text().isEmpty())
+        parameters += "\"" + txtTargetName->text()+ "\" ";
     if(radSourceWebService->isChecked() && !txtSourceName->text().isEmpty())
         parameters += webServiceList.at(cmbSourceFormat->currentIndex()).second;
-    parameters += "\"" + txtSourceName->text().trimmed() + "\"";
+    if(!txtSourceName->text().isEmpty())
+        parameters += "\"" + txtSourceName->text().trimmed() + "\"";
     if(!cmbSourceProj->currentText().isEmpty())
         parameters += " -s_srs EPSG:" + projectionsList.at(cmbSourceProj->currentIndex()).first;
     if(!cmbTargetProj->currentText().isEmpty())
@@ -562,6 +602,22 @@ QString App::currentParameters(void) const {
         parameters += " -append";
     if(radTargetUpdate->isChecked())
         parameters += " -update";
+    if(radTargetSkipfailures->isChecked())
+        parameters += " -skipfailures";
+    QString spatParameter;
+    int totalParameters = 0;
+    for(int x=0; x<tabTargetSpat->rowCount(); ++x) {
+        for(int y=0; y<tabTargetSpat->columnCount(); ++y) {
+            QTableWidgetItem *item = tabTargetSpat->item(x, y);
+            if(item != 0)
+                if(!item->text().isEmpty()) {
+                    spatParameter += " " + item->text();
+                    ++totalParameters;
+                }
+        }
+    }
+    if(!spatParameter.isEmpty() && totalParameters == 4)
+        parameters += " -spat" + spatParameter;
     return parameters;
 }
 
@@ -580,7 +636,7 @@ void App::evtMnuSettings(void) {
         if(!fileList.isEmpty())
             foreach(QString file, fileList)
                 readProjections(file);
-        addProjections();
+        initProjection();
         evtTxtSourceName();
     }
 }
@@ -694,27 +750,27 @@ void App::evtCmbSourceFormat(void) {
 }
 
 void App::evtTxtSourceName(void) {
-    QString n = txtSourceName->text().trimmed();
-    if(n.isEmpty() || n.isNull())
+    QString sourceName = txtSourceName->text().trimmed();
+    if(sourceName.isEmpty() || sourceName.isNull())
         return;
-    string name = n.toStdString();
+    string name = sourceName.toStdString();
     string epsg, query, error;
 
     QString sourceProjInitTemp = txtSourceProjInit->text();
     int sourceProjIndex = cmbSourceProj->currentIndex();
 
-    txtSourceProj->clear();
-    txtSourceProjInit->clear();
-    sourceProjInit.clear();
-    cmbSourceProj->setCurrentIndex(0);
     if(radSourceWebService->isChecked())
         name = webServiceList.at(0).second.toStdString() + name;
     bool isOpen = ogr->openSource(name, epsg, query, error);
     if(isOpen) {
+        txtSourceProj->clear();
+        txtSourceProjInit->clear();
+        sourceProjInit.clear();
+        cmbSourceProj->setCurrentIndex(0);
         for(int i = 0; i < projectionsList.size(); ++i) {
             if(projectionsList.at(i).first.compare(QString::fromStdString(epsg)) == 0) {
                 if(i>0)
-                    txtSourceProjInit->setText(projectionsList.at(i).first + " : " + projectionsList.at(i).second);
+                    txtSourceProjInit->setText(projectionsList.at(i).first + " " + projectionsList.at(i).second);
                 break;
             }
         }
@@ -730,7 +786,7 @@ void App::evtTxtSourceName(void) {
             btnSourceName->setText(tr("Open"));
     }
     if(QString::fromStdString(epsg).isEmpty() || sourceProjInit.isEmpty()) {
-        QString sourceProjTemp = projectionsList.at(sourceProjIndex).first + " : " + projectionsList.at(sourceProjIndex).second;
+        QString sourceProjTemp = projectionsList.at(sourceProjIndex).first + " " + projectionsList.at(sourceProjIndex).second;
         if(sourceProjTemp.compare(sourceProjInitTemp) == 0) {
             txtSourceProjInit->setText(sourceProjInitTemp);
             cmbSourceProj->setCurrentIndex(sourceProjIndex);
@@ -809,7 +865,7 @@ void App::evtTxtSourceProj(void) {
 void App::evtCmbSourceProj(void) {
     txtSourceProjInit->clear();
     if(cmbSourceProj->currentIndex() > 0) {
-        txtSourceProjInit->setText(projectionsList.at(cmbSourceProj->currentIndex()).first + " : " + projectionsList.at(cmbSourceProj->currentIndex()).second);
+        txtSourceProjInit->setText(projectionsList.at(cmbSourceProj->currentIndex()).first + " " + projectionsList.at(cmbSourceProj->currentIndex()).second);
     } else {
         txtSourceProjInit->setText(sourceProjInit);
         cmbSourceProj->setCurrentIndex(0);
@@ -895,6 +951,11 @@ void App::evtTxtTargetProj(void) {
             }
         }
     }
+    updateParameters();
+}
+
+void App::evtBtnTargetSpat(void) {
+    tabTargetSpat->clear();
     updateParameters();
 }
 

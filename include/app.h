@@ -7,6 +7,7 @@
  * Copyright (c) 2014 Faculty of Computer Science,
  * University of Applied Sciences Rapperswil (HSR),
  * 8640 Rapperswil, Switzerland
+ * Copyright (c) 2016 David Tran, Switzerland
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,8 +43,8 @@
 /**
  *	\file app.h
  *	\brief ogr2ogr GUI
- *	\author Olivier Pilotte [Inventis], Mohamed Hedi Lassoued [Inventis], David Tran [HSR]
- *	\version 0.7
+ *	\author Olivier Pilotte [Inventis], Mohamed Hedi Lassoued [Inventis], David Tran
+ *	\version 0.8
  */
 
 #ifndef APP
@@ -139,10 +140,16 @@ private:
     QLineEdit *txtTargetProj;
     QComboBox *cmbTargetProj;
 
+    QLabel *lblTargetSpat;
+    QHBoxLayout *lytTargetSpat;
+    QTableWidget *tabTargetSpat;
+    QPushButton *btnTargetSpat;
+
     QHBoxLayout *lytTargetOptions;
     QCheckBox *radTargetAppend;
     QCheckBox *radTargetOverwrite;
     QCheckBox *radTargetUpdate;
+    QCheckBox *radTargetSkipfailures;
 
     QGroupBox *grpOptions;
     QGridLayout *lytOptions;
@@ -172,7 +179,7 @@ private:
          *	\fn void void InitProjections(void);
          *	\brief Inits projections
          */
-    void initProjections(void);
+    void initProjectionFiles(void);
 
     /**
         * \fn void ReadProjections(QString filename);
@@ -184,7 +191,7 @@ private:
         * \fn addProjections();
         * \brief Add Projections to UI
         */
-    void addProjections();
+    void initProjection();
 
     /**
          *	\fn void InitInterface(void);
@@ -254,6 +261,7 @@ private slots :
     void evtTxtTargetName(void);
     void evtBtnTargetName(void);
     void evtTxtTargetProj(void);
+    void evtBtnTargetSpat(void);
 
     void evtUpdateParameters(void);
 

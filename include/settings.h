@@ -6,6 +6,7 @@
  * Copyright (c) 2014 Faculty of Computer Science,
  * University of Applied Sciences Rapperswil (HSR),
  * 8640 Rapperswil, Switzerland
+ * Copyright (c) 2016 David Tran, Switzerland
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,8 +25,8 @@
 /**
  *	\file settings.h
  *	\brief Settings
- *	\author David Tran [HSR]
- *	\version 0.7
+ *	\author David Tran
+ *	\version 0.8
  */
 
 #ifndef _SETTINGS_H
