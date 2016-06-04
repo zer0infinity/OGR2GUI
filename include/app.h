@@ -212,6 +212,18 @@ private:
     void initLayout(void);
 
     /**
+         *	\fn void InitSourceLayout(void);
+         *	\brief Inits Source Layout
+         */
+    void initSourceLayout(void);
+
+    /**
+         *	\fn void Init Target Layout(void);
+         *	\brief Inits Target Layout
+         */
+    void initTargetLayout(void);
+
+    /**
          *	\fn void InitSlots(void);
          *	\brief Inits Slots
          */

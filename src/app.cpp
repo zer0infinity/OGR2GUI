@@ -189,236 +189,8 @@ void App::initLayout(void) {
     {
         theLayout->setMargin(7);
         theLayout->setSpacing(7);
-
-        grpSource = new QGroupBox(thePanel);
-        {
-            grpSource->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-
-            lytSource = new QGridLayout();
-            {
-                lytSource->setMargin(7);
-                lytSource->setSpacing(7);
-
-                lytSourceInput = new QHBoxLayout();
-                {
-                    radSourceFile = new QRadioButton();
-                    radSourceFolder = new QRadioButton();
-                    radSourceDatabase = new QRadioButton();
-                    radSourceWebService = new QRadioButton();
-
-                    lytSourceInput->addWidget(radSourceFile);
-                    lytSourceInput->addWidget(radSourceFolder);
-                    lytSourceInput->addWidget(radSourceDatabase);
-                    lytSourceInput->addWidget(radSourceWebService);
-                }
-
-                lytSource->addLayout(lytSourceInput, 0, 1);
-
-                lblSourceFormat = new QLabel();
-                lblSourceFormat->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-                lblSourceFormat->setMinimumWidth(70);
-                lblSourceFormat->setMaximumWidth(70);
-
-                cmbSourceFormat = new QComboBox();
-
-                lytSource->addWidget(lblSourceFormat, 1, 0);
-                lytSource->addWidget(cmbSourceFormat, 1, 1);
-
-                lblSourceName = new QLabel();
-                lblSourceName->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-                lblSourceName->setMinimumWidth(70);
-                lblSourceName->setMaximumWidth(70);
-
-                lytSourceName = new QHBoxLayout();
-                {
-                    txtSourceName = new QLineEdit();
-
-                    btnSourceName = new QPushButton();
-
-                    lytSourceName->addWidget(txtSourceName);
-                    lytSourceName->addWidget(btnSourceName);
-                }
-
-                lytSource->addWidget(lblSourceName, 2, 0);
-                lytSource->addLayout(lytSourceName, 2, 1);
-
-                lblSourceProj = new QLabel();
-                lblSourceProj->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-                lblSourceProj->setMinimumWidth(70);
-                lblSourceProj->setMaximumWidth(70);
-
-                lblSourceEPSG = new QLabel();
-                lblSourceEPSG->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-                lblSourceEPSG->setMinimumWidth(70);
-                lblSourceEPSG->setMaximumWidth(70);
-
-                txtSourceProjInit = new QLineEdit();
-                txtSourceProjInit->setReadOnly(true);
-
-                lytSourceProj = new QHBoxLayout();
-                {
-                    txtSourceProj = new QLineEdit();
-                    txtSourceProj->setMaxLength(5);
-                    txtSourceProj->setMinimumWidth(50);
-                    txtSourceProj->setMaximumWidth(50);
-                    QValidator *validator = new QIntValidator(0, 99999, this);
-                    txtSourceProj->setValidator(validator);
-
-                    cmbSourceProj = new QComboBox();
-                    cmbSourceProj->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-
-                    lytSourceProj->addWidget(txtSourceProj);
-                    lytSourceProj->addWidget(cmbSourceProj);
-                }
-
-                lytSource->addWidget(lblSourceProj, 3, 0);
-                lytSource->addWidget(txtSourceProjInit, 3, 1);
-                lytSource->addWidget(lblSourceEPSG, 4, 0);
-                lytSource->addLayout(lytSourceProj, 4, 1);
-
-                lblSourceQuery = new QLabel();
-                lblSourceQuery->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-                lblSourceQuery->setMinimumWidth(70);
-                lblSourceQuery->setMaximumWidth(70);
-
-                txtSourceQuery = new QLineEdit();
-
-                lytSource->addWidget(lblSourceQuery);
-                lytSource->addWidget(txtSourceQuery);
-            }
-
-            grpSource->setLayout(lytSource);
-        }
-
-        theLayout->addWidget(grpSource);
-
-        grpTarget = new QGroupBox(thePanel);
-        {
-            grpTarget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-
-            lytTarget = new QGridLayout();
-            {
-                lytTargetOutput = new QHBoxLayout();
-                {
-                    grpTargetOutput = new QButtonGroup();
-                    {
-                        radTargetFile = new QRadioButton();
-                        radTargetFolder = new QRadioButton();
-                        radTargetDatabase = new QRadioButton();
-
-                        grpTargetOutput->addButton(radTargetFile);
-                        grpTargetOutput->addButton(radTargetFolder);
-                        grpTargetOutput->addButton(radTargetDatabase);
-
-                        lytTargetOutput->addWidget(radTargetFile);
-                        lytTargetOutput->addWidget(radTargetFolder);
-                        lytTargetOutput->addWidget(radTargetDatabase);
-                    }
-                }
-
-                lytTarget->addLayout(lytTargetOutput, 0, 1);
-
-                lblTargetFormat = new QLabel();
-                lblTargetFormat->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-                lblTargetFormat->setMinimumWidth(70);
-                lblTargetFormat->setMaximumWidth(70);
-
-                cmbTargetFormat = new QComboBox();
-
-                lytTarget->addWidget(lblTargetFormat, 1, 0);
-                lytTarget->addWidget(cmbTargetFormat, 1, 1);
-
-
-                lblTargetName = new QLabel();
-                lblTargetName->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-                lblTargetName->setMinimumWidth(70);
-                lblTargetName->setMaximumWidth(70);
-
-                lytTargetName = new QHBoxLayout();
-                {
-                    txtTargetName = new QLineEdit();
-                    txtTargetName->setReadOnly(true);
-
-                    btnTargetName = new QPushButton();
-
-                    lytTargetName->addWidget(txtTargetName);
-                    lytTargetName->addWidget(btnTargetName);
-                }
-
-                lytTarget->addWidget(lblTargetName, 2, 0);
-                lytTarget->addLayout(lytTargetName, 2, 1);
-
-
-                lblTargetProj = new QLabel();
-                lblTargetProj->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-                lblTargetProj->setMinimumWidth(70);
-                lblTargetProj->setMaximumWidth(70);
-
-                lytTargetProj = new QHBoxLayout();
-                {
-                    txtTargetProj = new QLineEdit();
-                    txtTargetProj->setMaxLength(5);
-                    txtTargetProj->setMinimumWidth(50);
-                    txtTargetProj->setMaximumWidth(50);
-                    QValidator *validator = new QIntValidator(0, 99999, this);
-                    txtTargetProj->setValidator(validator);
-
-                    cmbTargetProj = new QComboBox();
-                    cmbTargetProj->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-
-                    lytTargetProj->addWidget(txtTargetProj);
-                    lytTargetProj->addWidget(cmbTargetProj);
-                }
-
-                lytTarget->addWidget(lblTargetProj, 3, 0);
-                lytTarget->addLayout(lytTargetProj, 3, 1);
-
-                lblTargetSpat = new QLabel();
-                lblTargetSpat->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-                lblTargetSpat->setMinimumWidth(70);
-                lblTargetSpat->setMaximumWidth(70);
-
-                lytTargetSpat = new QHBoxLayout();
-                {
-                    tabTargetSpat = new QTableWidget();
-                    tabTargetSpat->setFixedHeight(20);
-                    tabTargetSpat->horizontalHeader()->setVisible(false);
-                    tabTargetSpat->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-                    tabTargetSpat->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-                    tabTargetSpat->verticalHeader()->setVisible(false);
-                    tabTargetSpat->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-                    tabTargetSpat->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-                    tabTargetSpat->setRowCount(1);
-                    tabTargetSpat->setColumnCount(4);
-                    tabTargetSpat->setSelectionMode(QAbstractItemView::SingleSelection);
-
-                    btnTargetSpat = new QPushButton();
-
-                    lytTargetSpat->addWidget(tabTargetSpat);
-                    lytTargetSpat->addWidget(btnTargetSpat);
-                }
-
-                lytTarget->addWidget(lblTargetSpat);
-                lytTarget->addLayout(lytTargetSpat, 4, 1);
-
-                lytTargetOptions = new QHBoxLayout();
-                {
-                    radTargetOverwrite = new QCheckBox();
-                    radTargetAppend = new QCheckBox();
-                    radTargetUpdate = new QCheckBox();
-                    radTargetSkipfailures = new QCheckBox();
-
-                    lytTargetOptions->addWidget(radTargetOverwrite);
-                    lytTargetOptions->addWidget(radTargetAppend);
-                    lytTargetOptions->addWidget(radTargetUpdate);
-                    lytTargetOptions->addWidget(radTargetSkipfailures);
-                }
-                lytTarget->addLayout(lytTargetOptions, 5, 1);
-            }
-            grpTarget->setLayout(lytTarget);
-        }
-
-        theLayout->addWidget(grpTarget);
+        initSourceLayout();
+        initTargetLayout();
 
         grpOptions = new QGroupBox(thePanel);
         {
@@ -461,6 +233,250 @@ void App::initLayout(void) {
     thePanel->setLayout(theLayout);
 }
 
+void App::initSourceLayout(void) {
+    grpSource = new QGroupBox(thePanel);
+    {
+        grpSource->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+
+        lytSource = new QGridLayout();
+        {
+            lytSource->setMargin(7);
+            lytSource->setSpacing(7);
+
+            lytSourceInput = new QHBoxLayout();
+            {
+                radSourceFile = new QRadioButton();
+                radSourceFolder = new QRadioButton();
+                radSourceDatabase = new QRadioButton();
+                radSourceWebService = new QRadioButton();
+
+                lytSourceInput->addWidget(radSourceFile);
+                lytSourceInput->addWidget(radSourceFolder);
+                lytSourceInput->addWidget(radSourceDatabase);
+                lytSourceInput->addWidget(radSourceWebService);
+            }
+
+            lytSource->addLayout(lytSourceInput, 0, 1);
+
+            lblSourceFormat = new QLabel();
+            lblSourceFormat->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+            lblSourceFormat->setMinimumWidth(70);
+            lblSourceFormat->setMaximumWidth(70);
+
+            cmbSourceFormat = new QComboBox();
+
+            lytSource->addWidget(lblSourceFormat, 1, 0);
+            lytSource->addWidget(cmbSourceFormat, 1, 1);
+
+            lblSourceName = new QLabel();
+            lblSourceName->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+            lblSourceName->setMinimumWidth(70);
+            lblSourceName->setMaximumWidth(70);
+
+            lytSourceName = new QHBoxLayout();
+            {
+                txtSourceName = new QLineEdit();
+
+                btnSourceName = new QPushButton();
+
+                lytSourceName->addWidget(txtSourceName);
+                lytSourceName->addWidget(btnSourceName);
+            }
+
+            lytSource->addWidget(lblSourceName, 2, 0);
+            lytSource->addLayout(lytSourceName, 2, 1);
+
+            lblSourceProj = new QLabel();
+            lblSourceProj->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+            lblSourceProj->setMinimumWidth(70);
+            lblSourceProj->setMaximumWidth(70);
+
+            lblSourceEPSG = new QLabel();
+            lblSourceEPSG->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+            lblSourceEPSG->setMinimumWidth(70);
+            lblSourceEPSG->setMaximumWidth(70);
+
+            txtSourceProjInit = new QLineEdit();
+            txtSourceProjInit->setReadOnly(true);
+
+            lytSourceProj = new QHBoxLayout();
+            {
+                txtSourceProj = new QLineEdit();
+                txtSourceProj->setMaxLength(5);
+                txtSourceProj->setMinimumWidth(50);
+                txtSourceProj->setMaximumWidth(50);
+                QValidator *validator = new QIntValidator(0, 99999, this);
+                txtSourceProj->setValidator(validator);
+
+                cmbSourceProj = new QComboBox();
+                cmbSourceProj->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+
+                lytSourceProj->addWidget(txtSourceProj);
+                lytSourceProj->addWidget(cmbSourceProj);
+            }
+
+            lytSource->addWidget(lblSourceProj, 3, 0);
+            lytSource->addWidget(txtSourceProjInit, 3, 1);
+            lytSource->addWidget(lblSourceEPSG, 4, 0);
+            lytSource->addLayout(lytSourceProj, 4, 1);
+
+            lblSourceQuery = new QLabel();
+            lblSourceQuery->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+            lblSourceQuery->setMinimumWidth(70);
+            lblSourceQuery->setMaximumWidth(70);
+
+            txtSourceQuery = new QLineEdit();
+
+            lytSource->addWidget(lblSourceQuery);
+            lytSource->addWidget(txtSourceQuery);
+        }
+
+        grpSource->setLayout(lytSource);
+    }
+
+    theLayout->addWidget(grpSource);
+}
+
+void App::initTargetLayout(void) {
+    grpTarget = new QGroupBox(thePanel);
+    {
+        grpTarget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+
+        lytTarget = new QGridLayout();
+        {
+            lytTargetOutput = new QHBoxLayout();
+            {
+                grpTargetOutput = new QButtonGroup();
+                {
+                    radTargetFile = new QRadioButton();
+                    radTargetFolder = new QRadioButton();
+                    radTargetDatabase = new QRadioButton();
+
+                    grpTargetOutput->addButton(radTargetFile);
+                    grpTargetOutput->addButton(radTargetFolder);
+                    grpTargetOutput->addButton(radTargetDatabase);
+
+                    lytTargetOutput->addWidget(radTargetFile);
+                    lytTargetOutput->addWidget(radTargetFolder);
+                    lytTargetOutput->addWidget(radTargetDatabase);
+                }
+            }
+
+            lytTarget->addLayout(lytTargetOutput, 0, 1);
+
+            lblTargetFormat = new QLabel();
+            lblTargetFormat->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+            lblTargetFormat->setMinimumWidth(70);
+            lblTargetFormat->setMaximumWidth(70);
+
+            cmbTargetFormat = new QComboBox();
+
+            lytTarget->addWidget(lblTargetFormat, 1, 0);
+            lytTarget->addWidget(cmbTargetFormat, 1, 1);
+
+
+            lblTargetName = new QLabel();
+            lblTargetName->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+            lblTargetName->setMinimumWidth(70);
+            lblTargetName->setMaximumWidth(70);
+
+            lytTargetName = new QHBoxLayout();
+            {
+                txtTargetName = new QLineEdit();
+                txtTargetName->setReadOnly(true);
+
+                btnTargetName = new QPushButton();
+
+                lytTargetName->addWidget(txtTargetName);
+                lytTargetName->addWidget(btnTargetName);
+            }
+
+            lytTarget->addWidget(lblTargetName, 2, 0);
+            lytTarget->addLayout(lytTargetName, 2, 1);
+
+
+            lblTargetProj = new QLabel();
+            lblTargetProj->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+            lblTargetProj->setMinimumWidth(70);
+            lblTargetProj->setMaximumWidth(70);
+
+            lytTargetProj = new QHBoxLayout();
+            {
+                txtTargetProj = new QLineEdit();
+                txtTargetProj->setMaxLength(5);
+                txtTargetProj->setMinimumWidth(50);
+                txtTargetProj->setMaximumWidth(50);
+                QValidator *validator = new QIntValidator(0, 99999, this);
+                txtTargetProj->setValidator(validator);
+
+                cmbTargetProj = new QComboBox();
+                cmbTargetProj->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+
+                lytTargetProj->addWidget(txtTargetProj);
+                lytTargetProj->addWidget(cmbTargetProj);
+            }
+
+            lytTarget->addWidget(lblTargetProj, 3, 0);
+            lytTarget->addLayout(lytTargetProj, 3, 1);
+
+            lblTargetSpat = new QLabel();
+            lblTargetSpat->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+            lblTargetSpat->setMinimumWidth(70);
+            lblTargetSpat->setMaximumWidth(70);
+
+            lytTargetSpat = new QHBoxLayout();
+            {
+                tabTargetSpat = new QTableWidget();
+                tabTargetSpat->setFixedHeight(20);
+                tabTargetSpat->horizontalHeader()->setVisible(false);
+                tabTargetSpat->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+                tabTargetSpat->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+                tabTargetSpat->verticalHeader()->setVisible(false);
+                tabTargetSpat->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+                tabTargetSpat->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+                tabTargetSpat->setRowCount(1);
+                tabTargetSpat->setColumnCount(4);
+                tabTargetSpat->setSelectionMode(QAbstractItemView::SingleSelection);
+                tabTargetSpat->setToolTip("xmin ymin xmax ymax");
+                for(int x=0; x<tabTargetSpat->rowCount(); ++x) {
+                    for(int y=0; y<tabTargetSpat->columnCount(); ++y) {
+                        QLineEdit *cellLineEdit = new QLineEdit(tabTargetSpat);
+                        cellLineEdit->setValidator(new QIntValidator(0, 99999999, tabTargetSpat));
+                        cellLineEdit->setFrame(false);
+                        cellLineEdit->setMaximumHeight(20);
+                        tabTargetSpat->setCellWidget(x, y, cellLineEdit);
+                    }
+                }
+
+                btnTargetSpat = new QPushButton();
+
+                lytTargetSpat->addWidget(tabTargetSpat);
+                lytTargetSpat->addWidget(btnTargetSpat);
+            }
+
+            lytTarget->addWidget(lblTargetSpat);
+            lytTarget->addLayout(lytTargetSpat, 4, 1);
+
+            lytTargetOptions = new QHBoxLayout();
+            {
+                radTargetOverwrite = new QCheckBox();
+                radTargetAppend = new QCheckBox();
+                radTargetUpdate = new QCheckBox();
+                radTargetSkipfailures = new QCheckBox();
+
+                lytTargetOptions->addWidget(radTargetOverwrite);
+                lytTargetOptions->addWidget(radTargetAppend);
+                lytTargetOptions->addWidget(radTargetUpdate);
+                lytTargetOptions->addWidget(radTargetSkipfailures);
+            }
+            lytTarget->addLayout(lytTargetOptions, 5, 1);
+        }
+        grpTarget->setLayout(lytTarget);
+    }
+
+    theLayout->addWidget(grpTarget);
+}
+
 void App::initSlots(void) {
     QObject::connect(mnuSettings, SIGNAL(triggered()), this, SLOT(evtMnuSettings(void)));
     QObject::connect(mnuExit, SIGNAL(triggered()), this, SLOT(close(void)));
@@ -489,7 +505,6 @@ void App::initSlots(void) {
     QObject::connect(btnTargetName, SIGNAL(clicked()), this, SLOT(evtBtnTargetName(void)));
     QObject::connect(txtTargetProj, SIGNAL(textChanged(QString)), this, SLOT(evtTxtTargetProj(void)));
     QObject::connect(cmbTargetProj, SIGNAL(currentIndexChanged(int)), this, SLOT(evtUpdateParameters(void)));
-    QObject::connect(tabTargetSpat, SIGNAL(cellChanged(int,int)), this, SLOT(evtUpdateParameters(void)));
     QObject::connect(btnTargetSpat, SIGNAL(clicked(bool)), this, SLOT(evtBtnTargetSpat(void)));
 
     QObject::connect(radTargetOverwrite, SIGNAL(toggled(bool)), this, SLOT(evtUpdateParameters(void)));
@@ -552,7 +567,7 @@ void App::translateInterface(void) {
         lblTargetProj->setText(tr("Projection"));
 
         lblTargetSpat->setText(tr("Spat"));
-        btnTargetSpat->setText(tr("Reset"));
+        btnTargetSpat->setText(tr("Reload"));
 
         radTargetOverwrite->setText(tr("overwrite"));
         radTargetAppend->setText(tr("append"));
@@ -608,16 +623,18 @@ QString App::currentParameters(void) const {
     int totalParameters = 0;
     for(int x=0; x<tabTargetSpat->rowCount(); ++x) {
         for(int y=0; y<tabTargetSpat->columnCount(); ++y) {
-            QTableWidgetItem *item = tabTargetSpat->item(x, y);
-            if(item != 0)
-                if(!item->text().isEmpty()) {
-                    spatParameter += " " + item->text();
+            QLineEdit *cellLineEdit = static_cast<QLineEdit*>(tabTargetSpat->cellWidget(x, y));
+            if(cellLineEdit != 0)
+                if(!cellLineEdit->text().isEmpty()) {
+                    spatParameter += " " + cellLineEdit->text();
                     ++totalParameters;
                 }
         }
     }
-    if(!spatParameter.isEmpty() && totalParameters == 4)
+    if(!spatParameter.isEmpty() && totalParameters == 4) {
         parameters += " -spat" + spatParameter;
+        tabTargetSpat->setStyleSheet("");
+    }
     return parameters;
 }
 
@@ -955,7 +972,21 @@ void App::evtTxtTargetProj(void) {
 }
 
 void App::evtBtnTargetSpat(void) {
-    tabTargetSpat->clear();
+    int resVal = 0;
+    for(int x=0; x<tabTargetSpat->rowCount(); ++x) {
+        for(int y=0; y<tabTargetSpat->columnCount(); ++y) {
+            QLineEdit *cellLineEdit = static_cast<QLineEdit*>(tabTargetSpat->cellWidget(x, y));
+            if(cellLineEdit->text().isEmpty()) {
+                tabTargetSpat->setStyleSheet("background-color: red");
+                break;
+            } else {
+                tabTargetSpat->setStyleSheet("");
+                ++resVal;
+            }
+        }
+    }
+    if(resVal == 0)
+        tabTargetSpat->setStyleSheet("");
     updateParameters();
 }
 
