@@ -43,6 +43,15 @@ App::App(QWidget *widget) : QMainWindow(widget) {
     translateInterface();
     initProjectionFiles();
     updateParameters();
+
+    setGeometry(
+        QStyle::alignedRect(
+            Qt::LeftToRight,
+            Qt::AlignCenter,
+            this->size(),
+            qApp->desktop()->availableGeometry()
+        )
+    );
     this->show();
 }
 
@@ -447,15 +456,79 @@ void App::initTargetLayout(void) {
                         tabTargetSpat->setCellWidget(x, y, cellLineEdit);
                     }
                 }
-
-                btnTargetSpat = new QPushButton();
-
                 lytTargetSpat->addWidget(tabTargetSpat);
-                lytTargetSpat->addWidget(btnTargetSpat);
             }
 
-            lytTarget->addWidget(lblTargetSpat);
+            lytTarget->addWidget(lblTargetSpat, 4, 0);
             lytTarget->addLayout(lytTargetSpat, 4, 1);
+
+            lblTargetDSCO = new QLabel();
+            lblTargetDSCO->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+            lblTargetDSCO->setMinimumWidth(70);
+            lblTargetDSCO->setMaximumWidth(70);
+
+            lytTargetDSCO = new QHBoxLayout();
+            {
+                tabTargetDSCO = new QTableWidget();
+                tabTargetDSCO->setFixedHeight(20);
+                tabTargetDSCO->horizontalHeader()->setVisible(false);
+                tabTargetDSCO->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+                tabTargetDSCO->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+                tabTargetDSCO->verticalHeader()->setVisible(false);
+                tabTargetDSCO->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+                tabTargetDSCO->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+                tabTargetDSCO->setRowCount(1);
+                tabTargetDSCO->setColumnCount(2);
+                tabTargetDSCO->setSelectionMode(QAbstractItemView::SingleSelection);
+                tabTargetDSCO->setToolTip("NAME=VALUE");
+                for(int x=0; x<tabTargetDSCO->rowCount(); ++x) {
+                    for(int y=0; y<tabTargetDSCO->columnCount(); ++y) {
+                        QLineEdit *cellLineEdit = new QLineEdit(tabTargetDSCO);
+                        cellLineEdit->setFrame(false);
+                        cellLineEdit->setMaximumHeight(20);
+                        tabTargetDSCO->setCellWidget(x, y, cellLineEdit);
+                    }
+                }
+                lytTargetDSCO->addWidget(tabTargetDSCO);
+            }
+
+            lytTarget->addWidget(lblTargetDSCO, 5, 0);
+            lytTarget->addLayout(lytTargetDSCO, 5, 1);
+
+            lblTargetLCO = new QLabel();
+            lblTargetLCO->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+            lblTargetLCO->setMinimumWidth(70);
+            lblTargetLCO->setMaximumWidth(70);
+
+            lytTargetLCO = new QHBoxLayout();
+            {
+                tabTargetLCO = new QTableWidget();
+                tabTargetLCO->setFixedHeight(20);
+                tabTargetLCO->horizontalHeader()->setVisible(false);
+                tabTargetLCO->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+                tabTargetLCO->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+                tabTargetLCO->verticalHeader()->setVisible(false);
+                tabTargetLCO->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+                tabTargetLCO->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+                tabTargetLCO->setRowCount(1);
+                tabTargetLCO->setColumnCount(2);
+                tabTargetLCO->setSelectionMode(QAbstractItemView::SingleSelection);
+                tabTargetLCO->setToolTip("NAME=VALUE");
+                for(int x=0; x<tabTargetLCO->rowCount(); ++x) {
+                    for(int y=0; y<tabTargetLCO->columnCount(); ++y) {
+                        QLineEdit *cellLineEdit = new QLineEdit(tabTargetLCO);
+                        cellLineEdit->setFrame(false);
+                        cellLineEdit->setMaximumHeight(20);
+                        tabTargetLCO->setCellWidget(x, y, cellLineEdit);
+                    }
+                }
+                lytTargetLCO->addWidget(tabTargetLCO);
+            }
+
+            btnTargetSpatDSCOLCO = new QPushButton();
+            lytTarget->addWidget(btnTargetSpatDSCOLCO, 7, 0);
+            lytTarget->addWidget(lblTargetLCO, 6, 0);
+            lytTarget->addLayout(lytTargetLCO, 6, 1);
 
             lytTargetOptions = new QHBoxLayout();
             {
@@ -469,7 +542,7 @@ void App::initTargetLayout(void) {
                 lytTargetOptions->addWidget(radTargetUpdate);
                 lytTargetOptions->addWidget(radTargetSkipfailures);
             }
-            lytTarget->addLayout(lytTargetOptions, 5, 1);
+            lytTarget->addLayout(lytTargetOptions, 7, 1);
         }
         grpTarget->setLayout(lytTarget);
     }
@@ -505,7 +578,7 @@ void App::initSlots(void) {
     QObject::connect(btnTargetName, SIGNAL(clicked()), this, SLOT(evtBtnTargetName(void)));
     QObject::connect(txtTargetProj, SIGNAL(textChanged(QString)), this, SLOT(evtTxtTargetProj(void)));
     QObject::connect(cmbTargetProj, SIGNAL(currentIndexChanged(int)), this, SLOT(evtUpdateParameters(void)));
-    QObject::connect(btnTargetSpat, SIGNAL(clicked(bool)), this, SLOT(evtBtnTargetSpat(void)));
+    QObject::connect(btnTargetSpatDSCOLCO, SIGNAL(clicked(bool)), this, SLOT(evtUpdateParameters(void)));
 
     QObject::connect(radTargetOverwrite, SIGNAL(toggled(bool)), this, SLOT(evtUpdateParameters(void)));
     QObject::connect(radTargetAppend, SIGNAL(toggled(bool)), this, SLOT(evtUpdateParameters(void)));
@@ -567,7 +640,9 @@ void App::translateInterface(void) {
         lblTargetProj->setText(tr("Projection"));
 
         lblTargetSpat->setText(tr("Spat"));
-        btnTargetSpat->setText(tr("Reload"));
+        btnTargetSpatDSCOLCO->setText(tr("Reload\nSpat/DSCO/LCO"));
+        lblTargetDSCO->setText(tr("DSCO"));
+        lblTargetLCO->setText(tr("LCO"));
 
         radTargetOverwrite->setText(tr("overwrite"));
         radTargetAppend->setText(tr("append"));
@@ -581,24 +656,7 @@ void App::translateInterface(void) {
 }
 
 void App::updateParameters(void) {
-    parameters = "ogr2ogr";
-    parameters += currentParameters();
-    if(radSourceWebService->isChecked())
-        parameters += " " + wsConnect->getSelectedLayers();
-    if(!txtOption->toPlainText().isEmpty())
-        parameters += " " + txtOption->toPlainText().simplified();
-    txtOptionOutput->setText(parameters);
-    progress->setValue(0);
-    txtSourceName->setStyleSheet("");
-    txtTargetName->setStyleSheet("");
-    txtSourceQuery->setStyleSheet("");
-    cmbTargetProj->setStyleSheet("");
-    txtOptionOutput->setStyleSheet("");
-}
-
-QString App::currentParameters(void) const {
-    QString parameters;
-    parameters += " -f \"" + cmbTargetFormat->currentText() + "\" ";
+    parameters = "ogr2ogr -f \"" + cmbTargetFormat->currentText() + "\" ";
     if(!txtTargetName->text().isEmpty())
         parameters += "\"" + txtTargetName->text()+ "\" ";
     if(radSourceWebService->isChecked() && !txtSourceName->text().isEmpty())
@@ -619,22 +677,70 @@ QString App::currentParameters(void) const {
         parameters += " -update";
     if(radTargetSkipfailures->isChecked())
         parameters += " -skipfailures";
-    QString spatParameter;
+    if(radSourceWebService->isChecked())
+        parameters += " " + wsConnect->getSelectedLayers();
+    parameters += currentParameters();
+    if(!txtOption->toPlainText().isEmpty())
+        parameters += " " + txtOption->toPlainText().simplified();
+    txtOptionOutput->setText(parameters);
+    progress->setValue(0);
+    txtSourceName->setStyleSheet("");
+    txtTargetName->setStyleSheet("");
+    txtSourceQuery->setStyleSheet("");
+    cmbTargetProj->setStyleSheet("");
+    txtOptionOutput->setStyleSheet("");
+}
+
+QString App::currentParameters(void) const {
+    QString parameters;
+    QString tempParameter;
     int totalParameters = 0;
     for(int x=0; x<tabTargetSpat->rowCount(); ++x) {
         for(int y=0; y<tabTargetSpat->columnCount(); ++y) {
             QLineEdit *cellLineEdit = static_cast<QLineEdit*>(tabTargetSpat->cellWidget(x, y));
             if(cellLineEdit != 0)
                 if(!cellLineEdit->text().isEmpty()) {
-                    spatParameter += " " + cellLineEdit->text();
+                    tempParameter += " " + cellLineEdit->text();
                     ++totalParameters;
                 }
         }
     }
-    if(!spatParameter.isEmpty() && totalParameters == 4) {
-        parameters += " -spat" + spatParameter;
+    if(!tempParameter.isEmpty() && totalParameters == 4)
+        parameters += " -spat" + tempParameter;
+    if(tempParameter.isEmpty() || totalParameters == 4)
         tabTargetSpat->setStyleSheet("");
-    }
+    else
+        tabTargetSpat->setStyleSheet("background-color: red");
+    tempParameter.clear();
+    totalParameters = 0;
+    QLineEdit *cellName = static_cast<QLineEdit*>(tabTargetDSCO->cellWidget(0, 0));
+    QLineEdit *cellValue = static_cast<QLineEdit*>(tabTargetDSCO->cellWidget(0, 1));
+    if(cellName != 0 && cellValue != 0)
+        if(!cellName->text().isEmpty() && !cellValue->text().isEmpty()) {
+            tempParameter = " " + cellName->text() + "=" + cellValue->text();
+            totalParameters = 2;
+        }
+    if(!tempParameter.isEmpty() && totalParameters == 2)
+        parameters += " -dsco" + tempParameter;
+    if((cellName->text().isEmpty() && cellValue->text().isEmpty()) || totalParameters == 2)
+        tabTargetDSCO->setStyleSheet("");
+    else
+        tabTargetDSCO->setStyleSheet("background-color: red");
+    tempParameter.clear();
+    totalParameters = 0;
+    cellName = static_cast<QLineEdit*>(tabTargetLCO->cellWidget(0, 0));
+    cellValue = static_cast<QLineEdit*>(tabTargetLCO->cellWidget(0, 1));
+    if(cellName != 0 && cellValue != 0)
+        if(!cellName->text().isEmpty() && !cellValue->text().isEmpty()) {
+            tempParameter = " " + cellName->text() + "=" + cellValue->text();
+            totalParameters = 2;
+        }
+    if(!tempParameter.isEmpty() && totalParameters == 2)
+        parameters += " -lco" + tempParameter;
+    if((cellName->text().isEmpty() && cellValue->text().isEmpty()) || totalParameters == 2)
+        tabTargetLCO->setStyleSheet("");
+    else
+        tabTargetLCO->setStyleSheet("background-color: red");
     return parameters;
 }
 
@@ -968,25 +1074,6 @@ void App::evtTxtTargetProj(void) {
             }
         }
     }
-    updateParameters();
-}
-
-void App::evtBtnTargetSpat(void) {
-    int resVal = 0;
-    for(int x=0; x<tabTargetSpat->rowCount(); ++x) {
-        for(int y=0; y<tabTargetSpat->columnCount(); ++y) {
-            QLineEdit *cellLineEdit = static_cast<QLineEdit*>(tabTargetSpat->cellWidget(x, y));
-            if(cellLineEdit->text().isEmpty()) {
-                tabTargetSpat->setStyleSheet("background-color: red");
-                break;
-            } else {
-                tabTargetSpat->setStyleSheet("");
-                ++resVal;
-            }
-        }
-    }
-    if(resVal == 0)
-        tabTargetSpat->setStyleSheet("");
     updateParameters();
 }
 

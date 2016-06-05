@@ -143,7 +143,15 @@ private:
     QLabel *lblTargetSpat;
     QHBoxLayout *lytTargetSpat;
     QTableWidget *tabTargetSpat;
-    QPushButton *btnTargetSpat;
+    QPushButton *btnTargetSpatDSCOLCO;
+
+    QLabel *lblTargetDSCO;
+    QHBoxLayout *lytTargetDSCO;
+    QTableWidget *tabTargetDSCO;
+
+    QLabel *lblTargetLCO;
+    QHBoxLayout *lytTargetLCO;
+    QTableWidget *tabTargetLCO;
 
     QHBoxLayout *lytTargetOptions;
     QCheckBox *radTargetAppend;
@@ -273,7 +281,6 @@ private slots :
     void evtTxtTargetName(void);
     void evtBtnTargetName(void);
     void evtTxtTargetProj(void);
-    void evtBtnTargetSpat(void);
 
     void evtUpdateParameters(void);
 

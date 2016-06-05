@@ -1,4 +1,4 @@
-OGR2GUI x64
+OGR2GUI
 
 Copyright © 2016
 
@@ -16,17 +16,18 @@ is also fully compatible with the well-known ogr2ogr options.
 2. Features
 - GUI for ogr2ogr:
 * File
+* Folder
 * Database
 * Web Service
-* Projections
-* Option input (optional)
+* EPSG Projections
+* SQL Query
+* Spat/DSCO/LCO
+* Other Options (advanced)
 * Log file
-- ogr2ogr as command line
+* Internationalization
 
 3. System Requirements
 - Windows 10, Windows 10 64-bit
-
-Note: OGR2GUI does not currently support WINE.
 
 4. Installation
 - Extract the zip file
