@@ -208,7 +208,7 @@ void App::initLayout(void) {
             lytOptions = new QGridLayout();
             {
                 txtOption = new QTextEdit();
-                txtOption->setMaximumHeight(80);
+                txtOption->setMaximumHeight(50);
             }
             lytOptions->addWidget(txtOption, 1, 0);
             grpOptions->setLayout(lytOptions);
@@ -457,6 +457,8 @@ void App::initTargetLayout(void) {
                     }
                 }
                 lytTargetSpat->addWidget(tabTargetSpat);
+                btnTargetSpat = new QPushButton();
+                lytTargetSpat->addWidget(btnTargetSpat);
             }
 
             lytTarget->addWidget(lblTargetSpat, 4, 0);
@@ -490,6 +492,8 @@ void App::initTargetLayout(void) {
                     }
                 }
                 lytTargetDSCO->addWidget(tabTargetDSCO);
+                btnTargetDSCO = new QPushButton();
+                lytTargetDSCO->addWidget(btnTargetDSCO);
             }
 
             lytTarget->addWidget(lblTargetDSCO, 5, 0);
@@ -523,10 +527,10 @@ void App::initTargetLayout(void) {
                     }
                 }
                 lytTargetLCO->addWidget(tabTargetLCO);
+                btnTargetLCO = new QPushButton();
+                lytTargetLCO->addWidget(btnTargetLCO);
             }
 
-            btnTargetSpatDSCOLCO = new QPushButton();
-            lytTarget->addWidget(btnTargetSpatDSCOLCO, 7, 0);
             lytTarget->addWidget(lblTargetLCO, 6, 0);
             lytTarget->addLayout(lytTargetLCO, 6, 1);
 
@@ -578,7 +582,9 @@ void App::initSlots(void) {
     QObject::connect(btnTargetName, SIGNAL(clicked()), this, SLOT(evtBtnTargetName(void)));
     QObject::connect(txtTargetProj, SIGNAL(textChanged(QString)), this, SLOT(evtTxtTargetProj(void)));
     QObject::connect(cmbTargetProj, SIGNAL(currentIndexChanged(int)), this, SLOT(evtUpdateParameters(void)));
-    QObject::connect(btnTargetSpatDSCOLCO, SIGNAL(clicked(bool)), this, SLOT(evtUpdateParameters(void)));
+    QObject::connect(btnTargetSpat, SIGNAL(clicked(bool)), this, SLOT(evtUpdateParameters(void)));
+    QObject::connect(btnTargetDSCO, SIGNAL(clicked(bool)), this, SLOT(evtUpdateParameters(void)));
+    QObject::connect(btnTargetLCO, SIGNAL(clicked(bool)), this, SLOT(evtUpdateParameters(void)));
 
     QObject::connect(radTargetOverwrite, SIGNAL(toggled(bool)), this, SLOT(evtUpdateParameters(void)));
     QObject::connect(radTargetAppend, SIGNAL(toggled(bool)), this, SLOT(evtUpdateParameters(void)));
@@ -639,10 +645,13 @@ void App::translateInterface(void) {
 
         lblTargetProj->setText(tr("Projection"));
 
+        const QString text = tr("Paste Option");
         lblTargetSpat->setText(tr("Spat"));
-        btnTargetSpatDSCOLCO->setText(tr("Reload\nSpat/DSCO/LCO"));
+        btnTargetSpat->setText(text);
         lblTargetDSCO->setText(tr("DSCO"));
+        btnTargetDSCO->setText(text);
         lblTargetLCO->setText(tr("LCO"));
+        btnTargetLCO->setText(text);
 
         radTargetOverwrite->setText(tr("overwrite"));
         radTargetAppend->setText(tr("append"));

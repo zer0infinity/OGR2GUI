@@ -7,6 +7,7 @@
  * Copyright (c) 2014 Faculty of Computer Science,
  * University of Applied Sciences Rapperswil (HSR),
  * 8640 Rapperswil, Switzerland
+ * Copyright (c) 2016 David Tran, Switzerland
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,8 +26,8 @@
 /**
  *	\file dbConnect.h
  *	\brief Database Connect
- *	\author Olivier Pilotte [Inventis], David Tran [HSR]
- *	\version 0.7
+ *	\author Olivier Pilotte [Inventis], David Tran
+ *	\version 0.8
  */
 
 #ifndef DBCONNECT_H
@@ -83,13 +84,13 @@ private:
     QPushButton *btnCancel;
 
     /**
-         *	\fn void InitInterface(void);
+         *	\fn void initInterface(void);
          *	\brief Inits Interface
          */
     void initInterface(void);
 
     /**
-         *	\fn void InitSlots(void);
+         *	\fn void initSlots(void);
          *	\brief Inits Slots
          */
     void initSlots(void);
@@ -116,7 +117,7 @@ public:
     ~DBConnect(void);
 
     /**
-         *	\fn void TranslateInterface(void);
+         *	\fn void translateInterface(void);
          *	\brief Translates Interface
          */
     void translateInterface(void);

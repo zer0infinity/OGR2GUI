@@ -7,6 +7,7 @@
  * Copyright (c) 2014 Faculty of Computer Science,
  * University of Applied Sciences Rapperswil (HSR),
  * 8640 Rapperswil, Switzerland
+ * Copyright (c) 2016 David Tran, Switzerland
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,8 +26,8 @@
 /**
  *	\file ogr.h
  *	\brief OGR API
- *	\author Olivier Pilotte [Inventis], David Tran [HSR]
- *	\version 0.7
+ *	\author Olivier Pilotte [Inventis], David Tran
+ *	\version 0.8
  */
 
 #ifndef OGR
@@ -101,7 +102,7 @@ public:
     ~Ogr(void);
 
     /**
-     * \fn bool OpenOgr2ogr(QString command, QPushButton *btnExecute)
+     * \fn bool openOgr2ogr(QString command, QPushButton *btnExecute)
      * \brief Open ogr2ogr command line
      * \param command : command with arguments
      * \param btnExecute : execute button
@@ -110,7 +111,7 @@ public:
     bool openOgr2ogr(QString command, QPushButton *btnExecute);
 
     /**
-         * \fn bool OpenWFS(QStringList &fileList)
+         * \fn bool openWFS(QStringList &fileList)
          * \brief Open WFS data
          * \param uri : source uri
          * \param &fileList : layer list
@@ -119,7 +120,7 @@ public:
     bool openWFS(const QString uri, QStringList &fileList);
 
     /**
-         * \fn OpenSource(string filename, string layername, string &epsg, string &query, string &error);
+         * \fn openSource(string filename, string layername, string &epsg, string &query, string &error);
          * \brief Opens source data
          * \param filename : source filename
          * \param layername : layername
@@ -131,7 +132,7 @@ public:
     bool openSource(const string filename, const string layername, string &epsg, string &query, string &Error);
 
     /**
-         *	\fn bool OpenSource(string filename, string &epsg = 0, string &query = 0, string &error = 0);
+         *	\fn bool openSource(string filename, string &epsg = 0, string &query = 0, string &error = 0);
          *	\brief Opens source data
          *	\param filename : source filename
          *	\param &epsg : epsg code
@@ -142,14 +143,14 @@ public:
     bool openSource(const string filename, string &epsg, string &query, string &Error);
 
     /**
-         *	\fn bool CloseSource(void);
+         *	\fn bool closeSource(void);
          *	\brief Closes source data
          *	\returns true on success
          */
     bool closeSource(void) const;
 
     /**
-         *	\fn bool OpenDriver(string drivername, string error = 0);
+         *	\fn bool openDriver(string drivername, string error = 0);
          *	\brief Opens target driver
          *	\param drivername : selected driver
          *	\returns true on success
@@ -157,13 +158,13 @@ public:
     bool openDriver(const string drivername);
 
     /**
-     *	\fn bool Process(void);
+     *	\fn bool testFeatureProjection(void);
      *	\brief Test feature projections
      */
     bool testFeatureProjection(void);
 
     /**
-     * \fn bool OpenProjection(int projection)
+     * \fn bool testSpatialReference(int projection)
      * \brief Test spatial reference
      * \param projection : projection
      * \return true on success
@@ -171,7 +172,7 @@ public:
     bool testSpatialReference(const int projection);
 
     /**
-     * \fn bool TestSQL(string query)
+     * \fn bool testExecuteSQL(string query)
      * \brief Execute sql query
      * \param query : sql query
      * \return true on success

@@ -60,8 +60,8 @@ private:
     QList<QPair<QString, QString> > languageList;
 
     /**
-         *	\fn void initLanguage(void);
-         *	\brief Inits Language
+         *	\fn void initSettings(void);
+         *	\brief Inits Settings
          */
     void initSettings(void);
 
@@ -72,7 +72,7 @@ private:
     void initInterface(void);
 
     /**
-         *	\fn void InitSlots(void);
+         *	\fn void initSlots(void);
          *	\brief Inits Slots
          */
     void initSlots(void);
@@ -106,13 +106,13 @@ public:
     void translateInterface(void);
 
     /**
-         *	\fn void initFile(void);
+         *	\fn void initFiles(void);
          *	\brief Inits File
          */
     void initFiles(void);
 
     /**
-         *	\fn QStringList getFileList(void);
+         *	\fn QStringList getProjectionFileList(void);
          *	\brief Get list with filenames
          */
     QStringList getProjectionFileList(void);

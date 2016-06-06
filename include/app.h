@@ -143,15 +143,17 @@ private:
     QLabel *lblTargetSpat;
     QHBoxLayout *lytTargetSpat;
     QTableWidget *tabTargetSpat;
-    QPushButton *btnTargetSpatDSCOLCO;
+    QPushButton *btnTargetSpat;
 
     QLabel *lblTargetDSCO;
     QHBoxLayout *lytTargetDSCO;
     QTableWidget *tabTargetDSCO;
+    QPushButton *btnTargetDSCO;
 
     QLabel *lblTargetLCO;
     QHBoxLayout *lytTargetLCO;
     QTableWidget *tabTargetLCO;
+    QPushButton *btnTargetLCO;
 
     QHBoxLayout *lytTargetOptions;
     QCheckBox *radTargetAppend;
@@ -169,7 +171,7 @@ private:
     QPushButton *btnConvert;
 
     /**
-         *	\fn void InitData(void);
+         *	\fn void initData(void);
          *	\brief Inits data
          */
     void initData(void);
@@ -184,67 +186,67 @@ private:
     void readResources(QFile &file, QList<QPair<QString, QString> > &readonlyList, QList<QPair<QString, QString> > &readwriteList = QList<QPair<QString, QString> >());
 
     /**
-         *	\fn void void InitProjections(void);
+         *	\fn void void initProjectionFiles(void);
          *	\brief Inits projections
          */
     void initProjectionFiles(void);
 
     /**
-        * \fn void ReadProjections(QString filename);
+        * \fn void readProjections(QString filename);
         * \brief Read projections
         */
     void readProjections(const QString filename);
 
     /**
-        * \fn addProjections();
+        * \fn initProjection();
         * \brief Add Projections to UI
         */
     void initProjection();
 
     /**
-         *	\fn void InitInterface(void);
+         *	\fn void initInterface(void);
          *	\brief Inits Interface
          */
     void initInterface(void);
 
     /**
-         *	\fn void InitMenu(void);
+         *	\fn void initMenu(void);
          *	\brief Inits Menu
          */
     void initMenu(void);
 
     /**
-         *	\fn void InitLayout(void);
+         *	\fn void initLayout(void);
          *	\brief Inits Layout
          */
     void initLayout(void);
 
     /**
-         *	\fn void InitSourceLayout(void);
+         *	\fn void initSourceLayout(void);
          *	\brief Inits Source Layout
          */
     void initSourceLayout(void);
 
     /**
-         *	\fn void Init Target Layout(void);
+         *	\fn void initTargetLayout(void);
          *	\brief Inits Target Layout
          */
     void initTargetLayout(void);
 
     /**
-         *	\fn void InitSlots(void);
+         *	\fn void initSlots(void);
          *	\brief Inits Slots
          */
     void initSlots(void);
 
     /**
-         *	\fn void TranslateInterface(void);
+         *	\fn void translateInterface(void);
          *	\brief Translates Interface
          */
     void translateInterface(void);
 
     /**
-         *	\fn void UpdateParameters(void);
+         *	\fn void updateParameters(void);
          *	\brief Updates parameters
          */
     void updateParameters(void);

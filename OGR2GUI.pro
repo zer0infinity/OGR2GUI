@@ -25,7 +25,7 @@
 
 TEMPLATE = app
 INCLUDEPATH += $$PWD/include $$PWD/include/ogr
-#DESTDIR += $$PWD/bin
+DESTDIR += $$PWD/bin
 
 TRANSLATIONS += \
     res/translations/en_GB.ts \

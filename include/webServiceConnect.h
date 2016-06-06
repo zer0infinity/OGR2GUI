@@ -6,6 +6,7 @@
  * Copyright (c) 2014 Faculty of Computer Science,
  * University of Applied Sciences Rapperswil (HSR),
  * 8640 Rapperswil, Switzerland
+ * Copyright (c) 2016 David Tran, Switzerland
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,8 +25,8 @@
 /**
  *	\file webServiceConnect.h
  *	\brief Web Service Connect
- *	\author David Tran [HSR]
- *	\version 0.7
+ *	\author David Tran
+ *	\version 0.8
  */
 
 #ifndef WFSCONNECT_H
@@ -69,13 +70,13 @@ private:
     QPushButton *btnCancel;
 
     /**
-         *	\fn void InitInterface(void);
+         *	\fn void initInterface(void);
          *	\brief Inits Interface
          */
     void initInterface(void);
 
     /**
-         *	\fn void InitSlots(void);
+         *	\fn void initSlots(void);
          *	\brief Inits Slots
          */
     void initSlots(void);
@@ -102,7 +103,7 @@ public:
     ~WebServiceConnect(void);
 
     /**
-         *	\fn void TranslateInterface(void);
+         *	\fn void translateInterface(void);
          *	\brief Translates Interface
          */
     void translateInterface(void);
@@ -110,7 +111,6 @@ public:
     /**
          *	\fn void setConnectionType(QString)
          *	\brief Sets connection type
-         *  \param QString : connection type
          */
     void setConnectionType(const QString);
 
@@ -121,13 +121,13 @@ public:
     QString getConnectionString(void) const;
 
     /**
-         *	\fn QSring getSelectedTables(void)
+         *	\fn QSring getSelectedLayers(void)
          *	\brief returns selected layers
          */
     QString getSelectedLayers(void) const;
 
     /**
-         *	\fn QSringList getSelectedTables(void)
+         *	\fn QSringList getSelectedLayersAsList(void)
          *	\brief returns selected layers
          */
     QStringList getSelectedLayersAsList(void) const;
